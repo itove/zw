@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}登录{% endblock %}
+
+{% block body %}
+<form method="post" class="mt-5 p-3 mx-auto" style="max-width: 420px">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            你已登录 {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">退出</a>
+        </div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal text-center">{{ sitename }}</h1>
+    <label for="inputUsername">用户名</label>
+    <input type="text" value="{{ last_username }}" name="_username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
+    <label for="inputPassword">密码</label>
+    <input type="password" name="_password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+
+    <button class="btn btn-lg btn-success mt-2 w-100" type="submit">
+    登录
+    </button>
+</form>
+{% endblock %}
