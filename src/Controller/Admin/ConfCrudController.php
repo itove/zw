@@ -42,7 +42,7 @@ class ConfCrudController extends AbstractCrudController
         
         return $actions
             ->update(Crud::PAGE_DETAIL, Action::EDIT, $editFn)
-            ->disable('new')
+            // ->disable('new')
             ->disable(Action::SAVE_AND_ADD_ANOTHER)
         ;
     }
@@ -59,18 +59,12 @@ class ConfCrudController extends AbstractCrudController
                 break;
             default:
                 $fields = [
-                    TextField::new('name', 'Site Name'),
+                    TextField::new('Sitename'),
                     ArrayField::new('keywords'),
                     TextareaField::new('description'),
                     TextField::new('address'),
                     TextField::new('phone'),
                     TextField::new('email'),
-                    TextField::new('icp'),
-                    TextField::new('weibo'),
-                    TextField::new('wx'),
-                    TextField::new('twitter'),
-                    TextField::new('facebook'),
-                    TextField::new('linkedin'),
                 ];
         }
         

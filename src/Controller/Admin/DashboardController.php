@@ -208,6 +208,7 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
             yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('post', 'fas fa-list', Post::class);
+            yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class);
         }
     }
 }
