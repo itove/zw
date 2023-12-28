@@ -123,7 +123,6 @@ class PostCrudController extends AbstractCrudController
             yield IdField::new('id')
                 ->onlyOnIndex()
             ;
-            yield TextField::new('icon');
             yield AssociationField::new('region');
             yield ArrayField::new('tag')
                 ->hideOnForm()
@@ -170,10 +169,10 @@ class PostCrudController extends AbstractCrudController
             ;
         }
         $synopsis_label = null;
-        if (!is_null($this->query->get('synopsis'))) {
-            $synopsis_label = $this->query->get('synopsis');
+        if (!is_null($this->query->get('summary'))) {
+            $synopsis_label = $this->query->get('summary');
         }
-        yield TextareaField::new('synopsis', $synopsis_label)
+        yield TextareaField::new('summary', $synopsis_label)
             // ->setMaxLength(15)
         ;
         if (!is_null($this->query->get('body'))) {

@@ -26,6 +26,11 @@ class Region
 
     #[ORM\OneToMany(mappedBy: 'region', targetEntity: Post::class)]
     private Collection $posts;
+    
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
     public function __construct()
     {
