@@ -85,6 +85,129 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         $regions = $this->doctrine->getRepository(Region::class);
-        yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+        
+        yield MenuItem::linkToUrl('返回前台', 'fas fa-arrow-circle-left', '/');
+        yield MenuItem::section('关于我们');
+        
+        $region_about = $regions->findOneBy(['label' => 'about']);
+        $abouts = $this->posts->findBy(['region' => $region_about]);
+        foreach ($abouts as $i) {
+            yield MenuItem::linkToCrud($i, 'fas fa-note-sticky', Post::class)
+                ->setQueryParameter('region', 'about')
+                ->setAction('detail')
+                ->setEntityId($i->getId());
+            ;
+        }
+        
+        yield MenuItem::section('产品方案');
+        yield MenuItem::linkToCrud('产品及服务', 'fas fa-server', Post::class)
+            ->setQueryParameter('region', 'product')
+            ->setAction('detail')
+            ->setEntityId(10);
+        ;
+        yield MenuItem::linkToCrud('产品列表', 'fas fa-list', Post::class)
+            ->setQueryParameter('region', 'product_list')
+            ->setQueryParameter('img', '1')
+        ;
+        
+        yield MenuItem::section('我们的优势');
+        yield MenuItem::linkToCrud('我们的优势', 'fas fa-bullhorn', Post::class)
+            ->setQueryParameter('region', 'why')
+            ->setAction('detail')
+            ->setEntityId(17);
+        ;
+        yield MenuItem::linkToCrud('优势列表', 'fas fa-list', Post::class)
+            ->setQueryParameter('region', 'why_list')
+        ;
+        
+        yield MenuItem::section('典型案例');
+        yield MenuItem::linkToCrud('典型案例', 'fas fa-book', Post::class)
+            ->setQueryParameter('region', 'portfolio')
+            ->setAction('detail')
+            ->setEntityId(21);
+        ;
+        yield MenuItem::linkToCrud('案例列表', 'fas fa-list', Post::class)
+            ->setQueryParameter('region', 'portfolio_list')
+            ->setQueryParameter('img', '1')
+            ->setQueryParameter('tag', 'portfolio')
+        ;
+        
+        yield MenuItem::section('团队介绍');
+        yield MenuItem::linkToCrud('团队成员', 'fas fa-people-group', Post::class)
+            ->setQueryParameter('region', 'team')
+            ->setAction('detail')
+            ->setEntityId(31);
+        ;
+        yield MenuItem::linkToCrud('成员列表', 'fas fa-list', Post::class)
+            ->setQueryParameter('region', 'member_list')
+            ->setQueryParameter('img', '1')
+        ;
+        
+        yield MenuItem::section('产品价格');
+        yield MenuItem::linkToCrud('产品价格', 'fas fa-money-bill-wave-alt', Post::class)
+            ->setQueryParameter('region', 'price')
+            ->setAction('detail')
+            ->setEntityId(36);
+        ;
+        yield MenuItem::linkToCrud('价格列表', 'fas fa-list', Post::class)
+            ->setQueryParameter('region', 'price_list')
+            ->setQueryParameter('synopsis', 'Price') // parameter as field label
+            ->setQueryParameter('body', 'Feature')
+        ;
+        
+        yield MenuItem::section('常见问题');
+        yield MenuItem::linkToCrud('常见问题', 'fas fa-question-circle', Post::class)
+            ->setQueryParameter('region', 'faq')
+            ->setAction('detail')
+            ->setEntityId(37);
+        ;
+        yield MenuItem::linkToCrud('问题列表', 'fas fa-list', Post::class)
+            ->setQueryParameter('region', 'faq_list')
+        ;
+        
+        yield MenuItem::section('联系我们');
+        yield MenuItem::linkToCrud('联系我们', 'fas fa-contact-card', Post::class)
+            ->setQueryParameter('region', 'contact')
+            ->setAction('detail')
+            ->setEntityId(38);
+        ;
+        yield MenuItem::linkToCrud('联系信息', 'fas fa-phone', Conf::class)
+            ->setQueryParameter('action', 'contact')
+            ->setAction('detail')
+            ->setEntityId(1)
+        ;
+        
+        yield MenuItem::section('企业动态');
+        yield MenuItem::linkToCrud('企业动态', 'fas fa-feed', Post::class)
+            ->setQueryParameter('region', 'news_list')
+            ->setQueryParameter('img', '1')
+            ->setQueryParameter('tag', 'nodash')
+            ->setQueryParameter('body', 'Body')
+        ;
+        yield MenuItem::section('系统管理');
+        yield MenuItem::linkToCrud('修改密码', 'fas fa-key', User::class)
+            ->setQueryParameter('action', 'chpw')
+            ->setAction('edit')
+            ->setEntityId($this->getUser()->getId())
+            ;
+        if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('用户管理', 'fas fa-users', User::class);
+            yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class)
+                ->setAction('detail')
+                ->setEntityId(1)
+            ;
+            // yield MenuItem::linkToCrud('客户反馈', 'fas fa-message', Feedback::class);
+            yield MenuItem::linkToCrud('用户条款', 'fas fa-book-open', Post::class)
+                ->setQueryParameter('region', 'term')
+                ->setQueryParameter('body', 'Body')
+            ;
+        }
+        
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            yield MenuItem::section('Super Admin');
+            yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
+            yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
+            yield MenuItem::linkToCrud('post', 'fas fa-list', Post::class);
+        }
     }
 }
