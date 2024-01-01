@@ -37,7 +37,7 @@ class UserCrudController extends AbstractCrudController
         $response = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         $response
             ->andWhere("entity.id != $uid")
-            ->andWhere("entity.roles not like '%ROLE_SUPER_ADMIN%'")
+            // ->andWhere("entity.roles LIKE '%ROLE_SUPER_ADMIN%'")
         ;
         return $response;
     }
