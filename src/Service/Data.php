@@ -10,7 +10,7 @@ namespace App\Service;
 
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Conf;
-use App\Entity\Post;
+use App\Entity\Node;
 use App\Entity\Tag;
 use App\Entity\Region;
 
@@ -26,7 +26,7 @@ class Data
     public function get($nid = null)
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
-        $nodeRepo = $this->doctrine->getRepository(Post::class);
+        $nodeRepo = $this->doctrine->getRepository(Node::class);
         $regions = $this->doctrine->getRepository(Region::class)->findAll();
         $arr = [
             'description' => $conf->getDescription(),
@@ -38,7 +38,7 @@ class Data
         ];
         
         if (!is_null($nid)) {
-            $arr['node'] = $this->doctrine->getRepository(Post::class)->find($nid);
+            $arr['node'] = $this->doctrine->getRepository(Node::class)->find($nid);
         }
         
         foreach($regions as $r ) {
@@ -58,9 +58,9 @@ class Data
         return $arr;
     }
     
-    public function getPostByTag(string $tag, $limit = null, $offset = null)
+    public function getNodeByTag(string $tag, $limit = null, $offset = null)
     {
-        $nodes = $this->doctrine->getRepository(Post::class)->findByTag(['tag' => $tag], $limit, $offset);
+        $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);
         return $nodes;
     }
     
