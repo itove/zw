@@ -1,20 +1,380 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello IndexController!{% endblock %}
+{% block breadcrumbs %}{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block main %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/al/w/generic_official_website/src/Controller/IndexController.php'|file_link(0) }}">src/Controller/IndexController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/al/w/generic_official_website/templates/index/index.html.twig'|file_link(0) }}">templates/index/index.html.twig</a></code></li>
-    </ul>
-</div>
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+        {% for i in slides %}
+          <div class="carousel-item {{ loop.first ? 'active'}}" style="background-image: url(/img/{{ i.img }});">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">{{ i }}</h2>
+                <p class="animate__animated animate__fadeInUp">{{ i.synopsis }}</p>
+                <div>
+                  <a href="/blog/{{ i.id }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="row no-gutters">
+          <div class="image col-xl-5 d-flex align-items-stretch justify-content-center justify-content-lg-start"></div>
+          <div class="col-xl-7 ps-0 ps-lg-5 pe-lg-1 d-flex align-items-stretch">
+            <div class="content d-flex flex-column justify-content-center">
+              <h3>{{ site_name }}</h3>
+              <p>{{ about.0.synopsis }}</p>
+              <div class="row">
+              {% for i in about|slice(1,4) %}
+                <div class="col-md-6 icon-box">
+                  <i class="bx bx-receipt"></i>
+                  <h4>{{ i }}</h4>
+                  <p>{{ i.synopsis }}</p>
+                </div>
+              {% endfor %}
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Counts Section ======= -->
+    <section id="counts" class="counts">
+      <div class="container">
+
+        <div class="row no-gutters">
+
+        {% for i in about|slice(5,8) %}
+          <div class="col-lg-3 col-md-6 d-md-flex align-items-md-stretch">
+            <div class="count-box">
+              <i class="bi bi-{{ i.icon }}"></i>
+              <span data-purecounter-start="0" data-purecounter-end="{{ i.synopsis }}" data-purecounter-duration="1" class="purecounter"></span>
+              <p><strong>{{ i }}</strong> </p>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Counts Section -->
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients section-bg">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="assets/img/clients/client-1.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="assets/img/clients/client-2.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="assets/img/clients/client-3.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="assets/img/clients/client-4.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="assets/img/clients/client-5.png" class="img-fluid" alt="">
+          </div>
+
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="assets/img/clients/client-6.png" class="img-fluid" alt="">
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ product }}</h2>
+          <p>{{ product.synopsis }}</p>
+        </div>
+
+        <div class="row">
+        {% for i in product_list %}
+          <div class="col-lg-4 col-md-6 icon-box">
+            <div class="icon"><i class="bi bi-{{ i.icon }}"></i></div>
+            <h4 class="title"><a href="/product/{{ i.id }}">{{ i }}</a></h4>
+            <p class="description">{{ i.synopsis }}</p>
+          </div>
+        {% endfor %}
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ why }}</h2>
+          <p>{{ why.synopsis }}</p>
+        </div>
+
+        <div class="row">
+
+        {% for i in why_list %}
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>{{ "%02d"|format(loop.index) }}</span>
+              <h4>{{ i }}</h4>
+              <p>{{ i.synopsis }}</p>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ portfolio }}</h2>
+          <p> {{ portfolio.synopsis }}</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">全部</li>
+              <li data-filter=".filter-portfolio-office">智慧办公</li>
+              <li data-filter=".filter-portfolio-data">智慧数据</li>
+              <li data-filter=".filter-portfolio-accounting">智慧财务</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container">
+
+        {% for i in portfolio_list %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-{{ i.tag[0].label }}">
+            <div class="portfolio-wrap">
+              <img src="/img/{{ i.img }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>{{ i }}</h4>
+                <p>{{ i.synopsis }}</p>
+                <div class="portfolio-links">
+                  <a href="/img/{{ i.img }}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="{{ i }}"><i class="bx bx-plus"></i></a>
+                  <a href="/portfolio/{{ i.id }}" title="查看详情"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+    <!-- ======= Team Section ======= -->
+    <section id="team" class="team">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ team }}</h2>
+          <p>{{ team.synopsis }}</p>
+        </div>
+
+        <div class="row">
+        
+        {% for i in member_list %}
+          <div class="col-xl-3 col-lg-4 col-md-6" data-wow-delay="0.{{ loop.index0 }}s">
+            <div class="member">
+              <img src="/img/{{ i.img }}" class="img-fluid" alt="">
+              <div class="member-info">
+                <div class="member-info-content">
+                  <h4>{{ i.title }}</h4>
+                  <span>{{ i.synopsis }}</span>
+                  <div class="social">
+                    <a href=""><i class="bi bi-twitter"></i></a>
+                    <a href=""><i class="bi bi-facebook"></i></a>
+                    <a href=""><i class="bi bi-instagram"></i></a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Team Section -->
+
+    <!-- ======= Pricing Section ======= -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ price }}</h2>
+          <p>{{ price.synopsis }}</p>
+        </div>
+
+        <div class="row">
+
+        {% for i in price_list %}
+          <div class="col-lg-4 col-md-6">
+            <div class="box {{ loop.index == 2 ? 'recommended' }}">
+              <h3>{{ i }}</h3>
+              <h4><sup>¥</sup>{{ i.synopsis }}<span> / 月</span></h4>
+              {{ i.body|raw }}
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">预 定</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Pricing Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ faq }}</h2>
+          <p>{{ faq.synopsis }}</p>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+          {% for i in faq_list %}
+            <li data-aos="fade-up" data-aos-delay="{{ loop.index0 * 100 }}">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="{{ loop.first ? 'collapse' : 'collapsed'}}" data-bs-target="#faq-list-{{ loop.index }}">{{ i }}<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-{{ loop.index }}" class="collapse {{ loop.first ? 'show'}}" data-bs-parent=".faq-list">
+                <p>
+                {{ i.synopsis }}
+                </p>
+              </div>
+            </li>
+          {% endfor %}
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>{{ contact }}</h2>
+          <p>{{ contact.synopsis }}</p>
+        </div>
+
+        <div class="row contact-info">
+
+          <div class="col-md-4">
+            <div class="contact-address">
+              <i class="bi bi-geo-alt"></i>
+              <h3>地址</h3>
+              <address>{{ address }}</address>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-phone">
+              <i class="bi bi-phone"></i>
+              <h3>电话</h3>
+              <p><a href="tel:{{ phone }}">{{ phone }}</a></p>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="contact-email">
+              <i class="bi bi-envelope"></i>
+              <h3>邮箱</h3>
+              <p><a href="mailto:{{ email }}">{{ email }}</a></p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="form">
+          <form action="feedback/new" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-4 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="您的姓名" data-rule="minlen:4" data-msg="Please enter at least 4 chars" required>
+              </div>
+              <div class="col-md-4 form-group">
+                <input type="text" name="phone" class="form-control" id="phone" placeholder="您的电话" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+              </div>
+              <div class="col-md-4 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="您的邮箱" data-rule="email" data-msg="Please enter a valid email">
+              </div>
+            </div>
+            <div class="form-group mt-3">
+              <input type="text" class="form-control" name="title" id="title" placeholder="标题" required>
+            </div>
+            <div class="form-group mt-3">
+              <textarea class="form-control" name="content" rows="5" placeholder="内容" required></textarea>
+            </div>
+            <div class="my-3">
+              <div class="loading">加载中...</div>
+              <div class="error-message"></div>
+              <div class="sent-message">信息已发送，感谢您的支持！</div>
+            </div>
+            <div class="text-center"><button type="submit">发送</button></div>
+          </form>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
 {% endblock %}
