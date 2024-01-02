@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Post;
+use App\Entity\Node;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -30,7 +30,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 
-class PostCrudController extends AbstractCrudController
+class NodeCrudController extends AbstractCrudController
 {
     private $region;
     private $query;
@@ -48,7 +48,7 @@ class PostCrudController extends AbstractCrudController
     
     public static function getEntityFqcn(): string
     {
-        return Post::class;
+        return Node::class;
     }
     
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
@@ -63,11 +63,11 @@ class PostCrudController extends AbstractCrudController
     
     public function createEntity(string $entityFqcn)
     {
-        $post = new Post();
+        $node = new Node();
         if (!is_null($this->region)) {
-            $post->setRegion($this->region);
+            $node->setRegion($this->region);
         }
-        return $post;
+        return $node;
     }
 
     public function configureActions(Actions $actions): Actions
@@ -78,7 +78,7 @@ class PostCrudController extends AbstractCrudController
                           ->generateUrl()
         );
         $editFn = fn (Action $action) => $action->linkToUrl(
-            fn (Post $entity) => $this->adminUrlGenerator
+            fn (Node $entity) => $this->adminUrlGenerator
                           ->setAction('edit')
                           ->set('entityId', $entity->getId())
                           ->generateUrl()
