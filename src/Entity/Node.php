@@ -2,14 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\PostRepository;
+use App\Repository\NodeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PostRepository::class)]
-class Post
+#[ORM\Entity(repositoryClass: NodeRepository::class)]
+class Node
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -31,10 +31,10 @@ class Post
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $summary = null;
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\ManyToOne(inversedBy: 'nodes')]
     private ?Region $region = null;
 
-    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'posts')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'nodes')]
     private Collection $tag;
 
     #[ORM\Column]

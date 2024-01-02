@@ -25,8 +25,8 @@ class Region
     #[ORM\Column]
     private ?bool $onMenu = null;
 
-    #[ORM\OneToMany(mappedBy: 'region', targetEntity: Post::class)]
-    private Collection $posts;
+    #[ORM\OneToMany(mappedBy: 'region', targetEntity: Node::class)]
+    private Collection $nodes;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $count = 0;
@@ -38,7 +38,7 @@ class Region
 
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
+        $this->nodes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -83,29 +83,29 @@ class Region
     }
 
     /**
-     * @return Collection<int, Post>
+     * @return Collection<int, Node>
      */
-    public function getPosts(): Collection
+    public function getNodes(): Collection
     {
-        return $this->posts;
+        return $this->nodes;
     }
 
-    public function addPost(Post $post): static
+    public function addNode(Node $node): static
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->setRegion($this);
+        if (!$this->nodes->contains($node)) {
+            $this->nodes->add($node);
+            $node->setRegion($this);
         }
 
         return $this;
     }
 
-    public function removePost(Post $post): static
+    public function removeNode(Node $node): static
     {
-        if ($this->posts->removeElement($post)) {
+        if ($this->nodes->removeElement($node)) {
             // set the owning side to null (unless already changed)
-            if ($post->getRegion() === $this) {
-                $post->setRegion(null);
+            if ($node->getRegion() === $this) {
+                $node->setRegion(null);
             }
         }
 

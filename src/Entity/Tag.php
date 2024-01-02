@@ -21,12 +21,12 @@ class Tag
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\ManyToMany(targetEntity: Post::class, mappedBy: 'tag')]
-    private Collection $posts;
+    #[ORM\ManyToMany(targetEntity: Node::class, mappedBy: 'tag')]
+    private Collection $nodes;
 
     public function __construct()
     {
-        $this->posts = new ArrayCollection();
+        $this->nodes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -59,27 +59,27 @@ class Tag
     }
 
     /**
-     * @return Collection<int, Post>
+     * @return Collection<int, Node>
      */
-    public function getPosts(): Collection
+    public function getNodes(): Collection
     {
-        return $this->posts;
+        return $this->nodes;
     }
 
-    public function addPost(Post $post): static
+    public function addNode(Node $node): static
     {
-        if (!$this->posts->contains($post)) {
-            $this->posts->add($post);
-            $post->addTag($this);
+        if (!$this->nodes->contains($node)) {
+            $this->nodes->add($node);
+            $node->addTag($this);
         }
 
         return $this;
     }
 
-    public function removePost(Post $post): static
+    public function removeNode(Node $node): static
     {
-        if ($this->posts->removeElement($post)) {
-            $post->removeTag($this);
+        if ($this->nodes->removeElement($node)) {
+            $node->removeTag($this);
         }
 
         return $this;
