@@ -20,6 +20,20 @@ class NodeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Node::class);
     }
+    
+    public function findByTag($tag, $limit = null, $offset = null): array
+    {
+        return $this->createQueryBuilder('n')
+            ->join('n.tag', 't')
+            ->andWhere('t.label = :tag')
+            ->setParameter('tag', $tag)
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Node[] Returns an array of Node objects
