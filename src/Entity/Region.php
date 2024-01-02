@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RegionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
@@ -26,6 +27,9 @@ class Region
 
     #[ORM\OneToMany(mappedBy: 'region', targetEntity: Post::class)]
     private Collection $posts;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $count = 0;
     
     public function __toString(): string
     {
@@ -104,6 +108,18 @@ class Region
                 $post->setRegion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCount(): ?int
+    {
+        return $this->count;
+    }
+
+    public function setCount(int $count): static
+    {
+        $this->count = $count;
 
         return $this;
     }
