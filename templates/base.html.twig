@@ -13,6 +13,7 @@
         <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
         <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
         <link href="/assets/css/style.css" rel="stylesheet">
+        <link href="/assets/css/index.css" rel="stylesheet">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -27,25 +28,21 @@
       <header id="header" class="fixed-top d-flex align-items-center">
         <div class="container d-flex align-items-center justify-content-between">
 
-          <h1 class="logo"><a href="/">{{ site_name }}</a></h1>
+          <!-- <h1 class="logo"><a href="/">{{ site_name }}</a></h1> -->
           <!-- Uncomment below if you prefer to use an image logo -->
-          <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+          <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>
 
           <nav id="navbar" class="navbar">
             <ul>
-              <li><a class="nav-link scrollto" href="/">首页</a></li>
-              <li><a class="nav-link scrollto" href="/#about">关于我们</a></li>
-              <li><a class="nav-link scrollto" href="/#services">产品方案</a></li>
-              <li><a class="nav-link scrollto " href="/#portfolio">典型案例</a></li>
-              <li><a class="nav-link scrollto" href="/#team">团队介绍</a></li>
-              <li class="dropdown"><a href="#"><span>企业动态</span> <i class="bi bi-chevron-down"></i></a>
+              <li><a class="nav-link scrollto" href="/">HOME</a></li>
+              <li class="dropdown"><a href="#"><span>SHOWROOM</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li><a href="/blog/news">公司新闻</a></li>
-                  <li><a href="/blog/industry">行业动态</a></li>
+                  <li><a href="/blog/news">逆行者 500 系列</a></li>
+                  <li><a href="/blog/industry">MS600 系列</a></li>
                 </ul>
               </li>
-              <li><a class="nav-link scrollto" href="/#contact">联系我们</a></li>
-              <li><a class="getstarted scrollto" href="/#about">了解更多</a></li>
+              <li><a class="nav-link scrollto" href="/about">ABOUT US</a></li>
+              <li><a class="nav-link scrollto" href="/contact">CONTACT</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
@@ -70,71 +67,27 @@
       {% block main %}{% endblock %}
 
       <!-- ======= Footer ======= -->
-      <footer id="footer">
-        <div class="footer-top">
-          <div class="container">
-            <div class="row">
-
-              <div class="col-lg-3 col-md-6">
-                <div class="footer-info">
-                  <h3>{{ site_name }}</h3>
-                  <p>{{ address }} <br>
-                    <strong>电话:</strong> {{ phone }}<br>
-                    <strong>邮箱:</strong> {{ email }}<br>
-                  </p>
-                  <div class="social-links mt-3">
-                    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-2 col-md-6 footer-links">
-                <h4>导航</h4>
-                <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#">首页</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#about">关于我们</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#services">产品</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="/policy">用户条款</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="/privacy">隐私声明</a></li>
-                </ul>
-              </div>
-
-              <div class="col-lg-3 col-md-6 footer-links">
-                <h4>产品</h4>
-                <ul>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#services">prod 1</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#services">prod 1</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#services">prod 1</a></li>
-                  <li><i class="bx bx-chevron-right"></i> <a href="#services">prod 1</a></li>
-                </ul>
-              </div>
-
-              <div class="col-lg-4 col-md-6 footer-newsletter">
-                <h4>Our Newsletter</h4>
-                <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                <form action="" method="post">
-                  <input type="email" name="email"><input type="submit" value="Subscribe">
-                </form>
-
-              </div>
-
-            </div>
+<div class="flex-row justify-between section_19">
+        <div class="flex-col self-start group_32">
+          <div class="flex-row items-center">
+            <span class="font_13 text_3 text_23">东风越野车有限公司</span>
+            <span class="font_13 text_3 text_24">DONGFENG OFF-ROAD VEHICLE CO., LTD.</span>
+            <span class="font_13 text_3 text_25">产品展示</span>
+            <span class="font_13 text_3 text_26">|</span>
+            <span class="font_13 text_3 text_27">公司介绍</span>
+            <span class="font_13 text_3 text_28">|</span>
+            <span class="font_13 text_3 text_29">联系我们</span>
+          </div>
+          <div class="mt-10 flex-row">
+            <span class="font_13 text_3 text_30">地址：十堰市张湾区工业新区A区建设大道特1号</span>
+            <span class="font_13 text_3 text_31">备案号10258859号</span>
+            <span class="font_13 text_3 text_32">销售电话：400 071 9800</span>
+            <span class="font_13 text_3 text_33">服务电话：400 669 6666</span>
           </div>
         </div>
-
-        <div class="container">
-          <div class="copyright">
-            &copy; Copyright <strong><span>{{ site_name }}</span></strong> 版权所有 <a href="/admin">管理</a>
-          </div>
-          <div class="credits">
-            <a href="https://beian.miit.gov.cn">XXXXXXXX</a>
-          </div>
-        </div>
-      </footer><!-- End Footer -->
+        <img class="self-center image_20" src="/assets/img/footer-img1.png">
+      </div>
+      <!-- End Footer -->
 
       <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
