@@ -40,6 +40,10 @@ class Node
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'nodes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Language $language = null;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
@@ -154,6 +158,18 @@ class Node
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getLanguage(): ?Language
+    {
+        return $this->language;
+    }
+
+    public function setLanguage(?Language $language): static
+    {
+        $this->language = $language;
 
         return $this;
     }
