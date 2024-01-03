@@ -30,6 +30,9 @@ class Region
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $count = 0;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    private ?string $icon = null;
     
     public function __toString(): string
     {
@@ -120,6 +123,18 @@ class Region
     public function setCount(int $count): static
     {
         $this->count = $count;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(?string $icon): static
+    {
+        $this->icon = $icon;
 
         return $this;
     }
