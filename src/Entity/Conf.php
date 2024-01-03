@@ -26,10 +26,10 @@ class Conf
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 15, nullable: true)]
+    #[ORM\Column(length: 25, nullable: true)]
     private ?string $phone = null;
 
-    #[ORM\Column(length: 15, nullable: true)]
+    #[ORM\Column(length: 55, nullable: true)]
     private ?string $email = null;
 
     #[ORM\ManyToOne]
