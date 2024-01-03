@@ -96,11 +96,11 @@ class DashboardController extends AbstractDashboardController
         
         // admin menu of regions
         foreach ($this->regions as $region) {
-            dump($region);
             $action = 'detail';
-            yield MenuItem::linkToCrud($region->getName(), "fas fa-server", Node::class)
+            yield MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
                 ->setQueryParameter('region', $region->getLabel())
                 ->setAction($action)
+                ->setEntityId(7)
             ;
         }
         
@@ -121,10 +121,6 @@ class DashboardController extends AbstractDashboardController
                     ->setEntityId(1)
                 ;
             }
-            yield MenuItem::linkToCrud('用户条款', 'fas fa-book-open', Node::class)
-                ->setQueryParameter('region', 'term')
-                ->setQueryParameter('body', 'Body')
-            ;
         }
         
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
