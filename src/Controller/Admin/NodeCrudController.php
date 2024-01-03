@@ -183,5 +183,6 @@ class NodeCrudController extends AbstractCrudController
                 ->onlyOnIndex()
             ;
         }
+        yield AssociationField::new('language');
     }
 }
