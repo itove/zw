@@ -21,6 +21,11 @@ class Language
 
     #[ORM\Column(length: 15)]
     private ?string $locale = null;
+    
+    public function __toString(): string
+    {
+        return $this->language;
+    }
 
     public function getId(): ?int
     {
