@@ -13,6 +13,8 @@ use App\Entity\Node;
 use App\Entity\Region;
 use App\Entity\Tag;
 use App\Entity\User;
+use App\Entity\Feedback;
+use App\Entity\Language;
 use App\Entity\Conf;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
@@ -191,6 +193,7 @@ class DashboardController extends AbstractDashboardController
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('用户管理', 'fas fa-users', User::class);
             yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class)
                 ->setAction('detail')
@@ -208,6 +211,7 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('region', 'fas fa-list', Region::class);
             yield MenuItem::linkToCrud('tag', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('node', 'fas fa-list', Node::class);
+            yield MenuItem::linkToCrud('Language', 'fas fa-list', Language::class);
             yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class);
         }
     }
