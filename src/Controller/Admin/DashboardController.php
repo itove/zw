@@ -31,6 +31,7 @@ class DashboardController extends AbstractDashboardController
       $this->doctrine = $doctrine;
       $this->nodes = $doctrine->getRepository(Node::class);
       $this->conf = $doctrine->getRepository(Conf::class)->find(1);
+      dump($_ENV['IS_MULTILINGUAL']);
     }
     
     #[Route('/admin', name: 'admin')]
@@ -195,10 +196,14 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted('ROLE_ADMIN')) {
             yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('用户管理', 'fas fa-users', User::class);
-            yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class)
-                ->setAction('detail')
-                ->setEntityId(1)
-            ;
+            if ($_ENV['IS_MULTILINGUAL']) {
+                yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class);
+            } else {
+                yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class)
+                    ->setAction('detail')
+                    ->setEntityId(1)
+                ;
+            }
             // yield MenuItem::linkToCrud('客户反馈', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('用户条款', 'fas fa-book-open', Node::class)
                 ->setQueryParameter('region', 'term')
