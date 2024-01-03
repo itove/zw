@@ -47,6 +47,8 @@ class Node
     public function __construct()
     {
         $this->tag = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
