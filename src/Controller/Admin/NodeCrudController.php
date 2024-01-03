@@ -168,11 +168,11 @@ class NodeCrudController extends AbstractCrudController
                 )
             ;
         }
-        $synopsis_label = null;
+        $summary_label = null;
         if (!is_null($this->query->get('summary'))) {
-            $synopsis_label = $this->query->get('summary');
+            $summary_label = $this->query->get('summary');
         }
-        yield TextareaField::new('summary', $synopsis_label)
+        yield TextareaField::new('summary', $summary_label)
             // ->setMaxLength(15)
         ;
         if (!is_null($this->query->get('body'))) {
