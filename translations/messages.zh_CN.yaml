@@ -19,9 +19,10 @@ Type: 类型
 Title: 标题
 Body: 正文
 Tag: 标签
-Img: 标题图片
+Image: 标题图片
 Conf: 系统设置
 Created At: 创建于
+Updated At: 更新于
 Site Name: 网站名称
 Keywords: 网站关键词
 Description: 网站描述

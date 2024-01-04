@@ -120,94 +120,45 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        if ($this->isGranted('ROLE_SUPER_ADMIN') && is_null($this->region)) {
-            yield IdField::new('id')
-                ->onlyOnIndex()
-            ;
-            yield AssociationField::new('region');
-            yield ArrayField::new('tag')
-                ->hideOnForm()
-            ;
-            yield AssociationField::new('tag')
-                ->onlyOnForms()
-                ->setRequired(true)
-            ;
-            yield TextareaField::new('body')
-                ->onlyOnForms()
-            ;
-            yield DateTimeField::new('createdAt')
-                ->onlyOnIndex()
-            ;
-        }
-        
-        $fields = $this->region->getFields();
-        
-        dump($fields);
-        
-        $idField = IdField::new('id');
+        $idField = IdField::new('id')->onlyOnIndex();
         $titleField = TextField::new('title');
         $imageField = ImageField::new('image')
             ->onlyOnIndex()
             ->setBasePath('img/')
             ->setUploadDir('public/img/')
         ;
-        
-        $vichImageField = VichImageField::new('imageFile', 'Img')
+
+        $vichImageField = VichImageField::new('imageFile', 'Image')
             ->hideOnIndex()
         ;
-        $tagField = ArrayField::new('tag')->hideOnForm();
+        // $tagField = ArrayField::new('tag')->hideOnForm();
+        $tagField = AssociationField::new('tag')
+            ->onlyOnForms()
+            ->setRequired(true)
+        ;
         $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
-        ;
-        $bodyField = TextareaField::new('body', $this->query->get('body'))
-            ->onlyOnForms()
-        ;
-        $createdAtField = DateTimeField::new('createdAt')
-            ->onlyOnIndex()
-        ;
+            ;
+        $bodyField = TextareaField::new('body')->onlyOnForms();
+        $createdAtField = DateTimeField::new('createdAt')->onlyOnIndex();
+        $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
+        $regionField = AssociationField::new('region');
+        
+        if (!is_null($this->region)) {
+            $fields = $this->region->getFields();
+
+        } else if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            $fields = GetProperties(new Node());
+            array_push($fields, 'region');
+        }
         
         foreach ($fields as $f) {
             $ff=$f . "Field";
             yield $$ff;
-            if ($f = 'image') {
-                yield $vichImageField;
-            }
         }
-        
-        // if (!is_null($this->query->get('tag'))) {
-        //     yield ArrayField::new('tag')
-        //         ->hideOnForm()
-        //     ;
-        //     if ($this->query->get('tag') === 'nodash') {
-        //         $where = "not like '%-%'";
-        //     } else {
-        //         $where = "like '{$this->query->get('tag')}-%'";
-        //     }
-        //     yield AssociationField::new('tag')
-        //         ->onlyOnForms()
-        //         ->setRequired(true)
-        //         ->setQueryBuilder(
-        //             fn (QueryBuilder $qb) => $qb
-        //                 ->andWhere("entity.label {$where}")
-        //         )
-        //     ;
-        // }
-        // $summary_label = null;
-        // if (!is_null($this->query->get('summary'))) {
-        //     $summary_label = $this->query->get('summary');
-        // }
-        // yield TextareaField::new('summary', $summary_label)
-        //     // ->setMaxLength(15)
-        // ;
-        // if (!is_null($this->query->get('body'))) {
-        //     yield TextareaField::new('body', $this->query->get('body'))
-        //         ->onlyOnForms()
-        //     ;
-        //     yield DateTimeField::new('createdAt')
-        //         ->onlyOnIndex()
-        //     ;
-        // }
-        // yield AssociationField::new('language');
+        if (in_array('image', $fields)) {
+            yield $vichImageField;
+        }
     }
 }
