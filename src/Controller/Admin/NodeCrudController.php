@@ -140,50 +140,75 @@ class NodeCrudController extends AbstractCrudController
             ;
         }
         
-        yield TextField::new('title');
-        if (!is_null($this->query->get('img'))) {
-            yield ImageField::new('img')
-                ->onlyOnIndex()
-                ->setBasePath('img/')
-                ->setUploadDir('public/img/')
-            ;
-            yield VichImageField::new('imageFile', 'Img')
-                ->hideOnIndex()
-            ;
-        }
-        if (!is_null($this->query->get('tag'))) {
-            yield ArrayField::new('tag')
-                ->hideOnForm()
-            ;
-            if ($this->query->get('tag') === 'nodash') {
-                $where = "not like '%-%'";
-            } else {
-                $where = "like '{$this->query->get('tag')}-%'";
-            }
-            yield AssociationField::new('tag')
-                ->onlyOnForms()
-                ->setRequired(true)
-                ->setQueryBuilder(
-                    fn (QueryBuilder $qb) => $qb
-                        ->andWhere("entity.label {$where}")
-                )
-            ;
-        }
-        $summary_label = null;
-        if (!is_null($this->query->get('summary'))) {
-            $summary_label = $this->query->get('summary');
-        }
-        yield TextareaField::new('summary', $summary_label)
+        $fields = $this->region->getFields();
+        
+        dump($fields);
+        
+        
+        $idField = IdField::new('id');
+        $titleField = TextField::new('title');
+        $imageField = ImageField::new('image')
+            ->onlyOnIndex()
+            ->setBasePath('img/')
+            ->setUploadDir('public/img/')
+        ;
+        
+        $vichImageField = VichImageField::new('imageFile', 'Img')
+            ->hideOnIndex()
+        ;
+        $tagField = ArrayField::new('tag')->hideOnForm();
+        $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
         ;
-        if (!is_null($this->query->get('body'))) {
-            yield TextareaField::new('body', $this->query->get('body'))
-                ->onlyOnForms()
-            ;
-            yield DateTimeField::new('createdAt')
-                ->onlyOnIndex()
-            ;
+        $bodyField = TextareaField::new('body', $this->query->get('body'))
+            ->onlyOnForms()
+        ;
+        $createdAtField = DateTimeField::new('createdAt')
+            ->onlyOnIndex()
+        ;
+        $languageField = AssociationField::new('language');
+        
+        foreach ($fields as $f) {
+            $ff=$f . "Field";
+            yield $$ff;
+            if ($f = 'image') {
+                yield $vichImageField;
+            }
         }
-        yield AssociationField::new('language');
+        
+        // if (!is_null($this->query->get('tag'))) {
+        //     yield ArrayField::new('tag')
+        //         ->hideOnForm()
+        //     ;
+        //     if ($this->query->get('tag') === 'nodash') {
+        //         $where = "not like '%-%'";
+        //     } else {
+        //         $where = "like '{$this->query->get('tag')}-%'";
+        //     }
+        //     yield AssociationField::new('tag')
+        //         ->onlyOnForms()
+        //         ->setRequired(true)
+        //         ->setQueryBuilder(
+        //             fn (QueryBuilder $qb) => $qb
+        //                 ->andWhere("entity.label {$where}")
+        //         )
+        //     ;
+        // }
+        // $summary_label = null;
+        // if (!is_null($this->query->get('summary'))) {
+        //     $summary_label = $this->query->get('summary');
+        // }
+        // yield TextareaField::new('summary', $summary_label)
+        //     // ->setMaxLength(15)
+        // ;
+        // if (!is_null($this->query->get('body'))) {
+        //     yield TextareaField::new('body', $this->query->get('body'))
+        //         ->onlyOnForms()
+        //     ;
+        //     yield DateTimeField::new('createdAt')
+        //         ->onlyOnIndex()
+        //     ;
+        // }
+        // yield AssociationField::new('language');
     }
 }
