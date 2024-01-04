@@ -133,7 +133,7 @@ class NodeCrudController extends AbstractCrudController
         // $tagField = ArrayField::new('tag')->hideOnForm();
         $tagField = AssociationField::new('tag')
             ->onlyOnForms()
-            ->setRequired(true)
+            // ->setRequired(true)
         ;
         $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
