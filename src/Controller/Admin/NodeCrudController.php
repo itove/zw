@@ -45,8 +45,8 @@ class NodeCrudController extends AbstractCrudController
             $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
         }
         $this->adminUrlGenerator = $adminUrlGenerator;
-        $arr = GetProperties(new Node());
-        dump($arr);
+        // $arr = GetProperties(new Node());
+        // dump($arr);
     }
     
     public static function getEntityFqcn(): string

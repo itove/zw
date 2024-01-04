@@ -33,6 +33,9 @@ class Region
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $icon = null;
+
+    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
+    private ?array $fields = null;
     
     public function __toString(): string
     {
@@ -135,6 +138,18 @@ class Region
     public function setIcon(?string $icon): static
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getFields(): ?array
+    {
+        return $this->fields;
+    }
+
+    public function setFields(?array $fields): static
+    {
+        $this->fields = $fields;
 
         return $this;
     }

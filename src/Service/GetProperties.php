@@ -15,7 +15,9 @@ function GetProperties($entity)
     $props   = $reflect->getProperties();
     $arr = [];
     foreach ($props as $prop) {
-        array_push($arr, $prop->getName());
+        // array_push($arr, $prop->getName());
+        $prop_name = $prop->getName();
+        $arr[$prop_name] = $prop_name;
     }
     return $arr;
 }
