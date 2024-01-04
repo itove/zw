@@ -96,11 +96,12 @@ class DashboardController extends AbstractDashboardController
         
         // admin menu of regions
         foreach ($this->regions as $region) {
-            $action = 'detail';
+            $action = 'index';
+            // $action = 'detail';
             yield MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
                 ->setQueryParameter('region', $region->getLabel())
                 ->setAction($action)
-                ->setEntityId(7)
+                // ->setEntityId(7)
             ;
         }
         
