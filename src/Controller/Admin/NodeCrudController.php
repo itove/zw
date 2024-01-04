@@ -148,12 +148,15 @@ class NodeCrudController extends AbstractCrudController
         
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
-
         } else if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             $fields = GetProperties(new Node());
             array_push($fields, 'region');
         }
         
+        if ($_ENV['IS_MULTILINGUAL']) {
+            array_push($fields, 'language');
+        }
+            
         foreach ($fields as $f) {
             $ff=$f . "Field";
             yield $$ff;
