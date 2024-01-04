@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use App\Admin\Field\VichImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
@@ -144,6 +145,10 @@ class NodeCrudController extends AbstractCrudController
         $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
         $regionField = AssociationField::new('region');
+        $specField = CollectionField::new('spec')
+            // ->useEntryCrudForm()
+            ->setEntryIsComplex()
+            ;
         
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
