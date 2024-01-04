@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Feedback;
+use App\Entity\Node;
 use Doctrine\Persistence\ManagerRegistry;
 
 #[Route('/feedback')]
@@ -31,7 +32,7 @@ class FeedbackController extends AbstractController
         $nid = $request->request->get('nid');
         $country = $request->request->get('country');
         
-        $node = $nid;
+        $node = $this->doctrine->getRepository(Node::class)->find($nid);
         
         $em = $this->doctrine->getManager();
         $f = new Feedback();
