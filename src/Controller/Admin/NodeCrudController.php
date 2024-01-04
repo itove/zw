@@ -145,10 +145,7 @@ class NodeCrudController extends AbstractCrudController
         $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
         $regionField = AssociationField::new('region');
-        $specField = CollectionField::new('spec')
-            // ->useEntryCrudForm()
-            ->setEntryIsComplex()
-            ;
+        $specsField = CollectionField::new('specs')->useEntryCrudForm();
         
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();

@@ -52,11 +52,15 @@ class Node
     #[ORM\JoinColumn(nullable: false)]
     private ?Language $language = null;
 
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Spec::class, cascade: ["persist"])]
+    private Collection $specs;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
+        $this->specs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,5 +202,35 @@ class Node
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    /**
+     * @return Collection<int, Spec>
+     */
+    public function getSpecs(): Collection
+    {
+        return $this->specs;
+    }
+
+    public function addSpec(Spec $spec): static
+    {
+        if (!$this->specs->contains($spec)) {
+            $this->specs->add($spec);
+            $spec->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSpec(Spec $spec): static
+    {
+        if ($this->specs->removeElement($spec)) {
+            // set the owning side to null (unless already changed)
+            if ($spec->getNode() === $this) {
+                $spec->setNode(null);
+            }
+        }
+
+        return $this;
     }
 }
