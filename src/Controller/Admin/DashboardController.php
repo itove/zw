@@ -112,6 +112,7 @@ class DashboardController extends AbstractDashboardController
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('Tag Management', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('User Management', 'fas fa-users', User::class);
             if ($_ENV['IS_MULTILINGUAL']) {
@@ -127,7 +128,6 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             yield MenuItem::section('Super Admin');
             yield MenuItem::linkToCrud('Region', 'fas fa-list', Region::class);
-            yield MenuItem::linkToCrud('Tag', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('Node', 'fas fa-list', Node::class);
             yield MenuItem::linkToCrud('Language', 'fas fa-list', Language::class);
             yield MenuItem::linkToCrud('Conf', 'fas fa-cog', Conf::class);
