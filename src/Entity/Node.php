@@ -52,7 +52,7 @@ class Node
     #[ORM\JoinColumn(nullable: false)]
     private ?Language $language = null;
 
-    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Spec::class, cascade: ["persist"])]
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Spec::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $specs;
 
     public function __construct()
