@@ -55,12 +55,16 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Spec::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $specs;
 
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Image::class, orphanRemoval: true)]
+    private Collection $images;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->specs = new ArrayCollection();
+        $this->images = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -228,6 +232,36 @@ class Node
             // set the owning side to null (unless already changed)
             if ($spec->getNode() === $this) {
                 $spec->setNode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): static
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): static
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getNode() === $this) {
+                $image->setNode(null);
             }
         }
 
