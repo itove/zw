@@ -55,7 +55,7 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Spec::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $specs;
 
-    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Image::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Image::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $images;
 
     public function __construct()

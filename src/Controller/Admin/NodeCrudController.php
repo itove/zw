@@ -144,6 +144,7 @@ class NodeCrudController extends AbstractCrudController
         $languageField = AssociationField::new('language');
         $regionField = AssociationField::new('region');
         $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
+        $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
         
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
