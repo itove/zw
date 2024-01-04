@@ -90,9 +90,9 @@ class DashboardController extends AbstractDashboardController
     {
         $regions = $this->doctrine->getRepository(Region::class);
         
-        yield MenuItem::linkToUrl('返回前台', 'fas fa-arrow-circle-left', '/');
+        yield MenuItem::linkToUrl('Back to Site', 'fas fa-arrow-circle-left', '/');
         
-        yield MenuItem::section('内容管理');
+        yield MenuItem::section('Content Management');
         
         // admin menu of regions
         foreach ($this->regions as $region) {
@@ -105,19 +105,19 @@ class DashboardController extends AbstractDashboardController
             ;
         }
         
-        yield MenuItem::section('系统管理');
-        yield MenuItem::linkToCrud('修改密码', 'fas fa-key', User::class)
+        yield MenuItem::section('Settings');
+        yield MenuItem::linkToCrud('Change Password', 'fas fa-key', User::class)
             ->setQueryParameter('action', 'chpw')
             ->setAction('edit')
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
             yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
-            yield MenuItem::linkToCrud('用户管理', 'fas fa-users', User::class);
+            yield MenuItem::linkToCrud('User Management', 'fas fa-users', User::class);
             if ($_ENV['IS_MULTILINGUAL']) {
-                yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class);
+                yield MenuItem::linkToCrud('Settings', 'fas fa-cog', Conf::class);
             } else {
-                yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class)
+                yield MenuItem::linkToCrud('Settings', 'fas fa-cog', Conf::class)
                     ->setAction('detail')
                     ->setEntityId(1)
                 ;
@@ -130,7 +130,7 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Tag', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('Node', 'fas fa-list', Node::class);
             yield MenuItem::linkToCrud('Language', 'fas fa-list', Language::class);
-            yield MenuItem::linkToCrud('系统设置', 'fas fa-cog', Conf::class);
+            yield MenuItem::linkToCrud('Conf', 'fas fa-cog', Conf::class);
         }
     }
 }

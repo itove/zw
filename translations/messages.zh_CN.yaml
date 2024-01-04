@@ -20,7 +20,7 @@ Title: 标题
 Body: 正文
 Tag: 标签
 Image: 标题图片
-Conf: 系统设置
+Conf: 设置
 Created At: 创建于
 Updated At: 更新于
 Site Name: 网站名称
@@ -47,3 +47,9 @@ Language: 语言
 Prefix: URL前缀
 Region: 区域
 Summary: 概要
+Back to Site: 返回网站
+Content Management: 内容管理
+Settings: 系统设置
+Change Password: 修改密码
+User Management: 用户管理
+Super Admin: 超级管理员
