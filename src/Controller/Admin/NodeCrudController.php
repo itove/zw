@@ -129,9 +129,7 @@ class NodeCrudController extends AbstractCrudController
             ->setUploadDir('public/img/')
         ;
 
-        $vichImageField = VichImageField::new('imageFile', 'Image')
-            ->hideOnIndex()
-        ;
+        $vichImageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
         // $tagField = ArrayField::new('tag')->hideOnForm();
         $tagField = AssociationField::new('tag')
             ->onlyOnForms()
@@ -145,7 +143,7 @@ class NodeCrudController extends AbstractCrudController
         $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
         $regionField = AssociationField::new('region');
-        $specsField = CollectionField::new('specs')->useEntryCrudForm();
+        $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
         
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
