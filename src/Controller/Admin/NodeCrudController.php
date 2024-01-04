@@ -144,7 +144,6 @@ class NodeCrudController extends AbstractCrudController
         
         dump($fields);
         
-        
         $idField = IdField::new('id');
         $titleField = TextField::new('title');
         $imageField = ImageField::new('image')
