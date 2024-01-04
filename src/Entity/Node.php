@@ -49,7 +49,6 @@ class Node
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'nodes')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Language $language = null;
 
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Spec::class, orphanRemoval: true, cascade: ["persist"])]

@@ -33,7 +33,6 @@ class Conf
     private ?string $email = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Language $language = null;
 
     public function getId(): ?int
