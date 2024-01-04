@@ -15,9 +15,11 @@ function GetProperties($entity)
     $props   = $reflect->getProperties();
     $arr = [];
     foreach ($props as $prop) {
-        // array_push($arr, $prop->getName());
         $prop_name = $prop->getName();
-        $arr[$prop_name] = $prop_name;
+        if (!in_array($prop_name, ['region', 'imageFile'])) {
+            // array_push($arr, $prop->getName());
+            $arr[$prop_name] = $prop_name;
+        }
     }
     return $arr;
 }
