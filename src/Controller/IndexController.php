@@ -22,8 +22,9 @@ class IndexController extends AbstractController
     {
         $locale = $request->getLocale();
         dump($locale);
-        $arr = $this->data->get();
-        $arr['slides'] = $this->data->getNodeByTag('carousel', 6);
-        return $this->render('index/index.html.twig', $arr);
+        // $arr = $this->data->get();
+        // $arr['slides'] = $this->data->getNodeByTag('carousel', 6);
+        $data = ['sitename' => 'test'];
+        return $this->render('index/index.html.twig', $data);
     }
 }

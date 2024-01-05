@@ -3,219 +3,176 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block main %}
+    <!-- Swiper -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero">
-    <div class="hero-container">
-      <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+    <div class="swiper mySwiper2">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+    
 
-        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
-
-        <div class="carousel-inner" role="listbox">
-
-        {% for i in slides %}
-          <div class="carousel-item {{ loop.first ? 'active'}}" style="background-image: url(/img/{{ i.img }});">
-            <div class="carousel-container">
-              <div class="carousel-content">
-                <h2 class="animate__animated animate__fadeInDown">{{ i }}</h2>
-                <p class="animate__animated animate__fadeInUp">{{ i.synopsis }}</p>
-                <div>
-                  <a href="/blog/{{ i.id }}" class="btn-get-started animate__animated animate__fadeInUp scrollto">查看详情</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-
+          <img src="images/SliderImge.jpg" />
         </div>
-
-        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-        </a>
-
-        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
-          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-        </a>
-
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="images/SliderImge.jpg" />
+        </div>
       </div>
     </div>
-  </section><!-- End Hero -->
+    <div class="position-relative border-top bg-light">
+      <div thumbsSlider="" class="back_img swiper mySwiper w-75">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
+          </div>
 
-      <div class="flex-col section_4 pos_2">
-        <div class="flex-row justify-between group_5">
-          <div class="flex-row group_6">
-            <div class="flex-row items-center group_7">
-              <div class="flex-col items-center group_8">
-                <div class="section_5"></div>
-                <div class="section_6"></div>
-              </div>
-              <div class="flex-col items-center group_9">
-                <span class="text_7">逆行者 500 系列</span>
-                <span class="font_7 text_10 mt-20-5">MS600 系列</span>
-              </div>
-            </div>
-            <div class="flex-col items-start ml-47-5">
-              <img class="image_4" src="../../img/9311ee75ba82547f94eae7e78a3e25ed.png" />
-              <span class="text_9 mt-15">神农甲防爆车</span>
-            </div>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <div class="flex-col self-start group_10">
-            <div class="self-start group_11">
-              <span class="font_6">4858</span>
-              <span class="font_5 text_8">mm</span>
-            </div>
-            <div class="flex-row items-center self-stretch group_12 mt-11-5">
-              <span class="font_8">LENGTH</span>
-              <div class="section_7 ml-2-5"></div>
-            </div>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-        </div>
-        <div class="flex-row relative group_13">
-          <div class="group_15 pos_5">
-            <span class="font_9">
-              快速部署，执行力强，可跨地区、跨部门的
-              <br />
-            </span>
-            <span class="font_9">统一指挥协调，快速反应，联合行动</span>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <div class="group_14 pos_4">
-            <span class="font_6">1928</span>
-            <span class="font_5 text_11">mm</span>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <span class="font_8 pos_6">WIDTH</span>
-          <div class="section_7 pos_7"></div>
-          <div class="group_16 pos_8">
-            <span class="font_6">1780</span>
-            <span class="font_5 text_12">mm</span>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <span class="font_8 pos_9">HEIGHT</span>
-          <div class="section_9 pos_10"></div>
-          <div class="flex-col section_8 pos_3">
-            <img class="shrink-0 self-start image_6" src="../../img/f7aa27a3c03e5661a5e32022f81bf2c9.png" />
-            <img class="shrink-0 self-start image_6 image_7" src="../../img/f7aa27a3c03e5661a5e32022f81bf2c9.png" />
-            <img class="shrink-0 self-center image_6" src="../../img/627a5ccc5dcb9277027d55f907dd7313.png" />
-            <img class="shrink-0 self-end image_6 image_8" src="../../img/d46f41e817de2ede3d8dc1036fe9de78.png" />
-            <img class="shrink-0 self-end image_6 image_9" src="../../img/f7aa27a3c03e5661a5e32022f81bf2c9.png" />
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <img class="image_5 pos_11" src="../../img/6af39e55df91b015ef4fcbf0ca127cdf.png" />
-          <img class="image_5 pos_12" src="../../img/1cedabc70952c294d9085a99925c7a49.png" />
-        </div>
-        <div class="flex-row justify-center items-center group_17">
-          <img class="image_15" src="../../img/8c44978d8d7684174579f7fc0a224b60.png" />
-          <div class="flex-row items-center group_18">
-            <div class="flex-row items-center">
-              <div class="flex-col items-center">
-                <img class="image_12" src="../../img/7c1b48cf1973e6b7fa1a8fd8dd6903a9.png" />
-                <span class="font_10 text_13 mt-7-5">多功能防暴车</span>
-              </div>
-              <div class="flex-col items-center group_20">
-                <img class="image_11" src="../../img/868e1fe6d3ca9e1a35ffa81ce32fac54.png" />
-                <span class="font_10 text_13 mt-9-5">神农甲防爆车</span>
-              </div>
-              <div class="flex-col items-center group_21">
-                <img class="image_13" src="../../img/5a68f24463582a726035e0df7c0b0530.png" />
-                <span class="font_10 text_14 mt-7-5">应急通信车</span>
-              </div>
-              <div class="flex-col items-center group_19">
-                <img class="image_10" src="../../img/6370fd1c887e24fe8bf9526b3acb4a7e.png" />
-                <span class="font_10 text_13 mt-7">先遣通信车</span>
-              </div>
-            </div>
-            <div class="flex-col items-center ml-37">
-              <img class="image_14" src="../../img/134f638c1467e1cf683b325ca1ac4a3b.png" />
-              <span class="font_10 text_13 mt-7">应急前突车</span>
-            </div>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <img class="image_15 image_16" src="../../img/c11d78dbfff9a02cdfacc68295fcd9f1.png" />
-        </div>
-      </div>
-      <div class="flex-col justify-start section_10 pos_13">
-        <div class="flex-row justify-between items-center relative section_11">
-          <div class="group_24">
-            <span class="font_11">
-              公司
-              <br />
-            </span>
-            <span class="font_11">介绍</span>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
-          <div class="group_23">
-            <span class="font_11">
-              服务
-              <br />
-            </span>
-            <span class="font_11">保障</span>
-          </div>
-          <div class="flex-col justify-start items-center pos_14">
-            <div class="group_22"></div>
-            <div class="flex-row equal-division group_25">
-              <div class="flex-row justify-between items-center group_26 equal-division-item">
-                <div class="group_27">
-                  <span class="font_12">
-                    全面了解品牌实力
-                    <br />
-                  </span>
-                  <span class="font_12">致力创造美好出行体验</span>
-                </div>
-                <img class="image_17" src="../../img/a9d10918695f6d00acb9382da0834530.png" />
-              </div>
-              <div class="flex-row justify-between items-center group_26 equal-division-item ml-1">
-                <div class="group_27">
-                  <span class="font_12">
-                    为每一位车主
-                    <br />
-                  </span>
-                  <span class="font_12">提供尊享礼遇与便捷服务</span>
-                </div>
-                <img class="image_17" src="../../img/a9d10918695f6d00acb9382da0834530.png" />
-              </div>
-            </div>
+          <div class="swiper-slide swip11">
+            <div><img src="images/Slider.png" /></div>
+            <p>应急通信车</p>
           </div>
         </div>
       </div>
-      <span class="font_7 text_3 text_15 pos_15">最新消息</span>
-      <div class="flex-col justify-start items-center button text-wrapper">
-        <span class="font_13 text_16">查看全部</span>
+      <div class="next">
+        <img src="images/rightArrow.png" alt="" width="40px" />
       </div>
-      <div class="flex-row equal-division_2">
-        <div class="flex-col group_28 equal-division-item_2">
-          <div class="flex-col justify-start section_12"><div class="section_13"></div></div>
-          <div class="flex-col section_16">
-            <div class="flex-col self-stretch group_30">
-              <span class="self-start font_14 text_17">特种作战 使命必达</span>
-              <span class="self-stretch font_15 text_19 mt-15-5">
-                技术与研发能力，是保证完成任务的技术力量保障。对标世界一流的产品标准，反复实验、改合...
-              </span>
-            </div>
-            <span class="self-start font_16 text_20 mt-31-5">查看详情</span>
-          </div>
+      <div class="prev">
+        <img src="images/leftArrow.png" alt="" width="40px" />
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 col-12 card_back_images1">
+          <a href="#">
+            <p class="set_position">关于我们<br />About Us</p></a
+          >
         </div>
-        <div class="flex-col group_28 equal-division-item_2">
-          <div class="flex-col justify-start section_14"><div class="section_13"></div></div>
-          <div class="flex-col section_17">
-            <div class="flex-col self-stretch group_29">
-              <span class="font_14 text_18">攻克156项技术难题，通信指挥...</span>
-              <span class="font_15 text_19 mt-15-5">
-                团队运用工业互联网、大数据、云计算、人工智能等现代数字技术，攻克156项技术难题、重新定...
-              </span>
-            </div>
-            <div class="flex-col justify-start items-center self-start text-wrapper_2">
-              <span class="text_21">查看详情</span>
-            </div>
-          </div>
+        <div class="col-md-6 col-12 card_back_images2">
+          <a href="#">
+            <img src="images/组 230.png" alt="" class="set_position2"
+          /></a>
         </div>
-        <div class="flex-col group_28 equal-division-item_2">
-          <div class="flex-col justify-start section_15"><div class="section_13"></div></div>
-          <div class="flex-col section_16">
-            <div class="flex-col self-stretch group_31">
-              <span class="self-start font_14 text_17">为新农人打造“硬核”装备</span>
-              <span class="self-stretch font_15 text_19 mt-15-5">
-                该植保无人机车搭载农业无人机、农业无人车、农机自驾仪、农业物联网和智慧农业管理系统...
-              </span>
-            </div>
-            <span class="mt-32 self-start font_16 text_20">查看详情</span>
-          </div>
+        <div class="col-md-6 col-12 card_back_images3">
+          <a href="#">
+            <img src="images/组 230.png" alt="" class="set_position2"
+          /></a>
+        </div>
+        <div class="col-md-6 col-12 card_back_images4">
+          <a href="#">
+            <p class="set_position">服务保障<br />Service guarantee</p></a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="container mt-5 mb-2">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 class="heading mb-0">最新消息</h1>
+          <a href="#" class="butto rounded-0 text-decoration-none px-3 py-2">查看全部</a>
         </div>
       </div>
 
-  <!-- End #main -->
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="card card1 rounded-0">
+              <img src="images/cardimg1.png" class="card-img-top rounded-0" alt="..." />
+              <div class="card-body p-4">
+                <h5 class="card-title text_heading">特种作战 使命必达</h5>
+                <p class="card-text text">
+                  技术与研发能力，是保证完成任务的技术力量保障。对标世界一流的产品
+                </p>
+                <a href="#" class="link_button">查看详情</a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-0 mb-md-0 mt-3 mb-lg-0 mb-3"
+          >
+            <div class="card rounded-0">
+              <img src="images/cardimg2.png" class="card-img-top rounded-0" alt="..." />
+              <div class="card-body p-4">
+                <h5 class="card-title text_heading">
+                  攻克156项技术难题，通信指挥...
+                </h5>
+                <p class="card-text text">
+                  团队运用工业互联网、大数据、云计算、人工智能等现代数字技术，攻克
+                </p>
+                <a href="#" class="link_button">查看详情</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="card rounded-0">
+              <img src="images/cardimg3.png" class="card-img-top rounded-0" alt="..." />
+              <div class="card-body p-4">
+                <h5 class="card-title text_heading">为新农人打造“硬核”装备</h5>
+                <p class="card-text text">
+                  该植保无人机车搭载农业无人机、农业无人车、农机自驾仪、农业物联网
+                </p>
+                <a href="#" class="link_button">查看详情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 {% endblock %}
