@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Hello ProductsController!{% endblock %}
+
 {% block breadcrumbs %}{% endblock %}
 
 {% block main %}
@@ -176,3 +178,26 @@
     </div>
 
 {% endblock %}
+
+    {% block javascript %}
+    <!-- Initialize Swiper -->
+    <script>
+      var swiper = new Swiper(".mySwiper", {
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+        navigation: {
+          nextEl: ".next",
+          prevEl: ".prev",
+        },
+      });
+      var swiper2 = new Swiper(".mySwiper2", {
+        spaceBetween: 10,
+
+        thumbs: {
+          swiper: swiper,
+        },
+      });
+    </script>
+    {% endblock %}
