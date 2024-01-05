@@ -12,7 +12,7 @@ class ProductsController extends AbstractController
     public function index(): Response
     {
         $data = [
-          'class' => '',
+          'class' => 'position-absolute',
           'sitename' => 'test',
         ];
         return $this->render('products/index.html.twig', $data);
