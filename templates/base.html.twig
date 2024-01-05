@@ -35,7 +35,7 @@
       <nav class="navbar nav_background navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="#"
-            ><img src="images/东风越野车LOGO.svg" alt="" width="200px"
+            ><img src="{{ asset('images/东风越野车LOGO.svg')}}" alt="" width="200px"
           /></a>
           <button
             class="navbar-toggler"
@@ -53,18 +53,18 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto me-lg-5 mb-2 mb-lg-0">
               <li class="nav-item me-lg-3 mt-lg-0 mt-4 me-auto ms-auto">
-                <a class="nav-link text-white" aria-current="page" href="#"
-                  >HOME</a
+                <a class="nav-link text-white" aria-current="page" href="/"
+                  >{{ 'HOME'|trans }}</a
                 >
               </li>
               <li class="nav-item me-lg-3 mt-lg-0 mt-4 me-auto ms-auto">
-                <a class="nav-link text-white" href="#">SHOWROOM</a>
+                <a class="nav-link text-white" href="/products">{{ 'SHOWROOM'|trans }}</a>
               </li>
               <li class="nav-item me-lg-3 mt-lg-0 mt-4 me-auto ms-auto">
-                <a class="nav-link text-white" href="#">ABOUT US</a>
+                <a class="nav-link text-white" href="/about">{{ 'ABOUT US'|trans }}</a>
               </li>
               <li class="nav-item mt-lg-0 mt-4 mb-3 mb-lg-0 me-auto ms-auto">
-                <a class="nav-link text-white" href="#">CONTACT</a>
+                <a class="nav-link text-white" href="/contact">{{ 'CONTACT'|trans }}</a>
               </li>
             </ul>
 
@@ -72,7 +72,7 @@
               class="d-flex align-items-center text-center px-3 span_border bg-transparent  mx-auto ms-lg-0 me-lg-0"
             >
               <img
-                src="images/地球 (1).svg"
+                src="{{ asset('images/地球 (1).svg')}}"
                 alt=""
                 width="25px"
                 class="align-items-center me-2 hover_show1"
@@ -112,10 +112,9 @@
           </div>
         </li>
         <li class="whatsapp">
-          <i class="fa fa-chevron-up" aria-hidden="true"></i>
-          <div class="slider">
-            <p>400-071-9800</p>
-          </div>
+          <a href="#">
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+          </a>
         </li>
       </ul>
     </div>
@@ -133,7 +132,7 @@
               </p>
             </div>
             <div class="col-12 col-md-4 d-flex align-items-center justify-content-center mt-3 mt-md-0">
-              <img src="images/barcode.png" alt="" class="img-fluid pt-0 pt-md-5 pb-3 w-50 ms-0 ms-md-5" />
+              <img src="{{ asset('images/barcode.png')}}" alt="" class="img-fluid pt-0 pt-md-5 pb-3 w-50 ms-0 ms-md-5" />
             </div>
           </div>
         </div>
@@ -146,7 +145,7 @@
             地址：十堰市张湾区工业新区A区建设大道特1号 备案号
             <a href="#">10258859</a> 号 销售电话：<a href="#">400 071 9800</a>
           </p>
-          <img src="images/barcode.png" alt="" class="img-fluid pt-3 pb-3" />
+          <img src="{{ asset('images/barcode.png')}}" alt="" class="img-fluid pt-3 pb-3" />
         </div> -->
       </div>
     </footer>
