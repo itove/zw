@@ -19,8 +19,8 @@ class NewsController extends AbstractController
         return $this->render('news/index.html.twig', $data);
     }
     
-    #[Route('/', name: 'app_news')]
-    public function show(): Response
+    #[Route('/{nid}', name: 'app_news')]
+    public function show($nid): Response
     {
         $data = [
           'class' => '',
