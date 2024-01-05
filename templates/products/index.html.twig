@@ -521,26 +521,26 @@
     <!-- form -->
     <div class="container">
         <h1 class="form-heading mt-5">不要错过！获取关于东风越野车的最新消息</h1>
-        <form>
+        <form action="feedback/new" method="post">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="input-with-label">
                         <span class="required-input"></span>
-                        <input type="text" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="inputFirstName" placeholder="名字:">
+                        <input type="text" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="input-nfirstname" placeholder="名字:">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-with-label">
                         <span class="required-input"></span>
-                        <input type="text" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="inputFirstName" placeholder="姓氏:">
+                        <input type="text" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="input-lastname" placeholder="姓氏:">
                     </div>                </div>
                 <div class="col-md-6">
                     <div class="input-with-label">
                         <span class="required-input"></span>
-                        <input type="text" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="inputFirstName" placeholder="邮箱:">
+                        <input type="text" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="input-email" placeholder="邮箱:">
                     </div>                </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="inputLastName" placeholder="手机:">
+                    <input type="text" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="input-phone" placeholder="手机:">
                 </div>
                 <div class="col-md-6">
                     <select class="form-select mt-4 py-2 remove-focus-outline rounded-0" aria-label="Default select example">
@@ -559,7 +559,7 @@
                     </select>
                 </div>
                 <div class="input-group mt-4">
-                    <textarea class="form-control remove-focus-outline rounded-0" aria-label="需求描述 With textarea" placeholder="需求描述"></textarea>
+                    <textarea class="form-control remove-focus-outline rounded-0" name="body" aria-label="需求描述 With textarea" placeholder="需求描述"></textarea>
                 </div>
             </div>
             <div class="form-check">
