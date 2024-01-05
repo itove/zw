@@ -21,10 +21,10 @@ class IndexController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        dump($locale);
         // $arr = $this->data->get();
         // $arr['slides'] = $this->data->getNodeByTag('carousel', 6);
         $data = [
+          'path' => '',
           'class' => 'page-home position-absolute',
           'sitename' => 'test',
         ];

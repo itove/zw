@@ -33,6 +33,16 @@
   </head>
   <body>
     {% block nav %}
+    
+    {% set prefix = '/cn' %}
+    {% set cnLocaleClass = 'fw-bold' %}
+    {% set localeClass = '' %}
+    
+    {% if app.locale == 'en' %}
+    {% set prefix = '' %}
+    {% set cnLocaleClass = '' %}
+    {% set localeClass = 'fw-bold' %}
+    {% endif %}
     <div class="container-fluid px-0 {{ class }}">
       <nav class="navbar nav_background navbar-expand-lg navbar-light">
         <div class="container">
@@ -55,32 +65,34 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto me-lg-5 mb-2 mb-lg-0">
               <li class="nav-item me-lg-3 mt-lg-0 mt-4 me-auto ms-auto">
-                <a class="nav-link text-white" aria-current="page" href="/"
+                <a class="nav-link text-white" aria-current="page" href="{{prefix}}/"
                   >{{ 'HOME'|trans }}</a
                 >
               </li>
               <li class="nav-item me-lg-3 mt-lg-0 mt-4 me-auto ms-auto">
-                <a class="nav-link text-white" href="/products">{{ 'SHOWROOM'|trans }}</a>
+                <a class="nav-link text-white" href="{{ prefix }}/products">{{ 'SHOWROOM'|trans }}</a>
               </li>
               <li class="nav-item me-lg-3 mt-lg-0 mt-4 me-auto ms-auto">
-                <a class="nav-link text-white" href="/about">{{ 'ABOUT US'|trans }}</a>
+                <a class="nav-link text-white" href="{{ prefix }}/about">{{ 'ABOUT US'|trans }}</a>
               </li>
               <li class="nav-item mt-lg-0 mt-4 mb-3 mb-lg-0 me-auto ms-auto">
-                <a class="nav-link text-white" href="/contact">{{ 'CONTACT'|trans }}</a>
+                <a class="nav-link text-white" href="{{ prefix }}/contact">{{ 'CONTACT'|trans }}</a>
               </li>
             </ul>
 
             <button
-              class="d-flex align-items-center text-center px-3 span_border bg-transparent  mx-auto ms-lg-0 me-lg-0"
+              class="d-flex align-items-center text-center px-3 span_border bg-transparent  mx-auto ms-lg-0 me-lg-0 p-1"
             >
               <img
                 src="{{ asset('images/地球 (1).svg')}}"
                 alt=""
-                width="25px"
+                width="20px"
                 class="align-items-center me-2 hover_show1"
               />
-             
-              <p class="pt-3 text-center">中文/English</p>
+              {% set path = path(app.current_route, app.current_route_parameters)|replace({'/cn':''})|trim('/','left')%}
+              <a href="/cn/{{ path }}" class="text-light text-decoration-none {{cnLocaleClass}}">中文</a>
+              <span class="text-light">/</span>
+              <a href="/{{ path }}" class="text-light text-decoration-none {{localeClass}}">English</a>
             </button>
           </div>
         </div>
