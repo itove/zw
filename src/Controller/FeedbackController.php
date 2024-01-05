@@ -32,7 +32,7 @@ class FeedbackController extends AbstractController
         $nid = $request->request->get('nid');
         $country = $request->request->get('country');
         
-        $node = $this->doctrine->getRepository(Node::class)->find($nid);
+        // $node = $this->doctrine->getRepository(Node::class)->find($nid);
         
         $em = $this->doctrine->getManager();
         $f = new Feedback();
@@ -42,7 +42,7 @@ class FeedbackController extends AbstractController
         $f->setEmail($email);
         $f->setTitle($title);
         $f->setBody($body);
-        $f->setNode($node);
+        // $f->setNode($node);
         $f->setCountry($country);
         $em->persist($f);
         $em->flush();
