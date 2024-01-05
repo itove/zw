@@ -12,7 +12,7 @@ class AboutController extends AbstractController
     public function index(): Response
     {
         $data = [
-          'class' => '',
+          'class' => 'page-about',
           'sitename' => 'test',
         ];
         return $this->render('about/index.html.twig', $data);

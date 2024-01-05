@@ -40,7 +40,7 @@ class NewsController extends AbstractController
         $arr['page_count'] = ceil(count($nodes_all) / $limit);
 
         $data = [
-          'class' => '',
+          'class' => 'page-news-list',
           'sitename' => 'test',
           'page' => 1,
           'page_count' => 2,
@@ -52,7 +52,7 @@ class NewsController extends AbstractController
     public function show($nid): Response
     {
         $data = [
-          'class' => '',
+          'class' => 'page-news-show',
           'sitename' => 'test',
         ];
         return $this->render('news/detail.html.twig', $data);
