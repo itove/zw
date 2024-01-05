@@ -520,28 +520,28 @@
       <h1 class="fw-bold">需求提交</h1>
     </div>
     <!-- form -->
-    <div class="container">
+    <div class="container contact">
         <h1 class="form-heading mt-5">不要错过！获取关于东风越野车的最新消息</h1>
-        <form action="feedback/new" method="post">
+        <form action="feedback/new" method="post" role="form" class="php-email-form">
             <div class="row mb-3">
                 <div class="col-md-6">
                     <div class="input-with-label">
                         <span class="required-input"></span>
-                        <input type="text" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="input-nfirstname" placeholder="名字:">
+                        <input type="text" name="firstname" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="input-firstname" placeholder="名字:">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-with-label">
                         <span class="required-input"></span>
-                        <input type="text" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="input-lastname" placeholder="姓氏:">
+                        <input type="text" name="lastname" class="form-control mt-2 py-2 remove-focus-outline rounded-0" id="input-lastname" placeholder="姓氏:">
                     </div>                </div>
                 <div class="col-md-6">
                     <div class="input-with-label">
                         <span class="required-input"></span>
-                        <input type="text" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="input-email" placeholder="邮箱:">
+                        <input type="email" name="email" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="input-email" placeholder="邮箱:">
                     </div>                </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="input-phone" placeholder="手机:">
+                    <input type="text" name="phone" class="form-control mt-4 py-2 remove-focus-outline rounded-0" id="input-phone" placeholder="手机:">
                 </div>
                 <div class="col-md-6">
                     <select class="form-select mt-4 py-2 remove-focus-outline rounded-0" aria-label="Default select example">
@@ -560,11 +560,11 @@
                     </select>
                 </div>
                 <div class="input-group mt-4">
-                    <textarea class="form-control remove-focus-outline rounded-0" name="body" aria-label="需求描述 With textarea" placeholder="需求描述"></textarea>
+                    <textarea name="body" class="form-control remove-focus-outline rounded-0" aria-label="需求描述 With textarea" placeholder="需求描述"></textarea>
                 </div>
             </div>
             <div class="form-check">
-                <input class="form-check-input rounded-0" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input rounded-0" type="checkbox" value="" id="flexCheckDefault" required>
                 <label class="form-check-label" for="flexCheckDefault">
                     我同意隐私政策
                 </label>
@@ -572,6 +572,12 @@
               <div class="bottom-text">
                 对于您提供的个人信息，我们将尊重您的隐私并严格保密
               </div>
+
+            <div class="my-3">
+              <div class="loading">加载中...</div>
+              <div class="error-message"></div>
+              <div class="sent-message">信息已发送，感谢您的支持！</div>
+            </div>
 
             <!-- Additional form fields can be added here -->
             <div class="form-btn d-flex justify-content-center mt-4">
@@ -598,4 +604,5 @@
         });
     }
   </script>
+<script src="{{ asset('js/validate.js') }}"></script>
     {% endblock %}
