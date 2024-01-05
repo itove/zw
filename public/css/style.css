@@ -1613,6 +1613,14 @@ ul li:hover .slider p {
   transition: all 1s 0.2s ease;
 }
 
+.page-about .nav_background,
+.page-contact .nav_background,
+.page-news-list .nav_background,
+.page-news-show .nav_background
+{
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
 @media (min-width: 200px) and (max-width: 990px) {
   .nav_background {
     z-index: 2;
@@ -1623,14 +1631,12 @@ ul li:hover .slider p {
    /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .hero-section-bg-page-2{
-    background-image: url(../images/图层.png);
     width: 100%;
     height: 55vh;
     background-position: top;
     background-repeat: no-repeat;
   }
   .hero-section-bg-page-2{
-    background-image: url(../images/page-2-hero-bg.png);
     width: 100%;
     height: 55vh;
     background-position: top;
@@ -1641,14 +1647,12 @@ ul li:hover .slider p {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .hero-section-bg-page-2{
-    background-image: url(../images/图层.png);
     width: 100%;
     height: 55vh;
     background-position: top;
     background-repeat: no-repeat;
   }
   .hero-section-bg-page-2{
-    background-image: url(../images/page-2-hero-bg.png);
     width: 100%;
     height: 55vh;
     background-position: top;
@@ -1659,14 +1663,12 @@ ul li:hover .slider p {
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
   .hero-section-bg-page-2{
-    background-image: url(../images/图层.png);
     width: 100%;
     height: 55vh;
     background-position: top;
     background-repeat: no-repeat;
   }
   .hero-section-bg-page-2{
-    background-image: url(../images/page-2-hero-bg.png);
     width: 100%;
     height: 55vh;
     background-position: top;
