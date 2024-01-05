@@ -1,0 +1,252 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProductsController!{% endblock %}
+{% block style %}
+    <style>
+         .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .mySwiper .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: unset    ;
+}
+    </style>
+{% endblock %}
+
+{% block main %}
+    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center">
+        <div class="container d-flex justify-content-center align-items-center">
+            <h2 class="position-absolute text-white">何惧山高路险 猛士一马当先</h2>
+        </div>
+    </div>
+    <div class="container-fluid bg-light">
+        <div class="container d-flex align-items-center py-1">
+            <i class="fa fa-home border-end pe-3" aria-hidden="true"></i>
+            <div class="dropdown ps-4">
+                <button class="btn btn-secondary dropdown-toggle bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    公司介绍
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+        </div>
+    </div>
+    <div class="container-fluid mt-5">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-12 col-md-8 text-dark">
+                    <h2>关于东风越野车</h2>
+                    <p>
+                        东风越野车有限公司是东风汽车集团有限公司的全资子公司，成立于2002年8月15日,是集军车研发生产、销售和服务为一体的整车企业。公司聚焦自主研发,深化核心技术攻关，获得中国汽车行业首个国家科技进步一等奖;目前研制开发了新一代东风猛士民版产品,已形成寓军于民、以军促民的发展新格局,迈向双轮驱动事业的新征程。 
+                    </p>
+                </div>
+                <div class="col-12 col-md-4">
+                    <img src="images/微信图片_20231226095720.png" class="w-100" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row mt-5">
+            <div class="col-12 section-3-img pt-4 pb-5">
+                <img src="images/标题.png" alt="Image Here" class="img-fluid pb-2">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mt-5">
+                    <h2 class="section-4-heading">服务保障</h2>
+                    <p class="section-4-paragraph">Service guarantee</p>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-7 col-12 grid-img px-0">
+                    <img src="images/935657637620351101.png" class="img-fluid" alt="Image Here">
+                </div>
+                <div class="col-lg-5 col-12 section-4-grid ps-5 pe-5 bg-light">
+                    <h2 class="grid-heading">在线客服</h2>
+                    <hr style="width: 70px;
+                    height: 2px;
+                    background-color: #000000; opacity: unset;">
+                    <p class="grid-paragraph">为您提供贴心的客户服务：无论是关于购车/车型的咨询，还是想获取紧急道路援助，都可以轻松便捷地与我们取得联系。</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-5 col-12 section-4-grid ps-5 pe-5 bg-light">
+                    <h2 class="grid-heading">备件保障</h2>
+                    <hr style="width: 70px;
+                    height: 2px;
+                    background-color: #000000; opacity: unset;">
+                    <p class="grid-paragraph">100%原厂 100%放心：向客户承诺，使用东风原厂配件，配件来源透明可查询。</p>
+                </div>
+                <div class="col-lg-7 col-12 grid-img px-0">
+                    <img src="images/图层 625.png" class="img-fluid" alt="Image Here">
+                </div>
+            </div>
+        </div>
+    </div>
+            
+    <div class="container-fluid section-5-img">
+       
+        <div class="container pb-5 position-relative">
+            <div class="row mt-5">
+                <div class="col-12 text-center mt-5">
+                    <h2 class="section-5-heading">品牌荣耀</h2>
+                    <p class="section-5-paragraph">Brand Honor</p>
+                </div>
+            </div>
+             <!-- Swiper -->
+             <div class="swiper mySwiper mx-auto position-relative">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide bg-transparent d-block">
+                    <div>
+                        <img src="images/矩形 拷贝(1).png" alt="Image Here" class="img-fluid">
+                    </div>
+                    <div>
+                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide  bg-transparent d-block">
+                    <div>
+                        <img src="images/矩形 拷贝(1).png" alt="Image Here" class="img-fluid">
+                    </div>
+                    <div>
+                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide bg-transparent d-block">
+                    <div>
+                        <img src="images/矩形 拷贝(1).png" alt="Image Here" class="img-fluid">
+                    </div>
+                    <div>
+                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide bg-transparent d-block">
+                    <div>
+                        <img src="images/矩形 拷贝(1).png" alt="Image Here" class="img-fluid">
+                    </div>
+                    <div>
+                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide bg-transparent d-block">
+                    <div>
+                        <img src="images/矩形 拷贝(1).png" alt="Image Here" class="img-fluid">
+                    </div>
+                    <div>
+                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                    </div>
+                  </div>
+                  <div class="swiper-slide bg-transparent d-block">
+                    <div>
+                        <img src="images/矩形 拷贝(1).png" alt="Image Here" class="img-fluid">
+                    </div>
+                    <div>
+                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+
+        </div>
+    
+
+    </div>
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-12 text-center mt-5">
+                    <h2 class="section-5-heading">公司新闻</h2>
+                    <p class="section-5-paragraph">Company News</p>
+                </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="card card1 rounded-0">
+                  <img src="images/cardimg1.png" class="card-img-top rounded-0" alt="...">
+                  <div class="card-body p-4">
+                    <h5 class="card-title text_heading">特种作战 使命必达</h5>
+                    <p class="card-text text">
+                      技术与研发能力，是保证完成任务的技术力量保障。对标世界一流的产品
+                    </p>
+                    <a href="#" class="link_button">查看详情</a>
+                  </div>
+                </div>
+              </div>
+    
+              <div class="col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-0 mb-md-0 mt-3 mb-lg-0 mb-3">
+                <div class="card rounded-0">
+                  <img src="images/cardimg2.png" class="card-img-top rounded-0" alt="...">
+                  <div class="card-body p-4">
+                    <h5 class="card-title text_heading">
+                      攻克156项技术难题，通信指挥...
+                    </h5>
+                    <p class="card-text text">
+                      团队运用工业互联网、大数据、云计算、人工智能等现代数字技术，攻克
+                    </p>
+                    <a href="#" class="link_button">查看详情</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-6 col-12">
+                <div class="card rounded-0">
+                  <img src="images/cardimg3.png" class="card-img-top rounded-0" alt="...">
+                  <div class="card-body p-4">
+                    <h5 class="card-title text_heading">为新农人打造“硬核”装备</h5>
+                    <p class="card-text text">
+                      该植保无人机车搭载农业无人机、农业无人车、农机自驾仪、农业物联网
+                    </p>
+                    <a href="#" class="link_button">查看详情</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center pt-3 mt-5">
+                    <a href="#" class="butto text-decoration-none px-3 py-2 rounded-0">查看全部</a>
+                </div>
+            </div>
+          </div>
+    </div>
+{% endblock %}
+
+    {% block javascript %}
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      freeMode: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+  </script>
+    {% endblock %}
