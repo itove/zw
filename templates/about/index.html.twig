@@ -220,27 +220,15 @@
     </style>
 {% endblock %}
 
-{% block main %}
+{% block hero %}
     <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset('images/page-2-hero-bg.png')}})">
         <div class="container d-flex justify-content-center align-items-center">
             <h2 class="position-absolute text-white">何惧山高路险 猛士一马当先</h2>
         </div>
     </div>
-    <div class="container-fluid bg-light">
-        <div class="container d-flex align-items-center py-1">
-            <i class="fa fa-home border-end pe-3" aria-hidden="true"></i>
-            <div class="dropdown ps-4">
-                <button class="btn btn-secondary dropdown-toggle bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    公司介绍
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div>
-        </div>
-    </div>
+{% endblock %}
+
+{% block main %}
     <div class="container-fluid mt-5">
         <div class="container">
             <div class="row align-items-start">

@@ -32,6 +32,7 @@
     {% block style %}{% endblock %}
   </head>
   <body>
+    {% block nav %}
     <div class="container-fluid px-0 {{ class }}">
       <nav class="navbar nav_background navbar-expand-lg navbar-light">
         <div class="container">
@@ -85,8 +86,21 @@
         </div>
       </nav>
     </div>
+    {% endblock %}
+
+    {% block hero %}{% endblock %}
 
     {% block breadcrumbs %}
+    <div class="container-fluid bg-light">
+        <div class="container d-flex align-items-center py-1">
+            <i class="fa fa-home border-end pe-3" aria-hidden="true"></i>
+            <div class="dropdown ps-4">
+                <button class="btn btn-secondary dropdown-toggle bg-transparent border-0 text-dark" type="button" aria-expanded="false">
+                    公司介绍
+                </button>
+              </div>
+        </div>
+    </div>
     {% endblock %}
 
     {% block main %}{% endblock %}

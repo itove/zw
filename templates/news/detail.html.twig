@@ -1,29 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ProductsController!{% endblock %}
-{% block style %} {% endblock %}
 
-{% block main %}
-    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center">
+{% block hero %}
+    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset('images/page-2-hero-bg.png')}})">
         <div class="container d-flex justify-content-center align-items-center">
             <h2 class="position-absolute text-white">新闻动态</h2>
         </div>
     </div>
-    <div class="container-fluid bg-light">
-        <div class="container d-flex align-items-center py-1">
-            <i class="fa fa-home border-end pe-3" aria-hidden="true"></i>
-            <div class="dropdown ps-4">
-                <button class="btn btn-secondary dropdown-toggle bg-transparent border-0 text-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  新闻动态
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </div>
-        </div>
-    </div>
+{% endblock %}
+
+{% block main %}
     <article class="my-5 mx-auto mw-80">
       <h1 class="h1 text-center">title</h1>
       <p class="text-center text-body-tertiary">2024.1.2</p>
