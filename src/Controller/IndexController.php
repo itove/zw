@@ -24,7 +24,10 @@ class IndexController extends AbstractController
         dump($locale);
         // $arr = $this->data->get();
         // $arr['slides'] = $this->data->getNodeByTag('carousel', 6);
-        $data = ['sitename' => 'test'];
+        $data = [
+          'class' => 'position-absolute',
+          'sitename' => 'test',
+        ];
         return $this->render('index/index.html.twig', $data);
     }
 }
