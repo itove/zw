@@ -34,6 +34,20 @@ class NodeRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    
+    public function findByRegion($region, $limit = null, $offset = null): array
+    {
+        return $this->createQueryBuilder('n')
+            ->join('n.region', 'r')
+            ->andWhere('r.label = :region')
+            ->setParameter('region', $region)
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    /**
 //     * @return Node[] Returns an array of Node objects

@@ -58,6 +58,12 @@ class Data
         return $arr;
     }
     
+    public function getNodeByRegion(string $region, $limit = null, $offset = null)
+    {
+        $nodes = $this->doctrine->getRepository(Node::class)->findByRegion(['region' => $region], $limit, $offset);
+        return $nodes;
+    }
+    
     public function getNodeByTag(string $tag, $limit = null, $offset = null)
     {
         $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);

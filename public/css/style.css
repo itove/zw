@@ -1719,3 +1719,6 @@ ul li:hover .slider p {
     background-repeat: no-repeat;
   }
 } 
+.mw-80{
+  max-width: 80%;
+}
