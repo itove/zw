@@ -1,10 +1,38 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ProductsController!{% endblock %}
+{% block style %}
+    <style>
+      .swiper-pagination-bullet-active {
+  width: 1px !important;
+  height: 1.5rem !important;
+  border-radius: 4px !important;
+  transform: rotate(30deg) !important;
+  padding: 2px !important;
+  background-color: gray !important;
+}
+.swiper-pagination-bullet {
+  width: 1px !important;
+  height: 1.5rem !important;
+  border-radius: 4px !important;
+  transform: rotate(30deg) !important;
+  padding: 2px !important;
+}
+    </style>
+{% endblock %}
 
 {% block breadcrumbs %}{% endblock %}
 
 {% block main %}
+    <div class="swiper mySwiper3 position-relative" style="height: 100% !important;">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide container-fluid background_image px-0 mr-0" style="margin: 0px !important;"></div>
+        <div class="swiper-slide container-fluid background_image px-0 mr-0"></div>
+        <div class="swiper-slide container-fluid background_image px-0 mr-0"></div>
+        <div class="swiper-slide container-fluid background_image px-0 mr-0"></div>
+      </div>
+      <div class="swiper-pagination d-flex mb-5 ms-5"></div>
+    </div>
     <!-- Swiper -->
 
     <div class="swiper mySwiper2">
@@ -199,5 +227,18 @@
           swiper: swiper,
         },
       });
+      var swiper3 = new Swiper(".mySwiper3", {
+        slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
     </script>
     {% endblock %}
