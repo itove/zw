@@ -23,7 +23,7 @@ class NewsController extends AbstractController
     {
         $region = 'news';
         $page = $request->query->get('p');
-        $limit = 20;
+        $limit = 12;
         if (is_null($page) || empty($page)) {
           $page = 1;
         }
@@ -40,11 +40,13 @@ class NewsController extends AbstractController
         $arr['page_count'] = ceil(count($nodes_all) / $limit);
 
         $data = [
+          'nodes' => $nodes,
           'class' => 'page-news-list',
           'sitename' => 'test',
-          'page' => 1,
-          'page_count' => 2,
+          'page' => $page,
+          'page_count' => ceil(count($nodes_all) / $limit),
         ];
+        dump($data);
         return $this->render('news/index.html.twig', $data);
     }
     

@@ -26,3 +26,4 @@
 ###< symfony/asset-mapper ###
 
 /node_modules/
+*.swp
