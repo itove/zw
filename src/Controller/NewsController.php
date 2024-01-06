@@ -6,16 +6,19 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\Data;
 
 #[Route('/news')]
 class NewsController extends AbstractController
 {
     private $data;
+    private $translator;
     
-    public function __construct(Data $data)
+    public function __construct(TranslatorInterface $translator, Data $data)
     {
         $this->data = $data;
+        $this->translator = $translator;
     }
     
     #[Route('/', name: 'app_news_list')]
@@ -42,6 +45,7 @@ class NewsController extends AbstractController
         $data = [
           'nodes' => $nodes,
           'class' => 'page-news-list',
+          'page_title' => $this->translator->trans('News'),
           'sitename' => 'test',
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
@@ -54,6 +58,7 @@ class NewsController extends AbstractController
     {
         $node = $this->data->get($nid);
         $data = [
+          'page_title' => $this->translator->trans('News'),
           'class' => 'page-news-show',
           'node' => $node,
         ];
