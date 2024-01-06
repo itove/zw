@@ -28,6 +28,7 @@ class AboutController extends AbstractController
         $data = [
           'page_title' => $this->translator->trans('About Us'),
           'class' => 'page-about',
+          'node' => $node,
         ];
         return $this->render('about/index.html.twig', $data);
     }
