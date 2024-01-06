@@ -28,12 +28,14 @@ class ContactController extends AbstractController
     {
         $locale = $request->getLocale();
         $conf = $this->data->findConfByLocale($locale);
-        $node = $this->data->findNodeByRegionAndLocale('contact-hero', $locale);
+        $hero = $this->data->findNodeByRegionAndLocale('contact-hero', $locale);
+        $contact = $this->data->findNodeByRegionAndLocale('contact_us', $locale);
         $data = [
           'class' => 'page-contact',
           'page_title' => $this->translator->trans('Contact Us'),
           'conf' => $conf,
-          'node' => $node,
+          'hero' => $hero,
+          'contact' => $contact,
         ];
         return $this->render('contact/index.html.twig', $data);
     }

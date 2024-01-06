@@ -3,9 +3,9 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block hero %}
-    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset("images/#{node.image}")}})">
+    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset("images/#{hero.image}")}})">
         <div class="container d-flex justify-content-center align-items-center">
-            <h2 class="position-absolute text-white">{{ node.title }}</h2>
+            <h2 class="position-absolute text-white">{{ hero.title }}</h2>
         </div>
     </div>
 {% endblock %}
@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row pt-5 text-center">
                 <div class="col-12">
-                    <h2 class="page-2-section-1-heading">与我们保持联系，是解决您一切问题的有效途径</h2>
+                    <h2 class="page-2-section-1-heading">{{ contact.summary }}</h2>
                 </div>
             </div>
             <div class="row mt-5">
