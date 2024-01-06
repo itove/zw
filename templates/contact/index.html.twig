@@ -3,9 +3,9 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block hero %}
-    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset('images/图层.png')}})">
+    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset("images/#{node.image}")}})">
         <div class="container d-flex justify-content-center align-items-center">
-            <h2 class="position-absolute text-white">联系我们</h2>
+            <h2 class="position-absolute text-white">{{ node.title }}</h2>
         </div>
     </div>
 {% endblock %}
