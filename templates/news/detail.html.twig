@@ -15,7 +15,7 @@
       <h1 class="h1 text-center">{{ node.title }}</h1>
       <p class="text-center text-body-tertiary">{{ node.createdAt|date("m/d/Y") }}</p>
       <img src="{{asset("images/#{node.image}")}}" class="img-fluid mx-auto w-100" alt="">
-      <div class="my-3">
+      <div class="my-3 node-body">
       {{ node.body|raw }}
       </div>
     </article>

@@ -1764,3 +1764,6 @@ ul li:hover .slider p {
   height: 15vh;
   overflow: hidden;
 }
+.node-body img{
+  width: 100%;
+}
