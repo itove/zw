@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\Data;
@@ -20,8 +21,10 @@ class AboutController extends AbstractController
     }
     
     #[Route('/about', name: 'app_about')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $locale = $request->getLocale();
+        $node = $this->data->findNodeByRegionAndLocale('about-hero', $locale);
         $data = [
           'page_title' => $this->translator->trans('About Us'),
           'class' => 'page-about',

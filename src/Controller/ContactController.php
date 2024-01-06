@@ -27,11 +27,8 @@ class ContactController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        $lang = $this->data->findOneBy(['locale' => $locale], Language::class);
-        
-        $conf = $this->data->findOneBy(['language' => $lang], Conf::class);
-        $region = $this->data->findOneBy(['label' => 'contact-hero'], Region::class);
-        $node = $this->data->findOneBy(['language' => $lang, 'region' => $region]);
+        $conf = $this->data->findConfByLocale($locale);
+        $node = $this->data->findNodeByRegionAndLocale('about-hero', $locale);
         $data = [
           'class' => 'page-contact',
           'page_title' => $this->translator->trans('Contact Us'),

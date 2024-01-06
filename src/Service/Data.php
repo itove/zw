@@ -13,6 +13,7 @@ use App\Entity\Conf;
 use App\Entity\Node;
 use App\Entity\Tag;
 use App\Entity\Region;
+use App\Entity\Language;
 
 class Data
 {
@@ -84,6 +85,23 @@ class Data
     public function find($nid, $entity = Node::class)
     {
       return $this->doctrine->getRepository($entity)->find($nid);
+    }
+    
+    public function findNodeByRegionAndLocale($region_label, $locale)
+    {
+      $language = $this->findOneBy(['locale' => $locale], Language::class);
+      $region = $this->findOneBy(['label' => $region_label], Region::class);
+      $node = $this->findOneBy(['language' => $language, 'region' => $region]);
+        
+      return $node;
+    }
+    
+    public function findConfByLocale($locale)
+    {
+      $language = $this->findOneBy(['locale' => $locale], Language::class);
+      $conf = $this->findOneBy(['language' => $language], Conf::class);
+        
+      return $conf;
     }
     
     public function findBy($criteria, $entity = Node::class)
