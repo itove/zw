@@ -46,7 +46,6 @@ class NewsController extends AbstractController
           'nodes' => $nodes,
           'class' => 'page-news-list',
           'page_title' => $this->translator->trans('News'),
-          'sitename' => 'test',
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
         ];
