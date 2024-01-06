@@ -15,8 +15,8 @@ class ApiController extends AbstractController
     {
         $file = $request->files->get('upload');
         $newName = uniqid() . '-' .  $file->getClientOriginalName();
-        // copy($file->getPathname(), 'img/' . $newName);
-        $file->move('img/', $newName);
-        return $this->json(['url' => '/img/' . $newName]);
+        // copy($file->getPathname(), 'images/' . $newName);
+        $file->move('images/', $newName);
+        return $this->json(['url' => '/images/' . $newName]);
     }
 }
