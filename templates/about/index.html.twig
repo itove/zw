@@ -221,9 +221,9 @@
 {% endblock %}
 
 {% block hero %}
-    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset("images/#{node.image}")}})">
+    <div class="container-fluid hero-section-bg-page-2 position-relative d-flex justify-content-center align-items-center" style="background-image: url({{ asset("images/#{hero.image}")}})">
         <div class="container d-flex justify-content-center align-items-center">
-            <h2 class="position-absolute text-white">{{ node.title }}</h2>
+            <h2 class="position-absolute text-white">{{ hero.title }}</h2>
         </div>
     </div>
 {% endblock %}
@@ -233,13 +233,11 @@
         <div class="container">
             <div class="row align-items-start">
                 <div class="col-12 col-md-8 text-dark">
-                    <h2>关于东风越野车</h2>
-                    <p>
-                        东风越野车有限公司是东风汽车集团有限公司的全资子公司，成立于2002年8月15日,是集军车研发生产、销售和服务为一体的整车企业。公司聚焦自主研发,深化核心技术攻关，获得中国汽车行业首个国家科技进步一等奖;目前研制开发了新一代东风猛士民版产品,已形成寓军于民、以军促民的发展新格局,迈向双轮驱动事业的新征程。 
-                    </p>
+                    <h2>{{ about.title }}</h2>
+                    <p>{{ about.summary }}</p>
                 </div>
                 <div class="col-12 col-md-4">
-                    <img src="{{ asset('images/微信图片_20231226095720.png')}}" class="w-100" alt="">
+                    <img src="{{ asset("images/#{about.image}")}}" class="w-100" alt="">
                 </div>
             </div>
         </div>
@@ -350,26 +348,26 @@
             </div>
             <div class="row mt-3">
                 <div class="col-lg-7 col-12 grid-img px-0">
-                    <img src="{{ asset('images/935657637620351101.png')}}" class="img-fluid" alt="Image Here">
+                    <img src="{{ asset("images/#{service.image}")}}" class="img-fluid" alt="Image Here">
                 </div>
                 <div class="col-lg-5 col-12 section-4-grid ps-5 pe-5 bg-light">
-                    <h2 class="grid-heading">在线客服</h2>
+                    <h2 class="grid-heading">{{ service.title }}</h2>
                     <hr style="width: 70px;
                     height: 2px;
                     background-color: #000000; opacity: unset;">
-                    <p class="grid-paragraph">为您提供贴心的客户服务：无论是关于购车/车型的咨询，还是想获取紧急道路援助，都可以轻松便捷地与我们取得联系。</p>
+                    <p class="grid-paragraph">{{ service.summary }}</p>
                 </div>
             </div>
             <div class="row mt-5">
                 <div class="col-lg-5 col-12 section-4-grid ps-5 pe-5 bg-light">
-                    <h2 class="grid-heading">备件保障</h2>
+                    <h2 class="grid-heading">{{ spare.title }}</h2>
                     <hr style="width: 70px;
                     height: 2px;
                     background-color: #000000; opacity: unset;">
-                    <p class="grid-paragraph">100%原厂 100%放心：向客户承诺，使用东风原厂配件，配件来源透明可查询。</p>
+                    <p class="grid-paragraph">{{ spare.summary }}</p>
                 </div>
                 <div class="col-lg-7 col-12 grid-img px-0">
-                    <img src="{{ asset('images/图层 625.png')}}" class="img-fluid" alt="Image Here">
+                    <img src="{{ asset("images/#{spare.image}")}}" class="img-fluid" alt="Image Here">
                 </div>
             </div>
         </div>
@@ -387,55 +385,16 @@
              <!-- Swiper -->
              <div class="swiper mySwiper mx-auto position-relative">
                 <div class="swiper-wrapper">
+                {% for h in honors %}
                   <div class="swiper-slide bg-transparent d-block">
                     <div>
-                        <img src="{{ asset('images/矩形 拷贝(1).png')}}" alt="Image Here" class="img-fluid">
+                        <img src="{{ asset("images/#{h.image}")}}" alt="Image Here" class="img-fluid">
                     </div>
                     <div>
-                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
+                        <p class="text-center slider-img-txt pt-3">{{ h.title }}</p>
                     </div>
                   </div>
-                  <div class="swiper-slide  bg-transparent d-block">
-                    <div>
-                        <img src="{{ asset('images/矩形 拷贝(1).png')}}" alt="Image Here" class="img-fluid">
-                    </div>
-                    <div>
-                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide bg-transparent d-block">
-                    <div>
-                        <img src="{{ asset('images/矩形 拷贝(1).png')}}" alt="Image Here" class="img-fluid">
-                    </div>
-                    <div>
-                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide bg-transparent d-block">
-                    <div>
-                        <img src="{{ asset('images/矩形 拷贝(1).png')}}" alt="Image Here" class="img-fluid">
-                    </div>
-                    <div>
-                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide bg-transparent d-block">
-                    <div>
-                        <img src="{{ asset('images/矩形 拷贝(1).png')}}" alt="Image Here" class="img-fluid">
-                    </div>
-                    <div>
-                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
-                    </div>
-                  </div>
-                  <div class="swiper-slide bg-transparent d-block">
-                    <div>
-                        <img src="{{ asset('images/矩形 拷贝(1).png')}}" alt="Image Here" class="img-fluid">
-                    </div>
-                    <div>
-                        <p class="text-center slider-img-txt pt-3">科技进步奖</p>
-                    </div>
-                  </div>
-                  
+                  {% endfor %}
                 </div>
               </div>
               <div class="swiper-pagination"></div>
@@ -453,45 +412,19 @@
                 </div>
             </div>
             <div class="row mt-5">
-              <div class="col-lg-4 col-md-6 col-12">
-                <div class="card card1 rounded-0">
-                  <img src="{{ asset('images/cardimg1.png')}}" class="card-img-top rounded-0" alt="...">
-                  <div class="card-body p-4">
-                    <h5 class="card-title text_heading">特种作战 使命必达</h5>
-                    <p class="card-text text">
-                      技术与研发能力，是保证完成任务的技术力量保障。对标世界一流的产品
-                    </p>
-                    <a href="#" class="link_button">查看详情</a>
-                  </div>
-                </div>
+{% for n in news %}
+          <div class="news-item col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-0 mb-md-0 mt-3 mb-lg-0 mb-3">
+            <div class="card rounded-0">
+              <img src="{{ asset("images/#{n.image}")}}" class="card-img-top rounded-0" alt="..." />
+              <div class="card-body p-4">
+                <h5 class="card-title text_heading">{{ n.title }}</h5>
+                <p class="card-text text">{{ n.summary }} </p>
+                <a href="{{prefix}}/news/{{ n.id }}" class="link_button">{{ 'SHOW MORE'|trans }}</a>
               </div>
+            </div>
+          </div>
+{% endfor %}
     
-              <div class="col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-0 mb-md-0 mt-3 mb-lg-0 mb-3">
-                <div class="card rounded-0">
-                  <img src="{{ asset('images/cardimg2.png')}}" class="card-img-top rounded-0" alt="...">
-                  <div class="card-body p-4">
-                    <h5 class="card-title text_heading">
-                      攻克156项技术难题，通信指挥...
-                    </h5>
-                    <p class="card-text text">
-                      团队运用工业互联网、大数据、云计算、人工智能等现代数字技术，攻克
-                    </p>
-                    <a href="#" class="link_button">查看详情</a>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-12">
-                <div class="card rounded-0">
-                  <img src="{{ asset('images/cardimg3.png')}}" class="card-img-top rounded-0" alt="...">
-                  <div class="card-body p-4">
-                    <h5 class="card-title text_heading">为新农人打造“硬核”装备</h5>
-                    <p class="card-text text">
-                      该植保无人机车搭载农业无人机、农业无人车、农机自驾仪、农业物联网
-                    </p>
-                    <a href="#" class="link_button">查看详情</a>
-                  </div>
-                </div>
-              </div>
             </div>
             <div class="row">
                 <div class="col-12 text-center pt-3 mt-5">

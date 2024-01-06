@@ -24,11 +24,21 @@ class AboutController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        $node = $this->data->findNodeByRegionAndLocale('about-hero', $locale);
+        $hero = $this->data->findNodeByRegionAndLocale('about-hero', $locale);
+        $about = $this->data->findNodeByRegionAndLocale('about_dongfeng_orv', $locale);
+        $service = $this->data->findNodeByRegionAndLocale('online_service', $locale);
+        $spare = $this->data->findNodeByRegionAndLocale('spare_guarantee', $locale);
+        $honors = $this->data->findNodeByRegion('honor');
+        $news = $this->data->findNodeByRegion('news', 3);
         $data = [
           'page_title' => $this->translator->trans('About Us'),
           'class' => 'page-about',
-          'node' => $node,
+          'hero' => $hero,
+          'about' => $about,
+          'service' => $service,
+          'spare' => $spare,
+          'honors' => $honors,
+          'news' => $news,
         ];
         return $this->render('about/index.html.twig', $data);
     }
