@@ -76,9 +76,9 @@ class Data
         return $tag;
     }
    
-    public function get($nid)
+    public function get($nid, $entity = Node::class)
     {
-      return $this->doctrine->getRepository(Node::class)->find($nid);
+      return $this->doctrine->getRepository($entity)->find($nid);
     }
 }
 
