@@ -80,5 +80,25 @@ class Data
     {
       return $this->doctrine->getRepository($entity)->find($nid);
     }
+    
+    public function find($nid, $entity = Node::class)
+    {
+      return $this->doctrine->getRepository($entity)->find($nid);
+    }
+    
+    public function findBy($criteria, $entity = Node::class)
+    {
+      return $this->doctrine->getRepository($entity)->findBy($criteria);
+    }
+    
+    public function findOneBy($criteria, $entity = Node::class)
+    {
+      return $this->doctrine->getRepository($entity)->findOneBy($criteria);
+    }
+    
+    public function findAll($criteria, $entity = Node::class)
+    {
+      return $this->doctrine->getRepository($entity)->findAll($criteria);
+    }
 }
 

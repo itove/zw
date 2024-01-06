@@ -21,23 +21,23 @@
             <div class="row mt-5">
                 <div class="col-lg-3 col-md-3 col-6 text-center border-end">
                     <img src="{{ asset('images/电话.svg')}}" alt="" class="call-img">
-                    <h4 class="pt-3 page-2-section-2-heading">全国服务热线</h4>
-                    <p class="page-2-section-2-text">400-669-666</p>
+                    <h4 class="pt-3 page-2-section-2-heading">{{ 'Service Hotline'|trans }}</h4>
+                    <p class="page-2-section-2-text">{{ conf.phone }}</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6 text-center border-end">
                     <img src="{{ asset('images/邮箱 (1).svg')}}" alt="" class="call-img">
-                    <h4 class="pt-3 page-2-section-2-heading">服务邮箱</h4>
-                    <p class="page-2-section-2-text">0000000000@163.com</p>
+                    <h4 class="pt-3 page-2-section-2-heading">{{ 'Service Mail'|trans }}</h4>
+                    <p class="page-2-section-2-text">{{ conf.email }}</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6 text-center border-end">
                     <img src="{{ asset('images/位置 (2).svg')}}" alt="" class="call-img">
-                    <h4 class="pt-3 page-2-section-2-heading">联系地址</h4>
-                    <p class="page-2-section-2-text">十堰市张湾区工业新区A区建设大道特1号</p>
+                    <h4 class="pt-3 page-2-section-2-heading">{{ 'Contact Address'|trans }}</h4>
+                    <p class="page-2-section-2-text">{{ conf.address }}</p>
                 </div>
                 <div class="col-lg-3 col-md-3 col-6 text-center">
                     <img src="{{ asset('images/微信 拷贝.svg')}}" alt="" class="call-img">
-                    <h4 class="pt-3 page-2-section-2-heading">微信客服</h4>
-                    <p class="page-2-section-2-text">如果您有需求，请联系我们</p>
+                    <h4 class="pt-3 page-2-section-2-heading">{{ 'Wechat Customer Service'|trans }}</h4>
+                    <p class="page-2-section-2-text">{{ 'Contact Us If You Need Any Help'|trans }}</p>
                 </div>
             </div>
         </div>

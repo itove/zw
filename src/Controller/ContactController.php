@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\Data;
 use App\Entity\Conf;
+use App\Entity\Language;
 
 class ContactController extends AbstractController
 {
@@ -25,11 +26,12 @@ class ContactController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        dump($locale);
-        $conf = $this->data->get(1, Conf::class);
+        $lang = $this->data->findOneBy(['locale' => $locale], Language::class);
+        $conf = $this->data->findOneBy(['language' => $lang], Conf::class);
         $data = [
           'class' => 'page-contact',
           'page_title' => $this->translator->trans('Contact Us'),
+          'conf' => $conf,
         ];
         return $this->render('contact/index.html.twig', $data);
     }
