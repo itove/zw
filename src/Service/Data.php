@@ -23,7 +23,7 @@ class Data
         $this->doctrine = $doctrine;
     }
     
-    public function get($nid = null)
+    public function getSome($nid = null)
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
         $nodeRepo = $this->doctrine->getRepository(Node::class);
@@ -74,6 +74,11 @@ class Data
     {
         $tag = $this->doctrine->getRepository(Tag::class)->findOneBy(['label' => $label]);
         return $tag;
+    }
+   
+    public function get($nid)
+    {
+      return $this->doctrine->getRepository(Node::class)->find($nid);
     }
 }
 

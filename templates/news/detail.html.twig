@@ -12,14 +12,11 @@
 
 {% block main %}
     <article class="my-5 mx-auto mw-80">
-      <h1 class="h1 text-center">title</h1>
-      <p class="text-center text-body-tertiary">2024.1.2</p>
-      <img src="{{asset('images/cardimg2.png')}}" class="img-fluid mx-auto w-100" alt="">
+      <h1 class="h1 text-center">{{ node.title }}</h1>
+      <p class="text-center text-body-tertiary">{{ node.createdAt|date("m/d/Y") }}</p>
+      <img src="{{asset("images/#{node.image}")}}" class="img-fluid mx-auto w-100" alt="">
       <div class="my-3">
-      <p>科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。科学探索与技术创新是推动人类文明进步和社会发展的主要力量。创新开创未来，实干成就梦想。</p>
-      <p>dsafs dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf dsaf asdf</p>
-      <p>dsafsadffffffffffffffffffffffffffffffffffffffff</p>
-      <p>dsafsadffffffffffffffffffffffffffffffffffffffff</p>
+      {{ node.body|raw }}
       </div>
     </article>
 {% endblock %}

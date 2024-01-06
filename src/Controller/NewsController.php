@@ -33,7 +33,7 @@ class NewsController extends AbstractController
         $nodes_all = $this->data->getNodeByRegion($region);
         $tag = $this->data->getTagByLabel($region);
 
-        $arr = $this->data->get();
+        $arr = $this->data->getSome();
         $arr['node'] = $tag;
         $arr['nodes'] = $nodes;
         $arr['page'] = $page;
@@ -46,16 +46,16 @@ class NewsController extends AbstractController
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
         ];
-        dump($data);
         return $this->render('news/index.html.twig', $data);
     }
     
-    #[Route('/{nid}', name: 'app_news_show')]
-    public function show($nid): Response
+    #[Route('/{nid}', requirements: ['nid' => '\d+'], name: 'app_news_show')]
+    public function show(int $nid): Response
     {
+        $node = $this->data->get($nid);
         $data = [
           'class' => 'page-news-show',
-          'sitename' => 'test',
+          'node' => $node,
         ];
         return $this->render('news/detail.html.twig', $data);
     }
