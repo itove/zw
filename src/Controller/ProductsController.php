@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use App\Service\Data;
 
 class ProductsController extends AbstractController
@@ -20,11 +21,14 @@ class ProductsController extends AbstractController
     }
     
     #[Route('/products', name: 'app_products')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $locale = $request->getLocale();
+        $request = $this->data->findNodeByRegionAndLocale('request', $locale);
         $data = [
           'class' => 'page-products position-absolute',
           'page_title' => $this->translator->trans('Products'),
+          'request' => $request,
         ];
         return $this->render('products/index.html.twig', $data);
     }
