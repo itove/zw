@@ -24,7 +24,7 @@ class ContactController extends AbstractController
     {
         $data = [
           'class' => 'page-contact',
-          'page_title' => $this->translator->trans('Contact'),
+          'page_title' => $this->translator->trans('Contact Us'),
         ];
         return $this->render('contact/index.html.twig', $data);
     }
