@@ -3,6 +3,39 @@
 {% block title %}{{ page_title }}{% endblock %}
 {% block style %}
     <style>
+      @media (min-width: 767px) and (max-width: 990px) {
+        .swiper-slide {
+        height: 25rem !important;
+    }
+    .swiper {
+        height: 25rem !important;
+    }
+    .swiper.mySwiper3 {
+        height: 25rem !important;
+    }
+    .swiper.back_img {
+        height: 15rem !important;
+    }
+       }
+       @media (min-width: 990px) {
+        .swiper.mySwiper3 {
+        height: 100% !important;
+    }
+       }
+       @media (max-width: 767px) {
+    .swiper-slide {
+        height: 15rem !important;
+    }
+    .swiper {
+        height: 15rem !important;
+    }
+    .swiper.mySwiper3 {
+        height: 15rem !important;
+    }
+    .swiper.back_img {
+        height: 9rem !important;
+    }
+}
       .swiper-pagination-bullet-active {
   width: 1px !important;
   height: 1.5rem !important;
@@ -24,14 +57,14 @@
 {% block breadcrumbs %}{% endblock %}
 
 {% block main %}
-    <div class="swiper mySwiper3 position-relative" style="height: 42vh !important;">
+    <div class="swiper mySwiper3 position-relative">
       <div class="swiper-wrapper">
         <div class="swiper-slide container-fluid background_image px-0 mr-0" style="margin: 0px !important;"></div>
         <div class="swiper-slide container-fluid background_image px-0 mr-0"></div>
         <div class="swiper-slide container-fluid background_image px-0 mr-0"></div>
         <div class="swiper-slide container-fluid background_image px-0 mr-0"></div>
       </div>
-      <div class="swiper-pagination d-flex mb-5 ms-5"></div>
+      <div class="swiper-pagination d-flex mb-2 mb-5 ms-5"></div>
     </div>
     <!-- Swiper -->
 
