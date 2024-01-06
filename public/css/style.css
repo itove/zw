@@ -1442,6 +1442,9 @@ font-family: 'Source Han Sans CN', sans-serif;
  p a
   {
     text-decoration: none;
+  }
+ footer p a
+  {
     color: #ffffff;
   }
 
