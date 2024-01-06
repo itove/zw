@@ -1754,3 +1754,10 @@ ul li:hover .slider p {
   border-top-color: #eee;
   animation: animate-loading 1s linear infinite;
 }
+.news-item img{
+  height: 20vh;
+}
+.news-item p{
+  height: 15vh;
+  overflow: hidden;
+}

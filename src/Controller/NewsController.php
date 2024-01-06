@@ -26,7 +26,7 @@ class NewsController extends AbstractController
     {
         $region = 'news';
         $page = $request->query->get('p');
-        $limit = 12;
+        $limit = 9;
         if (is_null($page) || empty($page)) {
           $page = 1;
         }
