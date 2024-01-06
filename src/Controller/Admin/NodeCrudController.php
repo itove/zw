@@ -130,7 +130,7 @@ class NodeCrudController extends AbstractCrudController
         ;
 
         $vichImageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
-        // $tagField = ArrayField::new('tag')->hideOnForm();
+        $tagFieldOnIndex = ArrayField::new('tag')->onlyOnIndex();
         $tagField = AssociationField::new('tag')
             ->onlyOnForms()
             // ->setRequired(true)
@@ -163,6 +163,9 @@ class NodeCrudController extends AbstractCrudController
         }
         if (in_array('image', $fields)) {
             yield $vichImageField;
+        }
+        if (in_array('tag', $fields)) {
+            yield $tagFieldOnIndex;
         }
     }
 }
