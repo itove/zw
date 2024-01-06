@@ -21,6 +21,7 @@
   "homepage": "https://github.com/itove/generic_official_website#readme",
   "dependencies": {
     "bootstrap": "^5.3.2",
+    "font-awesome": "^4.7.0",
     "swiper": "^11.0.5"
   }
 }
