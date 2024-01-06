@@ -153,54 +153,25 @@
     <div class="container-fluid">
       <div class="container mt-5 mb-2">
         <div class="d-flex justify-content-between align-items-center">
-          <h1 class="heading mb-0">最新消息</h1>
-          <a href="{{prefix}}/news" class="butto rounded-0 text-decoration-none px-3 py-2">查看全部</a>
+          <h1 class="heading mb-0">{{ 'Latest News'|trans }}</h1>
+          <a href="{{prefix}}/news" class="butto rounded-0 text-decoration-none px-3 py-2">{{ 'View All'|trans }}</a>
         </div>
       </div>
 
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-12">
-            <div class="card card1 rounded-0">
-              <img src="{{ asset('images/cardimg1.png')}}" class="card-img-top rounded-0" alt="..." />
-              <div class="card-body p-4">
-                <h5 class="card-title text_heading">特种作战 使命必达</h5>
-                <p class="card-text text">
-                  技术与研发能力，是保证完成任务的技术力量保障。对标世界一流的产品
-                </p>
-                <a href="#" class="link_button">查看详情</a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-0 mb-md-0 mt-3 mb-lg-0 mb-3"
-          >
+{% for n in nodes %}
+          <div class="news-item col-lg-4 col-md-6 col-12 mt-lg-0 mt-md-0 mb-md-0 mt-3 mb-lg-0 mb-3">
             <div class="card rounded-0">
-              <img src="{{ asset('images/cardimg2.png')}}" class="card-img-top rounded-0" alt="..." />
+              <img src="{{ asset("images/#{n.image}")}}" class="card-img-top rounded-0" alt="..." />
               <div class="card-body p-4">
-                <h5 class="card-title text_heading">
-                  攻克156项技术难题，通信指挥...
-                </h5>
-                <p class="card-text text">
-                  团队运用工业互联网、大数据、云计算、人工智能等现代数字技术，攻克
-                </p>
-                <a href="#" class="link_button">查看详情</a>
+                <h5 class="card-title text_heading">{{ n.title }}</h5>
+                <p class="card-text text">{{ n.summary }} </p>
+                <a href="{{prefix}}/news/{{ n.id }}" class="link_button">{{ 'SHOW MORE'|trans }}</a>
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-md-6 col-12">
-            <div class="card rounded-0">
-              <img src="{{ asset('images/cardimg3.png')}}" class="card-img-top rounded-0" alt="..." />
-              <div class="card-body p-4">
-                <h5 class="card-title text_heading">为新农人打造“硬核”装备</h5>
-                <p class="card-text text">
-                  该植保无人机车搭载农业无人机、农业无人车、农机自驾仪、农业物联网
-                </p>
-                <a href="#" class="link_button">查看详情</a>
-              </div>
-            </div>
-          </div>
+{% endfor %}
         </div>
       </div>
     </div>

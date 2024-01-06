@@ -26,8 +26,10 @@ class IndexController extends AbstractController
         $locale = $request->getLocale();
         // $arr = $this->data->get();
         // $arr['slides'] = $this->data->getNodeByTag('carousel', 6);
+        $nodes = $this->data->getNodeByRegion('news', 3);
         $data = [
           'path' => '',
+          'nodes' => $nodes,
           'class' => 'page-home position-absolute',
           'page_title' => $this->translator->trans('Home'),
         ];
