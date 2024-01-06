@@ -28,7 +28,7 @@ class ContactController extends AbstractController
     {
         $locale = $request->getLocale();
         $conf = $this->data->findConfByLocale($locale);
-        $node = $this->data->findNodeByRegionAndLocale('about-hero', $locale);
+        $node = $this->data->findNodeByRegionAndLocale('contact-hero', $locale);
         $data = [
           'class' => 'page-contact',
           'page_title' => $this->translator->trans('Contact Us'),
