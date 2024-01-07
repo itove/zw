@@ -35,6 +35,20 @@ class NodeRepository extends ServiceEntityRepository
         ;
     }
     
+    public function findByCategory($category, $limit = null, $offset = null): array
+    {
+        return $this->createQueryBuilder('n')
+            ->join('n.category', 'c')
+            ->andWhere('c.label = :category')
+            ->setParameter('category', $category)
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
     public function findByRegion($region, $limit = null, $offset = null): array
     {
         return $this->createQueryBuilder('n')

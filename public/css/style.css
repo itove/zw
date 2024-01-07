@@ -1752,3 +1752,9 @@ ul li:hover .slider p {
 .node-body img{
   width: 100%;
 }
+.swiper6{
+  height: 34rem !important;
+}
+.swiper6 img{
+  object-fit: cover;
+}

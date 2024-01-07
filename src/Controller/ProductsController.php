@@ -27,12 +27,12 @@ class ProductsController extends AbstractController
         $request = $this->data->findNodeByRegionAndLocale('request', $locale);
         $hero = $this->data->findNodeByRegion('products-hero', 1)[0];
         $sliders1 = $this->data->findNodeByTag('products-slider-1', 3);
-        $sliders2 = 1; 
-        $sliders3 = 1; 
-        $sliders4 = 1; 
-        $sliders5 = 1; 
-        $sliders6 = 1; 
-        $spec = 1;
+        $sliders2 = $this->data->findNodeByTag('products-slider-2', 3);
+        $sliders3 = $this->data->findNodeByTag('products-slider-3', 3);
+        $sliders4 = $this->data->findNodeByTag('products-slider-4', 3);
+        $sliders5 = $this->data->findNodeByTag('products-slider-5', 3);
+        $sliders6 = $this->data->findNodeByCategory('gaizhuangche-1', 3);
+        $spec1 = $this->data->findNodeByTag('products-spec-1', 1)[0];
         $data = [
           'class' => 'page-products position-absolute',
           'page_title' => $this->translator->trans('Products'),
@@ -44,7 +44,7 @@ class ProductsController extends AbstractController
           'sliders4' => $sliders4,
           'sliders5' => $sliders5,
           'sliders6' => $sliders6,
-          'spec' => $spec,
+          'spec1' => $spec1,
         ];
         return $this->render('products/index.html.twig', $data);
     }

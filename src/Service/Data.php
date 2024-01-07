@@ -95,7 +95,13 @@ class Data
     
     public function findNodeByTag(string $tag, $limit = null, $offset = null)
     {
-        $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);
+        $nodes = $this->doctrine->getRepository(Node::class)->findByTag($tag, $limit, $offset);
+        return $nodes;
+    }
+    
+    public function findNodeByCategory(string $category, $limit = null, $offset = null)
+    {
+        $nodes = $this->doctrine->getRepository(Node::class)->findByCategory($category, $limit, $offset);
         return $nodes;
     }
     
