@@ -1315,6 +1315,49 @@ font-family: 'Source Han Sans CN', sans-serif;
   width: 75% !important;
   margin: auto;
 }
+  .mySwiper2 .select{
+    position: absolute;
+    top: 3rem;
+    left: 2.5rem;
+    text-align: left;
+    font-size: .85rem;
+  }
+  .mySwiper2 .select div{
+    border-left: 1px solid #dee2e6;
+    padding-left: .7rem;
+  }
+  .mySwiper2 .select .active{
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-left: .7rem;
+    border-left: 2px solid #000;
+  }
+  .mySwiper2 .info{
+    position: absolute;
+    top: 4rem;
+    left: 16rem;
+    color: #747474;
+  }
+  .mySwiper2 .info2{
+    position: absolute;
+    top: 4rem;
+    right: 9rem;
+    color: #747474;
+  }
+  .mySwiper2 .title{
+    font-size: 2.2rem;
+  }
+  .mySwiper2 .summary{
+    font-size: 0.8rem;
+    text-align: left;
+  }
+  .mySwiper2 .value{
+    font-size: 1.8rem;
+  }
+  .mySwiper2 .name{
+    font-size: 0.6rem;
+    text-align: left;
+  }
 
   .mySwiper {
     height: 20%;

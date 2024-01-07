@@ -72,6 +72,22 @@
         {% for n in sliders2a %}
         <div class="swiper-slide">
           <img src="{{ asset("images/#{n.image}")}}" />
+          <div class="select">
+            <div class="active">逆行者 500 系列</div>
+            <div class="">MS600 系列</div>
+          </div>
+          <div class="info">
+            <div class="title fw-bold">{{ n.title }}</div>
+            <div class="summary">{{ n.summary}}</div>
+          </div>
+          <div class="info2">
+          {% for s in n.specs|slice(0,3) %}
+            <div class="spec">
+              <div class="value">{{ s.value }}</div>
+              <div class="name">{{ s.name|upper }} ———</div>
+            </div>
+          {% endfor %}
+          </div>
         </div>
           {% endfor %}
       </div>
