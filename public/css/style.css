@@ -1582,6 +1582,13 @@ ul li:hover .slider {
   transition: all 0.5s ease;
 }
 
+.nobar {
+  background: none !important;
+}
+ul li:hover .nobar {
+  width: 103px;
+}
+
 ul li:hover .slider p {
   opacity: 1;
   transition: all 1s 0.2s ease;
