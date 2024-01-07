@@ -93,6 +93,12 @@ class Data
       return $this->doctrine->getRepository($entity)->find($nid);
     }
     
+    public function findNodeByTag(string $tag, $limit = null, $offset = null)
+    {
+        $nodes = $this->doctrine->getRepository(Node::class)->findByTag(['tag' => $tag], $limit, $offset);
+        return $nodes;
+    }
+    
     public function findNodeByRegionAndLocale($region_label, $locale)
     {
       $language = $this->findOneBy(['locale' => $locale], Language::class);

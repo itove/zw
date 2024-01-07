@@ -27,6 +27,7 @@ class RegionCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield IdField::new('id')->onlyOnIndex();
         yield TextField::new('name');
         yield TextField::new('label');
         yield BooleanField::new('onMenu');

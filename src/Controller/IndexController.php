@@ -24,12 +24,17 @@ class IndexController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        // $arr = $this->data->get();
         // $arr['slides'] = $this->data->getNodeByTag('carousel', 6);
-        $nodes = $this->data->getNodeByRegion('news', 3);
+        $sliders1 = $this->data->findNodeByTag('home-slider-1', 3);
+        $nodes = $this->data->findNodeByRegion('news', 3);
+        $homeAbout = $this->data->findNodeByRegion('home-about', 1);
+        $homeService = $this->data->findNodeByRegion('home-service', 1);
         $data = [
           'path' => '',
           'nodes' => $nodes,
+          'sliders1' => $sliders1,
+          'homeAbout' => $homeAbout[0],
+          'homeService' => $homeService[0],
           'class' => 'page-home position-absolute',
           'page_title' => $this->translator->trans('Home'),
         ];

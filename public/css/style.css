@@ -1128,87 +1128,57 @@ font-family: 'Source Han Sans CN', sans-serif;
 .nav-link:hover{
   color: red !important;
 }
-.background_image{
-    background-image: url(../images/banner_image.png);
+.slider-image{
     height: 100vh;
     background-position: center;
     background-size: cover;
 }
-/* ////////////////////// */
 .card_back_images1{
-    /* opacity: 0.400; */
     position: relative;
     width: 959px;
-    height: 350px;
-    /* background-color: #000000; */
-    background-image: url(../images/imgBg_1.png);
+    height: 650px;
     background-position: center;
     background-size: cover;
-    
-    }
-
-    .set_position
-    {
-        position: absolute;
-        bottom: 5%;
-        left: 5%;
-        font-size: 20px;
-line-height: 30px;
-color: #ffffff;
-font-weight: bold;
-font-family: 'Source Han Sans CN', sans-serif;
-    }
+  }
+  .set_position
+  {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    font-size: 20px;
+    line-height: 30px;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'Source Han Sans CN', sans-serif;
+  }
+.home-two-cell .title{
+  width: 4rem;
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+.home-two-cell .summary{
+  font-size: 1rem;
+  font-weight: 100;
+}
+.home-two-cell a{
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+}
+.home-two-cell a img{
+  width: 32px;
+}
 /* ////////////////////////// */
-.card_back_images2{
-    /* opacity: 0.400; */
-    position: relative;
-    width: 959px;
-    height: 350px;
-    /* background-color: #000000; */
-    background-image: url(../images/imgBg_2.png);
-    background-position: center;
-    background-size: cover;
+.set_position2
+{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    font-size: 20px;
+    width: 42px !important;
+    height: 42px !important;
 
-    
-    }
-
-    .set_position2
-    {
-        position: absolute;
-        bottom: 5%;
-        left: 5%;
-        font-size: 20px;
-        width: 42px !important;
-        height: 42px !important;
-
-    }
-    .card_back_images3{
-        /* opacity: 0.400; */
-        position: relative;
-        width: 959px;
-        height: 350px;
-        /* background-color: #000000; */
-        background-image: url(../images/imgBg_3.png);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        
-        }
-        .card_back_images4{
-            /* opacity: 0.400; */
-            position: relative;
-            width: 959px;
-            height: 350px;
-            /* background-color: #000000; */
-            background-image: url(../images/imgBg_4.png);
-            background-position: center;
-            background-size: cover;
-            
-            }
-
-           
-             
-
+}
 .heading
 {
     font-size: 1.5rem !important;
@@ -1758,7 +1728,8 @@ ul li:hover .slider p {
   animation: animate-loading 1s linear infinite;
 }
 .news-item img{
-  height: 20vh;
+  height: 12rem;
+  object-fit: cover;
 }
 .news-item p{
   height: 4rem;
