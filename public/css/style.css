@@ -1452,7 +1452,7 @@ font-family: 'Source Han Sans CN', sans-serif;
   @media (min-width: 200px) and (max-width: 990px) {
     .footer
     {
-      font-size: 10px;
+      font-size: 14px;
   line-height: 30px;
  
     }
