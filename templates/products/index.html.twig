@@ -231,16 +231,16 @@
     <div class="section-8 container-fluid px-0">
         <div class="swiper mySwiper swiper6">
             <div class="swiper-wrapper">
-          {% for s in sliders6 %}
+          {% for n in sliders6 %}
                 <div class="swiper-slide">       
-                          <img src="{{ asset("images/#{s.image}")}}" alt="car-image" class="img-fluid">
+                          <img src="{{ asset("images/#{n.image}")}}" alt="car-image" class="img-fluid">
                           <div class="image-text">
-                              <p class="fw-bold">{{ s.title }}</p>
+                              <p class="fw-bold">{{ n.title }}</p>
                           </div>
                           <div class="section-4-text d-flex">
-                              <button class=" px-4">产品概述</button>
+                              <button class="px-4" data-bs-toggle="collapse" data-bs-target="#collapse-{{n.id}}" aria-expanded="false" aria-controls="collapse-{{n.id}}">产品概述</button>
                               <button class="px-4">改装亮点</button>
-                              <button class="px-4">产品参数表</button>
+                              <button class="px-4" data-bs-toggle="collapse" data-bs-target="#collapse-spec-{{n.id}}" aria-expanded="false" aria-controls="collapse-spec-{{n.id}}">产品参数表</button>
                            </div>
                     </div>
           {% endfor %}
@@ -248,28 +248,38 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
-<div class="accordion">
+<div class="accordion" id="accordion-node">
+          {% for n in sliders6 %}
   <div class="accordion-item">
-    <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#accordion">
+    <div id="collapse-{{n.id}}" class="accordion-collapse collapse" data-bs-parent="#accordion-node">
       <div class="accordion-body">
-        <strong>This is the 2nd item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        {{ n.summary }}
       </div>
     </div>
   </div>
   <div class="accordion-item">
-    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordion">
+    <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#accordion-node">
       <div class="accordion-body">
-        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
       </div>
     </div>
   </div>
   <div class="accordion-item">
-    <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#accordion">
+    <div id="collapse-spec-{{n.id}}" class="accordion-collapse collapse" data-bs-parent="#accordion-node">
       <div class="accordion-body">
-        <strong>This is the 4th item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        <div class="container text-center">
+          <div class="row row-cols-auto justify-content-center">
+        {% for s in n.specs %}
+          <div class="col">
+            <div class="fw-bold">{{ s.name }}</div>
+            <div>{{ s.value }}</div>
+          </div>
+        {% endfor %}
+        </div>
+        </div>
       </div>
     </div>
   </div>
+          {% endfor %}
 </div>
     <div class="section-9 container-fluid">
         <div class="row">

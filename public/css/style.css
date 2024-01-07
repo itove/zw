@@ -1758,3 +1758,6 @@ ul li:hover .slider p {
 .swiper6 img{
   object-fit: cover;
 }
+.accordion-item{
+  border: 0 !important;
+}
