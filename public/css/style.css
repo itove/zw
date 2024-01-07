@@ -1761,8 +1761,14 @@ ul li:hover .slider p {
   height: 20vh;
 }
 .news-item p{
-  height: 15vh;
+  height: 4rem;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+.news-item h5{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .node-body img{
   width: 100%;
