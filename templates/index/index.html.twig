@@ -162,14 +162,16 @@
         <div class="col-md-6 col-12 card_back_images1" style="border-right: rgb(240 255 255 / 40%) solid 1px; background-image: url({{ asset("images/#{homeAbout.image}") }})">
           <div class="set_position">
             <div class="title">{{ homeAbout.title }}</div>
-            <div class="summary">{{ homeAbout.summary }}</div>
+            {% set s = homeAbout.summary|split('\n') %}
+            <div class="summary">{{ s[0] }}<br />{{ s[1]}}</div>
           </div>
           <a href="{{prefix}}/about#about"><img src="{{ asset('images/arrow-1.png') }}"></a>
         </div>
         <div class="col-md-6 col-12 card_back_images1" style="background-image: url({{ asset("images/#{homeService.image}") }})">
           <div class="set_position">
             <div class="title">{{ homeService.title }}</div>
-            <div class="summary">{{ homeService.summary }}</div>
+            {% set s = homeService.summary|split('\n') %}
+            <div class="summary">{{ s[0] }}<br />{{ s[1]}}</div>
           </div>
           <a href="{{prefix}}/about#service"><img src="{{ asset('images/arrow-1.png') }}"></a>
         </div>

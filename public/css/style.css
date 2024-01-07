@@ -1159,6 +1159,7 @@ font-family: 'Source Han Sans CN', sans-serif;
 .home-two-cell .summary{
   font-size: 1rem;
   font-weight: 100;
+  line-height: 1.3rem;
 }
 .home-two-cell a{
   position: absolute;
