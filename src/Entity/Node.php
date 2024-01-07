@@ -57,6 +57,9 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Image::class, orphanRemoval: true, cascade: ["persist"])]
     private Collection $images;
 
+    #[ORM\ManyToOne(inversedBy: 'nodes')]
+    private ?Category $category = null;
+
     public function __construct()
     {
         $this->tag = new ArrayCollection();
@@ -263,6 +266,18 @@ class Node
                 $image->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
 
         return $this;
     }
