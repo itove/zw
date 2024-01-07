@@ -1307,6 +1307,14 @@ font-family: 'Source Han Sans CN', sans-serif;
     height: 80%;
     width: 100%;
   }
+.mySwiper2 .swiper-slide{
+  padding-top: 6rem;
+}
+.mySwiper2 img{
+  object-fit: cover !important;
+  width: 75% !important;
+  margin: auto;
+}
 
   .mySwiper {
     height: 20%;

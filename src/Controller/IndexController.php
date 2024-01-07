@@ -29,10 +29,14 @@ class IndexController extends AbstractController
         $nodes = $this->data->findNodeByRegion('news', 3);
         $homeAbout = $this->data->findNodeByRegion('home-about', 1);
         $homeService = $this->data->findNodeByRegion('home-service', 1);
+        $sliders2a = $this->data->findNodeByCategory('series-600', 6);
+        $sliders2b = $this->data->findNodeByCategory('series-500', 6);
         $data = [
           'path' => '',
           'nodes' => $nodes,
           'sliders1' => $sliders1,
+          'sliders2a' => $sliders2a,
+          'sliders2b' => $sliders2b,
           'homeAbout' => $homeAbout[0],
           'homeService' => $homeService[0],
           'class' => 'page-home position-absolute',

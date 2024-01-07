@@ -69,84 +69,22 @@
 
     <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
+        {% for n in sliders2a %}
         <div class="swiper-slide">
-    
-
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
+          <img src="{{ asset("images/#{n.image}")}}" />
         </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
-        <div class="swiper-slide">
-          <img src="{{ asset('images/SliderImge.jpg')}}" />
-        </div>
+          {% endfor %}
       </div>
     </div>
     <div class="position-relative border-top bg-light">
       <div thumbsSlider="" class="back_img swiper mySwiper w-75">
         <div class="swiper-wrapper">
+        {% for n in sliders2a %}
           <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
+            <div><img src="{{ asset("images/#{n.image}")}}" /></div>
+            <p>{{ n.title }}</p>
           </div>
-
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
-          <div class="swiper-slide swip11">
-            <div><img src="{{ asset('images/Slider.png')}}" /></div>
-            <p>应急通信车</p>
-          </div>
+          {% endfor %}
         </div>
       </div>
       <div class="next">
