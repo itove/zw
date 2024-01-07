@@ -135,6 +135,8 @@ class NodeCrudController extends AbstractCrudController
             ->onlyOnForms()
             // ->setRequired(true)
         ;
+        $categoryFieldOnIndex = ArrayField::new('category')->onlyOnIndex();
+        $categoryField = AssociationField::new('category')->onlyOnForms();
         $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
             ;
@@ -166,6 +168,9 @@ class NodeCrudController extends AbstractCrudController
         }
         if (in_array('tag', $fields)) {
             yield $tagFieldOnIndex;
+        }
+        if (in_array('category', $fields)) {
+            yield $categoryFieldOnIndex;
         }
     }
 }

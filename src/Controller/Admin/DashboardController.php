@@ -16,6 +16,7 @@ use App\Entity\User;
 use App\Entity\Feedback;
 use App\Entity\Language;
 use App\Entity\Conf;
+use App\Entity\Category;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -109,6 +110,7 @@ class DashboardController extends AbstractDashboardController
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
+            yield MenuItem::linkToCrud('Category Management', 'fas fa-list', Category::class);
             yield MenuItem::linkToCrud('Tag Management', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('User Management', 'fas fa-users', User::class);
