@@ -13,6 +13,8 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use App\Admin\Field\VichImageField;
 
 class ConfCrudController extends AbstractCrudController
 {
@@ -66,7 +68,13 @@ class ConfCrudController extends AbstractCrudController
                     TextField::new('address'),
                     TextField::new('phone'),
                     TextField::new('email'),
-                    AssociationField::new('language')
+                    AssociationField::new('language'),
+                    ImageField::new('logo')
+                        ->onlyOnIndex()
+                        ->setBasePath('images/')
+                        ->setUploadDir('public/images/')
+                    ,
+                    VichImageField::new('logoFile', 'Image')->hideOnIndex(),
                 ];
         }
         

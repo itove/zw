@@ -5,7 +5,11 @@ namespace App\Entity;
 use App\Repository\ConfRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: ConfRepository::class)]
 class Conf
 {
@@ -34,6 +38,16 @@ class Conf
 
     #[ORM\ManyToOne]
     private ?Language $language = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $logo = null;
+    
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'logo')]
+    #[Assert\Image(maxSize: '1024k', mimeTypes: ['image/jpeg', 'image/png', 'image/svg+xml'], mimeTypesMessage: 'Only svg, jpg and png')]
+    private ?File $logoFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -120,6 +134,46 @@ class Conf
     public function setLanguage(?Language $language): static
     {
         $this->language = $language;
+
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): static
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+    
+    public function setLogoFile(?File $logoFile = null): void
+    {
+        $this->logoFile = $logoFile;
+
+        if (null !== $logoFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getLogoFile(): ?File
+    {
+        return $this->logoFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
