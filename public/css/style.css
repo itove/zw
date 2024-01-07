@@ -1303,58 +1303,71 @@ font-family: 'Source Han Sans CN', sans-serif;
     background-position: center;
   }
 
-  .mySwiper2 {
+  .mySwiper2,
+  .mySwiper4
+  {
     height: 80%;
     width: 100%;
   }
-.mySwiper2 .swiper-slide{
+.mySwiper2 .swiper-slide,
+.mySwiper4 .swiper-slide{
   padding-top: 6rem;
 }
-.mySwiper2 img{
+.mySwiper2 img,
+.mySwiper4 img{
   object-fit: cover !important;
   width: 75% !important;
   margin: auto;
 }
-  .mySwiper2 .select{
+  .mySwiper2 .select,
+  .mySwiper4 .select{
     position: absolute;
     top: 3rem;
     left: 2.5rem;
     text-align: left;
     font-size: .85rem;
   }
-  .mySwiper2 .select div{
+  .mySwiper2 .select div,
+  .mySwiper4 .select div{
     border-left: 1px solid #dee2e6;
     padding-left: .7rem;
   }
-  .mySwiper2 .select .active{
+  .mySwiper2 .select .active,
+  .mySwiper4 .select .active{
     font-weight: bold;
     font-size: 1.2rem;
     padding-left: .7rem;
     border-left: 2px solid #000;
   }
-  .mySwiper2 .info{
+  .mySwiper2 .info,
+  .mySwiper4 .info{
     position: absolute;
     top: 4rem;
     left: 16rem;
     color: #747474;
   }
-  .mySwiper2 .info2{
+  .mySwiper2 .info2,
+  .mySwiper4 .info2{
     position: absolute;
     top: 4rem;
     right: 9rem;
     color: #747474;
   }
-  .mySwiper2 .title{
+  .mySwiper2 .title,
+  .mySwiper4 .title{
     font-size: 2.2rem;
   }
-  .mySwiper2 .summary{
+  .mySwiper2 .summary,
+  .mySwiper4 .summary{
     font-size: 0.8rem;
     text-align: left;
   }
-  .mySwiper2 .value{
+  .mySwiper2 .value,
+  .mySwiper4 .value{
     font-size: 1.8rem;
   }
-  .mySwiper2 .name{
+  .mySwiper2 .name,
+  .mySwiper4 .name{
     font-size: 0.6rem;
     text-align: left;
   }
