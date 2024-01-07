@@ -6,50 +6,30 @@
 
 {% block main %}
     <div class="banner-image">
-        <img src="{{ asset('images/banner-image.png')}}" alt="car-image" class="img-fluid">
+        <img src="{{ asset("images/#{hero.image}")}}" alt="car-image" class="img-fluid">
         <div class="centered-text">
-            <h2 class="fw-bold">逆行者500系列</h2>
+            <h2 class="fw-bold">{{ hero.title }}</h2>
         </div>
     </div>
     <div class="section-1 container-fluid px-0">
         <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">       
+            {% for s in sliders1 %}
+              <div class="swiper-slide">       
                 <div class="row align-items-center">
                     <div class="col-md-12">
                         <div class="section-image">
-                            <img src="{{ asset('images/矩形 1520 拷贝 6.png')}}" alt="car-image" class="img-fluid">
+                            <img src="{{ asset("images/#{s.image}")}}" alt="car-image" class="img-fluid">
                             <div class="section-1-text">
-                                <img src="{{ asset('images/500.png')}}" alt="text" class="img-fluid w-50 mx-auto">
-                                <p class="pt-3">东风猛士逆行者500是基于猛士军用产品开发的首款军转民车型, <br> 其继承东风军用猛士的正规血统,品质优异,性能出众。适用于应急处突、</p>                           </div>
+                            {#
+                            <p class="pt-3">{{ s.summary }}</p>
+                            #}
+                            </div>
                         </div>
                     </div>   
-                        </div>
+                  </div>
                 </div>
-                <div class="swiper-slide">       
-                    <div class="row align-items-center">
-                        <div class="col-md-12">
-                            <div class="section-image">
-                                <img src="{{ asset('images/矩形 1520 拷贝 6.png')}}" alt="car-image" class="img-fluid">
-                                <div class="section-1-text">
-                                    <img src="{{ asset('images/500.png')}}" alt="text" class="img-fluid w-50 mx-auto">
-                                    <p class="pt-3">东风猛士逆行者500是基于猛士军用产品开发的首款军转民车型, <br> 其继承东风军用猛士的正规血统,品质优异,性能出众。适用于应急处突、</p>                            </div>
-                            </div>
-                        </div>   
-                            </div>
-                    </div>
-                    <div class="swiper-slide">       
-                        <div class="row align-items-center">
-                            <div class="col-md-12">
-                                <div class="section-image">
-                                    <img src="{{ asset('images/矩形 1520 拷贝 6.png')}}" alt="car-image" class="img-fluid">
-                                    <div class="section-1-text">
-                                        <img src="{{ asset('images/500.png')}}" alt="text" class="img-fluid w-50 mx-auto">
-                                        <p class="pt-3">东风猛士逆行者500是基于猛士军用产品开发的首款军转民车型, <br> 其继承东风军用猛士的正规血统,品质优异,性能出众。适用于应急处突、</p>                             </div>
-                                </div>
-                            </div>   
-                                </div>
-                        </div>
+            {% endfor %}
             </div>
             <div class="swiper-pagination"></div>
         </div>
