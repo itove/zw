@@ -1398,6 +1398,13 @@ font-family: 'Source Han Sans CN', sans-serif;
     font-size: 0.6rem;
   }
 }
+@media (max-width: 590px) {
+  .mySwiper2 .info2,
+  .mySwiper4 .info2{
+    top: 4rem;
+    right: 1.5rem;
+  }
+}
 
   .mySwiper,
   .mySwiper4a {
