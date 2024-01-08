@@ -1370,6 +1370,34 @@ font-family: 'Source Han Sans CN', sans-serif;
     font-size: 0.6rem;
     text-align: left;
   }
+@media (max-width: 880px) {
+  .mySwiper2 .info,
+  .mySwiper4 .info{
+    top: 6rem;
+    left: 3rem;
+  }
+  .mySwiper2 .info2,
+  .mySwiper4 .info2{
+    top: 4rem;
+    right: 3rem;
+  }
+  .mySwiper2 .title,
+  .mySwiper4 .title{
+    font-size: 1.6rem;
+  }
+  .mySwiper2 .summary,
+  .mySwiper4 .summary{
+    font-size: 0.8rem;
+  }
+  .mySwiper2 .value,
+  .mySwiper4 .value{
+    font-size: 1.4rem;
+  }
+  .mySwiper2 .name,
+  .mySwiper4 .name{
+    font-size: 0.6rem;
+  }
+}
 
   .mySwiper,
   .mySwiper4a {
