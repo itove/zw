@@ -1327,6 +1327,7 @@ font-family: 'Source Han Sans CN', sans-serif;
     font-size: .85rem;
     z-index: 5;
     cursor: pointer;
+    width: 50%;
   }
   .select div{
     border-left: 1px solid #dee2e6;
