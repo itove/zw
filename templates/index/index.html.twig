@@ -66,15 +66,16 @@
       <div class="swiper-pagination d-flex mb-2 mb-5 ms-5"></div>
     </div>
 
+    <div class="select">
+      <div class="active" id="select-1">逆行者 500 系列</div>
+      <div class="" id="select-2">MS600 系列</div>
+    </div>
+    
     <div class="swiper mySwiper2">
       <div class="swiper-wrapper">
         {% for n in sliders2a %}
         <div class="swiper-slide">
           <img src="{{ asset("images/#{n.image}")}}" />
-          <div class="select">
-            <div class="active">逆行者 500 系列</div>
-            <div class="">MS600 系列</div>
-          </div>
           <div class="info">
             <div class="title fw-bold">{{ n.title }}</div>
             <div class="summary">{{ n.summary}}</div>
@@ -91,7 +92,7 @@
           {% endfor %}
       </div>
     </div>
-    <div class="position-relative border-top bg-light">
+    <div class="position-relative border-top bg-light slider2a">
       <div thumbsSlider="" class="back_img swiper mySwiper w-75">
         <div class="swiper-wrapper">
         {% for n in sliders2a %}
@@ -110,15 +111,11 @@
       </div>
     </div>
 
-    <div class="swiper mySwiper4">
+    <div class="swiper mySwiper4 d-none">
       <div class="swiper-wrapper">
-        {% for n in sliders2a %}
+        {% for n in sliders2b %}
         <div class="swiper-slide">
           <img src="{{ asset("images/#{n.image}")}}" />
-          <div class="select">
-            <div class="active">逆行者 500 系列</div>
-            <div class="">MS600 系列</div>
-          </div>
           <div class="info">
             <div class="title fw-bold">{{ n.title }}</div>
             <div class="summary">{{ n.summary}}</div>
@@ -135,10 +132,10 @@
           {% endfor %}
       </div>
     </div>
-    <div class="position-relative border-top bg-light">
+    <div class="position-relative border-top bg-light d-none slider3a">
       <div thumbsSlider="" class="back_img swiper mySwiper4a w-75">
         <div class="swiper-wrapper">
-        {% for n in sliders2a %}
+        {% for n in sliders2b %}
           <div class="swiper-slide swip11">
             <div><img src="{{ asset("images/#{n.image}")}}" /></div>
             <p>{{ n.title }}</p>
@@ -253,5 +250,31 @@
         prevEl: ".swiper-button-prev",
       },
     });
+    
+    let s2 = document.querySelector('.mySwiper2');
+    let s2a = document.querySelector('.slider2a');
+    let s4 = document.querySelector('.mySwiper4');
+    let s4a = document.querySelector('.slider3a');
+    let select1 = document.querySelector('#select-1');
+    let select2 = document.querySelector('#select-2');
+    select1.addEventListener('click', function(){
+    console.log('click select-1');
+      s4.classList.add('d-none');
+      s4a.classList.add('d-none');
+      s2.classList.remove('d-none');
+      s2a.classList.remove('d-none');
+      select1.classList.add('active');
+      select2.classList.remove('active');
+    });
+    select2.addEventListener('click', function(){
+    console.log('click select-2');
+      s2.classList.add('d-none');
+      s2a.classList.add('d-none');
+      s4.classList.remove('d-none');
+      s4a.classList.remove('d-none');
+      select2.classList.add('active');
+      select1.classList.remove('active');
+    });
+    
     </script>
     {% endblock %}

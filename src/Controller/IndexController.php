@@ -29,8 +29,8 @@ class IndexController extends AbstractController
         $nodes = $this->data->findNodeByRegion('news', 3);
         $homeAbout = $this->data->findNodeByRegion('home-about', 1);
         $homeService = $this->data->findNodeByRegion('home-service', 1);
-        $sliders2a = $this->data->findNodeByCategory('series-600', 6);
-        $sliders2b = $this->data->findNodeByCategory('series-500', 6);
+        $sliders2a = $this->data->findNodeByCategory('series-500', 6);
+        $sliders2b = $this->data->findNodeByCategory('series-600', 6);
         $data = [
           'path' => '',
           'nodes' => $nodes,

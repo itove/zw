@@ -1319,21 +1319,20 @@ font-family: 'Source Han Sans CN', sans-serif;
   width: 75% !important;
   margin: auto;
 }
-  .mySwiper2 .select,
-  .mySwiper4 .select{
-    position: absolute;
-    top: 3rem;
+  .select{
+    position: relative;
+    top: 5rem;
     left: 2.5rem;
     text-align: left;
     font-size: .85rem;
+    z-index: 5;
+    cursor: pointer;
   }
-  .mySwiper2 .select div,
-  .mySwiper4 .select div{
+  .select div{
     border-left: 1px solid #dee2e6;
     padding-left: .7rem;
   }
-  .mySwiper2 .select .active,
-  .mySwiper4 .select .active{
+  .select .active{
     font-weight: bold;
     font-size: 1.2rem;
     padding-left: .7rem;
@@ -1372,19 +1371,22 @@ font-family: 'Source Han Sans CN', sans-serif;
     text-align: left;
   }
 
-  .mySwiper {
+  .mySwiper,
+  .mySwiper4a {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
   }
 
-  .mySwiper .swiper-slide {
+  .mySwiper .swiper-slide ,
+  .mySwiper4a .swiper-slide {
     width: 25%;
     height: 100%;
     opacity: unset;
   }
 
-  .mySwiper .swiper-slide-thumb-active {
+  .mySwiper .swiper-slide-thumb-active ,
+  .mySwiper4a .swiper-slide-thumb-active {
     opacity: 1;
     border-top: 1px solid black;
   }
