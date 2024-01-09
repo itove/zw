@@ -23,7 +23,7 @@
               <div class="card-body p-4">
                 <h5 class="card-title text_heading">{{ n.title }}</h5>
                 <p class="card-text text">{{ n.summary }} </p>
-                <a href="{{prefix}}/news/{{ n.id }}" class="link_button">{{ 'SHOW MORE'|trans }}</a>
+                <a href="{{ path('app_node_show', {nid: n.id}) }}" class="link_button">{{ 'SHOW MORE'|trans }}</a>
               </div>
             </div>
           </div>
