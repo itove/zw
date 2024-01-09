@@ -160,6 +160,7 @@ class NodeCrudController extends AbstractCrudController
             array_push($fields, 'language');
         }
             
+        yield $titleField;
         foreach ($fields as $f) {
             $ff=$f . "Field";
             yield $$ff;
