@@ -124,6 +124,7 @@ class DashboardController extends AbstractDashboardController
                     ->setEntityId(1)
                 ;
             }
+            yield MenuItem::linkToUrl('Changelog', 'fas fa-note-sticky', '/changelog/');
         }
         
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
