@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use function App\Service\GetProperties;
 
 class RegionCrudController extends AbstractCrudController
@@ -34,5 +35,12 @@ class RegionCrudController extends AbstractCrudController
         yield TextField::new('icon');
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(GetProperties(new Node()))->allowMultipleChoices();
+    }
+    
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->disable('delete')
+        ;
     }
 }
