@@ -1702,6 +1702,7 @@ ul li:hover .slider p {
 .page-news-show .nav_background
 {
   background-color: rgba(0, 0, 0, 0.8) !important;
+  /* background-color: #D1CCC4 !important; */
 }
 
 @media (min-width: 200px) and (max-width: 990px) {
