@@ -122,19 +122,19 @@
         <li class="whatsapp">
           <i class="fa fa-user-circle-o" aria-hidden="true"></i>
           <div class="slider">
-            <p>400-071-9800</p>
+            <p>{{ conf.phone }}</p>
           </div>
         </li>
         <li class="whatsapp">
           <i class="fa fa-phone" aria-hidden="true"></i>
           <div class="slider">
-            <p>400-071-9800</p>
+            <p>{{ conf.phone }}</p>
           </div>
         </li>
         <li class="whatsapp">
           <i class="fa fa-comments" aria-hidden="true"></i>
           <div class="slider nobar">
-            <p><img src="{{ asset("images/wechat-qr.jpg") }}"></p>
+            <p><img src="{{ asset("images/#{wechat.image}") }}"></p>
           </div>
         </li>
         <li class="whatsapp">
