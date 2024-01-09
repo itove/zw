@@ -1866,3 +1866,7 @@ ul li:hover .slider p {
 .accordion-item{
   border: 0 !important;
 }
+.improves .box-image:hover div p{
+  display: block !important;
+  font-weight: 100;
+}

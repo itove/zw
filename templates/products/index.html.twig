@@ -34,32 +34,18 @@
             <div class="swiper-pagination"></div>
         </div>
     </div>
-    <div class="boxes-container container-fluid px-0">
+    <div class="boxes-container container-fluid px-0 improves">
         <div class="d-flex justify-content-between">
 
+    {% for i in improves %}
             <div class="box-image position-relative text-center">
-                <img src="{{ asset('images/staring-2.png')}}" alt="staring-image" class="img-fluid">
-                <div class="overlay-text-2 d-none d-md-block">
-                    <p>驾驶性提升</p>
-                    <p>强大的双横臂螺旋弹簧独立悬架、大容量阻尼器和低气压轮胎的组合，使</p>
+                <img src="{{ asset("images/#{i.image}")}}" alt="staring-image" class="img-fluid">
+                <div class="overlay-text-2 d-md-block">
+                    <p class="fw-bold">{{ i.title }}</p>
+                    <p class="d-none">{{ i.summary }}</p>
                 </div>
             </div>
-            <div class="box-image position-relative">
-                <img src="{{ asset('images/black-jeep.png')}}" alt="black-jeep" class="img-fluid">
-                <p class="overlay-text d-none d-md-block">安全性提升</p>
-            </div>
-            <div class="box-image position-relative">
-                <img src="{{ asset('images/machine.png')}}" alt="machine" class="img-fluid">
-                <p class="overlay-text d-none d-md-block">减速效果提升</p>
-            </div>
-            <div class="box-image position-relative">
-                <img src="{{ asset('images/矩形 1520 拷贝 19.png')}}" alt="yellow-jeep" class="img-fluid">
-                <p class="overlay-text d-none d-md-block">通过性提升</p>
-            </div>
-            <div class="box-image position-relative">
-                <img src="{{ asset('images/racing-jeep.png')}}" alt="jeep" class="img-fluid">
-                <p class="overlay-text d-none d-md-block">越野性提升</p>
-            </div>
+    {% endfor %}
         </div>
     </div>
         

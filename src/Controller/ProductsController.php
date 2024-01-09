@@ -33,11 +33,13 @@ class ProductsController extends AbstractController
         $sliders5 = $this->data->findNodeByTag('products-slider-5', 3);
         $sliders6 = $this->data->findNodeByCategory('gaizhuangche-1', 3);
         $spec1 = $this->data->findNodeByTag('products-spec-1', 1)[0];
+        $improves = $this->data->findNodeByTag('products-improve', 5);
         $data = [
           'class' => 'page-products position-absolute',
           'page_title' => $this->translator->trans('Products'),
           'request' => $request,
           'hero' => $hero,
+          'improves' => $improves,
           'sliders1' => $sliders1,
           'sliders2' => $sliders2,
           'sliders3' => $sliders3,
