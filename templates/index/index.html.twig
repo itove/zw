@@ -74,7 +74,7 @@
       <div class="swiper-wrapper">
         {% for n in sliders2a %}
         <div class="swiper-slide">
-          <img src="{{ asset("images/#{n.image}")}}" />
+          <a href="{{prefix}}/product/{{n.id}}"><img src="{{ asset("images/#{n.image}")}}" /></a>
           <div class="info">
             <div class="title fw-bold">{{ n.title }}</div>
             <div class="summary">{{ n.summary}}</div>
@@ -114,7 +114,7 @@
       <div class="swiper-wrapper">
         {% for n in sliders2b %}
         <div class="swiper-slide">
-          <img src="{{ asset("images/#{n.image}")}}" />
+          <a href="{{prefix}}/product/{{n.id}}"><img src="{{ asset("images/#{n.image}")}}" /></a>
           <div class="info">
             <div class="title fw-bold">{{ n.title }}</div>
             <div class="summary">{{ n.summary}}</div>
