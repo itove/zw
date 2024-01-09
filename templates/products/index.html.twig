@@ -256,12 +256,11 @@
 
                           <div class="section-9 container-fluid">
                               <div class="row">
+                              {% for i in n.images|slice(0,2) %}
                                   <div class="col-md-6 px-0">
-                                      <img src="{{ asset('images/ambulace1.jpg')}}" class="img-fluid">
+                                      <img src="{{ asset("images/#{i.image}")}}" class="img-fluid">
                                   </div>
-                                  <div class="col-md-6 px-0">
-                                      <img src="{{ asset('images/inside -amb.jpg')}}" class="img-fluid">
-                                  </div>
+                              {% endfor %}
                               </div>
                           </div>
                     </div>

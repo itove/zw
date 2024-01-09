@@ -1868,6 +1868,9 @@ ul li:hover .slider p {
 .swiper6 img{
   object-fit: cover;
 }
+.swiper6 .section-9{
+  height: 30rem;
+}
 .accordion-item{
   border: 0 !important;
 }
