@@ -1498,6 +1498,9 @@ font-family: 'Source Han Sans CN', sans-serif;
    position: relative;
    top: -10px;
 }
+.qr-img img{
+  width: 100px;
+}
   .footer
   {
     width: 100%;

@@ -13,6 +13,8 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
+    <meta content="{{ conf.description }}" name="description">
+    <meta content="{{ conf.keywords|join(', ') }}" name="keywords">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
@@ -35,7 +37,7 @@
       href="{{ asset('css/swiper-bundle.min.css') }}"
     />
 
-    <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{{ conf.sitename }}{% endblock %}</title>
     {% block style %}{% endblock %}
   </head>
   <body>
@@ -44,7 +46,7 @@
       <nav class="navbar nav_background navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="{{prefix}}/"
-            ><img src="{{ asset('images/logo.svg')}}" alt="" width="200px"
+            ><img src="{{ asset("images/#{conf.logo}")}}" alt="" width="200px"
           /></a>
           <button
             class="navbar-toggler"
@@ -148,16 +150,17 @@
           <div class="row pt-5 pt-md-0">
             <div class="col-12 col-md-8 d-flex align-items-center">
               <p class="pt-5 mb-0 pb-0 pb-md-3 px-3 px-md-0">
-                <a href="#">东风越野车有限公司</a> DONGFENG OFF-ROAD VEHICLE CO.,
-                LTD. <a href="{{prefix}}/products">产品展示</a> | <a href="{{prefix}}/about"> 公司介绍</a> |
+                东风越野车有限公司 DONGFENG OFF-ROAD VEHICLE CO.,LTD.
+                <a href="{{prefix}}/products">产品展示</a> | <a href="{{prefix}}/about"> 公司介绍</a> |
                 <a href="{{prefix}}/contact">联系我们</a> <br />
-                地址：十堰市张湾区工业新区A区建设大道特1号
-                <a href="https://beian.miit.gov.cn/">备案号 10258859</a> 号 销售电话：400 071 9800
+                {{ conf.address }}
+                <a href="https://beian.miit.gov.cn/">{{ beian.summary }}</a> 销售电话：{{ conf.phone }}
               </p>
             </div>
-            <div class="col-12 col-md-4 mt-3 mt-md-0 text-center">
+            <div class="col-12 col-md-4 mt-3 mt-md-0 text-center qr-img">
               <div class="weird w-100"></div>
-              <img src="{{ asset('images/barcode.png')}}" alt="" class="img-fluid pt-0 pt-md-5 pb-3 w-50 ms-0" />
+              <img src="{{ asset("images/#{wechat.image}")}}" alt="" class="img-fluid pt-0 pt-md-5 pb-3 ms-0" />
+              <img src="{{ asset("images/#{miniprog.image}")}}" alt="" class="img-fluid pt-0 pt-md-5 pb-3 ms-0" />
             </div>
           </div>
         </div>
