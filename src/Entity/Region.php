@@ -36,6 +36,9 @@ class Region
 
     #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
     private ?array $fields = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
     
     public function __toString(): string
     {
@@ -150,6 +153,18 @@ class Region
     public function setFields(?array $fields): static
     {
         $this->fields = $fields;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
