@@ -24,6 +24,7 @@ class NewsController extends AbstractController
     #[Route('/', name: 'app_news_list')]
     public function index(Request $request): Response
     {
+        $locale = $request->getLocale();
         $region = 'news';
         $page = $request->query->get('p');
         $limit = 9;
@@ -41,6 +42,10 @@ class NewsController extends AbstractController
         $arr['nodes'] = $nodes;
         $arr['page'] = $page;
         $arr['page_count'] = ceil(count($nodes_all) / $limit);
+        $conf = $this->data->findConfByLocale($locale);
+        $beian = $this->data->findNodeByRegion('beian', 1)[0];
+        $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
+        $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
 
         $data = [
           'nodes' => $nodes,
@@ -48,18 +53,31 @@ class NewsController extends AbstractController
           'page_title' => $this->translator->trans('News'),
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
+          'conf' => $conf,
+          'beian' => $beian,
+          'wechat' => $wechat,
+          'miniprog' => $miniprog,
         ];
         return $this->render('news/index.html.twig', $data);
     }
     
     #[Route('/{nid}', requirements: ['nid' => '\d+'], name: 'app_news_show')]
-    public function show(int $nid): Response
+    public function show(int $nid, Request $request): Response
     {
+        $locale = $request->getLocale();
         $node = $this->data->get($nid);
+        $conf = $this->data->findConfByLocale($locale);
+        $beian = $this->data->findNodeByRegion('beian', 1)[0];
+        $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
+        $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
         $data = [
           'page_title' => $this->translator->trans('News'),
           'class' => 'page-news-show',
           'node' => $node,
+          'conf' => $conf,
+          'beian' => $beian,
+          'wechat' => $wechat,
+          'miniprog' => $miniprog,
         ];
         return $this->render('news/detail.html.twig', $data);
     }
