@@ -526,7 +526,6 @@ font-family: 'Source Han Sans CN', sans-serif;
     @media (min-width: 102px) and (max-width: 992px) {
       .footer
       {
-        background-image: url(images/footer1.png);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -1063,7 +1062,6 @@ font-family: 'Source Han Sans CN', sans-serif;
       @media (min-width: 102px) and (max-width: 992px) {
         .footer
         {
-          background-image: url(images/footer1.png);
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;
