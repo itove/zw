@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\Data;
 
-#[Route('/news')]
 class NodeController extends AbstractController
 {
     private $data;
@@ -21,7 +20,7 @@ class NodeController extends AbstractController
         $this->translator = $translator;
     }
     
-    #[Route('/', name: 'app_news_list')]
+    #[Route('/news', name: 'app_news_list')]
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
@@ -61,7 +60,8 @@ class NodeController extends AbstractController
         return $this->render('node/index.html.twig', $data);
     }
     
-    #[Route('/{nid}', requirements: ['nid' => '\d+'], name: 'app_node_show')]
+    #[Route('news/{nid}', requirements: ['nid' => '\d+'], name: 'app_node_show')]
+    #[Route('product/{nid}', requirements: ['nid' => '\d+'], name: 'app_product_show')]
     public function show(int $nid, Request $request): Response
     {
         $locale = $request->getLocale();
