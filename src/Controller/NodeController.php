@@ -64,6 +64,9 @@ class NodeController extends AbstractController
     #[Route('product/{nid}', requirements: ['nid' => '\d+'], name: 'app_product_show')]
     public function show(int $nid, Request $request): Response
     {
+        $route = $request->attributes->get('_route');
+        $pageTitle = 'News';
+        if ($route == 'app_product_show') $pageTitle = 'Product';
         $locale = $request->getLocale();
         $node = $this->data->get($nid);
         $conf = $this->data->findConfByLocale($locale);
@@ -71,7 +74,7 @@ class NodeController extends AbstractController
         $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
         $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
         $data = [
-          'page_title' => $this->translator->trans('News'),
+          'page_title' => $this->translator->trans($pageTitle),
           'class' => 'page-news-show',
           'node' => $node,
           'conf' => $conf,
