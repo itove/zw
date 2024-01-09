@@ -10,7 +10,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use App\Service\Data;
 
 #[Route('/news')]
-class NewsController extends AbstractController
+class NodeController extends AbstractController
 {
     private $data;
     private $translator;
@@ -58,7 +58,7 @@ class NewsController extends AbstractController
           'wechat' => $wechat,
           'miniprog' => $miniprog,
         ];
-        return $this->render('news/index.html.twig', $data);
+        return $this->render('node/index.html.twig', $data);
     }
     
     #[Route('/{nid}', requirements: ['nid' => '\d+'], name: 'app_news_show')]
@@ -79,6 +79,6 @@ class NewsController extends AbstractController
           'wechat' => $wechat,
           'miniprog' => $miniprog,
         ];
-        return $this->render('news/detail.html.twig', $data);
+        return $this->render('node/detail.html.twig', $data);
     }
 }
