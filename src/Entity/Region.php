@@ -22,9 +22,6 @@ class Region
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\Column]
-    private ?bool $onMenu = null;
-
     #[ORM\OneToMany(mappedBy: 'region', targetEntity: Node::class)]
     private Collection $nodes;
 
@@ -75,18 +72,6 @@ class Region
     public function setLabel(string $label): static
     {
         $this->label = $label;
-
-        return $this;
-    }
-
-    public function isOnMenu(): ?bool
-    {
-        return $this->onMenu;
-    }
-
-    public function setOnMenu(bool $onMenu): static
-    {
-        $this->onMenu = $onMenu;
 
         return $this;
     }
