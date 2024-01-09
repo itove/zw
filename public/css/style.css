@@ -855,7 +855,7 @@ font-family: 'Source Han Sans CN', sans-serif;
     }
     .section-4-text{
         position: absolute;
-        top: 49%;
+        top: 27rem;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
@@ -1863,7 +1863,7 @@ ul li:hover .slider p {
   height: 34rem !important;
 }
 .swiper6 .swiper-pagination{
-  top: 59% !important;
+  top: 32rem !important;
 }
 .swiper6 img{
   object-fit: cover;
