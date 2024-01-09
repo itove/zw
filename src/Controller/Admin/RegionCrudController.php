@@ -30,8 +30,7 @@ class RegionCrudController extends AbstractCrudController
         yield IdField::new('id')->onlyOnIndex();
         yield TextField::new('name');
         yield TextField::new('label');
-        yield BooleanField::new('onMenu');
-        yield IntegerField::new('count');
+        // yield IntegerField::new('count');
         yield TextField::new('icon');
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(GetProperties(new Node()))->allowMultipleChoices();
