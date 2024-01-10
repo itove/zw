@@ -130,8 +130,8 @@ class NodeCrudController extends AbstractCrudController
         ;
 
         $vichImageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
-        $tagFieldOnIndex = ArrayField::new('tag')->onlyOnIndex();
-        $tagField = AssociationField::new('tag')
+        $tagsFieldOnIndex = ArrayField::new('tags')->onlyOnIndex();
+        $tagsField = AssociationField::new('tags')
             ->onlyOnForms()
             // ->setRequired(true)
         ;
@@ -144,7 +144,7 @@ class NodeCrudController extends AbstractCrudController
         $createdAtField = DateTimeField::new('createdAt')->onlyOnIndex();
         $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
-        $regionField = AssociationField::new('region');
+        $regionsField = AssociationField::new('regions');
         $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
         
@@ -153,7 +153,7 @@ class NodeCrudController extends AbstractCrudController
             $vichImageField->setHelp("推荐尺寸{$this->region->getDescription()}，或宽高比与之相同的尺寸。");
         } else if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             $fields = GetProperties(new Node());
-            array_push($fields, 'region');
+            array_push($fields, 'regions');
         }
         
         if ($_ENV['IS_MULTILINGUAL']) {
@@ -162,14 +162,14 @@ class NodeCrudController extends AbstractCrudController
             
         yield $titleField;
         foreach ($fields as $f) {
-            $ff=$f . "Field";
+            $ff = $f . "Field";
             yield $$ff;
         }
         if (in_array('image', $fields)) {
             yield $vichImageField;
         }
-        if (in_array('tag', $fields)) {
-            yield $tagFieldOnIndex;
+        if (in_array('tags', $fields)) {
+            yield $tagsFieldOnIndex;
         }
         if (in_array('category', $fields)) {
             yield $categoryFieldOnIndex;
