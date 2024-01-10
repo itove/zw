@@ -35,7 +35,6 @@ class AboutController extends AbstractController
         $beian = $this->data->findNodeByRegion('beian', 1)[0];
         $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
         $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
-        dump($timeline);
         $data = [
           'page_title' => $this->translator->trans('About Us'),
           'class' => 'page-about',
