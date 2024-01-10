@@ -1,6 +1,9 @@
 {
+    "name": "itove/sygen",
+    "description": "Generic website framework on top of Symfony and EasyAdmin",
     "type": "project",
-    "license": "proprietary",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/itove/sygen",
     "minimum-stability": "stable",
     "prefer-stable": true,
     "require": {
