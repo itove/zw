@@ -150,7 +150,7 @@ class NodeCrudController extends AbstractCrudController
         
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
-            $vichImageField->setHelp("推荐尺寸{$this->region->getDescription()}，或宽高比与推荐尺寸相同。");
+            $vichImageField->setHelp("推荐尺寸{$this->region->getDescription()}，或宽高比与之相同的尺寸。");
         } else if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             $fields = GetProperties(new Node());
             array_push($fields, 'region');
