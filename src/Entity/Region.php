@@ -22,7 +22,7 @@ class Region
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\ManyToMany(mappedBy: 'region', targetEntity: Node::class)]
+    #[ORM\ManyToMany(mappedBy: 'regions', targetEntity: Node::class)]
     private Collection $nodes;
 
     #[ORM\Column(type: Types::SMALLINT)]

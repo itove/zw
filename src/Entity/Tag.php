@@ -25,7 +25,7 @@ class Tag
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\ManyToMany(targetEntity: Node::class, mappedBy: 'tag')]
+    #[ORM\ManyToMany(targetEntity: Node::class, mappedBy: 'tags')]
     private Collection $nodes;
 
     public function __construct()

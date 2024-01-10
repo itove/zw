@@ -40,10 +40,10 @@ class Node
     private ?string $summary = null;
 
     #[ORM\ManyToMany(targetEntity: Region::class, inversedBy: 'nodes')]
-    private Collection $region;
+    private Collection $regions;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'nodes')]
-    private Collection $tag;
+    private Collection $tags;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
@@ -62,8 +62,8 @@ class Node
 
     public function __construct()
     {
-        $this->region = new ArrayCollection();
-        $this->tag = new ArrayCollection();
+        $this->regions = new ArrayCollection();
+        $this->tags = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->specs = new ArrayCollection();
@@ -136,17 +136,17 @@ class Node
     }
 
     /**
-     * @return Collection<int, Tag>
+     * @return Collection<int, Region>
      */
-    public function getRegion(): Collection
+    public function getRegions(): Collection
     {
-        return $this->region;
+        return $this->regions;
     }
 
     public function addRegion(Region $region): static
     {
-        if (!$this->region->contains($region)) {
-            $this->region->add($region);
+        if (!$this->regions->contains($region)) {
+            $this->regions->add($region);
         }
 
         return $this;
@@ -154,7 +154,7 @@ class Node
 
     public function removeRegion(Region $region): static
     {
-        $this->region->removeElement($region);
+        $this->regions->removeElement($region);
 
         return $this;
     }
@@ -162,15 +162,15 @@ class Node
     /**
      * @return Collection<int, Tag>
      */
-    public function getTag(): Collection
+    public function getTags(): Collection
     {
-        return $this->tag;
+        return $this->tags;
     }
 
     public function addTag(Tag $tag): static
     {
-        if (!$this->tag->contains($tag)) {
-            $this->tag->add($tag);
+        if (!$this->tags->contains($tag)) {
+            $this->tags->add($tag);
         }
 
         return $this;
@@ -178,7 +178,7 @@ class Node
 
     public function removeTag(Tag $tag): static
     {
-        $this->tag->removeElement($tag);
+        $this->tags->removeElement($tag);
 
         return $this;
     }
