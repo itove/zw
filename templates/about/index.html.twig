@@ -237,7 +237,9 @@
                     <p>{{ about.summary }}</p>
                 </div>
                 <div class="col-12 col-md-4">
-                    <img src="{{ asset("images/#{about.image}")}}" class="w-100" alt="">
+                    <video controls width="100%">
+                      <source src="{{ asset("images/about.mp4")}}" type="video/mp4" />
+                    </video>
                 </div>
             </div>
         </div>
