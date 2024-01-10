@@ -58,7 +58,7 @@ class NodeCrudController extends AbstractCrudController
         $response = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         if (!is_null($this->region)) {
             $regionId = $this->region->getId();
-            $response->andWhere("entity.region = $regionId");
+            $response->andWhere("entity.regions = $regionId");
         }
         return $response;
     }
