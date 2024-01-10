@@ -39,8 +39,8 @@ class Node
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $summary = null;
 
-    #[ORM\ManyToOne(inversedBy: 'nodes')]
-    private ?Region $region = null;
+    #[ORM\ManyToMany(targetEntity: Region::class, inversedBy: 'nodes')]
+    private Collection $region;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'nodes')]
     private Collection $tag;
@@ -62,6 +62,7 @@ class Node
 
     public function __construct()
     {
+        $this->region = new ArrayCollection();
         $this->tag = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
@@ -134,14 +135,26 @@ class Node
         return $this;
     }
 
-    public function getRegion(): ?Region
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getRegion(): Collection
     {
         return $this->region;
     }
 
-    public function setRegion(?Region $region): static
+    public function addRegion(Region $region): static
     {
-        $this->region = $region;
+        if (!$this->region->contains($region)) {
+            $this->region->add($region);
+        }
+
+        return $this;
+    }
+
+    public function removeRegion(Region $region): static
+    {
+        $this->region->removeElement($region);
 
         return $this;
     }
