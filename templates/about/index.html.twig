@@ -249,79 +249,21 @@
         <h1 class="text-center mt-5 text-white">发展历程</h1>
         <p class="text-center text-white">development history</p>
         <ol>
+        {% set i = 0 %}
+        {% for t in timeline %}
+          {% set class = "" %}
+          {% if i % 2 != 0 %}
+          {% set class = "bottom-text" %}
+          {% endif %}
           <li>
             <div>
-              <time>1969</time>
-              <h6>汽开工建设</h6>
+              <time class="{{ class }}">{{ t.title }}</time>
+              <h6>{{ t.summary }}</h6>
             </div>
           </li>
-          <li>
-            <div>
-              <time class="bottom-text">1975</time>
-              <h6>首台东风军车</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>1979</time>
-              <h6>东风军车EQ240才加对越自卫反击战, <br> 荣获“功臣车”“英雄车”称号</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time class="bottom-text">2002</time>
-              <h6>东风越野车有限公司成立</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2023</time>
-              <h6>第一台东风猛士下线</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time class="bottom-text">2025</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2029</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time class="bottom-text">3000</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>1977</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time class="bottom-text">1985</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time>2000</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li>
-            <div>
-              <time class="bottom-text">2005</time>
-              <h6>汽开工建设</h6>
-            </div>
-          </li>
-          <li></li>
+        {% set i = i + 1 %}
+        {% endfor %}
+        <li></li>
         </ol>
   
         <div class="arrows">
