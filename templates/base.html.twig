@@ -89,9 +89,9 @@
                 class="align-items-center me-2 hover_show1"
               />
               {% set path = path(app.current_route, app.current_route_parameters)|replace({'/cn':''})|trim('/','left')%}
-              <a href="/cn/{{ path }}" class="text-light text-decoration-none {{cnLocaleClass}}">中文</a>
-              <span class="text-light">/</span>
               <a href="/{{ path }}" class="text-light text-decoration-none {{localeClass}}">English</a>
+              <span class="text-light">/</span>
+              <a href="/cn/{{ path }}" class="text-light text-decoration-none {{cnLocaleClass}}">中文</a>
             </button>
           </div>
         </div>
