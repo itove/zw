@@ -41,9 +41,9 @@ class NodeCrudController extends AbstractCrudController
     public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
         $this->query = $requestStack->getCurrentRequest()->query;
-        $region_label = $this->query->get('region');
-        if (!is_null($region_label)) {
-            $this->region = $doctrine->getRepository(Region::class)->findOneBy(['label' => $region_label]);
+        $regionId = $this->query->get('region');
+        if (!is_null($regionId)) {
+            $this->region = $doctrine->getRepository(Region::class)->find($regionId);
         }
         $this->adminUrlGenerator = $adminUrlGenerator;
     }
@@ -57,8 +57,8 @@ class NodeCrudController extends AbstractCrudController
     {
         $response = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         if (!is_null($this->region)) {
-            $region_id = $this->region->getId();
-            $response->andWhere("entity.region = $region_id");
+            $regionId = $this->region->getId();
+            $response->andWhere("entity.region = $regionId");
         }
         return $response;
     }

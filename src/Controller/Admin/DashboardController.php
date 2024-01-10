@@ -99,7 +99,7 @@ class DashboardController extends AbstractDashboardController
             $action = 'index';
             // $action = 'detail';
             yield MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
-                ->setQueryParameter('region', $region->getLabel())
+                ->setQueryParameter('region', $region->getId())
                 ->setAction($action)
                 // ->setEntityId(7)
             ;
