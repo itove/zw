@@ -145,5 +145,20 @@ class Data
     {
       return $this->doctrine->getRepository($entity)->findAll($criteria);
     }
+    
+    /*
+     * Get all site basic infomation in one place, add logic as you need
+     */
+    public function getInfo(string $locale)
+    {
+      $conf = $this->findConfByLocale($locale);
+      $categories = $this->findAll([], Category::class);
+      // $more = $this->findAll([], More::class);
+      
+      return [
+        'conf' => $conf,
+        'categories' => $categories,
+        // 'more' => $more,
+      ];
+    }
 }
-
