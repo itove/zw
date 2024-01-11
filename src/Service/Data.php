@@ -161,4 +161,18 @@ class Data
         // 'more' => $more,
       ];
     }
+    
+    public function findNodeByCategoryAndRegion($cate_label, $region_label, int $limit)
+    {
+      return $this->doctrine->getRepository(Node::class)
+                            ->findByCategoryAndRegion(['category' => $cate_label, 'region' => $region_label], [], $limit)
+                        ;
+    }
+    
+    public function findNodeByCategoryAndTag($cate_label, $tag_label, int $limit)
+    {
+      return $this->doctrine->getRepository(Node::class)
+                            ->findByCategoryAndTag(['category' => $cate_label, 'tag' => $tag_label], [], $limit)
+                        ;
+    }
 }
