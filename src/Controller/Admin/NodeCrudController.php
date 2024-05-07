@@ -56,9 +56,16 @@ class NodeCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $response = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
+        // $and = $response->expr()->andX();
+        dump($this->region);
         if (!is_null($this->region)) {
             $regionId = $this->region->getId();
-            $response->andWhere("entity.regions = $regionId");
+            // $resp = $response->expr()->in($regionId, array('entity.regions'));
+            // $and->add($response->expr()->isMemberOf($regionId, 'entity.regions'));
+            dump($response);
+            // $response->andWhere($and);
+            dump($response);
+            // $response->andWhere("entity.regions contains $regionId");
         }
         return $response;
     }
@@ -67,7 +74,7 @@ class NodeCrudController extends AbstractCrudController
     {
         $node = new Node();
         if (!is_null($this->region)) {
-            $node->setRegion($this->region);
+            $node->addRegion($this->region);
         }
         return $node;
     }
