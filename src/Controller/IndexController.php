@@ -32,9 +32,9 @@ class IndexController extends AbstractController
         $sliders2a = $this->data->findNodeByCategory('series-500', 6);
         $sliders2b = $this->data->findNodeByCategory('series-600', 6);
         $conf = $this->data->findConfByLocale($locale);
-        $beian = $this->data->findNodeByRegion('beian', 1)[0];
-        $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
-        $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
+        $beian = $this->data->findNodeByRegion('beian', 1);
+        $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1);
+        $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1);
         $data = [
           'path' => '',
           'conf' => $conf,
@@ -45,8 +45,8 @@ class IndexController extends AbstractController
           'sliders1' => $sliders1,
           'sliders2a' => $sliders2a,
           'sliders2b' => $sliders2b,
-          'homeAbout' => $homeAbout[0],
-          'homeService' => $homeService[0],
+          'homeAbout' => $homeAbout,
+          'homeService' => $homeService,
           'class' => 'page-home position-absolute',
         ];
         return $this->render('index/index.html.twig', $data);

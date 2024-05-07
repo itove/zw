@@ -24,7 +24,7 @@ class NodeRepository extends ServiceEntityRepository
     public function findByTag($tag, $limit = null, $offset = null): array
     {
         return $this->createQueryBuilder('n')
-            ->join('n.tag', 't')
+            ->join('n.tags', 't')
             ->andWhere('t.label = :tag')
             ->setParameter('tag', $tag)
             ->orderBy('n.id', 'DESC')
@@ -52,7 +52,7 @@ class NodeRepository extends ServiceEntityRepository
     public function findByRegion($region, $limit = null, $offset = null): array
     {
         return $this->createQueryBuilder('n')
-            ->join('n.region', 'r')
+            ->join('n.regions', 'r')
             ->andWhere('r.label = :region')
             ->setParameter('region', $region)
             ->orderBy('n.id', 'DESC')
