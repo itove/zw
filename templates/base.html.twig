@@ -1,15 +1,5 @@
-{% set prefix = '/cn' %}
-{% set cnLocaleClass = 'fw-bold' %}
-{% set localeClass = '' %}
-
-{% if app.locale == 'en' %}
-{% set prefix = '' %}
-{% set cnLocaleClass = '' %}
-{% set localeClass = 'fw-bold' %}
-{% endif %}
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
@@ -32,17 +22,14 @@
     {% block style %}{% endblock %}
   </head>
   <body>
-    {% block nav %}
-    {% endblock %}
+    {% block nav %} {% endblock %}
 
-    {% block hero %}{% endblock %}
+    {% block hero %} {% endblock %}
 
-    {% block breadcrumbs %}
-    {% endblock %}
+    {% block breadcrumbs %} {% endblock %}
 
-    {% block main %}{% endblock %}
+    {% block main %} {% endblock %}
 
-    {% block javascript %}
 		<script src="{{ asset('js/jquery.min.js') }}"></script>
 		<script src="{{ asset('js/jquery.cookie.js?version=1.0') }}"></script>
 		<script src="{{ asset('js/common.js') }}"></script>
@@ -51,7 +38,6 @@
 		<script src="{{ asset('js/header.js?version=3.9') }}"></script>
 		<script src="{{ asset('js/idangerous.swiper.js') }}"></script>
     <script src="{{ asset('js/index.js?version=2.6') }}"></script>
-    {% endblock %}
-
+    {% block javascript %} {% endblock %}
   </body>
 </html>
