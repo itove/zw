@@ -560,7 +560,6 @@
 /**************************第三屏***************************/
 
 .index_main .section3 {
-	background: url(../images/section3/section3bg.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 
@@ -1423,7 +1422,6 @@
 	}
 	.index_main .section3 .sec3flex .viewsbox .views {
 		width: 33.33%;
-		height: 200px!important;
 		margin-bottom: 30px;
 		display: flex;
 		flex-direction: column;
@@ -1507,7 +1505,6 @@
 	}
 	.index_main .section3 .sec3flex .viewsbox .views {
 		width: 33.33%;
-		height: 200px!important;
 		margin-bottom: 30px;
 		display: flex;
 		flex-direction: column;
