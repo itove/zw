@@ -150,7 +150,7 @@ $('.navbar_nav>li').click(function() {
 		}else if($(this).attr('classname')=='景区服务'){
 			window.location.href = "/youji?target=service_1"
 		}else if($(this).attr('classname')=='魅力三峡'){
-			window.location.href = "/contact?target=meili_1"
+			window.location.href = "#"
 		}
 	}
 	
