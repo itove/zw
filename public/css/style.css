@@ -75,3 +75,23 @@
 .text-white{
   color: #ffffff;
 }
+.sec4flex .services .sitem{
+  margin: 0 1rem;
+  color: #ffffff !important;
+  width: 22% !important;
+}
+.sec4flex .services .sitem .box .tag{
+  font-size: 1.5em !important;
+  font-weight: bold;
+}
+.sec4flex .services .sitem .box .tag_intro{
+  color: #ffffff !important;
+  font-size: .7em !important;
+  padding: .8em .8em 1.2em 0;
+  font-weight: bold;
+}
+.sec4flex .services .sitem .box .arrow{
+  width: 100%;
+  text-align: end;
+  padding: 1.2em 1.8em 0 0;
+}
