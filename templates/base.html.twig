@@ -30,6 +30,10 @@
 
     {% block main %} {% endblock %}
 
+    {% block footer %}
+    {{ include('footer.html.twig') }}
+    {% endblock %}
+
 		<script src="{{ asset('js/jquery.min.js') }}"></script>
 		<script src="{{ asset('js/jquery.cookie.js?version=1.0') }}"></script>
 		<script src="{{ asset('js/common.js') }}"></script>

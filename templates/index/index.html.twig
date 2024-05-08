@@ -942,42 +942,10 @@
 	</div>
 </div>
 
-    <footer class="footer" >
-      <div class="flinks">
-      友情链接： 十堰市人民政府
-      </div>
-      <div class="links">
-        <div class="wrapper">
-          <a href="#">首页</a>
-          <a href="#">走进东沟</a>
-          <a href="#">乐游东沟</a>
-          <a href="#">新闻咨询</a>
-          <a href="#">旅行游记</a>
-          <a href="#">联系我们</a>
-        </div>
-      </div>
-      <div class="info">
-        <div class="wrapper">
-          <div class="sn">
-            <div>
-              <img src="/images/gongzhonghao.jpg" />
-              <p>乐游东沟公众号</p>
-            </div>
-            <div>
-              <img src="/images/miniprog.jpg" />
-              <p>乐游东沟小程序</p>
-            </div>
-          </div>
-          <div class="contact">
-            <p>地址：湖北省十堰市茅箭区茅塔乡东沟村一组</p>
-            <p>电话：0719-8457770 </p>
-            <p>Copyright© 2023-2024 鄂ICP备2023029037号-1</p>
-          </div>
-        </div>
-      </div>
-    </footer>
+{{ include('footer.html.twig') }}
 
 </div>
 <!--第五屏end-->
 </div>
+{% block footer %}{% endblock %}
 {% endblock %}
