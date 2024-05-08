@@ -19,7 +19,7 @@ body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Micro
 /*引入字体库文件*/
 @font-face {
 	font-family:'time_impact';
-	src: url('/static/index/fonts/impact.TTF');
+	src: url('/fonts/impact.TTF');
 }
 
 
