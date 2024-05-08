@@ -178,7 +178,16 @@ footer .info .wrapper .contact p{
   z-index: 55;
   margin-top: 1em;
 }
-}
 .hotelbox .hotelcontainer .hotelleft{
   margin: 0;
+}
+.activityBox .activity_container .honor{
+  width: 100%;
+  margin-bottom: 80px;
+}
+.activityBox .activity_container .honor img{
+  width: 100%;
+}
+.act_container.history{
+  background: #eeeeee;
 }

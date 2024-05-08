@@ -1,0 +1,1003 @@
+﻿@media (min-width: 1200px) {
+	.container {
+		width: 1200px !important;
+		padding: 0 !important;
+	}
+}
+p {
+    margin: 0 0 5px!important;
+}
+.pagination>li:first-child>a,
+.pagination>li:first-child>span {
+	margin-left: 0;
+	border-radius: 50%!important;
+}
+
+.pagination>li:last-child>a,
+.pagination>li:last-child>span {
+	border-radius: 50%!important;
+}
+
+.pagination>li>a {
+	border: none;
+	background: none!important;
+	color: #898989;
+	cursor: pointer;
+}
+
+.pagination>.active>a {
+	border: none;
+	width: 35px;
+	height: 35px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	background: #097c25!important;
+}
+
+.header {
+	background: rgba(25,25,25,0.6) !important;
+	position: relative !important;
+}
+
+.footer {
+	width: 100%;
+	height: 215px;
+}
+
+.footercontainer {
+	width: 100%;
+	height: 100%;
+}
+
+.path {
+	width: 100%;
+	height: 60px;
+	background: rgb(247, 248, 248);
+}
+
+.path_container {
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	color: #9fa0a0;
+	font-size: 14px;
+}
+.path_container a{
+	color: #9fa0a0;
+	text-decoration: none;
+}
+
+/*魅力三峡作品*/
+
+.meili_img_list {
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	position: relative;
+}
+
+.meili_img_list .imgbox_swiper {
+	width: 100%;
+	height: 700px;
+	overflow: hidden;
+	position: relative;
+}
+
+.meili_img_list .zuopin_info {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	bottom: 5%;
+	font-size: 14px;
+	color: #333;
+}
+
+.meili_img_list .zuopin_info .info_item {
+	padding: 0 15px;
+	border-right: 1px solid #FFFFFF;
+	opacity: 1;
+	transition: all 1s ease;
+}
+
+.meili_img_list .zuopin_info .info_item:last-child {
+	border-right: none;
+}
+
+.meili_img_list .imgbox_swiper .zp_left {
+	position: absolute;
+	width: 50px;
+	height: auto;
+	left: 20%;
+	top: 45%;
+	cursor: pointer;
+	opacity: 1;
+	transition: all 1s ease;
+}
+
+.meili_img_list .imgbox_swiper .zp_right {
+	position: absolute;
+	width: 50px;
+	height: auto;
+	right: 20%;
+	top: 45%;
+	cursor: pointer;
+	opacity: 1;
+	transition: all 1s ease;
+}
+
+.jq_arrow_active {
+	opacity: 1!important;
+}
+
+.meili_img_list .imgbox_swiper .img_slide {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	-webkit-transition: 300ms;
+	-moz-transition: 300ms;
+	-ms-transition: 300ms;
+	-o-transition: 300ms;
+	transition: 300ms;
+	cursor: pointer;
+}
+
+.meili_img_list .imgbox_swiper .swiper-slide-visible {
+	-webkit-transform: scale(0.7);
+	-moz-transform: scale(0.7);
+	-ms-transform: scale(0.7);
+	-o-transform: scale(0.7);
+	transform: scale(0.7);
+	z-index: 999;
+	opacity: 0.5;
+}
+
+.meili_img_list .imgbox_swiper .swiper-slide-visible img {}
+
+.meili_img_list .imgbox_swiper .swiper-slide-active {
+	opacity: 1;
+	-webkit-transform: scale(1.9);
+	-moz-transform: scale(1.9);
+	-ms-transform: scale(1.9);
+	-o-transform: scale(1.9);
+	transform: scale(1.9);
+	z-index: 1000;
+}
+
+.meili_img_list .imgbox_swiper .swiper-slide-active img {
+	width: 100%;
+	height: auto;
+}
+
+
+/*视频作品*/
+
+.videoContainer {
+	width: 100%;
+	padding-top: 62px;
+	padding-bottom: 59px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	background: url(../images/meili/videobg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+
+.videoContainer .vidoeBox {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.videoContainer .vidoeBox .video_item {
+	width: 32%;
+	height: 295px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 65px;
+	transition: all 200ms ease;
+}
+.videoContainer .vidoeBox .video_item:hover{
+	transform: scale(1.1);
+}
+
+.videoContainer .vidoeBox .video_item:nth-child(3n-1) {
+	margin: 0 1%;
+}
+
+.videoContainer .vidoeBox .video_item .videoimg {
+	width: 100%;
+	height: 86%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+
+.videoContainer .vidoeBox .video_item .videoimg img {
+	width: 60px;
+	height: auto;
+	cursor: pointer;
+}
+
+.videoContainer .vidoeBox .video_item .videoname {
+	width: 100%;
+	font-size: 16px;
+	color: #727171;
+	text-align: center;
+}
+
+.videoContainer .pagebox {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+
+/*名俗表演*/
+
+.act_container {
+	width: 100%;
+	padding: 82px 0 115px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.act_container .actbox {
+	height: 613px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.act_container .actbox .left {
+	width: 25%;
+	height: 100%;
+	background: url(../images/daolan/msbg.jpg) no-repeat;
+	background-size: cover;
+}
+
+.act_container .actbox .right {
+	width: 75%;
+	height: 100%;
+}
+
+.act_container .actbox .right .act_swiper {
+	width: 100%;
+	height: 100%;
+	color: #fff;
+	text-align: center;
+	position: relative;
+}
+
+.act_container .actbox .right .act_swiper .leftarrow {
+	position: absolute;
+	left: 20px;
+	top: 47%;
+	width: 40px;
+	height: auto;
+	cursor: pointer;
+}
+
+.act_container .actbox .right .act_swiper .rightarrow {
+	position: absolute;
+	right: 20px;
+	top: 47%;
+	width: 40px;
+	height: auto;
+	cursor: pointer;
+}
+
+.act_container .actbox .right .act_swiper .act_slide {
+	width: 33.33%;
+	height: 100%;
+	position: relative;
+	opacity: 1;
+	cursor: pointer;
+	display: inline-block;
+	-webkit-transition: 300ms;
+	-moz-transition: 300ms;
+	-ms-transition: 300ms;
+	-o-transition: 300ms;
+	transition: 300ms;
+}
+
+.act_container .actbox .right .act_swiper .act_slide .act_img {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.act_container .actbox .right .act_swiper .act_slide .slide_info {
+	position: absolute;
+	width: 100%;
+	height: 33%;
+	left: 0;
+	bottom: -33%;
+	background: rgb(178, 47, 41);
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 0 32px;
+	transition: all 1s ease;
+}
+
+.swiper_slide_active {
+	padding: 0 0 0 0;
+	background: rgb(178, 47, 41);
+}
+
+.slide_info_active {
+	bottom: 0!important;
+}
+
+.act_container .actbox .right .act_swiper .act_slide .slide_info .info_title {
+	width: 100%;
+	font-size: 20px;
+	color: #FFFFFF;
+	margin-top: 10%;
+}
+
+.act_container .actbox .right .act_swiper .act_slide .slide_info .info_desc {
+	width: 100%;
+	margin-top: 0;
+	font-size: 14px;
+	color: #f29494;
+}
+.act_container .actbox .right .act_swiper .act_slide .slide_info .info_more{
+	margin-top: 5%;
+}
+.act_container .actbox .right .act_swiper .act_slide .slide_info .info_more img{
+	width: 30px;
+	height: 30px;
+}
+
+
+/*诗画三峡*/
+
+.poemBox {
+	width: 100%;
+	padding: 80px 0 60px 0;
+	background: url(../images/meili/poembg.jpg) no-repeat;
+	background-size: 100% 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.poemBox .poem_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.poemBox .poem_container .poembox_title {
+	width: 204px;
+	margin-bottom: 47px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 28px;
+	color: #006934;
+}
+
+.poemBox .poem_container .poembox_cxt {
+	width: 100%;
+	height: 240px;
+	display: flex;
+	flex-direction: row;
+}
+
+.poemBox .poem_container .poembox_cxt .poem_showimg {
+	width: 282px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_swiper {
+	width: calc(100% - 282px);
+	height: 100%;
+	position: relative;
+	background: #FFFFFF;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_slide {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	cursor: pointer;
+}
+
+.poemlist_slide_active {
+	cursor: pointer;
+	color: #046b37!important;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_slide .name {
+	font-size: 16px;
+	color: #555555;
+	width: 100%;
+	height: 20%;
+	padding: 0 25%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_slide .name div {
+	width: 100%;
+	text-align: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_slide .content {
+	font-size: 15px;
+	color: #a3a3a3;
+	width: 100%;
+	height: 65%;
+	padding: 0 25%;
+	overflow: hidden;
+}
+
+.poemBox .poem_container .poembox_cxt .poemlist_slide .content span {}
+
+.greenleft {
+	position: absolute;
+	left: 5px;
+	top: 46%;
+	cursor: pointer;
+}
+
+.greenright {
+	position: absolute;
+	right: 10px;
+	top: 46%;
+	cursor: pointer;
+}
+
+.poem_container .arts_swiper {
+	width: 100%;
+	height: 530px;
+	margin-top: 77px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	white-space: nowrap;
+}
+
+.poem_container .arts_swiper .arts_slide {
+	display: inline-block!important;
+	width: 284px;
+	height: 480px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.poem_container .arts_swiper .arts_slide .art_info {
+	width: 100%;
+	height: 92px;
+	background: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	position: absolute;
+	bottom: -92px;
+	transition: all 1s ease;
+}
+
+.art_info_active {
+	bottom: 0!important;
+}
+
+.poem_container .arts_swiper .arts_slide .art_info .title {
+	width: 74%;
+	font-size: 16px;
+	color: #555555;
+	text-align: center;
+}
+
+.poem_container .arts_swiper .arts_slide .art_info .desc {
+	text-align: center;
+	width: 74%;
+	font-size: 13px;
+	color: #a8a8a8;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.poem_container .arts_swiper::-webkit-scrollbar {
+	width: 2px;
+	height: 7px;
+	background: #f7f8f8;
+}
+
+.poem_container .arts_swiper::-webkit-scrollbar-thumb {
+	/*滚动条里面小方块*/
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: rgb(201, 188, 156);
+}
+
+.poem_container .arts_swiper::-webkit-scrollbar-track {
+	/*滚动条里面轨道*/
+	-webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background: rgb(218, 217, 217);
+}
+
+
+/*景区活动*/
+
+.activityBox {
+	width: 100%;
+	padding: 106px 0 147px 0;
+	background: #FFFFFF;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+.activityBox .activity_container {
+	height: 637px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.activityBox .activity_container .activitybox_title {
+	width: 204px;
+	margin-bottom: 47px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 28px;
+	color: #006934;
+}
+
+.activity_swiper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.activity_swiper .activity_wrapper {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.activity_swiper .activity_wrapper .activity_slide {
+	width: 43.8%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	cursor: pointer;
+}
+
+.activity_swiper .activity_wrapper .activity_slide .activity_img {
+	width: 100%;
+	height: 279px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	transition: all 1s ease;
+}
+
+.activity_swiper .activity_wrapper .activity_slide:hover .activity_name {
+	color: rgb(0, 105, 52)!important;
+}
+
+.activity_swiper .activity_wrapper .activity_slide .activity_img:hover {
+	transform: scale(1.1);
+}
+
+.activity_swiper .activity_wrapper .activity_slide .activity_name {
+	font-size: 16px;
+	color: #555555;
+	margin-top: 28px;
+}
+
+.activity_greenleft {
+	position: absolute;
+	left: 0;
+	top: 46%;
+	cursor: pointer;
+}
+
+.activity_greenright {
+	position: absolute;
+	right: 0;
+	top: 38%;
+	cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+	html,body{
+		overflow-x: hidden;
+	}
+	.header{
+		background: rgb(26,71,50)!important;
+	}
+	.path {
+		width: 100%;
+		height: 40px;
+		background: rgb(247, 248, 248);
+	}
+	.path_container {
+		height: 40px;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: center;
+		color: #9fa0a0;
+		font-size: 14px;
+	}
+	.swiper_slide_active{
+		padding: 0;
+	}
+	.meili_img_list{
+		padding-bottom:0;
+		height: 450px;
+	}
+	.meili_img_list .imgbox_swiper .swiper-slide-active img {
+		width: 100%;
+		height: auto;
+	}
+	.meili_img_list .imgbox_swiper .zp_left {
+		position: absolute;
+		width: 40px;
+		height: auto;
+		left: 3%;
+		top: 45%;
+		cursor: pointer;
+		opacity: 1;
+		transition: all 1s ease;
+	}
+	.meili_img_list .imgbox_swiper .zp_right {
+		position: absolute;
+		width: 40px;
+		height: auto;
+		right: 3%;
+		top: 45%;
+		cursor: pointer;
+		opacity: 1;
+		transition: all 1s ease;
+	}
+	.meili_img_list .zuopin_info {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		bottom: 5%;
+		font-size: 14px;
+		color: #333;
+		padding: 10px 0;
+	}
+	.meili_img_list .zuopin_info .info_item{
+		width: 50%;
+	    padding: 0 15px;
+	    text-align: center;
+	    border-right: 1px solid #FFFFFF;
+	    opacity: 1;
+	    transition: all 1s ease;
+	}
+	.videoContainer {
+		width: 100%;
+		margin-top: 10px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		background: url(/static/index/images/meili/videobg.jpg) no-repeat;
+		background-size: 100% 100%;
+	}
+	.videoContainer .vidoeBox {
+		width: 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+	}
+	.videoContainer .vidoeBox .video_item {
+		width: 48%;
+		height: 255px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 30px;
+	}
+	.videoContainer .vidoeBox .video_item:nth-child(3n-1) {
+		margin: 0;
+	}
+	.videoContainer .vidoeBox .video_item:nth-child(2n-1) {
+		margin-right: 2%;
+	}
+	.videoContainer .vidoeBox .video_item .videoimg img {
+		width: 50px;
+		height: auto;
+		cursor: pointer;
+	}
+	.pictureWindow .picturebox {
+	    width: 100%;
+	    height: 100%;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: center;
+	    align-items: center;
+	    overflow-x: auto;
+	    position: relative;
+	}
+	.pictureWindow .picturebox .pictureClose {
+	    width: 40px;
+	    height: auto;
+	    position: fixed;
+	    right: 10px;
+	    top: 10px;
+	    cursor: pointer;
+	}
+	.act_container {
+		width: 100%;
+		padding: 20px 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.act_container .actbox {
+		width: 100%;
+		height: 613px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.act_container .actbox .left {
+		display: none;
+	}
+	.act_container .actbox .right {
+		width: 100%;
+		height: 100%;
+	}
+	.act_container .actbox .right .act_swiper {
+		width: 100%;
+	}
+	.act_container .actbox .right .act_swiper .leftarrow{
+	    position: absolute;
+	    left: 3%;
+	    top: 47%;
+	    width: 40px;
+	    height: auto;
+	    cursor: pointer;
+	}
+	.act_container .actbox .right .act_swiper .rightarrow {
+	    position: absolute;
+	    right: 3%;
+	    top: 47%;
+	    width: 40px;
+	    height: auto;
+	    cursor: pointer;
+	}
+	.poemBox {
+		width: 100%;
+		padding: 20px 0;
+		background: url(/static/index/images/meili/poemwapbg.jpg) no-repeat;
+		background-size: 100% 100%;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+	.greenleft {
+	    position: absolute;
+	    width: 20px;
+	    height: auto;
+	    left: 5px;
+	    top: 46%;
+	    cursor: pointer;
+	}
+	.greenright {
+	    position: absolute;
+	    width: 20px;
+	    height: auto;
+	    right: 10px;
+	    top: 46%;
+	    cursor: pointer;
+	}
+	.poemBox .poem_container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	.poemBox .poem_container .poembox_title {
+		width: 204px;
+		margin-bottom: 47px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 20px;
+		color: #006934;
+	}
+	.poemBox .poem_container .poembox_title img {
+		width: 20px;
+		height: auto;
+	}
+	.poemBox .poem_container .poembox_cxt .poem_showimg {
+		display: none;
+	}
+	.poemBox .poem_container .poembox_cxt .poemlist_swiper {
+		width: 100%;
+		height: 100%;
+		position: relative;
+		background: #FFFFFF;
+	}
+	.poemBox .poem_container .poembox_cxt .poemlist_slide {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+		cursor: pointer;
+	}
+	.poemBox .poem_container .poembox_cxt .poemlist_slide .name div {
+		width: 100%;
+		text-align: center;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.poemBox .poem_container .poembox_cxt .poemlist_slide .content {
+		font-size: 15px;
+		color: #a3a3a3;
+		width: 100%;
+		height: 65%;
+		padding: 0 25%;
+		overflow: hidden;
+		text-align: center;
+	}
+	.poem_container .arts_swiper{
+		width: 100%;
+	    height: 530px;
+	    margin-top: 30px;
+	    overflow-x: auto;
+	    overflow-y: hidden;
+	    white-space: nowrap;
+	}
+	.poem_container .arts_swiper .arts_slide {
+		display: inline-block!important;
+		width: 100%;
+		height: 480px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		cursor: pointer;
+		margin-left: 0;
+	}
+	.poem_container .arts_swiper .arts_slide .art_info {
+	    width: 100%;
+	    height: 92px;
+	    background: #FFFFFF;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: space-around;
+	    align-items: center;
+	    position: absolute;
+	    bottom: 0;
+	    transition: all 1s ease;
+	}
+	.poem_container .arts_swiper .arts_slide img{
+		width: 100%;
+		height: auto;
+	}
+	.activityBox {
+		width: 100%;
+		padding: 20px 0;
+		background: #FFFFFF;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
+	.activityBox .activity_container {
+		width: 100%;
+		height: 390px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	.activityBox .activity_container .activitybox_title {
+		width: 204px;
+		margin-bottom: 47px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 20px;
+		color: #006934;
+	}
+	.activityBox .activity_container .activitybox_title img {
+		width: 20px;
+		height: auto;
+	}
+	.activity_greenleft {
+		position: absolute;
+		width: 20px;
+		height: auto;
+		left: 0;
+		top: 38%;
+		cursor: pointer;
+	}
+	.activity_greenright {
+		position: absolute;
+		width: 20px;
+		height: auto;
+		right: 0;
+		top: 38%;
+		cursor: pointer;
+	}
+	.footer {
+		width: 100%;
+		height: 60px;
+	}
+}
