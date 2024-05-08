@@ -16,6 +16,7 @@ class ZoujinController extends AbstractController
     {
         $this->data = $data;
     }
+    
     #[Route('/zoujin', name: 'app_zoujin')]
     public function index(Request $request): Response
     {
