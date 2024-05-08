@@ -1,20 +1,155 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ZoujinController!{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="/css/services.css?version=5.1">
+<link rel="stylesheet" href="/css/daolan.css?version=3.6">
+<link rel="stylesheet" href="/css/hovertips.css">
+{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block main %}
+		<div class="hotelbox" id="service_1">
+			<div class="hotelcontainer">
+				<div class="hotelleft swiper-container">
+					<div class="left_wrapper swiper-wrapper">
+						<!--此处jquery写入酒店轮播图数据-->
+					</div>
+					<div class="pagination"></div>
+				</div>
+				<div class="hotelright">
+					<div class="titlebox">
+						<div class="titlecxt">
+            东沟简介
+						<p class="">DONGGOU INTRODUCE</p>
+            </div>
+					</div>
+					<div class="content">
+						<div class="cxt">
+							<!--此处jquery写入酒店分类对应的介绍-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    
+		<!--行程规划-->
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+		<div class="planbox" id="daolan_4" style="background-image: url(/images/zoujin_xingcheng_bg.jpg);background-repeat: no-repeat;">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/al/w/sygen/src/Controller/ZoujinController.php'|file_link(0) }}">src/Controller/ZoujinController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/al/w/sygen/templates/zoujin/index.html.twig'|file_link(0) }}">templates/zoujin/index.html.twig</a></code></li>
-    </ul>
-</div>
+			<div class="container planflex">
+
+				<div class="titlebox">
+
+					<div class="bigtitle">行程规划</div>
+
+					<div class="smalltitle">选择您的出行方式，我们将给您做出推荐</div>
+
+				</div>
+
+				<div class="planetogo">
+
+					
+							<div class="plane_title">
+
+								<img src="http://www.sanxiarenjia.com/uploads/images/20190924/1569312563HPAO3AnVwr7284.png" alt="飞机出行">
+
+								<div>飞机出行</div>
+
+							</div>
+
+							
+							<div class="planeway">
+
+								<div class="name">十堰武当山机场——桃源人家</div>
+
+								<div class="path"><p><span>东沟景区面积11.4平方公里，距十堰城区13公里，自十堰火车站、十堰武当山机场到景区， 有高等级旅游公路仅需30分钟车程可直达。</span></p></div>
+
+							</div>
+
+							
+				</div>
+
+				<div class="threewaysbox">
+
+					
+							<div class="waytogo">
+
+								<div class="way_title">
+
+									<img src="http://www.sanxiarenjia.com/uploads\images\20190924\1569312576xCF6Q3mSWY9806.png" alt="火车出行" />
+
+									<div>火车出行</div>
+
+								</div>
+
+								
+								<div class="wayway">
+
+									<div class="name">十堰东站——桃源人家</div>
+
+									<ul class="li_item">
+                  <p><span style="">1、在宜昌东站乘坐B9路公交车，在BRT西陵一路站下车，步行340米在夷陵广场公交车站转乘10-1<span style="">路公交旅游专线车</span>至终点站三峡人家游客中心。</span><br/></p><p><span style="">2、<span style="">在宜昌东站乘坐B1路公交车，在市住建局站下车，步行490米在夷陵广场公交车站转乘10-1<span style="">路公交旅游专线车</span>至终点站三峡人家游客中心。</span></span></p><p style="line-height: normal;"><span style=""><span style=""><span style=""></span></span></span></p></ul>
+
+								</div>
+
+								
+							</div>	
+
+						
+							<div class="waytogo">
+
+								<div class="way_title">
+
+									<img src="http://www.sanxiarenjia.com/uploads/images/20190926/1569481231YXw5RGc7646687.png" alt="客车出行" />
+
+									<div>客车出行</div>
+
+								</div>
+
+								
+								<div class="wayway">
+
+									<div class="name">宜昌市区10-1路公交旅游专线车</div>
+
+									<ul class="li_item"><p><span style="">宜昌市区至三峡人家的10-1路公交旅游专线车，起点站位于夷陵广场，终点站位于三峡人家游客中心，首班时间为8:05从夷陵广场发车，末班时间17:30从三峡人家游客中心发车，每班平均间隔时间45分钟左右，全程票价15元。</span><br/></p></ul>
+
+								</div>
+
+								
+							</div>	
+
+						
+							<div class="waytogo">
+
+								<div class="way_title">
+
+									<img src="http://www.sanxiarenjia.com/uploads/images/20191010/1570678337Cn6kunNKYs1078.png" alt="自驾出行" />
+
+									<div>自驾出行</div>
+
+								</div>
+
+								
+								<div class="wayway">
+
+									<div class="name">沪渝高速公路</div>
+
+									<ul class="li_item"><p><span style="">推荐</span><span style="">：自驾车经沪渝高速公路（</span><span style="">G</span><span style="">50</span><span style="">）过宜昌收费站，在“</span><span style="">夷陵区</span><span style="">”出口</span><span style="">下高速</span><span style="">，</span><span style="">下高速后左转</span><span style="">，</span><span style="">经</span><span style="">“中核半岛城邦”“</span><span style="">三游洞</span><span style="">”</span><span style="">，可直达三峡人家</span><span style="">游客中心。</span></p></ul>
+
+								</div>
+
+								
+							</div>	
+
+						
+				</div>
+
+			</div>
+
+		</div>
+
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ asset('js/services.js?version=2.3') }}"></script>
 {% endblock %}

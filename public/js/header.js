@@ -136,7 +136,7 @@ $(".m_nav .ul li").click(function() {
 var isMobile = navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2
 $('.navbar_nav>li').click(function() {
 	if($(this).find("#indexli").length == 1) {
-		window.location.href = "/index/index"
+		window.location.href = "/"
 	}
 	if(isMobile!=1){
 		if($(this).attr('classname')=='导览'){
@@ -167,7 +167,7 @@ $('#sinaicon').click(function(){
 
 
 $('.headerlogo').click(function() {
-	window.location.href = '/index/index'
+	window.location.href = '/'
 })
 $('.gotop').click(function() {
 	$('html,body').animate({

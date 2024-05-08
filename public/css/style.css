@@ -162,3 +162,23 @@ footer .info .wrapper .contact{
 footer .info .wrapper .contact p{
   margin-bottom: 5px;
 }
+.hotelbox .hotelcontainer .hotelright .titlebox .titlecxt{
+  font-size: .7em;
+}
+.hotelbox .hotelcontainer .hotelright .titlebox .titlecxt p{
+  font-size: .4em;
+}
+.hotelbox .hotelcontainer .hotelright .titlebox .titlecxt p{
+}
+.hotelbox .hotelcontainer .hotelright .content{
+  background: #eeeeee;
+  padding: 2.5em;
+  position: relative;
+  left: -20px;
+  z-index: 55;
+  margin-top: 1em;
+}
+}
+.hotelbox .hotelcontainer .hotelleft{
+  margin: 0;
+}
