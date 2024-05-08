@@ -66,3 +66,12 @@
   margin-top: 1rem;
   height: unset !important;
 }
+.section4 .sec4title{
+  margin-bottom: .6rem !important;
+}
+.section4 .services{
+  margin-top: 5rem;
+}
+.text-white{
+  color: #ffffff;
+}
