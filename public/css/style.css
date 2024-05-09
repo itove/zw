@@ -94,6 +94,12 @@
   text-align: end;
   padding: 1.2em 1.8em 0 0;
 }
+.section.section4{
+  background-image: url('/images/leyou_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
 .section.section4::before{
   content: ' ';
   display: block;
@@ -102,8 +108,8 @@
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.14;
-  background-image: url('/images/leyou_bg.jpg');
+  opacity: 0.65;
+  background: #000000;
   background-repeat: no-repeat;
   background-position: 50% 0;
   background-size: cover;
@@ -315,4 +321,8 @@ footer .info .wrapper .contact p{
 }
 .sec4flex .services .sitem{
   width: 228px !important;
+}
+.section4 .sec4flex.container{
+  z-index: 55;
+  position: relative;
 }
