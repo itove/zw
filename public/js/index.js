@@ -44,7 +44,7 @@
 		if($(this).attr('goto') == 'service_6') {
 			window.location.href = "/zhihuilvyou/index?target=zhihuilvyou_1"
 		} else {
-			window.location.href = "/service/index?target=" + $(this).attr('goto')
+			window.location.href = "/leyou?target=" + $(this).attr('goto')
 		}
 	})
 	//导航
