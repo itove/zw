@@ -155,6 +155,7 @@ class NodeCrudController extends AbstractCrudController
         $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
         
+        $fields = [];
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
             $vichImageField->setHelp("推荐尺寸{$this->region->getDescription()}，或宽高比与之相同的尺寸。");
