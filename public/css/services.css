@@ -470,7 +470,6 @@
 
 .spfoodbox .spfood_container .spfoodlist_swiper .spfood_slide .spfoodimg {
 	width: 100%;
-	height: 370px;
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
@@ -496,7 +495,7 @@
 }
 
 .spfood_moretip .knowmoreadd {
-	margin-top: 50%;
+	margin-top: 30%;
 }
 
 .spfood_moretip .knowmore {

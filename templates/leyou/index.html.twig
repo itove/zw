@@ -34,7 +34,7 @@
 					<div class="swiper-wrapper spfood_wrapper">
               {% for i in slider2 %}
               <div class="swiper-slide slider-with-margin">
-                <img src='/images/{{ i.img }}' />
+                <img class="img" src='/images/{{ i.img }}' />
                 <div class="info">
                   <p class="title">{{ i.title }}</p>
                   <p class="summary">{{ i.summary }}</p>
@@ -58,7 +58,7 @@
 					<div class="swiper-wrapper spfood_wrapper">
               {% for i in slider3 %}
               <div class="swiper-slide slider-with-margin">
-                <img src='/images/{{ i.img }}' />
+                <img class="img" src='/images/{{ i.img }}' />
                 <div class="info">
                   <p class="title">{{ i.title }}<span class="badge1 ms-3">民宿</span></p>
                   <p class="phone">{{ i.phone }}</p>
@@ -105,9 +105,9 @@
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
           {% for i in slider4%}
-            <div class="swiper-slide spfood_slide">
+            <div class="swiper-slide spfood_slide slider-with-margin">
 							<div class="spfoodimg">
-								<img src="/images/{{ i.img }}">
+                <img class="img" src="/images/{{ i.img }}">
 								<div class="spfood_moretip">
 									<img class="knowmoreadd" src="/images/add.png" />
 									<div class="knowmore text-light">了解更多</div>

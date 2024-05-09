@@ -197,9 +197,7 @@ footer .info .wrapper .contact p{
   position: relative;
   top: 10px;
 }
-.slider-with-margin{
-}
-.slider-with-margin img,
+.slider-with-margin .img,
 .slider-with-margin .info
 {
   width: 98%;
@@ -208,14 +206,23 @@ footer .info .wrapper .contact p{
   background: #eeeeee;
   padding: 60px 0 !important;
 }
+.gouzai .title,
 .youzai .title,
 .zhuzai .title{
   font-size: 18px;
 }
+.gouzai .summary,
 .zhuzai .summary,
 .youzai .summary{
   font-size: 12px;
 }
+.gouzai .summary,
+.youzai .summary{
+  height: 32px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.gouzai .info,
 .zhuzai .info,
 .youzai .info{
   padding: 20px;
