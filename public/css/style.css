@@ -19,9 +19,9 @@
 }
 .sec2flex_left{
   position: absolute !important;
-  right: 13rem;
-  top: -1rem;
-  width: 25% !important;
+  right: 27em;
+  top: 7em;
+  width: 24em !important;
 }
 .sec2flex_left .sec2_title{
   font-size: 2rem !important;
@@ -32,8 +32,8 @@
 }
 .sec2flex_left .sec2_fu_title1{
   position: absolute;
-  left: -54rem;
-  top: 59rem;
+  left: -54em;
+  top: 59em;
 }
 .section.section3::before{
   content: ' ';
@@ -78,7 +78,6 @@
 .sec4flex .services .sitem{
   margin: 0 1rem;
   color: #ffffff !important;
-  width: 22% !important;
 }
 .sec4flex .services .sitem .box .tag{
   font-size: 1.5em !important;
@@ -110,8 +109,9 @@
   background-size: cover;
 }
 footer .flinks{
-  width: 90%;
+  width: 1170px;
   margin: auto;
+  padding: 30px 46px;
   margin-bottom: 1em;
   font-weight: bold;
 }
