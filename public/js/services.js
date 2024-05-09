@@ -137,7 +137,7 @@ $('.food_item').click(function(){
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/service/get_meishi_details",
+		url: "/api/get_chizai",
 		data: {
 			id: id
 		},
@@ -162,7 +162,7 @@ $('.spfood_slide').click(function(){
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/service/get_techan_details",
+		url: "/api/get_gouzai",
 		data: {
 			id: id
 		},

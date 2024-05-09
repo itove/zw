@@ -248,13 +248,13 @@ $(window).scroll(function() {
 	}
 })
 
-$('.popupClose').click(function() {
-	$('.popupCxt').empty()
-	$('html,body').css({
-		'overflow': 'visible'
-	})
-	$('.popupWindow').toggle()
-})
+// $('.popupClose').click(function() {
+// 	$('.popupCxt').empty()
+// 	$('html,body').css({
+// 		'overflow': 'visible'
+// 	})
+// 	$('.popupWindow').toggle()
+// })
 $('.videoClose').click(function() {
 	$('.videoCxt').empty()
 	$('html,body').css({

@@ -30,6 +30,19 @@
 
     {% block breadcrumbs %} {% endblock %}
 
+		<!--公用文章或图片弹窗-->
+		<div class="popupWindow" style="display: none;">
+			<div class="popupContainer">
+				<img class="popimg1" src="/images/popup_meihua1.png" />
+				<img class="popimg2" src="/images/popup_meihua2.png" />
+				<img class="popimg3" src="/images/popup_meihua3.png" />
+				<img class="popimg4" src="/images/popup_meihua4.png" />
+				<img class="popupClose" src="/images/window_close.png" />
+				<div class="popupCxt"></div>
+			</div>
+		</div>
+
+
     {% block main %} {% endblock %}
 
     {% block footer %}
