@@ -309,3 +309,10 @@ footer .info .wrapper .contact p{
 }
 .contact .info>div{
 }
+.sec4flex .services .sitem .box{
+  width: 100% !important;
+  padding-right: 0 !important;
+}
+.sec4flex .services .sitem{
+  width: 228px !important;
+}
