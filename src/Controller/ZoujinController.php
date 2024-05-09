@@ -57,14 +57,10 @@ class ZoujinController extends AbstractController
           ],
         ];
         $honor = [
-          ['title' => '野生猕猴桃', 'img' => 'chizai_1.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_2.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_3.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_4.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_5.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_6.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_7.jpg'],
-          ['title' => '野生猕猴桃', 'img' => 'chizai_8.jpg'],
+          ['title' => '子矜染坊草木蓝染', 'img' => 'honor_1.jpg'],
+          ['title' => '东沟干货', 'img' => 'honor_2.jpg'],
+          ['title' => '贺大姐麻豆、腐乳', 'img' => 'honor_3.jpg'],
+          ['title' => '陶艺体验及成品', 'img' => 'honor_4.jpg'],
         ];
         $data = [
             'conf' => $conf,

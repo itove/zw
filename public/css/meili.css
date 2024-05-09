@@ -623,7 +623,6 @@ p {
 
 .activity_swiper .activity_wrapper .activity_slide .activity_img {
 	width: 100%;
-	height: 279px;
 	overflow: hidden;
 	display: flex;
 	flex-direction: row;
