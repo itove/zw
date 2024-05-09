@@ -50,4 +50,45 @@ class ApiController extends AbstractController
     {
         return $this->json([]);
     }
+    
+    #[Route('/get_sheyinzuopin', methods: ['GET'])]
+    public function m3(Request $request): Response
+    {
+        $data = '
+[
+    {
+        "id": 86,
+        "path": "/images/leyou_slider_1.jpg",
+        "info": {
+            "name": "蓝色幽梦",
+            "author": "秦炎",
+            "address": "三峡人家",
+            "time": "2020-05"
+        }
+    },
+    {
+        "id": 87,
+        "path": "/images/leyou_slider_1.jpg",
+        "info": {
+            "name": "峡江之光",
+            "author": "王松",
+            "address": "三峡人家",
+            "time": "2020-05"
+        }
+    },
+    {
+        "id": 88,
+        "path": "/images/leyou_slider_1.jpg",
+        "info": {
+            "name": "灯影婆娑四人行",
+            "author": "望开喜",
+            "address": "三峡人家",
+            "time": "2020-06"
+        }
+    }
+';
+        $resp = new Response($data);
+        $resp->headers->set('Content-Type', 'text/strings');
+        return $resp;
+    }
 }

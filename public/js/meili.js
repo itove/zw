@@ -1,5 +1,6 @@
-﻿var zuopinList = get_json("/meili/get_sheyinzuopin", {}, true);
-var poemList = get_json("/meili/get_poem", {}, true);
+﻿var zuopinList = get_json("/api/get_sheyinzuopin", {}, true);
+console.log(zuopinList);
+// var poemList = get_json("/meili/get_poem", {}, true);
 /*作品轮播初始化*/
 if(zuopinList.length != 0) {
 	if(zuopinList.length < 3) {
@@ -11,11 +12,11 @@ if(zuopinList.length != 0) {
 		infoWriter(1)
 	}
 } else {
-	$('.imgbox_wrapper').append('<div style="font-size:20px" class="swiper-slide img_slide">请上传作品吧</div>')
+	// $('.imgbox_wrapper').append('<div style="font-size:20px" class="swiper-slide img_slide">请上传作品吧</div>')
 }
-for(let i = 0; i < poemList.length; i++) {
-	$('.poemlist_wrapper').append('<div class="swiper-slide poemlist_slide" id=' + poemList[i].id + '><div class="name"><div>' + poemList[i].name + '</div></div><div class="content">' + poemList[i].content + '</div></div>')
-}
+// for(let i = 0; i < poemList.length; i++) {
+// 	$('.poemlist_wrapper').append('<div class="swiper-slide poemlist_slide" id=' + poemList[i].id + '><div class="name"><div>' + poemList[i].name + '</div></div><div class="content">' + poemList[i].content + '</div></div>')
+// }
 
 /*魅力三峡作品轮播*/
 var zpSwiper = new Swiper('.imgbox_swiper', {

@@ -11,301 +11,117 @@
 		<div class="meili_img_list" id="meili_1">
 			<div class="swiper_container imgbox_swiper">
 				<div class="swiper-wrapper imgbox_wrapper">
-					<!--此处jQuery动态写入轮播作品-->
+          <!--此处jQuery动态写入轮播作品-->
+          {% for i in slider1 %}
+          <div class="swiper-slide img_slide">
+            <img src='/images/{{ i.img }}' />
+            <div class="title">{{ i.title }}</div>
+          </div>
+          {% endfor %}
 				</div>
-				<img class="zp_left" src="/static/index/images/icons/leftarrow.png" />
-				<img class="zp_right" src="/static/index/images/icons/rightarrow.png" />
-			</div>
-			<div class="zuopin_info">
-				<!--此处jQuery动态写入作品信息-->
+				<img class="zp_left" src="/images/leftarrow.png" />
+				<img class="zp_right" src="/images/rightarrow.png" />
 			</div>
 		</div>
 
 		<!--三峡特产-->
-		<div class="spfoodbox" id="service_3">
+		<div class="spfoodbox youzai" id="service_3">
 			<div class="spfood_container">
 				<div class="spfood_title">
 					<div>游在东沟</div>
 				</div>
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
-												<div class="swiper-slide spfood_slide" id="11">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646028239NU7mBtQsnt6867.png">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>土家腊肉<br/></p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">腊肉是湖北特产，也是土家族过年必备食物，其制法已有几千年的历史。<span style="color: rgb(51, 51, 51); font-family: ">每年腊月，家家户户准备年货，将吃不完的鲜猪肉用食盐配以一定比例的花椒、香叶、茴香、八角、桂皮等香料，腌制七到十五天，<span style="color: rgb(51, 51, 51); font-family: ">然后<span style="color: rgb(51, 51, 51); font-family: ">挂在烧柴火的灶头顶上，或吊于烧柴火的烤火炉上，</span>利用烟火慢慢熏干。也有专门</span>选用松柏枝</span><span style="color: rgb(51, 51, 51); font-family: ">、桔树皮或柴草慢慢熏烤的。熏后的<span style="color: rgb(51, 51, 51); font-family: ">腊肉色泽鲜明，呈暗红色，肉质透明、干爽、富有弹性，别具腌腊风味。</span></span></span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="12">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646026851HRGKRGfcx49337.jpg">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>三峡脐橙</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">三峡脐橙产于长江三峡</span><span style="color: rgb(51, 51, 51); font-family: ">河谷地区，这里<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">山峦重叠，气候类型多样，逆温层效应、坡壁效应、水体效应显著，立体气候和冬暖特征独特，在</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">雨量充沛，</span>土壤适宜的条件下，脐橙在三峡已<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">有2000多年的种植史。三峡脐橙</span></span></span>品质优良，风味独特，具有果大无核、皮薄、色鲜、肉脆汁多、香郁味甜的优良品质。</span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="13">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20190923/1569225755iyrFiH6VTF6299.gif">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>三峡石</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"></span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">长江三峡既是一座天然地质博物馆</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">，又是一座天然奇石艺术宫。三峡石主要分布在峡江两岸的溪流河谷或崇山峻岭中。石源来自长江上游冲积到此和该区古老的前震旦系变质岩</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">、沉积岩</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">和前寒武纪</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">侵入的花岗岩。</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">三峡石形态多样，色彩、纹理、神韵等都比较突出</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">，</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">有些花纹自成画卷，色泽艳丽，深受人们的喜爱，被广泛用于园林景观装饰。</span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="14">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646031950QECxjQ4mWK5942.jpg">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>土家蜡染</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">土家蜡染常用吉祥图案为底进行</span><span style="color: rgb(51, 51, 51); font-family: ">造型，多用于门帘、桌布、帐沿等生活用品，注重配色纯净，讲究立意构图，艺术风格奇特。<span style="color: rgb(51, 51, 51); font-family: ">制作时将白布平铺，将蜡加温溶解为蜡液，再用蜡刀蘸取蜡液，在白布上描绘图案，绘成后，将布放进染缸浸染，染好捞出用清水煮沸，等蜡溶化后即呈现出白色的花纹。</span></span></p></div>
-						</div>
-											</div>
-					<img class="leftarrow" src="/static/index/images/icons/leftarrow.png" />
-					<img class="rightarrow" src="/static/index/images/icons/rightarrow.png" />
+              {% for i in slider2 %}
+              <div class="swiper-slide slider-with-margin">
+                <img src='/images/{{ i.img }}' />
+                <div class="info">
+                  <p class="title">{{ i.title }}</p>
+                  <p class="summary">{{ i.summary }}</p>
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+					<img class="leftarrow" src="/images/leftarrow.png" />
+					<img class="rightarrow" src="/images/rightarrow.png" />
 				</div>
 			</div>
 		</div>
 
-		<!--三峡特产2-->
-		<div class="spfoodbox" id="service_4">
+		<!--住在-->
+		<div class="spfoodbox zhuzai" id="service_4">
 			<div class="spfood_container">
 				<div class="spfood_title">
 					<div>住在东沟</div>
 				</div>
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
-												<div class="swiper-slide spfood_slide" id="11">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646028239NU7mBtQsnt6867.png">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>土家腊肉<br/></p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">腊肉是湖北特产，也是土家族过年必备食物，其制法已有几千年的历史。<span style="color: rgb(51, 51, 51); font-family: ">每年腊月，家家户户准备年货，将吃不完的鲜猪肉用食盐配以一定比例的花椒、香叶、茴香、八角、桂皮等香料，腌制七到十五天，<span style="color: rgb(51, 51, 51); font-family: ">然后<span style="color: rgb(51, 51, 51); font-family: ">挂在烧柴火的灶头顶上，或吊于烧柴火的烤火炉上，</span>利用烟火慢慢熏干。也有专门</span>选用松柏枝</span><span style="color: rgb(51, 51, 51); font-family: ">、桔树皮或柴草慢慢熏烤的。熏后的<span style="color: rgb(51, 51, 51); font-family: ">腊肉色泽鲜明，呈暗红色，肉质透明、干爽、富有弹性，别具腌腊风味。</span></span></span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="12">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646026851HRGKRGfcx49337.jpg">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>三峡脐橙</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">三峡脐橙产于长江三峡</span><span style="color: rgb(51, 51, 51); font-family: ">河谷地区，这里<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">山峦重叠，气候类型多样，逆温层效应、坡壁效应、水体效应显著，立体气候和冬暖特征独特，在</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">雨量充沛，</span>土壤适宜的条件下，脐橙在三峡已<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">有2000多年的种植史。三峡脐橙</span></span></span>品质优良，风味独特，具有果大无核、皮薄、色鲜、肉脆汁多、香郁味甜的优良品质。</span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="13">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20190923/1569225755iyrFiH6VTF6299.gif">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>三峡石</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"></span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">长江三峡既是一座天然地质博物馆</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">，又是一座天然奇石艺术宫。三峡石主要分布在峡江两岸的溪流河谷或崇山峻岭中。石源来自长江上游冲积到此和该区古老的前震旦系变质岩</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">、沉积岩</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">和前寒武纪</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">侵入的花岗岩。</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">三峡石形态多样，色彩、纹理、神韵等都比较突出</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">，</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">有些花纹自成画卷，色泽艳丽，深受人们的喜爱，被广泛用于园林景观装饰。</span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="14">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646031950QECxjQ4mWK5942.jpg">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>土家蜡染</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">土家蜡染常用吉祥图案为底进行</span><span style="color: rgb(51, 51, 51); font-family: ">造型，多用于门帘、桌布、帐沿等生活用品，注重配色纯净，讲究立意构图，艺术风格奇特。<span style="color: rgb(51, 51, 51); font-family: ">制作时将白布平铺，将蜡加温溶解为蜡液，再用蜡刀蘸取蜡液，在白布上描绘图案，绘成后，将布放进染缸浸染，染好捞出用清水煮沸，等蜡溶化后即呈现出白色的花纹。</span></span></p></div>
-						</div>
-											</div>
-					<img class="leftarrow" src="/static/index/images/icons/leftarrow.png" />
-					<img class="rightarrow" src="/static/index/images/icons/rightarrow.png" />
+              {% for i in slider3 %}
+              <div class="swiper-slide slider-with-margin">
+                <img src='/images/{{ i.img }}' />
+                <div class="info">
+                  <p class="title">{{ i.title }}<span class="badge1 ms-3">民宿</span></p>
+                  <p class="phone">{{ i.phone }}</p>
+                  <p class="summary">{{ i.summary }}</p>
+                </div>
+              </div>
+              {% endfor %}
+          </div>
+					<img class="leftarrow" src="/images/leftarrow.png" />
+					<img class="rightarrow" src="/images/rightarrow.png" />
 				</div>
 			</div>
 		</div>
 
-		<!--峡江美食-->
+		<!--吃在-->
 		<div class="foodbox" id="service_2">
 			<div class="food_container">
 				<div class="food_left">
-					<img src="/static/index/images/icons/meihua1.png" />
-					<img src="/static/index/images/icons/meihua2.png" />
-					<img src="/static/index/images/icons/meihua3.png" />
-					<img src="/static/index/images/icons/meihua4.png" />
-					<div class="name">峡江美食</div>
-					<div class="shuoming">灯影峡宾馆餐厅及明月阁餐厅均是依山傍水，临江而建，提供各种火锅和宜昌本地特色菜，邀您品尝三峡美食。</div>
+          <div class="box-border box-left-border"></div>
+					<div class="name">吃在东沟</div>
+					<div class="shuoming">这里的食材都是自家种植、新鲜 采摘的，每一道菜都蕴含着农人 的辛勤与热情，让你感受到家的 温暖。 你不仅能品尝到地道的农家菜，</div>
+          <div class="box-border box-right-border"></div>
 				</div>
 				<div class="food_right">
-										<div class="food_item" id="15">
-						<img src="/uploads/images/20190926/1569495883nNv8Bbd7SS1923.jpg">
+        {% for i in chizai %}
+          <div class="food_item">
+						<img src="/images/{{ i.img }}">
 						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>洪湖藕炖排骨火锅</p></div>
+							<img class="greenadd" src="/images/add.png" />
+							<div class="name"><p>{{ i.title }}</p></div>
 						</div>
 					</div>
-										<div class="food_item" id="16">
-						<img src="/uploads/images/20190926/1569495896ciRP0Ufoqr2737.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>鸡汤鱼火锅</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="17">
-						<img src="/uploads/images/20190926/1569495908M5mEwQMNqW7003.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>金汤长江鲢鱼火锅</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="18">
-						<img src="/uploads/images/20190926/1569495919bScs5f97Uy9908.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>口水鸡</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="19">
-						<img src="/uploads/images/20190926/1569495934ZZ88S2vAlh3784.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>腊蹄子火锅</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="69">
-						<img src="/uploads/images/20190926/1569495946iKqJ87nBbJ9500.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>秘汁酱黄瓜</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="68">
-						<img src="/uploads/images/20190926/1569495959AD1mzSTHFI3598.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>农家抬格孑</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="67">
-						<img src="/uploads/images/20190926/1569495971IbZErY1L9K4649.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>农家香肠</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="66">
-						<img src="/uploads/images/20190926/1569495984lQs9G6C6SY1318.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>蒜茸蒸肥鱼</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="81">
-						<img src="/uploads/images/20190926/1569496010tBd147PKbp5879.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>长江肥鱼火锅</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="82">
-						<img src="/uploads/images/20190927/1569553606bH8k6G9RkO3472.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>长江小鱼小虾</p></div>
-						</div>
-					</div>
-										<div class="food_item" id="83">
-						<img src="/uploads/images/20190926/1569496066Cv82SGyMKu5582.jpg">
-						<div class="graytip">
-							<img class="greenadd" src="/static/index/images/icons/greenadd.png" />
-							<div class="greenline"></div>
-							<div class="name"><p>洪湖藕炖排骨火锅</p></div>
-						</div>
-					</div>
-									</div>
+          {% endfor %}
+        </div>
 			</div>
 		</div>
 
-		<!--三峡特产3-->
-		<div class="spfoodbox" id="service_5">
+		<!--购在-->
+		<div class="spfoodbox gouzai">
 			<div class="spfood_container">
 				<div class="spfood_title">
 					<div>购在东沟</div>
 				</div>
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
-												<div class="swiper-slide spfood_slide" id="11">
+          {% for i in slider4%}
+            <div class="swiper-slide spfood_slide">
 							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646028239NU7mBtQsnt6867.png">
+								<img src="/images/{{ i.img }}">
 								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
+									<img class="knowmoreadd" src="/images/add.png" />
+									<div class="knowmore text-light">了解更多</div>
 								</div>
 							</div>
-							<div class="spfoodname"><p>土家腊肉<br/></p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">腊肉是湖北特产，也是土家族过年必备食物，其制法已有几千年的历史。<span style="color: rgb(51, 51, 51); font-family: ">每年腊月，家家户户准备年货，将吃不完的鲜猪肉用食盐配以一定比例的花椒、香叶、茴香、八角、桂皮等香料，腌制七到十五天，<span style="color: rgb(51, 51, 51); font-family: ">然后<span style="color: rgb(51, 51, 51); font-family: ">挂在烧柴火的灶头顶上，或吊于烧柴火的烤火炉上，</span>利用烟火慢慢熏干。也有专门</span>选用松柏枝</span><span style="color: rgb(51, 51, 51); font-family: ">、桔树皮或柴草慢慢熏烤的。熏后的<span style="color: rgb(51, 51, 51); font-family: ">腊肉色泽鲜明，呈暗红色，肉质透明、干爽、富有弹性，别具腌腊风味。</span></span></span></p></div>
+              <div class="info">
+                <p class="title">{{ i.title }}</p>
+                <p class="summary">{{ i.summary }}</p>
+              </div>
 						</div>
-												<div class="swiper-slide spfood_slide" id="12">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646026851HRGKRGfcx49337.jpg">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>三峡脐橙</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">三峡脐橙产于长江三峡</span><span style="color: rgb(51, 51, 51); font-family: ">河谷地区，这里<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">山峦重叠，气候类型多样，逆温层效应、坡壁效应、水体效应显著，立体气候和冬暖特征独特，在</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">雨量充沛，</span>土壤适宜的条件下，脐橙在三峡已<span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">有2000多年的种植史。三峡脐橙</span></span></span>品质优良，风味独特，具有果大无核、皮薄、色鲜、肉脆汁多、香郁味甜的优良品质。</span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="13">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20190923/1569225755iyrFiH6VTF6299.gif">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>三峡石</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);"></span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">长江三峡既是一座天然地质博物馆</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">，又是一座天然奇石艺术宫。三峡石主要分布在峡江两岸的溪流河谷或崇山峻岭中。石源来自长江上游冲积到此和该区古老的前震旦系变质岩</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">、沉积岩</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">和前寒武纪</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">侵入的花岗岩。</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">三峡石形态多样，色彩、纹理、神韵等都比较突出</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">，</span><span style="color: rgb(51, 51, 51); font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, &quot;PingFang SC&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif; font-size: 14px; text-indent: 28px; background-color: rgb(255, 255, 255);">有些花纹自成画卷，色泽艳丽，深受人们的喜爱，被广泛用于园林景观装饰。</span></p></div>
-						</div>
-												<div class="swiper-slide spfood_slide" id="14">
-							<div class="spfoodimg">
-								<img src="/uploads/images/20220228/1646031950QECxjQ4mWK5942.jpg">
-								<div class="spfood_moretip">
-									<img class="knowmoreadd" src="/static/index/images/icons/greenadd.png" />
-									<div class="knowmore">了解更多</div>
-								</div>
-							</div>
-							<div class="spfoodname"><p>土家蜡染</p></div>
-							<div class="spfooddesc"><p><span style="color: rgb(51, 51, 51); font-family: ">土家蜡染常用吉祥图案为底进行</span><span style="color: rgb(51, 51, 51); font-family: ">造型，多用于门帘、桌布、帐沿等生活用品，注重配色纯净，讲究立意构图，艺术风格奇特。<span style="color: rgb(51, 51, 51); font-family: ">制作时将白布平铺，将蜡加温溶解为蜡液，再用蜡刀蘸取蜡液，在白布上描绘图案，绘成后，将布放进染缸浸染，染好捞出用清水煮沸，等蜡溶化后即呈现出白色的花纹。</span></span></p></div>
-						</div>
-											</div>
-					<img class="leftarrow" src="/static/index/images/icons/leftarrow.png" />
-					<img class="rightarrow" src="/static/index/images/icons/rightarrow.png" />
+          {% endfor %}
+          </div>
+					<img class="leftarrow" src="/images/leftarrow.png" />
+					<img class="rightarrow" src="/images/rightarrow.png" />
 				</div>
 			</div>
 		</div>

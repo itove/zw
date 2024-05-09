@@ -269,7 +269,7 @@
 .foodbox {
 	width: 100%;
 	height: 814px;
-	background: url(/static/index/images/service/foodbg.jpg) no-repeat;
+	background: #eeeeee;
 	background-size: 100% 100%;
 	display: flex;
 	flex-direction: row;
@@ -290,12 +290,7 @@
 	width: 23%;
 	height: 100%;
 	position: relative;
-	padding: 9px 9px;
-	background: rgb(20, 79, 48);
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: center;
+	padding: 70px 0 0 60px;
 }
 
 .foodbox .food_container .food_left img:nth-child(1) {
@@ -323,16 +318,15 @@
 }
 
 .foodbox .food_container .food_left .name {
-	font-size: 38px;
+	font-size: 28px;
 	color: #FFFFFF;
 	margin-top: 40%;
 }
 
 .foodbox .food_container .food_left .shuoming {
 	width: 70%;
-	margin-top: 15%;
+	margin-top: 16px;
 	font-size: 14px;
-	text-align: center;
 	color: #efefef;
 }
 
@@ -405,7 +399,7 @@
 
 .foodbox .food_container .food_right .food_item .graytip .name {
 	font-size: 14px;
-	color: #00a29a;
+	color: #ffffff;
 	margin-top: 10%;
 }
 
@@ -431,19 +425,13 @@
 }
 
 .spfoodbox .spfood_container .spfood_title {
-	width: 204px;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
 	font-size: 28px;
-	color: #006934;
 }
 
 .spfoodbox .spfood_container .spfoodlist_swiper {
 	width: 100%;
-	height: 588px;
-	margin-top: 60px;
+	height: 420px;
+	margin-top: 40px;
 	position: relative;
 }
 

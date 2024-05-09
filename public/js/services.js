@@ -57,10 +57,25 @@ $('.food_item').hover(function() {
 })
 
 /*特产轮播图*/
-var spFoodSwiper = new Swiper('.spfoodlist_swiper', {
+var spFoodSwiper = new Swiper('.youzai .swiper-container', {
+	loop: true,
+	paginationClickable: true,
+	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
+  spaceBetween: 30,
+	loop: true
+})
+var zhuzai = new Swiper('.zhuzai .swiper-container', {
+	loop: true,
+	paginationClickable: true,
+	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
+  spaceBetween: 30,
+	loop: true
+})
+var gouzai = new Swiper('.gouzai .swiper-container', {
 	loop: true,
 	paginationClickable: true,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 4,
+  spaceBetween: 30,
 	loop: true
 })
 /*特产hover事件*/

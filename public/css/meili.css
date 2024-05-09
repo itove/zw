@@ -142,7 +142,7 @@ p {
 .meili_img_list .imgbox_swiper .img_slide {
 	position: relative;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
