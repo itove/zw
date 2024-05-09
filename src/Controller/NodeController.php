@@ -21,6 +21,7 @@ class NodeController extends AbstractController
     }
     
     #[Route('/news', name: 'app_news_list')]
+    #[Route('/news/youji', name: 'app_news_youji')]
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
@@ -70,17 +71,17 @@ class NodeController extends AbstractController
         $locale = $request->getLocale();
         $node = $this->data->get($nid);
         $conf = $this->data->findConfByLocale($locale);
-        $beian = $this->data->findNodeByRegion('beian', 1)[0];
-        $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
-        $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
+        // $beian = $this->data->findNodeByRegion('beian', 1)[0];
+        // $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
+        // $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
         $data = [
           'page_title' => $this->translator->trans($pageTitle),
           'class' => 'page-news-show',
-          'node' => $node,
+          // 'node' => $node,
           'conf' => $conf,
-          'beian' => $beian,
-          'wechat' => $wechat,
-          'miniprog' => $miniprog,
+          // 'beian' => $beian,
+          // 'wechat' => $wechat,
+          // 'miniprog' => $miniprog,
         ];
         return $this->render('node/detail.html.twig', $data);
     }

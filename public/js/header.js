@@ -148,7 +148,7 @@ $('.navbar_nav>li').click(function() {
 		}else if($(this).attr('classname')=='新闻资讯'){
 			window.location.href = "/news"
 		}else if($(this).attr('classname')=='景区服务'){
-			window.location.href = "#"
+			window.location.href = "/news/youji"
 		}else if($(this).attr('classname')=='魅力三峡'){
 			window.location.href = "/contact"
 		}

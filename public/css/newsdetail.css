@@ -1,0 +1,152 @@
+@media (min-width: 1200px) {
+	.container {
+		width: 1200px !important;
+	}
+}
+.header {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 60px;
+    background: rgba(25,25,25,0.6);
+    transition: all 1s ease;
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    z-index: 0;
+    color: #fff;
+    cursor: pointer!important;
+    background-color: rgb(20,79,48)!important;
+    border-color: rgb(20,79,48)!important;
+}
+.pagination>li>a{
+	cursor: pointer;
+}
+
+.footer{
+	width: 100%;
+	height: 215px;
+}
+.footercontainer{
+	width: 100%;
+	height: 100%;
+}
+.path {
+	width: 100%;
+	height: 60px;
+	background: rgb(247, 248, 248);
+}
+
+.path_container {
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	color: #9fa0a0;
+	font-size: 14px;
+}
+.path_container a{
+	color: #9fa0a0;
+	text-decoration: none;
+}
+/*内容详情*/
+.detailbox{
+	height: auto;
+	text-align: justify;
+	padding: 10px 15px;
+}
+.detailbox img{
+	width: 100%;
+	height: auto;
+}
+
+/*上一頁下一頁*/
+.upanddown{
+	width: 100%;
+	background: rgb(247, 248, 248);
+}
+.upanddown .updownbox{
+	height: 60px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+}
+.upanddown .updownbox a{
+	color: #333333;
+}
+.upanddown .updownbox a:hover{
+	color: rgb(0, 145, 58);
+	text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+	.header{
+		background: rgb(26,71,50)!important;
+		position: relative;
+	}
+	.path {
+	    width: 100%;
+	    height: 40px;
+	    background: rgb(247, 248, 248);
+	}
+	.path_container {
+	    height: 40px;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: flex-start;
+	    align-items: center;
+	    color: #9fa0a0;
+	    font-size: 14px;
+	}
+	.detailbox {
+	    width: 100%;
+	    height: auto;
+	    text-align: justify;
+	    padding: 10px 15px;
+	}
+	.upanddown .updownbox {
+	    height: 40px;
+	    margin-bottom: 60px;
+	    display: flex;
+	    flex-direction: row;
+	    justify-content: space-between;
+	    align-items: center;
+	    cursor: pointer;
+	}
+	.up{
+		display: -webkit-box;
+		width: 45%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+	}
+	.down{
+		display: -webkit-box;
+		width: 45%;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 1;
+	}
+	.footer{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 60px;
+	}
+	.gotop {
+	    opacity: 1;
+	    position: fixed;
+	    right: 5px;
+	    bottom: 15%;
+	    z-index: 99999;
+	    transition: all 1s ease;
+	    cursor: pointer;
+	}
+}

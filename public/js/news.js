@@ -6,12 +6,12 @@ $(function() {
 		$.ajax({
 			type: 'GET',
 			contentType: "application/json;charset=UTF-8",
-			url: '/news/add_viewnum',
+			url: '/news',
 			data: {
 				id: id
 			},
 			success: function(res) {
-				window.location.href = "/newsdetail/index?id=" + id + "&cid=" + cid
+				window.location.href = "/news/" + id
 			}
 		})
 		
