@@ -52,7 +52,7 @@ class Data
             if ($limit !== 0) {
                 $arr[$r->getLabel()] = $nodeRepo->findBy(['region' => $r], ['id' => $order], abs($limit));
             } else {
-                $arr[$r->getLabel()] = $nodeRepo->findOneBy(['region' => $r]);
+                // $arr[$r->getLabel()] = $nodeRepo->findOneBy(['region' => $r]);
             }
         }
         

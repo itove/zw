@@ -42,9 +42,9 @@ class NodeController extends AbstractController
         $arr['page'] = $page;
         $arr['page_count'] = ceil(count($nodes_all) / $limit);
         $conf = $this->data->findConfByLocale($locale);
-        $beian = $this->data->findNodeByRegion('beian', 1)[0];
-        $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
-        $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
+        // $beian = $this->data->findNodeByRegion('beian', 1)[0];
+        // $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
+        // $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
 
         $data = [
           'nodes' => $nodes,
@@ -53,9 +53,9 @@ class NodeController extends AbstractController
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
           'conf' => $conf,
-          'beian' => $beian,
-          'wechat' => $wechat,
-          'miniprog' => $miniprog,
+          // 'beian' => $beian,
+          // 'wechat' => $wechat,
+          // 'miniprog' => $miniprog,
         ];
         return $this->render('node/index.html.twig', $data);
     }
