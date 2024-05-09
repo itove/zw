@@ -149,49 +149,27 @@
 		</div>
 
 		<!--名俗表演-->
-		<div class="act_container" id="meili_2">
-			<div class="actbox container">
-				<div class="left" style="background-image: url(http://www.sanxiarenjia.com/uploads/images/20190925/1569405734SeepITBZBJ8373.jpg);background-repeat: no-repeat;"></div>
+		<div class="act_container culture" id="meili_2">
+			<div class="actbox container culture-box">
+				<div class="left box-bg">
+          <div class="box-border box-left-border"></div>
+					<div class="name">红色文化</div>
+					<div class="shuoming">东沟村充分发掘红色资源，对多 处革命遗址进行了修复和保护， 如均郧房中心县委县政府旧址等。 建立了中原突围鄂西北历史纪念馆，</div>
+          <div class="box-border box-right-border"></div>
+        </div>
 				<div class="right">
 					<div class="swiper-container act_swiper">
 						<div class="swiper-wrapper act_wrapper">
-														
-							<div class="swiper-slide act_slide" id="75">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/1660808877U5KesmCp8q3504.jpg" /></div>
+            {% for i in slider2 %}
+							<div class="swiper-slide act_slide slider-with-margin">
+								<div class="act_img"><img class="img" src="/images/{{ i.img }}" height="100%" /></div>
 								<div class="slide_info">
-									<div class="info_title">女书表演</div>
-									<div class="info_desc">女书是世界上发现的唯一一种神秘而奇特的女性文字，书写在布面、扇面、纸片上，作品绝大部分为七字韵文......</div>
-									<div class="info_more" id="75"><img src="/static/index/images/icons/add.png"/></div>
+									<div class="info_title">{{ i.title }}</div>
+									<div class="info_desc">{{ i.summary }}</div>
 								</div>
 							</div>
-														
-							<div class="swiper-slide act_slide" id="78">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/1660808796uvQrgdotdq3105.jpg" /></div>
-								<div class="slide_info">
-									<div class="info_title">巴族巫傩</div>
-									<div class="info_desc">巫傩文化历史悠久，已有几千年的传承，我们的祖先信奉鬼神，相信万物有灵，能禳灾祈福。巴王寨巫傩表演......</div>
-									<div class="info_more" id="78"><img src="/static/index/images/icons/add.png"/></div>
-								</div>
-							</div>
-														
-							<div class="swiper-slide act_slide" id="79">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/1660808691nU5ZKL8K1y7395.jpg" /></div>
-								<div class="slide_info">
-									<div class="info_title">土家歌舞</div>
-									<div class="info_desc">巴王寨土家歌舞是由三峡人家艺术团倾情打造的一台大型山水实景表演，节目包含土家族古老而原始的舞蹈“茅......</div>
-									<div class="info_more" id="79"><img src="/static/index/images/icons/add.png"/></div>
-								</div>
-							</div>
-														
-							<div class="swiper-slide act_slide" id="81">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/16608086176UD7qCtNXU5314.jpg" /></div>
-								<div class="slide_info">
-									<div class="info_title">峡江号子</div>
-									<div class="info_desc">峡江号子在长江流域流传广泛、影响深远，被载入第二批国家级非物质文化遗产名录，它可分为上水、下水号......</div>
-									<div class="info_more" id="81"><img src="/static/index/images/icons/add.png"/></div>
-								</div>
-							</div>
-													</div>
+            {% endfor %}
+            </div>
 						<img class="leftarrow" src="/images/leftarrow.png" />
 						<img class="rightarrow" src="/images/rightarrow.png" />
 					</div>
@@ -201,52 +179,30 @@
 
 		<!--名俗表演2-->
 		<div class="act_container history" id="meili_3">
-			<div class="actbox container">
+			<div class="actbox container hist-box">
 				<div class="right">
 					<div class="swiper-container act_swiper">
 						<div class="swiper-wrapper act_wrapper">
-														
-							<div class="swiper-slide act_slide" id="75">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/1660808877U5KesmCp8q3504.jpg" /></div>
+            {% for i in slider3 %}
+							<div class="swiper-slide act_slide slider-with-margin">
+								<div class="act_img"><img class="img" src="/images/{{ i.img }}" height="100%" /></div>
 								<div class="slide_info">
-									<div class="info_title">女书表演</div>
-									<div class="info_desc">女书是世界上发现的唯一一种神秘而奇特的女性文字，书写在布面、扇面、纸片上，作品绝大部分为七字韵文......</div>
-									<div class="info_more" id="75"><img src="/static/index/images/icons/add.png"/></div>
+									<div class="info_title">{{ i.title }}</div>
+									<div class="info_desc">{{ i.summary }}</div>
 								</div>
 							</div>
-														
-							<div class="swiper-slide act_slide" id="78">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/1660808796uvQrgdotdq3105.jpg" /></div>
-								<div class="slide_info">
-									<div class="info_title">巴族巫傩</div>
-									<div class="info_desc">巫傩文化历史悠久，已有几千年的传承，我们的祖先信奉鬼神，相信万物有灵，能禳灾祈福。巴王寨巫傩表演......</div>
-									<div class="info_more" id="78"><img src="/static/index/images/icons/add.png"/></div>
-								</div>
-							</div>
-														
-							<div class="swiper-slide act_slide" id="79">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/1660808691nU5ZKL8K1y7395.jpg" /></div>
-								<div class="slide_info">
-									<div class="info_title">土家歌舞</div>
-									<div class="info_desc">巴王寨土家歌舞是由三峡人家艺术团倾情打造的一台大型山水实景表演，节目包含土家族古老而原始的舞蹈“茅......</div>
-									<div class="info_more" id="79"><img src="/static/index/images/icons/add.png"/></div>
-								</div>
-							</div>
-														
-							<div class="swiper-slide act_slide" id="81">
-								<div class="act_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220818/16608086176UD7qCtNXU5314.jpg" /></div>
-								<div class="slide_info">
-									<div class="info_title">峡江号子</div>
-									<div class="info_desc">峡江号子在长江流域流传广泛、影响深远，被载入第二批国家级非物质文化遗产名录，它可分为上水、下水号......</div>
-									<div class="info_more" id="81"><img src="/static/index/images/icons/add.png"/></div>
-								</div>
-							</div>
-													</div>
+            {% endfor %}
+            </div>
 						<img class="leftarrow" src="/images/leftarrow.png" />
 						<img class="rightarrow" src="/images/rightarrow.png" />
 					</div>
 				</div>
-				<div class="left" style="background-image: url(http://www.sanxiarenjia.com/uploads/images/20190925/1569405734SeepITBZBJ8373.jpg);background-repeat: no-repeat;"></div>
+				<div class="left box-bg">
+          <div class="box-border box-left-border"></div>
+					<div class="name">东沟历史</div>
+					<div class="shuoming">这里的食材都是自家种植、新鲜 采摘的，每一道菜都蕴含着农人 的辛勤与热情，让你感受到家的温暖。你不仅能品尝到地道的农家菜，</div>
+          <div class="box-border box-right-border"></div>
+        </div>
 			</div>
 		</div>
 
@@ -261,27 +217,13 @@
         </div>
 				<div class="swiper-container activity_swiper">
 					<div class="swiper-wrapper activity_wrapper">
-												<div class="swiper-slide activity_slide" id="60">
-							<div class="activity_img"><img src="http://www.sanxiarenjia.com/uploads/images/20191025/1571993451dTQuJzc9Ty8566.jpg"></div>
-							<div class="activity_name">“三峡人家杯”LIVE FUN天使旅行家选拔赛赛程</div>
+            {% for i in honor %}
+            <div class="swiper-slide activity_slide slider-with-margin">
+							<div class="activity_img"><img class="img" src="/images/{{ i.img }}"></div>
+							<div class="activity_name">{{ i.title }}</div>
 						</div>
-												<div class="swiper-slide activity_slide" id="61">
-							<div class="activity_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220901/1662010167gxN4GrXPaT3158.jpg"></div>
-							<div class="activity_name">消逝的巴族与濒危的语言</div>
-						</div>
-												<div class="swiper-slide activity_slide" id="92">
-							<div class="activity_img"><img src="http://www.sanxiarenjia.com/uploads/images/20191025/15719930830V5Esznm148167.jpg"></div>
-							<div class="activity_name">“诗词中的新三峡”有奖征稿获奖作品公示</div>
-						</div>
-												<div class="swiper-slide activity_slide" id="119">
-							<div class="activity_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220901/1662012483xkXXKes3qP5075.jpg"></div>
-							<div class="activity_name">写意长江——湖北省国画院画家采风团走进三峡人家</div>
-						</div>
-												<div class="swiper-slide activity_slide" id="451">
-							<div class="activity_img"><img src="http://www.sanxiarenjia.com/uploads/images/20220901/1661999719i4hwfC6KGR4899.jpg"></div>
-							<div class="activity_name">“歌游中国”唱响宝岛 “三峡人家”惊艳台北</div>
-						</div>
-											</div>
+            {% endfor %}
+          </div>
 					<img class="leftarrow" src="/images/leftarrow.png" />
 					<img class="rightarrow" src="/images/rightarrow.png" />
 				</div>

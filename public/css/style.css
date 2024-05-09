@@ -266,3 +266,24 @@ footer .info .wrapper .contact p{
   border-top: none;
   border-left: none;
 }
+.box-bg{
+  position: relative;
+  padding: 70px 0 0 60px;
+  color: #ffffff;
+}
+.box-bg .name{
+  font-size: 28px;
+  margin-top: 40%;
+}
+.box-bg .shuoming{
+  width: 70%;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #efefef;
+}
+.culture-box .box-bg{
+  background:  #7d0000 !important;
+}
+.hist-box .box-bg{
+  background:  #2f864a !important;
+}

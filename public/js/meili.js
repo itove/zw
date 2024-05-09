@@ -26,7 +26,12 @@ var zpSwiper = new Swiper('.imgbox_swiper', {
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
 })
 /*名俗表演轮播*/
-var actSwiper = new Swiper('.act_swiper', {
+var actSwiper = new Swiper('.culture .act_swiper', {
+	loop: true,
+	initialSlide: 2,
+	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
+})
+var actSwiper = new Swiper('.history .act_swiper', {
 	loop: true,
 	initialSlide: 2,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
