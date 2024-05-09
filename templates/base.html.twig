@@ -30,6 +30,9 @@
 
     {% block breadcrumbs %} {% endblock %}
 
+		<!--返回首页-->
+		<div class="gotop"><img src="/images/up.png"></div>
+
 		<!--公用文章或图片弹窗-->
 		<div class="popupWindow" style="display: none;">
 			<div class="popupContainer">
@@ -42,6 +45,18 @@
 			</div>
 		</div>
 
+		<!--视频播放弹窗-->
+		<div class="videoWindow" style="display: none;">
+			<div class="videoContainer">
+				<img class="videoClose" src="http://www.sanxiarenjia.com/static/index/images/icons/window_close.png" />
+				<div class="videoCxt" id="mapuse"></div>
+			</div>
+		</div>
+		
+		<!--画集大图弹窗-->
+		<div class="pictureWindow" style="display: none;">
+			<div class="picturebox"></div>
+		</div>
 
     {% block main %} {% endblock %}
 
