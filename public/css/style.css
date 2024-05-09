@@ -286,3 +286,10 @@ footer .info .wrapper .contact p{
 .hist-box .box-bg{
   background:  #2f864a !important;
 }
+.news{
+  padding: 100px 0;
+  display: flex;
+}
+.news .contact{
+  width: 50%;
+}
