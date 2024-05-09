@@ -293,3 +293,19 @@ footer .info .wrapper .contact p{
 .news .contact{
   width: 50%;
 }
+.news .contact .desc{
+  font-size: 14px;
+  margin: 24px 0;
+  width: 400px;
+}
+.contact .info{
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.contact .info>div{
+  margin-left: 40px;
+  font-size: 16px;
+}
+.contact .info>div{
+}
