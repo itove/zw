@@ -140,13 +140,13 @@ $('.navbar_nav>li').click(function() {
 	}
 	if(isMobile!=1){
 		if($(this).attr('classname')=='导览'){
-			window.location.href = "/zoujin?target=daolan_1"
+			window.location.href = "/zoujin"
 		}else if($(this).attr('classname')=='景区介绍'){
-			window.location.href = "/leyou?target=jingqu_2"
+			window.location.href = "/leyou"
 		}else if($(this).attr('classname')=='智慧旅游'){
 			window.location.href = "/zhihuilvyou/index?target=zhihuilvyou_1"
 		}else if($(this).attr('classname')=='新闻资讯'){
-			window.location.href = "/news?cid=50"
+			window.location.href = "/news"
 		}else if($(this).attr('classname')=='景区服务'){
 			window.location.href = "#"
 		}else if($(this).attr('classname')=='魅力三峡'){
