@@ -353,3 +353,7 @@ footer .info .wrapper .contact p{
 .index_main .sec5flex{
   margin-bottom: 100px;
 }
+.zhuzai .pagination .swiper-pagination-switch{
+  background: #eeeeee !important;
+  border: 1px solid #eeeeee;
+}

@@ -60,6 +60,7 @@ $('.food_item').hover(function() {
 var spFoodSwiper = new Swiper('.youzai .swiper-container', {
 	loop: true,
 	paginationClickable: true,
+  pagination:'.youzai .pagination',
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
   spaceBetween: 30,
 	loop: true
@@ -67,6 +68,7 @@ var spFoodSwiper = new Swiper('.youzai .swiper-container', {
 var zhuzai = new Swiper('.zhuzai .swiper-container', {
 	loop: true,
 	paginationClickable: true,
+  pagination:'.zhuzai .pagination',
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
   spaceBetween: 30,
 	loop: true
