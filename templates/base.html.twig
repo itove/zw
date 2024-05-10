@@ -28,8 +28,6 @@
 
     {% block hero %} {% endblock %}
 
-    {% block breadcrumbs %} {% endblock %}
-
 		<!--返回首页-->
 		<div class="gotop"><img src="/images/up.png"></div>
 
@@ -57,6 +55,18 @@
 		<div class="pictureWindow" style="display: none;">
 			<div class="picturebox"></div>
 		</div>
+
+		<!--路径栏-->
+
+    {% block breadcrumbs %}
+		<div class="path">
+			<div class="container path_container">
+				<a href="/index/index">首页</a>
+				 > 
+				<a href="">走进东沟</a>
+			</div>
+		</div>
+    {% endblock %}
 
     {% block main %} {% endblock %}
 
