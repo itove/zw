@@ -117,7 +117,7 @@
 footer .flinks{
   width: 1170px;
   margin: auto;
-  margin-bottom: 1em;
+  margin-bottom: 30px;
   font-weight: bold;
 }
 footer .links{
@@ -137,7 +137,7 @@ footer .links .wrapper a{
 }
 footer .info{
   width: 100%;
-  height: 140px;
+  height: 240px;
   background-color: #262626;
   color: #ffffff;
 }
@@ -320,7 +320,7 @@ footer .info .wrapper .contact p{
   padding-right: 0 !important;
 }
 .sec4flex .services .sitem{
-  width: 228px !important;
+  width: 23% !important;
 }
 .section4 .sec4flex.container{
   z-index: 55;
@@ -328,4 +328,28 @@ footer .info .wrapper .contact p{
 }
 .hotelbox .hotelcontainer .hotelright{
   left: -90px;
+}
+.path{
+  width: 100%;
+  height: 60px;
+  background: rgb(247, 248, 248);
+}
+.path_container {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  color: #9fa0a0;
+  font-size: 14px;
+}
+.path_container a {
+  color: #9fa0a0;
+  text-decoration: none;
+}
+.main-container{
+  width: 1200px !important;
+}
+.index_main .sec5flex{
+  margin-bottom: 100px;
 }
