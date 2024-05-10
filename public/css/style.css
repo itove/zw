@@ -326,3 +326,6 @@ footer .info .wrapper .contact p{
   z-index: 55;
   position: relative;
 }
+.hotelbox .hotelcontainer .hotelright{
+  left: -90px;
+}
