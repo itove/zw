@@ -338,7 +338,6 @@
 }
 /*****************第二屏******************************/
 .index_main .section2 {
-	background: url(../images/section2/section2bg.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 
@@ -1725,7 +1724,6 @@
 	}
 	/*第二屏*/
 	.index_main .section2 {
-		background: url(../images/section2/section2wapbg.jpg) no-repeat!important;
 		background-size: 100% 100%!important;
 	}
 	.index_main .section2 .sec2flex {
@@ -1991,8 +1989,6 @@
 	}
 	/*第四屏*/
 	.index_main .section4 {
-		background: url(../images/section4/section4wapbg.jpg) no-repeat!important;
-		background-size: 100% 100%!important;
 	}
 	.index_main .sec4flex {
 		width: 90%;

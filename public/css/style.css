@@ -389,4 +389,38 @@ footer .info .wrapper .contact p{
   }
   footer .info .wrapper .contact {
   }
+  .spfoodbox .spfood_container .spfood_title{
+    width: auto !important;
+    color: #000000 !important;
+  }
+  .hotelbox .hotelcontainer .hotelright{
+    left: 0;
+  }
+  .hotelbox .hotelcontainer .hotelright:after{
+    content: unset !important;
+  }
+	.index_main .section3 .sec3flex .viewsbox .views{
+    width: 45% !important;
+  }
+  .sec4flex .services{
+    flex-direction: column !important;
+  }
+	.sec4flex .services .sitem{
+    width: 100% !important;
+  }
+	.sec4flex .services .sitem .box .tag{
+    width: 80% !important;
+    font-size: 18px !important;
+  }
+  .sec4flex .services .sitem .box .tag_img{
+    width: 200% !important;
+    margin-left: 20px;
+  }
+  .sec4flex .services .sitem .box .arrow{
+    display: none;
+  }
+  .sec2flex_left{
+    right: unset;
+    top: 0;
+  }
 }
