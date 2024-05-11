@@ -377,4 +377,16 @@ footer .info .wrapper .contact p{
   .news {
     flex-direction: column;
   }
+  footer .links {
+    display: none;
+  }
+  footer .info .wrapper {
+    width: 100%;
+    flex-direction: column;
+  }
+  footer .info .wrapper .sn {
+    margin: auto;
+  }
+  footer .info .wrapper .contact {
+  }
 }
