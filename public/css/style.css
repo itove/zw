@@ -371,4 +371,10 @@ footer .info .wrapper .contact p{
   .m_nav{
     background: #161616;
   }
+  .main-container{
+    width: 100% !important;
+  }
+  .news {
+    flex-direction: column;
+  }
 }
