@@ -363,3 +363,12 @@ footer .info .wrapper .contact p{
 .index_main .sec5flex{
   padding-top: 80px !important;
 }
+
+@media screen and (max-width: 768px) {
+  header.header {
+    background: #161616 !important;
+  }
+  .m_nav{
+    background: #161616;
+  }
+}
