@@ -24,7 +24,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\RequestStack;
 use App\Entity\Region;
-use function App\Service\GetProperties;
+use App\Service\Data;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -158,7 +158,7 @@ class NodeCrudController extends AbstractCrudController
             $fields = $this->region->getFields();
             $vichImageField->setHelp("推荐尺寸{$this->region->getDescription()}，或宽高比与之相同的尺寸。");
         } else if ($this->isGranted('ROLE_SUPER_ADMIN')) {
-            $fields = GetProperties(new Node());
+            $fields = Data::GetProperties(new Node());
             array_push($fields, 'regions');
         }
         

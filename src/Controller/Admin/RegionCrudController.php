@@ -17,7 +17,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
-use function App\Service\GetProperties;
+use App\Service\Data;
 
 class RegionCrudController extends AbstractCrudController
 {
@@ -34,7 +34,7 @@ class RegionCrudController extends AbstractCrudController
         // yield IntegerField::new('count');
         yield TextField::new('icon');
         yield TextField::new('description');
-        yield ChoiceField::new('fields')->setChoices(GetProperties(new Node()))->allowMultipleChoices();
+        yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
     }
     
     public function configureActions(Actions $actions): Actions
