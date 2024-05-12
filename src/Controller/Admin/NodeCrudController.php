@@ -31,6 +31,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
+// use Doctrine\Common\Collections\ArrayCollection;
+// use Doctrine\Common\Collections\Criteria;
 
 class NodeCrudController extends AbstractCrudController
 {
@@ -55,19 +57,15 @@ class NodeCrudController extends AbstractCrudController
     
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
-        $response = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
-        // $and = $response->expr()->andX();
-        dump($this->region);
+        $qb = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
         if (!is_null($this->region)) {
             $regionId = $this->region->getId();
-            // $resp = $response->expr()->in($regionId, array('entity.regions'));
-            // $and->add($response->expr()->isMemberOf($regionId, 'entity.regions'));
-            dump($response);
-            // $response->andWhere($and);
-            dump($response);
-            // $response->andWhere("entity.regions contains $regionId");
+            $qb
+                ->andWhere("r.id = $regionId")
+                ->leftJoin('entity.regions', 'r')
+            ;
         }
-        return $response;
+        return $qb;
     }
     
     public function createEntity(string $entityFqcn)
