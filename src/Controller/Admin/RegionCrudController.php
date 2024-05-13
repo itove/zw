@@ -37,6 +37,7 @@ class RegionCrudController extends AbstractCrudController
         yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
         yield IntegerField::new('count');
         yield AssociationField::new('page');
+        yield AssociationField::new('shareWith');
     }
     
     public function configureActions(Actions $actions): Actions
