@@ -393,6 +393,9 @@ footer .info .wrapper .contact p{
 .form-control{
   font-size: 14px !important;
 }
+.newsflex .contents .content_item .content_left .name a{
+  color: #000000;
+}
 
 @media screen and (max-width: 768px) {
   header.header {

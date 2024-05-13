@@ -1,21 +1,21 @@
 $(function() {
 	/*弹窗打开*/
-	$('.content_item').click(function() {
-		let id = $(this).attr('id')
-		let cid = $(this).attr('cid')
-		$.ajax({
-			type: 'GET',
-			contentType: "application/json;charset=UTF-8",
-			url: '/news',
-			data: {
-				id: id
-			},
-			success: function(res) {
-				window.location.href = "/news/" + id
-			}
-		})
-		
-	})
+	// $('.content_item').click(function() {
+	// 	let id = $(this).attr('id')
+	// 	let cid = $(this).attr('cid')
+	// 	$.ajax({
+	// 		type: 'GET',
+	// 		contentType: "application/json;charset=UTF-8",
+	// 		url: '/news',
+	// 		data: {
+	// 			id: id
+	// 		},
+	// 		success: function(res) {
+	// 			window.location.href = "/news/" + id
+	// 		}
+	// 	})
+	// 	
+	// })
 
 	/*弹窗关闭*/
 	$('.closeicon').click(function() {
@@ -35,13 +35,13 @@ $(function() {
 	let indexcid = getParam('cid')
 	$('.tabitem').each(function() {
 		if($(this).attr('cid') == indexcid) {
-			$(this).addClass('tabitem_active').siblings().removeClass('tabitem_active')
+			// $(this).addClass('tabitem_active').siblings().removeClass('tabitem_active')
 			//根据cid查询出对应数据写入DOM里面
 		}
 	})
 	$('.tabitem').click(function() {
 		let cid = $(this).attr('cid') //获取点击分类的ID
-		$(this).addClass('tabitem_active').siblings().removeClass('tabitem_active')
+		// $(this).addClass('tabitem_active').siblings().removeClass('tabitem_active')
 		//根据cid查询出对应数据写入DOM里面
 	})
 	/**所需函数 获取URL携带的参数*/

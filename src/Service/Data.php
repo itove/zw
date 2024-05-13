@@ -48,6 +48,12 @@ class Data
         return $page;
     }
     
+    public function getRegionByLabel(string $label)
+    {
+        $region = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => $label]);
+        return $region;
+    }
+    
     public function getPageContent(string $label, $locale)
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
@@ -169,9 +175,15 @@ class Data
       return $nodes;
     }
     
-    public function findNodesByRegion($region, $locale)
+    public function findNodesByRegion(Region $region, $locale, $limit = null, $offset = null)
     {
-      return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale);
+      return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale, $limit, $offset);
+    }
+    
+    public function findNodesByRegionLabel(string $label, $locale, $limit = null, $offset = null)
+    {
+      $region = $this->doctrine->getRepository(Region::class)->findOneBy($region, $locale, $limit, $offset);
+      return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale, $limit, $offset);
     }
     
     public function findConfByLocale($locale)

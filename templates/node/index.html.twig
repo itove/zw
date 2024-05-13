@@ -2,6 +2,11 @@
 
 {% block style %}
 <link rel="stylesheet" href="/css/news.css?version=2.1">
+<style>
+.{{ regionLabel }} {
+    color: #006934 !important;
+}
+</style>
 {% endblock %}
 
 {% block main %}
@@ -9,71 +14,52 @@
 	<div class="newsbox">
 		<div class="container newsflex">
 			<div class="tabsbox">
-									<a class="tabitem " data-id="51" href="/news/index?cid=51" >
+          <a class="tabitem wenlv" href="/news/wenlv" >
 						<img class="tabicon" src="/images/tabicon.png" />
 						<div class="tabtxt">文旅要闻</div>
 					</a>
-									<a class="tabitem tabitem_active" data-id="50" href="/news/index?cid=50" >
+          <a class="tabitem jingqu" href="/news/jingqu" >
 						<img class="tabicon" src="/images/tabicon.png" />
 						<div class="tabtxt">景区公告</div>
 					</a>
-									<a class="tabitem " data-id="52" href="/news/index?cid=52" >
+          <a class="tabitem dangjian" href="/news/dangjian" >
 						<img class="tabicon" src="/images/tabicon.png" />
 						<div class="tabtxt">党建文明</div>
 					</a>
-									<a class="tabitem " data-id="53" href="/news/index?cid=53" >
+          <a class="tabitem youji" href="/news/youji" >
 						<img class="tabicon" src="/images/tabicon.png" />
 						<div class="tabtxt">旅行游记</div>
 					</a>
-							</div>
+      </div>
+      
 			<div class="contents " style="">
-								<div class="content_item" id="487" cid="50">
+        {% for i in nodes %}
+        <div class="content_item">
 					<div class="content_left">
-						<div class="name">重要提醒</div>
-						<div class="disc">三峡人家风景区重 要 提 醒亲爱的游客朋友们：&nbsp;龙年送福惠民券预约成功后，凭本人身份证原件在三峡人家王家坪游客中心三楼核销，须购买景区车、船费60元/人。统一在王家坪乘坐换乘车入园。感谢您的支持与配合！宜昌三峡人家文化旅游发展有限公司2024年3月11日...</div>
+						<div class="name"><a href="/news/{{ i.id }}">{{ i.title }}</a></div>
+						<div class="disc">{{ i.summary }}</div>
 					</div>
 					<div class="content_right">
-						<div class="time">2024-03-20</div>
+						<div class="time">{{ i.createdAt | date('Y-m-d')}}</div>
 					</div>
 				</div>
-								<div class="content_item" id="488" cid="50">
-					<div class="content_left">
-						<div class="name">三峡人家风景区 | 临时闭园的公告</div>
-						<div class="disc">三峡人家风景区临时闭园的公告亲爱的游客朋友们：非常感谢您对三峡人家风景区的支持和关注。为做好全市新一轮寒潮大风及低温雨雪冰冻天气防范工作，确保游客安全及赏玩体验，三峡人家风景区于2024年2月22日临时闭园，在此期间，暂停接待游客。请广大游客相互转告，由此给您带来不便之处，敬请谅解！特此公告。宜昌三峡人......</div>
-					</div>
-					<div class="content_right">
-						<div class="time">2024-02-22</div>
-					</div>
-				</div>
-								<div class="content_item" id="489" cid="50">
-					<div class="content_left">
-						<div class="name">三峡人家风景区 | 因受冰冻雨雪极端天气影响暂时闭园的紧急公告</div>
-						<div class="disc">三峡人家风景区因受冰冻雨雪极端天气影响暂时闭园的紧 急 公 告亲爱的游客朋友们：非常感谢您对三峡人家风景区的支持和关注。由于受冰冻雨雪极端天气影响，三峡人家风景区2024年2月3日暂时闭园，在此期间，暂停接待游客。由此给您带来不便之处，敬请谅解！特此公告。宜昌三峡人家文化旅游发展有限公司2024年2月3日...</div>
-					</div>
-					<div class="content_right">
-						<div class="time">2024-02-03</div>
-					</div>
-				</div>
-								<div class="content_item" id="459" cid="50">
-					<div class="content_left">
-						<div class="name">三峡人家风景区恢复开园的公告</div>
-						<div class="disc">三峡人家风景区恢复开园的公告广大游客朋友：&nbsp;三峡人家景区定于2023年1月23日（农历正月初二）起恢复开园。此前，因进入景区的主要道路——仙胡路提档升级、封闭施工，景区暂时闭园，暂停游客接待，给大家造成了不便，诚表歉意。春节后，仙胡路经过提档升级，可往返通行，接待游客。我们将不断优化景点设施、提升演艺......</div>
-					</div>
-					<div class="content_right">
-						<div class="time">2023-01-12</div>
-					</div>
-				</div>
-								<div class="content_item" id="458" cid="50">
-					<div class="content_left">
-						<div class="name">关于三峡人家风景区交通线路临时调整的公告</div>
-						<div class="disc">关于三峡人家风景区交通线路临时调整的公告尊敬的游客朋友们：因G348武大线宜昌城区至三峡坝区公路工程路面沥青摊铺施工，部分路段实行交通管制，时间自2022年9月21日至9月30日，在此期间，所有游客需在三峡人家南沱游客中心购票入园。给您带来的不便之处，敬请谅解！特此公告。宜昌三峡人家文化旅游发展有限公司2022年9......</div>
-					</div>
-					<div class="content_right">
-						<div class="time">2022-09-20</div>
-					</div>
-				</div>
-								<div class="pagebox"><ul class="pagination"><li class="page-item disabled"><a class="page-link" href="javascript:;"><span>上一页</span></a></li> <li class="page-item active"><a class="page-link" href="javascript:;"><span>1</span></a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=2" attr-page="2">2</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=3" attr-page="3">3</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=4" attr-page="4">4</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=5" attr-page="5">5</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=6" attr-page="6">6</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=7" attr-page="7">7</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=8" attr-page="8">8</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=9" attr-page="9">9</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=10" attr-page="10">10</a></li><li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=11" attr-page="11">11</a></li> <li class="page-item"><a class="page-link" href="/news/index?cid=50&amp;page=2" attr-page="2">下一页</a></li></ul></div>
-			</div>
+        {% endfor %}
+        <div class="pagebox">
+        <ul class="pagination">
+          <li class="page-item {{ page == 1 ? 'disabled'}}">
+            <a class="page-link" href="?p={{ page - 1 }}"><span>上一页</span></a>
+          </li> 
+          {% for i in 1..page_count %}
+          <li class="page-item {{ loop.index == page ? 'active'}}">
+            <a class="page-link" href="?p={{ loop.index }}"><span>{{ loop.index }}</span></a>
+          </li>
+          {% endfor %}
+          <li class="page-item {{ page == page_count ? 'disabled'}}">
+            <a class="page-link" href="?p={{ page + 1}}">下一页 </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 		</div>
 	</div>
 
