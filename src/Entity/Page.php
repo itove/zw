@@ -21,6 +21,9 @@ class Page
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $label = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -74,6 +77,18 @@ class Page
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getLabel(): ?string
+    {
+        return $this->label;
+    }
+
+    public function setLabel(string $label): static
+    {
+        $this->label = $label;
 
         return $this;
     }

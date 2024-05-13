@@ -41,9 +41,9 @@ class Data
         }
         return $arr;
     }
-    public function getPage(string $name)
+    public function getPage(string $label)
     {
-        $page = $this->doctrine->getRepository(Page::class)->findOneBy(['name' => $name]);
+        $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
         return $page;
     }
     
