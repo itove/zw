@@ -384,6 +384,10 @@ footer .info .wrapper .contact p{
 .index_main .section3 .sec3flex .viewsbox{
   justify-content: center !important;
 }
+.form-btn .btn,
+.form-control{
+  font-size: 14px !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
