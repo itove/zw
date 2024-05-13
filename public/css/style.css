@@ -358,9 +358,6 @@ footer .info .wrapper .contact p{
   background: #161616 !important;
   border: 1px solid #eeeeee;
 }
-.spfoodbox{
-  padding: 110px 0 !important;
-}
 .index_main .sec5flex{
   padding-top: 80px !important;
 }
@@ -457,5 +454,10 @@ footer .info .wrapper .contact p{
   }
   .sec4flex .services{
     flex-wrap: nowrap !important;
+  }
+  .hotelbox .hotelcontainer .hotelright .content{
+    height: unset !important;
+    padding: 10px;
+    left: 0;
   }
 }
