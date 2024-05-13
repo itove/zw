@@ -26,16 +26,8 @@ class ContactController extends AbstractController
     #[Route('/contact', name: 'app_contact')]
     public function index(Request $request): Response
     {
-        $locale = $request->getLocale();
-        $d = $this->data->getPageContent('contact', $locale);
-        dump($d);
+        $data = $this->data->getPageContent('contact', $request->getLocale());
         
-        $conf = $this->data->findConfByLocale($locale);
-        $data = [
-          'conf' => $conf,
-        ];
-        $data = array_merge($data, $d);
-        dump($data);
         return $this->render('contact/index.html.twig', $data);
     }
 }

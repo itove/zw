@@ -41,6 +41,7 @@ class Data
         }
         return $arr;
     }
+    
     public function getPage(string $label)
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
@@ -51,12 +52,22 @@ class Data
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
         $regions = $page->getRegions();
-        $d = [];
+        $data = [];
         foreach ($regions as $r) {
             $dataOfRegion = self::findNodesByRegion($r, $locale);
-            $d[$r->getLabel()] = $dataOfRegion;
+            $data[$r->getLabel()] = $dataOfRegion;
         }
-        return $d;
+        
+        $data['footer'] = self::findNodesByRegion(self::getFooterRegion(), $locale);
+        $data['conf'] = self::findConfByLocale($locale);
+        
+        return $data;
+    }
+    
+    public function getFooterRegion()
+    {
+        $region = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
+        return $region;
     }
     
     public function getSome($nid = null)

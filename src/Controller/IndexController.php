@@ -23,20 +23,8 @@ class IndexController extends AbstractController
     #[Route('/', name: 'app_index')]
     public function index(Request $request): Response
     {
-        $locale = $request->getLocale();
-        $page = $this->data->getPage('home');
-        $regions = $page->getRegions();
-        $d = [];
-        foreach ($regions as $r) {
-            $dataOfRegion = $this->data->findNodesByRegion($r, $locale);
-            $d[$r->getLabel()] = $dataOfRegion;
-        }
-        $conf = $this->data->findConfByLocale($locale);
-        $data = [
-          'conf' => $conf,
-        ];
-        $data = array_merge($data, $d);
-        dump($data);
+        $data = $this->data->getPageContent('home', $request->getLocale());
+        
         return $this->render('index/index.html.twig', $data);
     }
 }
