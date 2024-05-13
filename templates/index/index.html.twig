@@ -68,42 +68,13 @@
 				<div class="sec2_fu_title">{{ xingchengtext[0].summary }}</div>
 
 				<div class="ways">
+        {% for i in xingcheng %}
 					<div class="way">
-
-						<img src="/images/train.png" />
-
-						<div>高铁出行</div>
-
+						<img src="/images/{{ i.image }}" />
+						<div>{{ i.title }}</div>
 					</div>
-					
-					<div class="way">
-
-						<img src="/images/bus.png" />
-
-						<div>客车出行</div>
-
-					</div>
-
-					<div class="way">
-
-						<img src="/images/plane.png" />
-
-						<div>飞机出行</div>
-
-					</div>
-					
-					<div class="way">
-
-						<img src="/images/car.png" />
-
-						<div>自驾路线</div>
-
-					</div>
-
-					
+        {% endfor %}
 				</div>
-
-
 			</div>
 
 			<div class="sec2flex_right">
