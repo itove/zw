@@ -89,7 +89,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        $regions = $this->doctrine->getRepository(Region::class);
+        $pages = $this->doctrine->getRepository(Page::class)->findAll();
         
         yield MenuItem::linkToUrl('Back to Site', 'fas fa-arrow-circle-left', '/');
         
@@ -103,12 +103,23 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::section('Region Management');
         
-        // admin menu of regions
-        foreach ($this->regions as $region) {
-            yield MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
-                ->setQueryParameter('region', $region->getId())
-            ;
+        foreach ($pages as $p) {
+            $items = [];
+            foreach ($p->getRegions() as $region) {
+                $item = MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
+                    ->setQueryParameter('region', $region->getId())
+                ;
+                array_push($items, $item);
+            }
+            yield MenuItem::subMenu($p->getName(), 'fa fa-gear')->setSubItems($items);
         }
+        
+        // admin menu of regions
+        // foreach ($this->regions as $region) {
+        //     yield MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
+        //         ->setQueryParameter('region', $region->getId())
+        //     ;
+        // }
         
         yield MenuItem::section('Settings');
         yield MenuItem::linkToCrud('Change Password', 'fas fa-key', User::class)
