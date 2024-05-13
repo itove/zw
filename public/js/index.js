@@ -38,7 +38,7 @@
 	});
 	/*首页出行方式点击事件*/
 	$('.way').click(function() {
-		window.location.href = '/daolan/index?target=daolan_4'
+		window.location.href = '/zoujin?target=xingcheng'
 	})
 	$('.sitem').click(function(e) {
 		if($(this).attr('goto') == 'service_6') {
@@ -129,6 +129,8 @@
 		$('.popupCxt').empty()
 		//获取文章ID 通过ajax请求数据然后注入到弹窗并显示
 		let id = $(this).attr('id')
+    console.log(id);
+    window.location.href = "/news/" + id
 		$.ajax({
 			type: "GET",
 			//请求的媒体类型

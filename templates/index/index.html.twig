@@ -80,7 +80,7 @@
 			<div class="sec2flex_right">
 				<div class="sec2_fu_title1 bold">
 					<div class="gonglue">
-						<a href="/daolan/index?target=daolan_5">地图导航 >></a>
+						<a href="/zoujin?target=xingcheng">地图导航 >></a>
 					</div>
 
 				</div>
@@ -108,16 +108,16 @@
 						<img class="img-responsive" src="/images/{{ i.image }}" />
 						<div class="hovertip">
 							<div>
-								<a href="/jingqu/index?target=jingqu_1"><img src="/images/more.png"></a>
+								<a href="/news/{{ i.id }}"><img src="/images/more.png"></a>
 							</div>
 							<div class="knowmore">
-								<a href="/jingqu/index?target=jingqu_1">了解更多</a>
+								<a href="/news/{{ i.id }}">了解更多</a>
 							</div>
 						</div>
 					</div>
 					<div class="bottom">
 						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_1">{{ i.title }}</a>
+							<a href="/news/{{ i.id }}">{{ i.title }}</a>
 						</div>
 					</div>
 				</div>
@@ -168,7 +168,7 @@
 					<div class="more" cid='50'>MORE</div>
 				</div>
         {% for i in wenlv %}
-				 <div class="sec5item_articlebox">
+				 <div class="sec5item_articlebox" id="{{ i.id }}">
 					<div class="date">{{ i.createdAt | date("m-d") }}</div>
 					<div class="cxt">
 						<div class="cxt_t">{{ i.title }}</div>
@@ -185,7 +185,7 @@
 				</div>
 
         {% for i in tongzhi %}
-				 <div class="sec5item_articlebox">
+				 <div class="sec5item_articlebox" id="{{ i.id }}">
 					<div class="date">{{ i.createdAt | date("m-d") }}</div>
 					<div class="cxt">
 						<div class="cxt_t">{{ i.title }}</div>
@@ -201,7 +201,7 @@
 					<div class="more" cid='52'>MORE</div>
 				</div>
         {% for i in dangjian %}
-				 <div class="sec5item_articleimgbox">
+				 <div class="sec5item_articleimgbox" id="{{ i.id }}">
 				<div class="imgbox">
 					<img src="/images/{{ i.image }}" onerror="this.src='/images/{{ i.image }}'" class="img-responsive" />
 				</div>
@@ -220,7 +220,7 @@
 					<div class="more" cid='53'>MORE</div>
 				</div>
         {% for i in youji %}
-				 <div class="sec5item_articleimgbox">
+				 <div class="sec5item_articleimgbox" id="{{ i.id }}">
 				<div class="imgbox">
 					<img src="/images/{{ i.image }}" onerror="this.src='/images/{{ i.image }}'" class="img-responsive" />
 				</div>
