@@ -178,11 +178,16 @@ footer .info .wrapper .contact p{
 }
 .hotelbox .hotelcontainer .hotelright .content{
   background: #eeeeee;
-  padding: 2.5em;
+  padding: 20px;
   position: relative;
   left: -20px;
   z-index: 55;
   margin-top: 1em;
+}
+.hotelbox .hotelcontainer .hotelright .content .cxt{
+  overflow-y: scroll !important;
+  padding: 20px;
+  height: 250px;
 }
 .hotelbox .hotelcontainer .hotelleft{
   margin: 0;
@@ -459,5 +464,8 @@ footer .info .wrapper .contact p{
     height: unset !important;
     padding: 10px;
     left: 0;
+  }
+  .hotelbox .hotelcontainer .hotelright .content .cxt{
+    padding: 0 !important;
   }
 }
