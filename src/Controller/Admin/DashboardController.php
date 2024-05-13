@@ -11,6 +11,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use App\Entity\Node;
 use App\Entity\Region;
+use App\Entity\Page;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Feedback;
@@ -125,6 +126,7 @@ class DashboardController extends AbstractDashboardController
         
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             yield MenuItem::section('Super Admin');
+            yield MenuItem::linkToCrud('Page', 'fas fa-list', Page::class);
             yield MenuItem::linkToCrud('Region', 'fas fa-list', Region::class);
             yield MenuItem::linkToCrud('Node', 'fas fa-list', Node::class);
             yield MenuItem::linkToCrud('Language', 'fas fa-list', Language::class);
