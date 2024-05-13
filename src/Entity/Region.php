@@ -42,7 +42,12 @@ class Region
     
     public function __toString(): string
     {
-        return $this->name;
+        $page = $this->page;
+        $s = $this->name;
+        if (!is_null($page)) {
+            $s = $this->page . '-' . $s;
+        }
+        return $s;
     }
 
     public function __construct()
