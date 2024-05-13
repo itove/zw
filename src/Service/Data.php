@@ -30,7 +30,7 @@ class Data
         // $props   = $reflect->getProperties(\ReflectionProperty::IS_PRIVATE);
         $props   = $reflect->getProperties();
         $arr = [];
-        $no_need = ['title', 'region', 'imageFile', 'language'];
+        $no_need = ['title', 'regions', 'imageFile', 'language'];
         foreach ($props as $prop) {
             $prop_name = $prop->getName();
             if (!in_array($prop_name, $no_need)) {
