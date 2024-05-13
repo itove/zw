@@ -29,6 +29,7 @@ class RegionCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         yield IdField::new('id')->onlyOnIndex();
+        yield AssociationField::new('page');
         yield TextField::new('name');
         yield TextField::new('label');
         // yield IntegerField::new('count');
@@ -36,7 +37,6 @@ class RegionCrudController extends AbstractCrudController
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
         yield IntegerField::new('count');
-        yield AssociationField::new('page');
     }
     
     public function configureActions(Actions $actions): Actions
