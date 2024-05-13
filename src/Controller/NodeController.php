@@ -25,38 +25,32 @@ class NodeController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        $region = 'news';
-        $page = $request->query->get('p');
-        $limit = 9;
-        if (is_null($page) || empty($page)) {
-          $page = 1;
-        }
-        $offset = $limit * ($page - 1);
-        
-        $nodes = $this->data->getNodeByRegion($region, $limit, $offset);
-        $nodes_all = $this->data->getNodeByRegion($region);
-        $tag = $this->data->getTagByLabel($region);
+        //$region = 'news';
+        //$page = $request->query->get('p');
+        //$limit = 9;
+        //if (is_null($page) || empty($page)) {
+        //  $page = 1;
+        //}
+        //$offset = $limit * ($page - 1);
+        //
+        //$nodes = $this->data->getNodeByRegion($region, $limit, $offset);
+        //$nodes_all = $this->data->getNodeByRegion($region);
+        //$tag = $this->data->getTagByLabel($region);
 
-        $arr = $this->data->getSome();
-        $arr['node'] = $tag;
-        $arr['nodes'] = $nodes;
-        $arr['page'] = $page;
-        $arr['page_count'] = ceil(count($nodes_all) / $limit);
+        //$arr = $this->data->getSome();
+        //$arr['node'] = $tag;
+        //$arr['nodes'] = $nodes;
+        //$arr['page'] = $page;
+        //$arr['page_count'] = ceil(count($nodes_all) / $limit);
         $conf = $this->data->findConfByLocale($locale);
-        // $beian = $this->data->findNodeByRegion('beian', 1)[0];
-        // $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
-        // $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
 
         $data = [
-          'nodes' => $nodes,
-          'class' => 'page-news-list',
-          'page_title' => $this->translator->trans('News'),
-          'page' => $page,
-          'page_count' => ceil(count($nodes_all) / $limit),
+          //'nodes' => $nodes,
+          //'class' => 'page-news-list',
+          //'page_title' => $this->translator->trans('News'),
+          //'page' => $page,
+          //'page_count' => ceil(count($nodes_all) / $limit),
           'conf' => $conf,
-          // 'beian' => $beian,
-          // 'wechat' => $wechat,
-          // 'miniprog' => $miniprog,
         ];
         return $this->render('node/index.html.twig', $data);
     }
