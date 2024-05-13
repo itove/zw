@@ -107,14 +107,16 @@ class DashboardController extends AbstractDashboardController
             $items = [];
             foreach ($p->getRegions() as $region) {
                 $item = MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
-                    ->setQueryParameter('region', $region->getLabel())
+                    ->setQueryParameter('region', $region->getId())
                 ;
                 array_push($items, $item);
             }
             yield MenuItem::subMenu($p->getName(), 'fa fa-gear')->setSubItems($items);
         }
+        
+        $footer = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
         yield MenuItem::linkToCrud('Footer', 'fas fa-truck', Node::class)
-            ->setQueryParameter('region', 'footer')
+            ->setQueryParameter('region', $footer->getId())
         ;
         
         // admin menu of regions
