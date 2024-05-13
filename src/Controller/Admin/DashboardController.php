@@ -111,11 +111,11 @@ class DashboardController extends AbstractDashboardController
                 ;
                 array_push($items, $item);
             }
-            yield MenuItem::subMenu($p->getName(), 'fa fa-gear')->setSubItems($items);
+            yield MenuItem::subMenu($p->getName(), 'fa fa-file-image-o')->setSubItems($items);
         }
         
         $footer = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
-        yield MenuItem::linkToCrud('Footer', 'fas fa-truck', Node::class)
+        yield MenuItem::linkToCrud('Footer', 'fas fa-xmarks-lines', Node::class)
             ->setQueryParameter('region', $footer->getId())
         ;
         
