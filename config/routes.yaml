@@ -4,5 +4,5 @@ controllers:
         namespace: App\Controller
     type: attribute
     prefix:
-      en: ''
-      zh_CN: '/cn'
+      en: '/en'
+      zh_CN: ''
