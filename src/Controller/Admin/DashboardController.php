@@ -89,7 +89,7 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        $pages = $this->doctrine->getRepository(Page::class)->findAll();
+        $pages = $this->doctrine->getRepository(Page::class)->findBy([], ['id' => 'ASC']);
         
         yield MenuItem::linkToUrl('Back to Site', 'fas fa-arrow-circle-left', '/');
         

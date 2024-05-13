@@ -16,6 +16,7 @@ class Page
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'page', targetEntity: Region::class)]
+    #[ORM\OrderBy(["id" => "ASC"])]
     private Collection $regions;
 
     #[ORM\Column(length: 255)]
