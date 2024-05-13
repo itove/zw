@@ -77,7 +77,8 @@ CREATE TABLE public.conf (
     phone character varying(25) DEFAULT NULL::character varying,
     email character varying(55) DEFAULT NULL::character varying,
     logo character varying(255) DEFAULT NULL::character varying,
-    updated_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone
+    updated_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    note character varying(255) DEFAULT NULL::character varying
 );
 
 
@@ -349,7 +350,7 @@ ALTER TABLE public.node_tag OWNER TO sygen;
 CREATE TABLE public.page (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    label character varying(255) DEFAULT 'test'::character varying NOT NULL
+    label character varying(255) NOT NULL
 );
 
 
@@ -516,8 +517,8 @@ COPY public.category (id, name, label) FROM stdin;
 -- Data for Name: conf; Type: TABLE DATA; Schema: public; Owner: sygen
 --
 
-COPY public.conf (id, language_id, sitename, keywords, description, address, phone, email, logo, updated_at) FROM stdin;
-1	\N	乐游东沟	\N	\N	湖北省十堰市茅箭区茅塔乡东沟村一组	0719-8457770	\N	logo-6641912db5458003532123.png	2024-05-13 04:03:57
+COPY public.conf (id, language_id, sitename, keywords, description, address, phone, email, logo, updated_at, note) FROM stdin;
+1	\N	乐游东沟	东沟,十堰	乐游东沟	湖北省十堰市茅箭区茅塔乡东沟村一组	0719-8457770	\N	logo-6641912db5458003532123.png	2024-05-13 04:03:57	鄂ICP备2023029037号-1
 \.
 
 
@@ -530,6 +531,9 @@ DoctrineMigrations\\Version20240110161309	2024-03-13 12:28:02	214
 DoctrineMigrations\\Version20240513003319	2024-05-13 00:33:29	37
 DoctrineMigrations\\Version20240513003519	2024-05-13 00:35:22	8
 DoctrineMigrations\\Version20240513042532	2024-05-13 04:26:21	12
+DoctrineMigrations\\Version20240513082950	2024-05-13 08:29:54	13
+DoctrineMigrations\\Version20240513110628	2024-05-13 11:06:34	36
+DoctrineMigrations\\Version20240513143315	2024-05-13 14:34:24	15
 \.
 
 
@@ -539,6 +543,10 @@ DoctrineMigrations\\Version20240513042532	2024-05-13 04:26:21	12
 
 COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, body, country) FROM stdin;
 1	\N	jk	\N		jk	\N	jk	\N
+2	\N	sadf	\N	fdas@a.com	fdas	\N	fdas	\N
+3	\N	sadf	\N	fdas@a.com	fdas	\N	fdas	\N
+4	\N	jk	\N		jkj	\N	k	\N
+5	\N	jk	\N		jk	\N	jk	\N
 \.
 
 
@@ -547,6 +555,9 @@ COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, bod
 --
 
 COPY public.image (id, node_id, image) FROM stdin;
+1	39	zoujin-slider-1-6641de859dc34583489789.jpg
+2	39	zoujin-slider-1-6641de859f997100304563.jpg
+3	39	zoujin-slider-1-6641de85a03a0617232110.jpg
 \.
 
 
@@ -593,7 +604,6 @@ COPY public.node (id, language_id, category_id, title, created_at, body, image, 
 21	\N	\N	购在东沟	2024-05-13 03:22:52	\N	leyou-4-6641878c99c53673730065.jpg	东沟村地处于茅箭区茅塔乡，属北亚热带大 陆性季风气候，地势属中高山区类型...	2024-05-13 03:22:52
 22	\N	\N	追寻红色足迹 传承红色基因——丹江口市税务局开展青年干...	2024-05-13 03:39:49	\N	\N	为强化春训工作，提升春训效果，4月7日，丹江口市税务局组织青年干部...	2024-05-13 03:39:49
 23	\N	\N	产投集团赴东沟红色廉政教育基地开展党纪学习教育	2024-05-13 03:40:11	\N	\N	为扎实推进党纪学习教育，进一步推进廉洁教育常态化长效化，4月18日，...	2024-05-13 03:40:11
-24	\N	\N	茅箭区茅塔河流域农村生活污水治理见闻	2024-05-13 03:40:32	\N	\N	十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全...	2024-05-13 03:40:32
 25	\N	\N	东风商用车·2024十堰马拉松圆满举行	2024-05-13 03:40:57	\N	\N	山水之城，向“绿”先行；汽车之城，向“新”出发。4月14日上午，东风商用车...	2024-05-13 03:40:57
 26	\N	\N	产投集团赴东沟红色廉政教育基地开展党纪学习教育	2024-05-13 03:41:18	\N	\N	产投集团赴东沟红色廉政教育基地开展党纪学习教育	2024-05-13 03:41:18
 27	\N	\N	茅箭区茅塔河流域农村生活污水治理见闻	2024-05-13 03:41:40	\N	\N	十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全面推进乡...	2024-05-13 03:41:40
@@ -602,6 +612,20 @@ COPY public.node (id, language_id, category_id, title, created_at, body, image, 
 30	\N	\N	我市发布《十堰市民绿色低碳生活行为规范》	2024-05-13 03:43:54	\N	news-3-66418c7b5c955402548006.jpg	7月7日，《十堰市民绿色低碳生活行为规范》（以下简称《规范》）新 闻发布会在市创文办举行。会上正式发布了《规范》，市创文办..	2024-05-13 03:43:55
 31	\N	\N	湖北省公共文化服务保障条例	2024-05-13 03:44:39	\N	news-4-66418ca7d8df1388492707.jpg	第一条 为了加强公共文化服务体系建设，保障人民群众基本文化权益， 传承中华优秀传统文化，弘扬社会主义核心价值观，增强文化自..	2024-05-13 03:44:39
 10	\N	\N	行程规划	2024-05-13 02:37:48	\N	xingcheng-66417cfcac045999996237.jpg	选择您的出行方式，我们将给您做出推荐	2024-05-13 02:37:48
+32	\N	\N	投诉建议	2024-05-13 08:07:54	\N	\N	如果您对东沟有任何建议或想与我们讨论的问题，请填写表单，我们将尽力为您处理。	2024-05-13 08:07:54
+33	\N	\N	乐游东沟公众号	2024-05-13 08:39:42	\N	gongzhonghao-6641d1cf95590388723889.jpg	\N	2024-05-13 08:39:43
+34	\N	\N	乐游东沟小程序	2024-05-13 08:40:05	\N	miniprog-6641d1e619827803888056.jpg	\N	2024-05-13 08:40:06
+35	\N	\N	高铁出行	2024-05-13 09:28:13	\N	train-6641dd2dc2894166030166.png	\N	2024-05-13 09:28:13
+36	\N	\N	客车出行	2024-05-13 09:28:38	\N	bus-6641dd4703e3b261786135.png	\N	2024-05-13 09:28:39
+37	\N	\N	飞机出行	2024-05-13 09:29:00	\N	plane-6641dd5d44124102676172.png	\N	2024-05-13 09:29:01
+38	\N	\N	自驾路线	2024-05-13 09:29:22	\N	car-6641dd72d77c0868742161.png	\N	2024-05-13 09:29:22
+24	\N	\N	茅箭区茅塔河流域农村生活污水治理见闻	2024-05-13 03:40:32	<p>十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全...</p><p><strong>十堰是南水北调中线工程核心水源区</strong>。高标准治理好农村生活污水，对全...</p><p>十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全...</p><p>十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全...</p>	\N	十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全...	2024-05-13 03:40:32
+39	\N	\N	东沟简介	2024-05-13 09:33:56	\N	\N	东沟位于茅箭区茅塔乡东沟村，东沟村是革命老区，曾经历过血与火的洗礼。 经过20多年的持续打造，东沟景区目前重要景点:中原突围鄂东沟位于茅箭区茅塔乡东沟村，东沟村是革命老区，曾经历过血与火的洗礼。 经过20多年的持续打造，东沟景区目前重要景点:中原突围鄂东沟位于茅箭区茅塔乡东沟村，东沟村是革命老区，曾经历过血与火的洗礼。 经过20多年的持续打造，东沟景区目前重要景点:中原突围鄂东沟位于茅箭区茅塔乡东沟村，东沟村是革命老区，曾经历过血与火的洗礼。 经过20多年的持续打造，东沟景区目前重要景点:中原突围鄂东沟位于茅箭区茅塔乡东沟村，东沟村是革命老区，曾经历过血与火的洗礼。 经过20多年的持续打造，东沟景区目前重要景点:中原突围鄂东沟位于茅箭区茅塔乡东沟村，东沟村是革命老区，曾经历过血与火的洗礼。 经过20多年的持续打造，东沟景区目前重要景点:中原突围鄂	2024-05-13 09:33:56
+40	\N	\N	行程规划	2024-05-13 09:46:00	\N	zoujin-xingcheng-bg-6641e159690aa348240367.jpg	选择您的出行方式，我们将给您做出推荐	2024-05-13 09:46:01
+41	\N	\N	飞机出行	2024-05-13 09:47:36	<p>十堰武当山机场——桃源人家</p><p>东沟景区面积11.4平方公里，距十堰城区13公里，自十堰火车站、十堰武当山机场到景区， 有高等级旅游公路仅需30分钟车程可直达。</p>	plane-green-6641e1b8db9b3769167378.png	\N	2024-05-13 09:47:36
+42	\N	\N	火车出行	2024-05-13 09:48:56	<p>十堰东站——桃源人家&nbsp;</p><p>1、在宜昌东站乘坐B9路公交车，在BRT西陵一路站下车，步行340米在夷陵广场公交车站转乘10-1路公交旅游专线车至终点站三峡人家游客中心。2、在宜昌东站乘坐B1路公交车，在市住建局站下车，步行490米在夷陵广场公交车站转乘10-1路公交旅游专线车至终点站三峡人家游客中心。</p><p>&nbsp;</p><p>&nbsp;</p>	train-green-6641e20966279692078075.png	\N	2024-05-13 09:48:57
+43	\N	\N	客车出行	2024-05-13 09:49:24	<p>十堰武当山机场——桃源人家</p><p>东沟景区面积11.4平方公里，距十堰城区13公里，自十堰火车站、十堰武当山机场到景区， 有高等级旅游公路仅需30分钟车程可直达。</p>	bus-green-6641e224e128b620672102.png	\N	2024-05-13 09:49:24
+44	\N	\N	自驾出行	2024-05-13 09:49:48	<p>十堰武当山机场——桃源人家</p><p>东沟景区面积11.4平方公里，距十堰城区13公里，自十堰火车站、十堰武当山机场到景区， 有高等级旅游公路仅需30分钟车程可直达。</p>	car-green-6641e23d5adbc457346214.png	\N	2024-05-13 09:49:49
 \.
 
 
@@ -643,6 +667,19 @@ COPY public.node_region (node_id, region_id) FROM stdin;
 29	11
 30	12
 31	12
+32	13
+33	14
+34	14
+35	15
+36	15
+37	15
+38	15
+39	16
+40	17
+41	18
+42	18
+43	18
+44	18
 \.
 
 
@@ -660,8 +697,9 @@ COPY public.node_tag (node_id, tag_id) FROM stdin;
 
 COPY public.page (id, name, label) FROM stdin;
 1	首页	home
-2	走进	zoujin
-3	乐游	leyou
+4	联系我们	contact
+3	乐游东沟	leyou
+2	走进东沟	zoujin
 \.
 
 
@@ -670,18 +708,39 @@ COPY public.page (id, name, label) FROM stdin;
 --
 
 COPY public.region (id, name, label, count, icon, fields, description, page_id) FROM stdin;
-1	常见问题	faq	0	\N	regions	\N	\N
-2	产品方案	leyou	0	\N	\N	\N	\N
-3	幻灯片1	slider1	3	\N	image,summary	\N	1
-7	景区介绍	jingqu	6	\N	body,image,summary,tags	\N	1
-4	景区介绍-文本	jingqutext	1	\N	image,summary	\N	1
-6	行程规划-文本	xingchengtext	1	\N	image,summary	\N	1
-5	乐游东沟-文本	leyoutext	1	\N	image,summary	\N	1
-8	乐游东沟	leyou	4	\N	image,summary	\N	1
-9	文旅要闻	wenlv	3	\N	body,image,summary	\N	1
-10	通知公告	tongzhi	3	\N	body,image,summary	\N	1
-11	党建文明	dangjian	2	\N	body,image,summary	\N	1
-12	旅行游记	youji	2	\N	body,image,summary	\N	1
+3	幻灯片	slider	3	list	image,summary	\N	1
+1	常见问题	faq	0	list	regions	\N	\N
+2	产品方案	leyou	0	list	\N	\N	\N
+7	景区介绍	jingqu	6	list	body,image,summary,tags	\N	1
+4	景区介绍-文本	jingqutext	1	list	image,summary	\N	1
+6	行程规划-文本	xingchengtext	1	list	image,summary	\N	1
+5	乐游东沟-文本	leyoutext	1	list	image,summary	\N	1
+8	乐游东沟	leyou	4	list	image,summary	\N	1
+9	文旅要闻	wenlv	3	list	body,image,summary	\N	1
+10	通知公告	tongzhi	3	list	body,image,summary	\N	1
+11	党建文明	dangjian	2	list	body,image,summary	\N	1
+12	旅行游记	youji	2	list	body,image,summary	\N	1
+13	投诉建议	feedback	1	list	summary	\N	4
+14	页脚	footer	2	list	image	\N	\N
+15	行程规划	xingcheng	4	list	image	\N	1
+16	东沟简介	jianjie	1	list	summary,images	\N	2
+17	行程规划-文本	xingchengtext	1	list	image,summary	\N	2
+18	行程规划	xingcheng	4	list	body,image	\N	2
+20	红色文化	hongse	3	list	summary,body,image	\N	2
+19	红色文化-文本	hongsetext	1	list	summary	\N	2
+21	东沟历史-文本	historytext	1	list	summary,body	\N	2
+22	东沟历史	history	3	list	summary,body,image	\N	2
+23	东沟荣誉-文本	honortext	1	list	image	\N	2
+24	东沟荣誉	honor	4	list	image	\N	2
+25	幻灯片1	slider1	3	list	image	\N	3
+26	游在东沟-文本	youzaitext	1	list	summary	\N	3
+27	游在东沟	youzai	3	list	summary,image	\N	3
+29	住在东沟	zhuzai	3	list	summary,image	\N	3
+28	住在东沟-文本	zhuzaitext	1	list	summary,image	\N	3
+30	吃在东沟-文本	chizaitext	1	list	summary,image	\N	3
+31	吃在东沟	chizai	8	list	summary,image	\N	3
+33	购在东沟	gouzai	4	list	summary,image	\N	3
+32	购在东沟-文本	gouzaitext	1	list	\N	\N	3
 \.
 
 
@@ -737,14 +796,14 @@ SELECT pg_catalog.setval('public.conf_id_seq', 1, true);
 -- Name: feedback_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sygen
 --
 
-SELECT pg_catalog.setval('public.feedback_id_seq', 1, true);
+SELECT pg_catalog.setval('public.feedback_id_seq', 5, true);
 
 
 --
 -- Name: image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sygen
 --
 
-SELECT pg_catalog.setval('public.image_id_seq', 1, false);
+SELECT pg_catalog.setval('public.image_id_seq', 3, true);
 
 
 --
@@ -765,21 +824,21 @@ SELECT pg_catalog.setval('public.messenger_messages_id_seq', 1, false);
 -- Name: node_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sygen
 --
 
-SELECT pg_catalog.setval('public.node_id_seq', 31, true);
+SELECT pg_catalog.setval('public.node_id_seq', 44, true);
 
 
 --
 -- Name: page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sygen
 --
 
-SELECT pg_catalog.setval('public.page_id_seq', 3, true);
+SELECT pg_catalog.setval('public.page_id_seq', 4, true);
 
 
 --
 -- Name: region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sygen
 --
 
-SELECT pg_catalog.setval('public.region_id_seq', 12, true);
+SELECT pg_catalog.setval('public.region_id_seq', 33, true);
 
 
 --
