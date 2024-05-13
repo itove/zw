@@ -57,6 +57,10 @@ $('.food_item').hover(function() {
 })
 
 /*特产轮播图*/
+var timeline = new Swiper('.timeline', {
+  // freeMode: true,
+  scrollContainer: true,
+})
 var spFoodSwiper = new Swiper('.youzai .swiper-container', {
 	loop: true,
 	paginationClickable: true,
@@ -89,6 +93,14 @@ $('.spfoodimg').hover(function() {
 	spFoodSwiper.startAutoplay()
 })
 /*箭头点击事件*/
+$('.timeline .leftarrow').click(function() {
+	timeline.swipePrev()
+  console.log(timeline);
+})
+$('.timeline .rightarrow').click(function() {
+	timeline.swipeNext()
+  console.log(timeline);
+})
 $('.leftarrow').click(function() {
 	spFoodSwiper.swipePrev()
 })

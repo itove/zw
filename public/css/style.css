@@ -396,6 +396,18 @@ footer .info .wrapper .contact p{
 .newsflex .contents .content_item .content_left .name a{
   color: #000000;
 }
+.timeline{
+  width: 100%;
+  height: 500px;
+}
+.timeline .arrow{
+  position: absolute;
+  top: 180px;
+  right: 250px;
+}
+.timeline .arrow img{
+  padding-left: 10px;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -473,5 +485,18 @@ footer .info .wrapper .contact p{
   }
   .hotelbox .hotelcontainer .hotelright .content .cxt{
     padding: 0 !important;
+  }
+  .timeline{
+    height: 360px;
+  }
+  .timeline .swiper-wrapper img{
+    height: 140px;
+  }
+  .timeline .arrow{
+    top: 137px;
+    right: 180px;
+  }
+  .activityBox .activity_container{
+    height: 590px !important;
   }
 }

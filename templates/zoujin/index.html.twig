@@ -206,15 +206,24 @@
 			</div>
 		</div>
 
-		<!--景区活动-->
 		<div class="activityBox" id="honor">
 			<div class="activity_container container">
 				<div class="activitybox_title">
 					<div>东沟荣誉</div>
 				</div>
-				<div class="honor">
-          <img src="/images/honor.jpg" />
-        </div>
+
+				<div class="swiper-container timeline">
+					<div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="/images/honor.png" />
+						</div>
+          </div>
+          <div class="arrow">
+            <img class="leftarrow" src="/images/leftarrow-black.png" />
+            <img class="rightarrow" src="/images/rightarrow-black.png" />
+          </div>
+				</div>
+
 				<div class="swiper-container activity_swiper">
 					<div class="swiper-wrapper activity_wrapper">
             {% for i in honor %}
@@ -224,8 +233,6 @@
 						</div>
             {% endfor %}
           </div>
-					<img class="leftarrow" src="/images/leftarrow.png" />
-					<img class="rightarrow" src="/images/rightarrow.png" />
 				</div>
 			</div>
 		</div>

@@ -590,14 +590,12 @@ p {
 }
 
 .activityBox .activity_container .activitybox_title {
-	width: 204px;
 	margin-bottom: 47px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
-	font-size: 28px;
-	color: #006934;
+	font-size: 20px;
 }
 
 .activity_swiper {
@@ -966,14 +964,11 @@ p {
 		align-items: center;
 	}
 	.activityBox .activity_container .activitybox_title {
-		width: 204px;
 		margin-bottom: 47px;
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		font-size: 20px;
-		color: #006934;
 	}
 	.activityBox .activity_container .activitybox_title img {
 		width: 20px;
