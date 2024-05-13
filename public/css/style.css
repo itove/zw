@@ -33,7 +33,7 @@
 .sec2flex_left .sec2_fu_title1{
   position: absolute;
   left: -54em;
-  top: 53em;
+  top: 50em;
 }
 .section.section3::before{
   content: ' ';
@@ -363,6 +363,16 @@ footer .info .wrapper .contact p{
 .index_main .sec5flex{
   padding-top: 80px !important;
 }
+.index_main .section2 .sec2flex .sec2flex_right{
+  position: absolute;
+  bottom: 185px;
+  left: 400px;
+  font-size: 20px;
+  display: block !important;
+}
+.index_main .section2 .sec2flex .sec2flex_right a{
+  color: #ffffff !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -423,8 +433,11 @@ footer .info .wrapper .contact p{
     right: unset;
     top: 0;
   }
-.index_main .section2{
+  .index_main .section2{
     background-position: 38%;
     background-size: auto !important;
-}
+  }
+  .index_main .section2 .sec2flex .sec2flex_right{
+    display: none !important;
+  }
 }
