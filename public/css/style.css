@@ -381,6 +381,9 @@ footer .info .wrapper .contact p{
 .spfoodbox .spfood_container .spfoodlist_swiper{
   height: 390px !important;
 }
+.index_main .section3 .sec3flex .viewsbox{
+  justify-content: center !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -418,7 +421,7 @@ footer .info .wrapper .contact p{
     content: unset !important;
   }
 	.index_main .section3 .sec3flex .viewsbox .views{
-    width: 45% !important;
+    width: 44% !important;
   }
   .sec4flex .services{
     flex-direction: column !important;
@@ -447,5 +450,8 @@ footer .info .wrapper .contact p{
   }
   .index_main .section2 .sec2flex .sec2flex_right{
     display: none !important;
+  }
+  .sec4flex .services{
+    flex-wrap: nowrap !important;
   }
 }
