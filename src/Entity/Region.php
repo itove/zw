@@ -26,7 +26,7 @@ class Region
     private Collection $nodes;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $count = 0;
+    private ?int $count = 1;
 
     #[ORM\Column(length: 20, nullable: true)]
     private ?string $icon = null;
