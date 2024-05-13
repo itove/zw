@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block style %} {% endblock %}
+{% block style %}
+<style>
+.section.section3::before{
+  background-image: url(/images/{{ jingqutext[0].image }});
+}
+.section.section4{
+  background-image: url(/images/{{ leyoutext[0].image }});
+}
+</style>
+{% endblock %}
 {% block breadcrumbs %}{% endblock %}
 
 {% block main %}
@@ -17,74 +26,30 @@
 
 		<div class="index_banner">
 
-			
+      {#
 			<div class="item">
-
-				<div class="items scaleBg" style="background-image: url(/images/home_slider_1.jpg);"></div>
-
+				<div class="items scaleBg" style="background-image: url(/images/{{ i.image }});"></div>
 				<div class="inner">
-
-					
 					<div class="block_txt1">
-
-						<div class="en_words"><p>TAOYUAN HOMESTAY</p></div>
-
-						<div class="zh_words"><p>桃源人家民宿</p></div>
-
+						<div class="en_words"><p>{{ i.summary }}</p></div>
+						<div class="zh_words"><p>{{ i.title }}</p></div>
 					</div>
-
-					
 				</div>
-
 			</div>
+      #}
 
-			
+      {% for i in slider1 %}
 			<div class="item">
-
-				<div class="items scaleBg" style="background-image: url(/images/home_slider_1.jpg);"></div>
-
+				<div class="items scaleBg" style="background-image: url(/images/{{ i.image }});"></div>
 				<div class="inner">
-
-					
 					<div class="block_txt">
-
-						<h4><p>PICTURESQUE SCENERY</p></h4>
-
-						<h2><p>依山傍水·风景如画</p></h2>
-
+						<h4><p>{{ i.summary }}</p></h4>
+						<h2><p>{{ i.title }}</p></h2>
 						<h3></h3>
-
 					</div>
-
-					
 				</div>
-
 			</div>
-
-			
-			<div class="item">
-
-				<div class="items scaleBg" style="background-image: url(/images/home_slider_1.jpg);"></div>
-
-				<div class="inner">
-
-					
-					<div class="block_txt">
-
-						<h4><p>NATURAL AND SIMPLE ·TUJIA CULTURE</p></h4>
-
-						<h2><p>自然质朴·土家文化</p></h2>
-
-						<h3></h3>
-
-					</div>
-
-					
-				</div>
-
-			</div>
-
-			
+      {% endfor %}
 		</div>
 
 		<!--第一屏 end-->
@@ -92,15 +57,15 @@
 	</div>
 	
 	<!--第二屏-->
-	<div class="section section2" style="background-image: url(/images/xingcheng.jpg);background-repeat:no-repeat;">
+	<div class="section section2" style="background-image: url(/images/{{ xingchengtext[0].image }});background-repeat:no-repeat;">
 
 		<div class="container sec2flex">
 
 			<div class="sec2flex_left">
 
-				<div class="sec2_title">行程规划</div>
+				<div class="sec2_title">{{ xingchengtext[0].title }}</div>
 
-				<div class="sec2_fu_title">选择您的出行方式，我们将给您做出推荐</div>
+				<div class="sec2_fu_title">{{ xingchengtext[0].summary }}</div>
 
 				<div class="ways">
 					<div class="way">
@@ -151,8 +116,6 @@
 
 			<div class="sec2flex_right">
 
-
-
 			</div>
 
 		</div>
@@ -165,197 +128,31 @@
 
 		<div class="container sec3flex main-container">
 
-			<div class="sec3title">景区介绍</div>
-			<div class="">选择您的出行方式，我们将给您做出推荐</div>
+			<div class="sec3title">{{ jingqutext[0].title }}</div>
+			<div class="">{{ jingqutext[0].summary }}</div>
 
 			<div class="viewsbox">
-
 				
+        {% for i in jingqu %}
 				<div class="views">
-
 					<div class="top">
-
-						<img class="img-responsive" src="/images/jingqu_1.jpg" />
-
+						<img class="img-responsive" src="/images/{{ i.image }}" />
 						<div class="hovertip">
-
 							<div>
-								<a href="/jingqu/index?target=jingqu_1"><img src="http://www.sanxiarenjia.com/static/index/images/icons/more.png"></a>
+								<a href="/jingqu/index?target=jingqu_1"><img src="/images/more.png"></a>
 							</div>
-
 							<div class="knowmore">
 								<a href="/jingqu/index?target=jingqu_1">了解更多</a>
 							</div>
-
 						</div>
-
 					</div>
-
 					<div class="bottom">
-
 						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_1">中原突围部西北历史纪念馆</a>
+							<a href="/jingqu/index?target=jingqu_1">{{ i.title }}</a>
 						</div>
-
 					</div>
-
 				</div>
-
-				
-				<div class="views">
-
-					<div class="top">
-
-						<img class="img-responsive" src="/images/jingqu_2.jpg" />
-						<div class="hovertip">
-
-							<div>
-								<a href="/jingqu/index?target=jingqu_2"><img src="http://www.sanxiarenjia.com/static/index/images/icons/more.png"></a>
-							</div>
-
-							<div class="knowmore">
-								<a href="/jingqu/index?target=jingqu_2">了解更多</a>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="bottom">
-
-						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_2">烈士陵园</a>
-						</div>
-
-					</div>
-
-				</div>
-
-				
-				<div class="views">
-
-					<div class="top">
-
-
-						<img class="img-responsive" src="/images/jingqu_3.jpg" />
-						<div class="hovertip">
-
-							<div>
-								<a href="/jingqu/index?target=jingqu_3"><img src="http://www.sanxiarenjia.com/static/index/images/icons/more.png"></a>
-							</div>
-
-							<div class="knowmore">
-								<a href="/jingqu/index?target=jingqu_3">了解更多</a>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="bottom">
-
-						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_3">云上牡丹园</a>
-						</div>
-
-					</div>
-
-				</div>
-
-				
-				<div class="views">
-
-					<div class="top">
-
-
-						<img class="img-responsive" src="/images/jingqu_4.jpg" />
-						<div class="hovertip">
-
-							<div>
-								<a href="/jingqu/index?target=jingqu_4"><img src="http://www.sanxiarenjia.com/static/index/images/icons/more.png"></a>
-							</div>
-
-							<div class="knowmore">
-								<a href="/jingqu/index?target=jingqu_4">了解更多</a>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="bottom">
-
-						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_4">念情谷—猕猴园</a>
-						</div>
-
-					</div>
-
-				</div>
-
-				
-				<div class="views">
-
-					<div class="top">
-
-						<img class="img-responsive" src="/images/jingqu_5.jpg" />
-
-						<div class="hovertip">
-
-							<div>
-								<a href="/jingqu/index?target=jingqu_5"><img src="http://www.sanxiarenjia.com/static/index/images/icons/more.png"></a>
-							</div>
-
-							<div class="knowmore">
-								<a href="/jingqu/index?target=jingqu_5">了解更多</a>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="bottom">
-
-						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_5">杜鹃岭</a>
-						</div>
-
-					</div>
-
-				</div>
-
-				
-				<div class="views">
-
-					<div class="top">
-
-						<img class="img-responsive" src="/images/jingqu_6.jpg" />
-
-						<div class="hovertip">
-
-							<div>
-								<a href="/jingqu/index?target=jingqu_6"><img src="http://www.sanxiarenjia.com/static/index/images/icons/more.png"></a>
-							</div>
-
-							<div class="knowmore">
-								<a href="/jingqu/index?target=jingqu_6">了解更多</a>
-							</div>
-
-						</div>
-
-					</div>
-
-					<div class="bottom">
-
-						<div class="view_title">
-							<a href="/jingqu/index?target=jingqu_6">花开四季 — 月季园</a>
-						</div>
-
-					</div>
-
-				</div>
-
-				
+        {% endfor %}
 			</div>
 
 		</div>
@@ -371,77 +168,23 @@
 
 			<div class="sec4title">
 
-				<div class="SourceHanSansCN-Normal">乐游东沟</div>
+				<div class="SourceHanSansCN-Normal">{{ leyoutext[0].title }}</div>
 
 			</div>
-      <div class="text-white">特色景区服务 · 给您贴心体验</div>
+      <div class="text-white">{{ leyoutext[0].summary }}</div>
 
 			<div class="services main-container">
-				
-				<div class="sitem" goto="youzai" style="background-color: #a48045;">
-
+        {% for i in leyou %}
+				<div class="sitem" goto="{{i.specs[0].value}}" style="background-color: {{ i.specs[1].value}};">
 					<div class="box">
-
-						<div class="tag">游在东沟</div>
-
-						<div class="tag_intro">东沟村地处于茅箭区茅塔乡，属北亚热带大 陆性季风气候，地势属中高山区类型...</div>
-
-						<div class="tag_img"><img class="img-responsive" src="/images/leyou_1.jpg" /></div>
-
+						<div class="tag">{{ i.title }}</div>
+						<div class="tag_intro">{{ i.summary }}</div>
+						<div class="tag_img"><img class="img-responsive" src="/images/{{ i.image }}" /></div>
 						<div class="arrow"><img width="30px" class="" src="/images/leyou_arrow.png" /></div>
 					</div>
-
 				</div>
-
-				<div class="sitem" goto="zhuzai" style="background-color: #918078;">
-
-					<div class="box">
-
-						<div class="tag">住在东沟</div>
-
-						<div class="tag_intro">东沟村地处于茅箭区茅塔乡，属北亚热带大 陆性季风气候，地势属中高山区类型...</div>
-
-						<div class="tag_img"><img class="img-responsive" src="/images/leyou_2.jpg" /></div>
-						<div class="arrow"><img width="30px" class="" src="/images/leyou_arrow.png" /></div>
-
-					</div>
-
-				</div>
-
-				
-				<div class="sitem" goto="chizai" style="background-color: #ca6a50;">
-
-					<div class="box">
-
-						<div class="tag">吃在东沟</div>
-
-						<div class="tag_intro">东沟村地处于茅箭区茅塔乡，属北亚热带大 陆性季风气候，地势属中高山区类型...</div>
-
-						<div class="tag_img"><img class="img-responsive" src="/images/leyou_3.jpg" /></div>
-						<div class="arrow"><img width="30px" class="" src="/images/leyou_arrow.png" /></div>
-
-					</div>
-
-				</div>
-
-				
-				<div class="sitem" goto="gouzai" style="background-color: #009b93;">
-
-					<div class="box">
-
-						<div class="tag">购在东沟</div>
-
-						<div class="tag_intro">东沟村地处于茅箭区茅塔乡，属北亚热带大 陆性季风气候，地势属中高山区类型...</div>
-
-						<div class="tag_img"><img class="img-responsive" src="/images/leyou_4.jpg" /></div>
-						<div class="arrow"><img width="30px" class="" src="/images/leyou_arrow.png" /></div>
-
-					</div>
-
-				</div>
-
+        {% endfor %}
 			</div>
-
 		</div>
 
 	</div>
@@ -449,214 +192,75 @@
 	
 	<!--第五屏-->
 	<div class="section section5" >
-
 		<div class="container sec5flex main-container">
-
-			
 			<div class="sec5item">
-
 				<div class="sec5item_title">
-
 					<div class="name">文旅要闻</div>
-
 					<div class="more" cid='50'>MORE</div>
-
 				</div>
-
-				 <div class="sec5item_articlebox" id="487">
-
-					<div class="date">03-20</div>
-
+        {% for i in wenlv %}
+				 <div class="sec5item_articlebox">
+					<div class="date">{{ i.createdAt | date("m-d") }}</div>
 					<div class="cxt">
-
-						<div class="cxt_t">追寻红色足迹 传承红色基因——丹江口市税务局开展青年干...</div>
-
-						<div class="cxt_shuoming">为强化春训工作，提升春训效果，4月7日，丹江口市税务局组织青年干部...</div>
-
+						<div class="cxt_t">{{ i.title }}</div>
+						<div class="cxt_shuoming">{{ i.summary }}</div>
 					</div>
-
-			</div>
-
-			 <div class="sec5item_articlebox" id="488">
-
-					<div class="date">02-22</div>
-
-					<div class="cxt">
-
-						<div class="cxt_t">产投集团赴东沟红色廉政教育基地开展党纪学习教育</div>
-
-						<div class="cxt_shuoming">为扎实推进党纪学习教育，进一步推进廉洁教育常态化长效化，4月18日，...</div>
-
-					</div>
-
-			</div>
-
-			 <div class="sec5item_articlebox" id="489">
-
-					<div class="date">02-03</div>
-
-					<div class="cxt">
-
-						<div class="cxt_t">茅箭区茅塔河流域农村生活污水治理见闻</div>
-
-						<div class="cxt_shuoming">十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全...</div>
-
-					</div>
-
-			</div>
-
-			
+        </div>
+        {% endfor %}
 	</div>
 
-	
 			<div class="sec5item">
-
 				<div class="sec5item_title">
-
 					<div class="name">通知公告</div>
-
 					<div class="more" cid='51'>MORE</div>
-
 				</div>
 
-				 <div class="sec5item_articlebox" id="493">
-
-					<div class="date">03-27</div>
-
+        {% for i in tongzhi %}
+				 <div class="sec5item_articlebox">
+					<div class="date">{{ i.createdAt | date("m-d") }}</div>
 					<div class="cxt">
-
-						<div class="cxt_t">东风商用车·2024十堰马拉松圆满举行</div>
-
-						<div class="cxt_shuoming">山水之城，向“绿”先行；汽车之城，向“新”出发。4月14日上午，东风商用车...</div>
-
+						<div class="cxt_t">{{ i.title }}</div>
+						<div class="cxt_shuoming">{{ i.summary }}</div>
 					</div>
-
-			</div>
-
-			 <div class="sec5item_articlebox" id="492">
-
-					<div class="date">03-25</div>
-
-					<div class="cxt">
-
-						<div class="cxt_t">产投集团赴东沟红色廉政教育基地开展党纪学习教育</div>
-
-						<div class="cxt_shuoming">为扎实推进党纪学习教育，进一步推进廉洁教育常态化长效化，4月18日，产投集...</div>
-
-					</div>
-
-			</div>
-
-			 <div class="sec5item_articlebox" id="491">
-
-					<div class="date">03-22</div>
-
-					<div class="cxt">
-
-						<div class="cxt_t">茅箭区茅塔河流域农村生活污水治理见闻</div>
-
-						<div class="cxt_shuoming">十堰是南水北调中线工程核心水源区。高标准治理好农村生活污水，对全面推进乡...</div>
-
-					</div>
-
-			</div>
-
-			
+        </div>
+        {% endfor %}
 	</div>
-
 	
 			<div class="sec5item">
-
 				<div class="sec5item_title">
-
 					<div class="name">党建文明</div>
-
 					<div class="more" cid='52'>MORE</div>
-
 				</div>
-
-				 <div class="sec5item_articleimgbox" id="475">
-
+        {% for i in dangjian %}
+				 <div class="sec5item_articleimgbox">
 				<div class="imgbox">
-
-					<img src="/images/news_1.jpg" onerror="this.src='/images/news_1.jpg'" class="img-responsive" />
-
+					<img src="/images/{{ i.image }}" onerror="this.src='/images/{{ i.image }}'" class="img-responsive" />
 				</div>
-
 				<div class="cxtbox">
-
-					<div class="title">关于十堰市景区型村庄评定名单的公示</div>
-
-					<div class="fu_title">根据《十堰市景区型村庄质量等级的划分与评定》（DB　4203／T 227 —2023），经各县（市、区）文化和旅游局推荐，市文</div>
-
+					<div class="title">{{ i.title }}</div>
+					<div class="fu_title">{{ i.summary }}</div>
 				</div>
-
-		</div>
-
-		 <div class="sec5item_articleimgbox" id="447">
-
-				<div class="imgbox">
-
-					<img src="/images/news_2.jpg" onerror="this.src='/images/news_2.jpg'" class="img-responsive" />
-
-				</div>
-
-				<div class="cxtbox">
-
-					<div class="title">春天的意思是：我们该见面了</div>
-
-					<div class="fu_title">乡村的朴实/本真的田园生活，如一股清流/足以让疲惫的身体短暂休憩， 给自己放个假，找个不太热闹的地方彻底躺平两天，春天进山是.</div>
-
-				</div>
-
-		</div>
-
-		
+        </div>
+        {% endfor %}
 	</div>
 
 	
 			<div class="sec5item">
 				<div class="sec5item_title">
-
 					<div class="name">游客游记</div>
-
 					<div class="more" cid='53'>MORE</div>
-
 				</div>
-
-				 <div class="sec5item_articleimgbox" id="446">
-
+        {% for i in youji %}
+				 <div class="sec5item_articleimgbox">
 				<div class="imgbox">
-
-					<img src="/images/news_3.jpg" onerror="this.src='/images/news_3.jpg'" class="img-responsive" />
-
+					<img src="/images/{{ i.image }}" onerror="this.src='/images/{{ i.image }}'" class="img-responsive" />
 				</div>
-
 				<div class="cxtbox">
-
-					<div class="title">我市发布《十堰市民绿色低碳生活行为规范》</div>
-
-					<div class="fu_title">7月7日，《十堰市民绿色低碳生活行为规范》（以下简称《规范》）新 闻发布会在市创文办举行。会上正式发布了《规范》，市创文办..</div>
-
+					<div class="title">{{ i.title }}</div>
+					<div class="fu_title">{{ i.summary }}</div>
 				</div>
-
-		</div>
-
-		 <div class="sec5item_articleimgbox" id="444">
-
-				<div class="imgbox">
-
-					<img src="/images/news_4.jpg" onerror="this.src='/images/news_4.jpg'" class="img-responsive" />
-
-				</div>
-
-				<div class="cxtbox">
-
-					<div class="title">湖北省公共文化服务保障条例</div>
-
-					<div class="fu_title">第一条 为了加强公共文化服务体系建设，保障人民群众基本文化权益， 传承中华优秀传统文化，弘扬社会主义核心价值观，增强文化自..</div>
-				</div>
-		</div>
+        </div>
+        {% endfor %}
 	</div>
 </div>
 

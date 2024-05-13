@@ -148,9 +148,7 @@ class Data
     
     public function findNodesByRegion($region, $locale)
     {
-      $nodes = $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale);
-        
-      return $nodes;
+      return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale);
     }
     
     public function findConfByLocale($locale)
