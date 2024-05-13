@@ -40,9 +40,6 @@ class Region
     #[ORM\ManyToOne(inversedBy: 'regions')]
     private ?Page $page = null;
 
-    #[ORM\ManyToMany(targetEntity: self::class)]
-    private Collection $shareWith;
-    
     public function __toString(): string
     {
         $page = $this->page;
@@ -56,7 +53,6 @@ class Region
     public function __construct()
     {
         $this->nodes = new ArrayCollection();
-        $this->shareWith = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,30 +170,6 @@ class Region
     public function setPage(?Page $page): static
     {
         $this->page = $page;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, self>
-     */
-    public function getShareWith(): Collection
-    {
-        return $this->shareWith;
-    }
-
-    public function addShareWith(self $shareWith): static
-    {
-        if (!$this->shareWith->contains($shareWith)) {
-            $this->shareWith->add($shareWith);
-        }
-
-        return $this;
-    }
-
-    public function removeShareWith(self $shareWith): static
-    {
-        $this->shareWith->removeElement($shareWith);
 
         return $this;
     }

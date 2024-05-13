@@ -23,9 +23,6 @@ class NodeListener extends AbstractController
     // {
     //     $em = $event->getEntityManager();
     //     foreach ($node->getRegions() as $region) {
-    //         foreach ($region->getShareWith() as $r) {
-    //             $node->addRegion($r);
-    //         }
     //     }
     // }
 }
