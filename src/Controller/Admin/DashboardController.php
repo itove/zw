@@ -107,7 +107,7 @@ class DashboardController extends AbstractDashboardController
             $items = [];
             foreach ($p->getRegions() as $region) {
                 $item = MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
-                    ->setQueryParameter('region', $region->getId())
+                    ->setQueryParameter('region', $region->getLabel())
                 ;
                 array_push($items, $item);
             }
