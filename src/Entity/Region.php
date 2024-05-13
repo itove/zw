@@ -36,6 +36,9 @@ class Region
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
+
+    #[ORM\ManyToOne(inversedBy: 'regions')]
+    private ?Page $page = null;
     
     public function __toString(): string
     {
@@ -150,6 +153,18 @@ class Region
     public function setDescription(?string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(?Page $page): static
+    {
+        $this->page = $page;
 
         return $this;
     }
