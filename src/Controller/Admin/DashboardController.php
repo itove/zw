@@ -113,6 +113,9 @@ class DashboardController extends AbstractDashboardController
             }
             yield MenuItem::subMenu($p->getName(), 'fa fa-gear')->setSubItems($items);
         }
+        yield MenuItem::linkToCrud('Footer', 'fas fa-truck', Node::class)
+            ->setQueryParameter('region', 'footer')
+        ;
         
         // admin menu of regions
         // foreach ($this->regions as $region) {
