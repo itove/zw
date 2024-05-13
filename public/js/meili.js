@@ -115,7 +115,7 @@ $('.info_more').click(function() {
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/meili/get_minsu_details",
+		url: "/api/get_jiudian",
 		data: {
 			id: id
 		},
