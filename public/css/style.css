@@ -381,7 +381,10 @@ footer .info .wrapper .contact p{
   padding-bottom: 50px !important;
 }
 .spfoodbox .spfood_container .spfoodlist_swiper{
-  height: 390px !important;
+  height: 480px !important;
+}
+.gouzai.spfoodbox .spfood_container .spfoodlist_swiper{
+  height: 380px !important;
 }
 .index_main .section3 .sec3flex .viewsbox{
   justify-content: center !important;
