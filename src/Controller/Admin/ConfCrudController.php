@@ -74,7 +74,7 @@ class ConfCrudController extends AbstractCrudController
                         ->setBasePath('images/')
                         ->setUploadDir('public/images/')
                     ,
-                    VichImageField::new('logoFile', 'Image')->hideOnIndex(),
+                    VichImageField::new('logoFile', 'Logo')->hideOnIndex(),
                 ];
         }
         
