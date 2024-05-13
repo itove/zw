@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Feedback;
@@ -47,6 +48,7 @@ class FeedbackController extends AbstractController
         $em->persist($f);
         $em->flush();
         
-        return $this->json('OK');
+        // return $this->json('OK');
+        return new RedirectResponse($this->generateUrl('app_contact'));
     }
 }

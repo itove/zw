@@ -27,26 +27,15 @@ class ContactController extends AbstractController
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();
-        // $conf = $this->data->findConfByLocale($locale);
-        // $hero = $this->data->findNodeByRegionAndLocale('contact-hero', $locale);
-        // $contact = $this->data->findNodeByRegionAndLocale('contact_us', $locale);
-        // $request = $this->data->findNodeByRegionAndLocale('request', $locale);
+        $d = $this->data->getPageContent('contact', $locale);
+        dump($d);
+        
         $conf = $this->data->findConfByLocale($locale);
-        // $beian = $this->data->findNodeByRegion('beian', 1)[0];
-        // $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
-        // $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
         $data = [
-          'class' => 'page-contact',
-          // 'page_title' => $this->translator->trans('Contact Us'),
-          // 'conf' => $conf,
-          // 'hero' => $hero,
-          // 'contact' => $contact,
-          // 'request' => $request,
           'conf' => $conf,
-          // 'beian' => $beian,
-          // 'wechat' => $wechat,
-          // 'miniprog' => $miniprog,
         ];
+        $data = array_merge($data, $d);
+        dump($data);
         return $this->render('contact/index.html.twig', $data);
     }
 }

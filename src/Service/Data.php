@@ -47,6 +47,18 @@ class Data
         return $page;
     }
     
+    public function getPageContent(string $label, $locale)
+    {
+        $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
+        $regions = $page->getRegions();
+        $d = [];
+        foreach ($regions as $r) {
+            $dataOfRegion = self::findNodesByRegion($r, $locale);
+            $d[$r->getLabel()] = $dataOfRegion;
+        }
+        return $d;
+    }
+    
     public function getSome($nid = null)
     {
         $conf = $this->doctrine->getRepository(Conf::class)->find(1);
