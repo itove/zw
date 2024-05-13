@@ -93,7 +93,7 @@ class DashboardController extends AbstractDashboardController
         
         yield MenuItem::linkToUrl('Back to Site', 'fas fa-arrow-circle-left', '/');
         
-        yield MenuItem::section('Content Management');
+        // yield MenuItem::section('Content Management');
         // yield MenuItem::linkToCrud('Product Management', 'fas fa-truck', Node::class)
         //     ->setQueryParameter('region', 'product')
         // ;
@@ -133,8 +133,8 @@ class DashboardController extends AbstractDashboardController
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
-            yield MenuItem::linkToCrud('Category Management', 'fas fa-list', Category::class);
-            yield MenuItem::linkToCrud('Tag Management', 'fas fa-list', Tag::class);
+            // yield MenuItem::linkToCrud('Category Management', 'fas fa-list', Category::class);
+            // yield MenuItem::linkToCrud('Tag Management', 'fas fa-list', Tag::class);
             yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('User Management', 'fas fa-users', User::class);
             if ($_ENV['IS_MULTILINGUAL']) {
