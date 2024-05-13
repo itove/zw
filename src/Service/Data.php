@@ -13,6 +13,7 @@ use App\Entity\Conf;
 use App\Entity\Node;
 use App\Entity\Tag;
 use App\Entity\Region;
+use App\Entity\Page;
 use App\Entity\Language;
 
 class Data
@@ -39,6 +40,11 @@ class Data
             }
         }
         return $arr;
+    }
+    public function getPage(string $name)
+    {
+        $page = $this->doctrine->getRepository(Page::class)->findOneBy(['name' => $name]);
+        return $page;
     }
     
     public function getSome($nid = null)
@@ -136,6 +142,13 @@ class Data
       $language = $this->findOneBy(['locale' => $locale], Language::class);
       $region = $this->findOneBy(['label' => $region_label], Region::class);
       $nodes = $this->findBy(['language' => $language, 'region' => $region]);
+        
+      return $nodes;
+    }
+    
+    public function findNodesByRegion($region, $locale)
+    {
+      $nodes = $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale);
         
       return $nodes;
     }
