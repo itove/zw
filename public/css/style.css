@@ -374,6 +374,13 @@ footer .info .wrapper .contact p{
 .index_main .section2 .sec2flex .sec2flex_right a{
   color: #ffffff !important;
 }
+.spfoodbox,
+.activityBox{
+  padding-bottom: 50px !important;
+}
+.spfoodbox .spfood_container .spfoodlist_swiper{
+  height: 390px !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
