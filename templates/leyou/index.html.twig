@@ -35,7 +35,9 @@
 					<div class="swiper-wrapper spfood_wrapper">
               {% for i in youzai %}
               <div class="swiper-slide slider-with-margin">
+                <a href="/news/{{ i.id }}">
                 <img class="img" src='/images/{{ i.image }}' />
+                </a>
                 <div class="info">
                   <p class="title">{{ i.title }}</p>
                   <p class="summary">{{ i.summary }}</p>
@@ -59,7 +61,9 @@
 					<div class="swiper-wrapper spfood_wrapper">
               {% for i in zhuzai %}
               <div class="swiper-slide slider-with-margin">
+                <a href="/news/{{ i.id }}">
                 <img class="img" src='/images/{{ i.image }}' />
+                </a>
                 <div class="info">
                   <p class="title">{{ i.title }}<span class="badge1 ms-3">民宿</span></p>
                   <p class="phone">{{ i.specs[0].value }}</p>
