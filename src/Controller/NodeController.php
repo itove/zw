@@ -47,7 +47,7 @@ class NodeController extends AbstractController
     
     #[Route('/news', name: 'app_news_list')]
     #[Route('/news/{regionLabel?}', name: 'app_news_region_label')]
-    public function index(string $regionLabel = 'youji', Request $request): Response
+    public function index(string $regionLabel, Request $request): Response
     {
         dump($regionLabel);
         $locale = $request->getLocale();
