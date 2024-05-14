@@ -408,6 +408,9 @@ footer .info .wrapper .contact p{
 .timeline .arrow img{
   padding-left: 10px;
 }
+.ways {
+  font-size: 8px;
+}
 
 @media screen and (max-width: 768px) {
   header.header {

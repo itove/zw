@@ -1,7 +1,7 @@
 ﻿/**酒店数据*/
 var hotelList=get_json('/api/intro',{},true);
 /*娱乐项目数据*/
-// var happyList = get_json('/api/get_yule', {}, true);
+var happyList = get_json('/api/get_yule', {}, true);
 
 
 /*酒店初始化*/

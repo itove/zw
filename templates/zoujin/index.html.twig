@@ -40,118 +40,36 @@
     
 		<!--行程规划-->
 
-		<div class="planbox" id="xingcheng" style="background-image: url(/images/zoujin_xingcheng_bg.jpg);background-repeat: no-repeat;">
-
+		<div class="planbox" id="xingcheng" style="background-image: url(/images/{{ xingchengtext[0].image }});background-repeat: no-repeat;">
 			<div class="container planflex">
-
 				<div class="titlebox">
-
-					<div class="bigtitle">行程规划</div>
-
-					<div class="smalltitle">选择您的出行方式，我们将给您做出推荐</div>
-
+					<div class="bigtitle">{{ xingchengtext[0].title }}</div>
+					<div class="smalltitle">{{ xingchengtext[0].summary }}</div>
 				</div>
-
 				<div class="planetogo">
-
-					
 							<div class="plane_title">
-
 								<img src="/images/plane_green.png" alt="飞机出行">
-
-								<div>飞机出行</div>
-
+								<div>{{ xingcheng[3].title }}</div>
 							</div>
-
-							
-							<div class="planeway">
-
-								<div class="name">十堰武当山机场——桃源人家</div>
-
-								<div class="path"><p><span>东沟景区面积11.4平方公里，距十堰城区13公里，自十堰火车站、十堰武当山机场到景区， 有高等级旅游公路仅需30分钟车程可直达。</span></p></div>
-
+							<div class="planeway ways">
+              {{ xingcheng[3].body|raw }}
 							</div>
-
-							
 				</div>
 
 				<div class="threewaysbox">
-
-					
+            {% for i in xingcheng|slice(0, 3)%}
 							<div class="waytogo">
-
 								<div class="way_title">
-
-									<img src="\images\train_green.png" alt="火车出行" />
-
-									<div>火车出行</div>
-
+									<img src="/images/{{ i.image }}" alt="{{ i.title }}" />
+									<div>{{ i.title }}</div>
 								</div>
-
-								
-								<div class="wayway">
-
-									<div class="name">十堰东站——桃源人家</div>
-
-									<ul class="li_item">
-                  <p><span style="">1、在宜昌东站乘坐B9路公交车，在BRT西陵一路站下车，步行340米在夷陵广场公交车站转乘10-1<span style="">路公交旅游专线车</span>至终点站三峡人家游客中心。</span><br/></p><p><span style="">2、<span style="">在宜昌东站乘坐B1路公交车，在市住建局站下车，步行490米在夷陵广场公交车站转乘10-1<span style="">路公交旅游专线车</span>至终点站三峡人家游客中心。</span></span></p><p style="line-height: normal;"><span style=""><span style=""><span style=""></span></span></span></p></ul>
-
+								<div class="wayway ways">
+              {{ i.body|raw }}
 								</div>
-
-								
 							</div>	
-
-						
-							<div class="waytogo">
-
-								<div class="way_title">
-
-									<img src="/images/bus_green.png" alt="客车出行" />
-
-									<div>客车出行</div>
-
-								</div>
-
-								
-								<div class="wayway">
-
-									<div class="name">宜昌市区10-1路公交旅游专线车</div>
-
-									<ul class="li_item"><p><span style="">宜昌市区至三峡人家的10-1路公交旅游专线车，起点站位于夷陵广场，终点站位于三峡人家游客中心，首班时间为8:05从夷陵广场发车，末班时间17:30从三峡人家游客中心发车，每班平均间隔时间45分钟左右，全程票价15元。</span><br/></p></ul>
-
-								</div>
-
-								
-							</div>	
-
-						
-							<div class="waytogo">
-
-								<div class="way_title">
-
-									<img src="/images/car_green.png" alt="自驾出行" />
-
-									<div>自驾出行</div>
-
-								</div>
-
-								
-								<div class="wayway">
-
-									<div class="name">沪渝高速公路</div>
-
-									<ul class="li_item"><p><span style="">推荐</span><span style="">：自驾车经沪渝高速公路（</span><span style="">G</span><span style="">50</span><span style="">）过宜昌收费站，在“</span><span style="">夷陵区</span><span style="">”出口</span><span style="">下高速</span><span style="">，</span><span style="">下高速后左转</span><span style="">，</span><span style="">经</span><span style="">“中核半岛城邦”“</span><span style="">三游洞</span><span style="">”</span><span style="">，可直达三峡人家</span><span style="">游客中心。</span></p></ul>
-
-								</div>
-
-								
-							</div>	
-
-						
+            {% endfor %}
 				</div>
-
 			</div>
-
 		</div>
 
 		<div class="act_container culture" id="culture">
