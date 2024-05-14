@@ -14,7 +14,7 @@
           <!--此处jQuery动态写入轮播作品-->
           {% for i in slider1 %}
           <div class="swiper-slide img_slide">
-            <img src='/images/{{ i.img }}' />
+            <img src='/images/{{ i.image }}' />
             <div class="title">{{ i.title }}</div>
           </div>
           {% endfor %}
@@ -31,9 +31,9 @@
 				</div>
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
-              {% for i in slider2 %}
+              {% for i in youzai %}
               <div class="swiper-slide slider-with-margin">
-                <img class="img" src='/images/{{ i.img }}' />
+                <img class="img" src='/images/{{ i.image }}' />
                 <div class="info">
                   <p class="title">{{ i.title }}</p>
                   <p class="summary">{{ i.summary }}</p>
@@ -55,12 +55,12 @@
 				</div>
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
-              {% for i in slider3 %}
+              {% for i in zhuzai %}
               <div class="swiper-slide slider-with-margin">
-                <img class="img" src='/images/{{ i.img }}' />
+                <img class="img" src='/images/{{ i.image }}' />
                 <div class="info">
                   <p class="title">{{ i.title }}<span class="badge1 ms-3">民宿</span></p>
-                  <p class="phone">{{ i.phone }}</p>
+                  <p class="phone">{{ i.specs[0].value }}</p>
                   <p class="summary">{{ i.summary }}</p>
                 </div>
               </div>
@@ -73,19 +73,18 @@
 			</div>
 		</div>
 
-		<!--吃在-->
 		<div class="foodbox" id="chizai">
 			<div class="food_container main-container">
 				<div class="food_left box-bg">
           <div class="box-border box-left-border"></div>
-					<div class="name">吃在东沟</div>
-					<div class="shuoming">这里的食材都是自家种植、新鲜 采摘的，每一道菜都蕴含着农人 的辛勤与热情，让你感受到家的 温暖。 你不仅能品尝到地道的农家菜，</div>
+					<div class="name">{{ chizaitext[0].title }}</div>
+					<div class="shuoming">{{ chizaitext[0].summary }}</div>
           <div class="box-border box-right-border"></div>
 				</div>
 				<div class="food_right">
         {% for i in chizai %}
           <div class="food_item">
-						<img src="/images/{{ i.img }}">
+						<img src="/images/{{ i.image }}">
 						<div class="graytip">
 							<img class="greenadd" src="/images/add.png" />
 							<div class="name"><p>{{ i.title }}</p></div>
@@ -104,10 +103,10 @@
 				</div>
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
-          {% for i in slider4%}
+          {% for i in gouzai %}
             <div class="swiper-slide spfood_slide slider-with-margin">
 							<div class="spfoodimg">
-                <img class="img" src="/images/{{ i.img }}">
+                <img class="img" src="/images/{{ i.image }}">
 								<div class="spfood_moretip">
 									<img class="knowmoreadd" src="/images/add.png" />
 									<div class="knowmore text-light">了解更多</div>
