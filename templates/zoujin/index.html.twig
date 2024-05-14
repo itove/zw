@@ -76,8 +76,8 @@
 			<div class="actbox container culture-box">
 				<div class="left box-bg">
           <div class="box-border box-left-border"></div>
-					<div class="name">红色文化</div>
-					<div class="shuoming">东沟村充分发掘红色资源，对多 处革命遗址进行了修复和保护， 如均郧房中心县委县政府旧址等。 建立了中原突围鄂西北历史纪念馆，</div>
+					<div class="name">{{ hongsetext[0].title }}</div>
+					<div class="shuoming">{{ hongsetext[0].summary }}</div>
           <div class="box-border box-right-border"></div>
         </div>
 				<div class="right">
@@ -85,7 +85,7 @@
 						<div class="swiper-wrapper act_wrapper">
             {% for i in hongse %}
 							<div class="swiper-slide act_slide slider-with-margin">
-								<div class="act_img"><img class="img" src="/images/{{ i.img }}" height="100%" /></div>
+								<div class="act_img"><img class="img" src="/images/{{ i.image }}" height="100%" /></div>
 								<div class="slide_info">
 									<div class="info_title">{{ i.title }}</div>
 									<div class="info_desc">{{ i.summary }}</div>
@@ -108,7 +108,7 @@
 						<div class="swiper-wrapper act_wrapper">
             {% for i in history %}
 							<div class="swiper-slide act_slide slider-with-margin">
-								<div class="act_img"><img class="img" src="/images/{{ i.img }}" height="100%" /></div>
+								<div class="act_img"><img class="img" src="/images/{{ i.image }}" height="100%" /></div>
 								<div class="slide_info">
 									<div class="info_title">{{ i.title }}</div>
 									<div class="info_desc">{{ i.summary }}</div>
@@ -123,8 +123,8 @@
 				</div>
 				<div class="left box-bg">
           <div class="box-border box-left-border"></div>
-					<div class="name">东沟历史</div>
-					<div class="shuoming">这里的食材都是自家种植、新鲜 采摘的，每一道菜都蕴含着农人 的辛勤与热情，让你感受到家的温暖。你不仅能品尝到地道的农家菜，</div>
+					<div class="name">{{ historytext[0].title }}</div>
+					<div class="shuoming">{{ historytext[0].summary }}</div>
           <div class="box-border box-right-border"></div>
         </div>
 			</div>
@@ -152,7 +152,7 @@
 					<div class="swiper-wrapper activity_wrapper">
             {% for i in honor %}
             <div class="swiper-slide activity_slide slider-with-margin">
-							<div class="activity_img"><img class="img" src="/images/{{ i.img }}"></div>
+							<div class="activity_img"><img class="img" src="/images/{{ i.image }}"></div>
 							<div class="activity_name">{{ i.title }}</div>
 						</div>
             {% endfor %}
