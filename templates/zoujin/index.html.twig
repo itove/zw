@@ -13,19 +13,25 @@
 				<div class="hotelleft swiper-container">
 					<div class="left_wrapper swiper-wrapper">
 						<!--此处jquery写入酒店轮播图数据-->
+            {% for i in jianjie[0].images %}
+            <div class="left_item swiper-slide">
+              <img src="/images/{{ i.image }}">
+            </div>
+            {% endfor %}
 					</div>
 					<div class="pagination"></div>
 				</div>
 				<div class="hotelright">
 					<div class="titlebox">
 						<div class="titlecxt">
-            东沟简介
+            {{ jianjie[0].title }}
 						<p class="">DONGGOU INTRODUCE</p>
             </div>
 					</div>
 					<div class="content">
 						<div class="cxt">
 							<!--此处jquery写入酒店分类对应的介绍-->
+              {{ jianjie[0].summary }};
 						</div>
 					</div>
 				</div>
@@ -159,7 +165,7 @@
 				<div class="right">
 					<div class="swiper-container act_swiper">
 						<div class="swiper-wrapper act_wrapper">
-            {% for i in slider2 %}
+            {% for i in hongse %}
 							<div class="swiper-slide act_slide slider-with-margin">
 								<div class="act_img"><img class="img" src="/images/{{ i.img }}" height="100%" /></div>
 								<div class="slide_info">
@@ -182,7 +188,7 @@
 				<div class="right">
 					<div class="swiper-container act_swiper">
 						<div class="swiper-wrapper act_wrapper">
-            {% for i in slider3 %}
+            {% for i in history %}
 							<div class="swiper-slide act_slide slider-with-margin">
 								<div class="act_img"><img class="img" src="/images/{{ i.img }}" height="100%" /></div>
 								<div class="slide_info">

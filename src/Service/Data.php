@@ -182,7 +182,7 @@ class Data
     
     public function findNodesByRegionLabel(string $label, $locale, $limit = null, $offset = null)
     {
-      $region = $this->doctrine->getRepository(Region::class)->findOneBy($region, $locale, $limit, $offset);
+      $region = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => $label]);
       return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale, $limit, $offset);
     }
     

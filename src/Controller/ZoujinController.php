@@ -20,8 +20,7 @@ class ZoujinController extends AbstractController
     #[Route('/zoujin', name: 'app_zoujin')]
     public function index(Request $request): Response
     {
-        $locale = $request->getLocale();
-        $conf = $this->data->findConfByLocale($locale);
+        
         $slider2 = [
           [
             'title' => '云上牡丹园',
@@ -63,11 +62,13 @@ class ZoujinController extends AbstractController
           ['title' => '陶艺体验及成品', 'img' => 'honor_4.jpg'],
         ];
         $data = [
-            'conf' => $conf,
             'slider2' => $slider2,
             'slider3' => $slider3,
             'honor' => $honor,
         ];
+
+        $data = $this->data->getPageContent('zoujin', $request->getLocale());
+        dump($data);
         return $this->render('zoujin/index.html.twig', $data);
     }
 }

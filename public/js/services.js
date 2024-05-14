@@ -1,7 +1,7 @@
 ﻿/**酒店数据*/
-var hotelList=get_json('/api/get_jiudian',{},true);
+var hotelList=get_json('/api/intro',{},true);
 /*娱乐项目数据*/
-var happyList = get_json('/api/get_yule', {}, true);
+// var happyList = get_json('/api/get_yule', {}, true);
 
 
 /*酒店初始化*/
@@ -257,12 +257,12 @@ function happyItemReWrite(index) {
 }
 
 function hotelDataWriter(index){
-	$('.left_wrapper').empty()
-	$('.cxt').empty()
-	hotelList[index].pics.forEach(function(item,index){
-		$('.left_wrapper').append('<div class="left_item swiper-slide" index='+index+'><img src='+item+' /></div>')
-	})
-	$('.cxt').html(hotelList[index].desc)
+	// $('.left_wrapper').empty()
+	// $('.cxt').empty()
+	// hotelList[index].pics.forEach(function(item,index){
+	// 	$('.left_wrapper').append('<div class="left_item swiper-slide" index='+index+'><img src='+item+' /></div>')
+	// })
+	// $('.cxt').html(hotelList[index].desc)
 	/*酒店轮播*/
 	var hotelSwiper = new Swiper('.hotelleft', {
 		paginationClickable: true,

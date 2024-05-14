@@ -6,10 +6,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use App\Service\Data;
 
 #[Route('/api')]
 class ApiController extends AbstractController
 {
+    private $data;
+
+    public function __construct(Data $data)
+    {
+        $this->data = $data;
+    }
+
     #[Route('/media_objects', methods: ['POST'])]
     public function upload(Request $request): Response
     {
@@ -20,9 +28,21 @@ class ApiController extends AbstractController
         return $this->json(['url' => '/images/' . $newName]);
     }
     
-    #[Route('/get_jiudian', methods: ['GET'])]
+    #[Route('/intro', methods: ['GET'])]
     public function m1(Request $request): Response
     {
+        $n = $this->data->findNodesByRegionLabel('jianjie', $request->getLocale(), 1)[0];
+        $images = [];
+        foreach ($n->getImages() as $i) {
+          array_push($images, '/images/' . $i->getImage());
+        }
+        $data = [
+          'id' => $n->getId(),
+          'cname' => $n->getTitle(),
+          'ename' => 'DONGGOU INTRODUCE',
+          'desc' => $n->getSummary(),
+          'pics' => $images,
+        ];
         $data = '
 [
     {
@@ -40,9 +60,13 @@ class ApiController extends AbstractController
     }
 ]
 ';
+        
+        $resp = new Response($data);
         $resp = new Response($data);
         $resp->headers->set('Content-Type', 'text/strings');
+        
         return $resp;
+        // return $this->json($data);
     }
     
     #[Route('/get_yule', methods: ['GET'])]
