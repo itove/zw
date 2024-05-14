@@ -101,11 +101,23 @@ $('.timeline .rightarrow').click(function() {
 	timeline.swipeNext()
   console.log(timeline);
 })
-$('.leftarrow').click(function() {
+$('.youzai .leftarrow').click(function() {
 	spFoodSwiper.swipePrev()
 })
-$('.rightarrow').click(function() {
+$('.youzai .rightarrow').click(function() {
 	spFoodSwiper.swipeNext()
+})
+$('.zhuzai .leftarrow').click(function() {
+	zhuzai.swipePrev()
+})
+$('.zhuzai .rightarrow').click(function() {
+	zhuzai.swipeNext()
+})
+$('.gouzai .leftarrow').click(function() {
+	gouzai.swipePrev()
+})
+$('.gouzai .rightarrow').click(function() {
+	gouzai.swipeNext()
 })
 
 /*娱乐项目轮播图*/
@@ -151,13 +163,10 @@ $('.food_item').click(function(){
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/api/get_chizai",
-		data: {
-			id: id
-		},
+		url: "/api/nodes/" + id,
 		success: function(result) {
 			console.log(result);
-			$('.popupCxt').html(result.subtitle)
+			$('.popupCxt').html(result.summary)
 			$('html,body').css({
 				'overflow': 'hidden'
 			})
@@ -176,13 +185,10 @@ $('.spfood_slide').click(function(){
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/api/get_gouzai",
-		data: {
-			id: id
-		},
+		url: "/api/nodes/" + id,
 		success: function(result) {
 			console.log(result);
-			$('.popupCxt').html(result.subtitle)
+			$('.popupCxt').html(result.summary)
 			$('html,body').css({
 				'overflow': 'hidden'
 			})

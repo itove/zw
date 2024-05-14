@@ -14,7 +14,9 @@
           <!--此处jQuery动态写入轮播作品-->
           {% for i in slider1 %}
           <div class="swiper-slide img_slide">
+          <a href="/news/{{ i.id }}">
             <img src='/images/{{ i.image }}' />
+            </a>
             <div class="title">{{ i.title }}</div>
           </div>
           {% endfor %}
@@ -83,7 +85,7 @@
 				</div>
 				<div class="food_right">
         {% for i in chizai %}
-          <div class="food_item">
+          <div class="food_item" id="{{ i.id }}">
 						<img src="/images/{{ i.image }}">
 						<div class="graytip">
 							<img class="greenadd" src="/images/add.png" />
@@ -104,7 +106,7 @@
 				<div class="swiper-container spfoodlist_swiper">
 					<div class="swiper-wrapper spfood_wrapper">
           {% for i in gouzai %}
-            <div class="swiper-slide spfood_slide slider-with-margin">
+            <div class="swiper-slide spfood_slide slider-with-margin" id="{{ i.id }}">
 							<div class="spfoodimg">
                 <img class="img" src="/images/{{ i.image }}">
 								<div class="spfood_moretip">

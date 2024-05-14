@@ -32,7 +32,11 @@ class ApiController extends AbstractController
     public function getNode(int $id): Response
     {
         $n = $this->data->getNode($id);
-        $data = ['content' => $n->getBody() ];
+        $data = [
+          'title' => $n->getTitle(),
+          'summary' => $n->getSummary(),
+          'content' => $n->getBody(),
+        ];
         return $this->json($data);
     }
     
