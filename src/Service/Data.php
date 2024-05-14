@@ -54,6 +54,12 @@ class Data
         return $region;
     }
     
+    public function getNode(int $id)
+    {
+        $node = $this->doctrine->getRepository(Node::class)->find($id);
+        return $node;
+    }
+    
     public function getPageContent(string $label, $locale)
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);

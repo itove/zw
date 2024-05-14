@@ -115,10 +115,7 @@ $('.info_more').click(function() {
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/api/get_jiudian",
-		data: {
-			id: id
-		},
+		url: "/api/nodes/" + id,
 		success: function(result) {
 			console.log(result);
 			$('.popupCxt').html(result.content)
@@ -196,10 +193,7 @@ $('.activity_slide').click(function() {
 	$.ajax({
 		type: "GET",
 		contentType: "application/json;charset=UTF-8",
-		url: "/meili/get_huodong_details",
-		data: {
-			id: id
-		},
+		url: "/api/nodes/" + id,
 		success: function(result) {
 			console.log(result);
 			$('.popupCxt').html(result.content)

@@ -1,26 +1,26 @@
 ﻿/**酒店数据*/
-var hotelList=get_json('/api/intro',{},true);
+// var hotelList=get_json('/api/intro',{},true);
 /*娱乐项目数据*/
 var happyList = get_json('/api/get_yule', {}, true);
 
 
 /*酒店初始化*/
-if(hotelList.length!=0){
-	hotelDataWriter(0)
-	// hotelList.forEach(function(item,index){
-	// 	if(index==0){
-	// 		$('.navs').append('<div index='+index+' class="navitem navitem_active"><div class="cn_name">'+item.cname+'</div><div class="en_name">'+item.ename+'</div></div>')
-	// 	}else{
-	// 		$('.navs').append('<div index='+index+' class="navitem"><div class="cn_name">'+item.cname+'</div><div class="en_name">'+item.ename+'</div></div>')
-	// 	}
-	// 	
-	// })
-	$('.navitem').on('click',function(){
-		$(this).addClass('navitem_active').siblings().removeClass('navitem_active')
-		let index=$(this).attr('index')
-		hotelDataWriter(index)
-	})
-}
+// if(hotelList.length!=0){
+// 	hotelDataWriter(0)
+// 	// hotelList.forEach(function(item,index){
+// 	// 	if(index==0){
+// 	// 		$('.navs').append('<div index='+index+' class="navitem navitem_active"><div class="cn_name">'+item.cname+'</div><div class="en_name">'+item.ename+'</div></div>')
+// 	// 	}else{
+// 	// 		$('.navs').append('<div index='+index+' class="navitem"><div class="cn_name">'+item.cname+'</div><div class="en_name">'+item.ename+'</div></div>')
+// 	// 	}
+// 	// 	
+// 	// })
+// 	$('.navitem').on('click',function(){
+// 		$(this).addClass('navitem_active').siblings().removeClass('navitem_active')
+// 		let index=$(this).attr('index')
+// 		hotelDataWriter(index)
+// 	})
+// }
 /*娱乐项目初始化*/
 if(happyList.length != 0) {
 	happyList.forEach(function(item, index) {
