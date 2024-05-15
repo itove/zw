@@ -27,6 +27,11 @@ class Link
     #[ORM\JoinColumn(nullable: false)]
     private ?Menu $menu = null;
 
+    public function __toString()
+    {
+        return $this->title;
+    }
+    
     public function getId(): ?int
     {
         return $this->id;

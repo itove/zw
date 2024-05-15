@@ -21,7 +21,8 @@ class Menu
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Link::class, orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Link::class, orphanRemoval: true, cascade: ["persist"])]
+    #[ORM\OrderBy(["weight" => "ASC"])]
     private Collection $links;
 
     public function __construct()
