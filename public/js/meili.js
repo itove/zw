@@ -41,8 +41,7 @@ var poemSwiper = new Swiper('.poemlist_swiper', {
 	initialSlide: 2,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 4,
 })
-/*活动轮播*/
-var activitySwiper = new Swiper('.activity_swiper', {
+var honorSwiper = new Swiper('.honor', {
 	loop: true,
 	initialSlide: 1,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 4 == 1 ? 1 : 4,

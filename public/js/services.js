@@ -94,10 +94,10 @@ $('.spfoodimg').hover(function() {
 })
 /*箭头点击事件*/
 $('.timeline .leftarrow').click(function() {
-	timeline.swipePrev()
+	honorSwiper.swipePrev()
 })
 $('.timeline .rightarrow').click(function() {
-	timeline.swipeNext()
+	honorSwiper.swipeNext()
 })
 $('.youzai .leftarrow').click(function() {
 	spFoodSwiper.swipePrev()
