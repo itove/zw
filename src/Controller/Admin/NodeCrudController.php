@@ -145,7 +145,7 @@ class NodeCrudController extends AbstractCrudController
         $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
             ;
-        $bodyField = TextareaField::new('body')->onlyOnForms();
+        $bodyField = TextareaField::new('body')->setNumOfRows(10)->onlyOnForms();
         $createdAtField = DateTimeField::new('createdAt')->onlyOnIndex();
         $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
