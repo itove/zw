@@ -23,8 +23,13 @@ class MenuCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $disabled = false;
+        if ($pageName == 'edit') {
+            $disabled = true;
+        }
+
         yield TextField::new('name');
-        yield TextField::new('label');
+        yield TextField::new('label')->setDisabled($disabled);
         yield CollectionField::new('links')
             ->useEntryCrudForm()
         ;

@@ -28,10 +28,15 @@ class RegionCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        $disabled = false;
+        if ($pageName == 'edit') {
+            $disabled = true;
+        }
+
         yield IdField::new('id')->onlyOnIndex();
         yield AssociationField::new('page');
         yield TextField::new('name');
-        yield TextField::new('label');
+        yield TextField::new('label')->setDisabled($disabled);
         // yield IntegerField::new('count');
         yield TextField::new('icon');
         yield TextField::new('description');
