@@ -424,6 +424,9 @@ footer .flinks a{
   color: #000000;
   padding-right: 10px;
 }
+.d-block {
+  display: block !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
