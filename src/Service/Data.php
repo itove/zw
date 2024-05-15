@@ -87,6 +87,7 @@ class Data
             $data[$r->getLabel()] = $dataOfRegion;
         }
         
+        $data['path'] = $page->getName();
         $data['footer'] = self::findNodesByRegion(self::getFooterRegion(), $locale);
         $data['conf'] = self::findConfByLocale($locale);
         

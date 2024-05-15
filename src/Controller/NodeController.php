@@ -34,6 +34,7 @@ class NodeController extends AbstractController
         $next = $this->data->getNext($node);
         $data = [
           'page_title' => $this->translator->trans($pageTitle),
+          'path' => $node->getTitle(),
           'node' => $node,
           'conf' => $conf,
           'prev' => $prev,
@@ -48,7 +49,7 @@ class NodeController extends AbstractController
     {
         $locale = $request->getLocale();
         $page = $request->query->get('p');
-        $limit = 2;
+        $limit = 5;
         if (is_null($page) || empty($page)) {
           $page = 1;
         }
@@ -74,6 +75,7 @@ class NodeController extends AbstractController
 
         $data = [
           'nodes' => $nodes,
+          'path' => $region->getName(),
           'page_title' => $this->translator->trans('News'),
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
