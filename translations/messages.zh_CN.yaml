@@ -3,6 +3,7 @@ New: 新增
 Synopsis: 概要
 Node: 内容
 ID: 序号
+Id: 序号
 Dashboard: 数据统计
 Product: 产品
 Price: 价格
@@ -20,6 +21,7 @@ Body: 正文
 Category: 类别
 Category Management: 类别管理
 Tag: 标签
+Tags: 标签
 Tag Management: 标签管理
 Image: 标题图片
 Images: 更多图片

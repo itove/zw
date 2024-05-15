@@ -42,7 +42,11 @@ class Data
             $prop_name = $prop->getName();
             if (!in_array($prop_name, $no_need)) {
                 // array_push($arr, $prop->getName());
-                $arr[$prop_name] = $prop_name;
+
+                // Insert space before Capital letters;
+                $name = preg_replace('/(\w+)([A-Z])/U', '\\1 \\2', $prop_name);
+                $name = ucfirst($name);
+                $arr[$name] = $prop_name;
             }
         }
         return $arr;
