@@ -5,8 +5,6 @@
   font-weight: bold;
 }
 .ways{
-  width: unset !important;
-  max-width: 88%;
   flex-wrap: wrap;
   margin-top: 20px !important;
 }
@@ -411,6 +409,9 @@ footer .info .wrapper .contact p{
 .ways {
   font-size: 8px;
 }
+.planflex .planetogo .planeway{
+  margin-left: 0 !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -501,5 +502,12 @@ footer .info .wrapper .contact p{
   }
   .activityBox .activity_container{
     height: 590px !important;
+  }
+  .planflex .threewaysbox .waytogo{
+    padding-top: 24px;
+  }
+  .planflex .planetogo{
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgb(212, 202, 178);
   }
 }
