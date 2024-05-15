@@ -25,13 +25,12 @@ var zpSwiper = new Swiper('.imgbox_swiper', {
 	initialSlide: 1,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
 })
-/*名俗表演轮播*/
-var actSwiper = new Swiper('.culture .act_swiper', {
+var cultureSwiper = new Swiper('.culture .act_swiper', {
 	loop: true,
 	initialSlide: 2,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
 })
-var actSwiper = new Swiper('.history .act_swiper', {
+var histSwiper = new Swiper('.history .act_swiper', {
 	loop: true,
 	initialSlide: 2,
 	slidesPerView: navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 == 1 ? 1 : 3,
@@ -80,11 +79,17 @@ $('.zp_right').click(function() {
 	let index = $(zpSwiper.activeSlide()).attr('index')
 	infoWriter(index)
 })
-$('.leftarrow').click(function() {
-	actSwiper.swipePrev()
+$('.culture .leftarrow').click(function() {
+	cultureSwiper.swipePrev()
 })
-$('.rightarrow').click(function() {
-	actSwiper.swipeNext()
+$('.culture .rightarrow').click(function() {
+	cultureSwiper.swipeNext()
+})
+$('.history .leftarrow').click(function() {
+	histSwiper.swipePrev()
+})
+$('.history .rightarrow').click(function() {
+	histSwiper.swipeNext()
 })
 $('.greenleft').click(function() {
 	poemSwiper.swipePrev()

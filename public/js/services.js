@@ -95,11 +95,9 @@ $('.spfoodimg').hover(function() {
 /*箭头点击事件*/
 $('.timeline .leftarrow').click(function() {
 	timeline.swipePrev()
-  console.log(timeline);
 })
 $('.timeline .rightarrow').click(function() {
 	timeline.swipeNext()
-  console.log(timeline);
 })
 $('.youzai .leftarrow').click(function() {
 	spFoodSwiper.swipePrev()
