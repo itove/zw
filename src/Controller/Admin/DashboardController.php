@@ -18,6 +18,7 @@ use App\Entity\Feedback;
 use App\Entity\Language;
 use App\Entity\Conf;
 use App\Entity\Category;
+use App\Entity\Menu;
 use Doctrine\Persistence\ManagerRegistry;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
@@ -118,6 +119,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Footer', 'fas fa-xmarks-lines', Node::class)
             ->setQueryParameter('region', $footer->getId())
         ;
+        yield MenuItem::linkToCrud('Menu', 'fas fa-xmarks-lines', Menu::class);
         
         // admin menu of regions
         // foreach ($this->regions as $region) {
