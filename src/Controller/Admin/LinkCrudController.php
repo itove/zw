@@ -25,8 +25,8 @@ class LinkCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        yield TextField::new('title');
-        yield UrlField::new('link');
-        yield IntegerField::new('weight');
+        yield TextField::new('title')->setColumns(12);
+        yield UrlField::new('link')->setColumns(12);
+        yield IntegerField::new('weight')->setColumns(12);
     }
 }
