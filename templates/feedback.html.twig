@@ -1,3 +1,9 @@
+{% for message in app.flashes('notice') %}
+    <div class="flash-notice">
+        {{ message }}
+    </div>
+{% endfor %}
+
     <!-- form -->
     <div class="news container contact main-container">
     <div class="contact">

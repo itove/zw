@@ -25,6 +25,11 @@ class Data
         $this->doctrine = $doctrine;
     }
     
+    public function getEntityManager()
+    {
+        return $this->doctrine->getManager();
+    }
+    
     static function GetProperties($entity)
     {
         $reflect = new \ReflectionClass($entity);

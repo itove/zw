@@ -47,6 +47,11 @@ class FeedbackController extends AbstractController
         $f->setCountry($country);
         $em->persist($f);
         $em->flush();
+
+        $this->addFlash(
+            'notice',
+            '您的建议已成功提交！'
+        );
         
         // return $this->json('OK');
         return new RedirectResponse($this->generateUrl('app_contact'));
