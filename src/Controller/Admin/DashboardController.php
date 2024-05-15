@@ -157,7 +157,9 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Node', 'fas fa-cog', Node::class);
             yield MenuItem::linkToCrud('Category', 'fas fa-cog', Category::class);
             yield MenuItem::linkToCrud('Tag', 'fas fa-cog', Tag::class);
-            yield MenuItem::linkToCrud('Language', 'fas fa-cog', Language::class);
+            if ($_ENV['IS_MULTILINGUAL']) {
+                yield MenuItem::linkToCrud('Language', 'fas fa-cog', Language::class);
+            }
             // yield MenuItem::linkToCrud('Conf', 'fas fa-cog', Conf::class);
         }
     }
