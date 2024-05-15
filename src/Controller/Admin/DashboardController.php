@@ -119,7 +119,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Footer', 'fas fa-xmarks-lines', Node::class)
             ->setQueryParameter('region', $footer->getId())
         ;
-        yield MenuItem::linkToCrud('Menu', 'fas fa-xmarks-lines', Menu::class);
+        yield MenuItem::linkToCrud('Menu', 'fas fa-link', Menu::class);
         
         // admin menu of regions
         // foreach ($this->regions as $region) {
