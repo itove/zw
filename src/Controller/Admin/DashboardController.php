@@ -102,7 +102,7 @@ class DashboardController extends AbstractDashboardController
         //     ->setQueryParameter('region', 'news')
         // ;
         
-        yield MenuItem::section('Region Management');
+        yield MenuItem::section('Content Management');
         
         foreach ($pages as $p) {
             $items = [];
