@@ -7,6 +7,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 
 class PageCrudController extends AbstractCrudController
 {
@@ -24,5 +26,13 @@ class PageCrudController extends AbstractCrudController
 
         yield TextField::new('name');
         yield TextField::new('label')->setDisabled($disabled);
+        yield AssociationField::new('regions')->setDisabled($disabled);
+    }
+
+    public function configureActions(Actions $actions): Actions
+    {
+        return $actions
+            ->disable('delete')
+        ;
     }
 }

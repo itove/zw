@@ -34,16 +34,15 @@ class RegionCrudController extends AbstractCrudController
         }
 
         yield IdField::new('id')->onlyOnIndex();
-        yield AssociationField::new('page');
+        yield AssociationField::new('page')->setDisabled($disabled);
         yield TextField::new('name');
         yield TextField::new('label')->setDisabled($disabled);
-        // yield IntegerField::new('count');
         yield TextField::new('icon');
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
         yield IntegerField::new('count');
     }
-    
+
     public function configureActions(Actions $actions): Actions
     {
         return $actions
