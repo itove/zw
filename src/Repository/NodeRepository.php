@@ -69,6 +69,30 @@ class NodeRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findPrev(Node $node): ?Node
+    {
+        return $this->createQueryBuilder('n')
+                    ->andWhere('n.id < :node')
+                    ->setParameter('node', $node)
+                    ->orderBy('n.id', 'DESC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult()
+            ;
+    }
+
+    public function findNext(Node $node): ?Node
+    {
+        return $this->createQueryBuilder('n')
+                    ->andWhere('n.id > :node')
+                    ->setParameter('node', $node)
+                    ->orderBy('n.id', 'ASC')
+                    ->setMaxResults(1)
+                    ->getQuery()
+                    ->getOneOrNullResult()
+            ;
+    }
+
 //    /**
 //     * @return Node[] Returns an array of Node objects
 //     */

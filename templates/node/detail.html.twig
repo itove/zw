@@ -14,8 +14,8 @@
 	<!--上一頁下一頁-->
 	<div class="upanddown">
 		<div class="container updownbox">
-			<a class="up" href="">上一篇</a>
-			<a class="down" href="">下一篇</a>
+			<a class="up" href="{{ path('app_node_show', {nid: prev.id}) }}">上一篇</a>
+			<a class="down" href="{{ path('app_node_show', {nid: next.id}) }}">下一篇</a>
 		</div>
 	</div>
 

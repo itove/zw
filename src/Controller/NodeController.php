@@ -30,17 +30,14 @@ class NodeController extends AbstractController
         $locale = $request->getLocale();
         $node = $this->data->get($nid);
         $conf = $this->data->findConfByLocale($locale);
-        // $beian = $this->data->findNodeByRegion('beian', 1)[0];
-        // $wechat = $this->data->findNodeByRegion('footer-wechatqr', 1)[0];
-        // $miniprog = $this->data->findNodeByRegion('footer-miniprogqr', 1)[0];
+        $prev = $this->data->getPrev($node);
+        $next = $this->data->getNext($node);
         $data = [
           'page_title' => $this->translator->trans($pageTitle),
-          'class' => 'page-news-show',
           'node' => $node,
           'conf' => $conf,
-          // 'beian' => $beian,
-          // 'wechat' => $wechat,
-          // 'miniprog' => $miniprog,
+          'prev' => $prev,
+          'next' => $next,
         ];
         return $this->render('node/detail.html.twig', $data);
     }
@@ -49,7 +46,6 @@ class NodeController extends AbstractController
     #[Route('/news/{regionLabel?}', name: 'app_news_region_label')]
     public function index(string $regionLabel, Request $request): Response
     {
-        dump($regionLabel);
         $locale = $request->getLocale();
         $page = $request->query->get('p');
         $limit = 2;

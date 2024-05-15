@@ -60,6 +60,18 @@ class Data
         return $node;
     }
     
+    public function getPrev(Node $node)
+    {
+        $node = $this->doctrine->getRepository(Node::class)->findPrev($node);
+        return $node;
+    }
+
+    public function getNext(Node $node)
+    {
+        $node = $this->doctrine->getRepository(Node::class)->findNext($node);
+        return $node;
+    }
+    
     public function getPageContent(string $label, $locale)
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
