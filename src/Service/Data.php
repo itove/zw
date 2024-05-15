@@ -60,17 +60,17 @@ class Data
     
     public function getNode(int $id)
     {
-        return = $this->doctrine->getRepository(Node::class)->find($id);
+        return $this->doctrine->getRepository(Node::class)->find($id);
     }
     
     public function getPrev(Node $node)
     {
-        return = $this->doctrine->getRepository(Node::class)->findPrev($node);
+        return $this->doctrine->getRepository(Node::class)->findPrev($node);
     }
 
     public function getNext(Node $node)
     {
-        return = $this->doctrine->getRepository(Node::class)->findNext($node);
+        return $this->doctrine->getRepository(Node::class)->findNext($node);
     }
     
     public function getPageContent(string $label, $locale)
@@ -97,7 +97,7 @@ class Data
     
     public function getFooterRegion()
     {
-        return = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
+        return $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
     }
     
     public function getSome($nid = null)
