@@ -93,6 +93,24 @@
               })
           }
           })
+      wx = document.querySelector('#wxicon');
+      wx.addEventListener('mouseover', function(){
+        img = document.querySelector('#wxqr');
+        img.classList.add('d-block');
+      });
+      wx.addEventListener('mouseleave', function(){
+        img = document.querySelector('#wxqr');
+        img.classList.remove('d-block');
+      });
+      minp = document.querySelector('#minpicon');
+      minp.addEventListener('mouseover', function(){
+        img = document.querySelector('#mpqr');
+        img.classList.add('d-block');
+      });
+      minp.addEventListener('mouseleave', function(){
+        img = document.querySelector('#mpqr');
+        img.classList.remove('d-block');
+      });
     </script>
     {% block javascript %} {% endblock %}
 

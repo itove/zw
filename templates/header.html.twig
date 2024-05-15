@@ -18,10 +18,17 @@
 			<div class="smallicons">
 				<div class="iconbox">
 					<div class="icons" id="wxicon"><img src="/images//wx.png"></div>
-					<div class="icons" id="dyicon"><img src="/images/miniprog.png"></div>
+					<div class="icons" id="minpicon"><img src="/images/miniprog.png"></div>
 					<div class="icons" id="musicicon"><img src="/images/play.png"></div>
 				</div>
 				<div class="qrcode">
+          {#
+          {% for i in footer %}
+          <img id="{{i.id}}" src="/images/{{ i.image }}" style="display: none">
+          {% endfor %}
+          #}
+          <img id="wxqr" src="/images/{{ footer[1].image }}" style="display: none">
+          <img id="mpqr" src="/images/{{ footer[0].image }}" style="display: none">
 				</div>
 			</div>
       <a href="javascript:void(0)" id="navToggle">
