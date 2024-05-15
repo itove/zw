@@ -21,6 +21,14 @@ var happyList = get_json('/api/get_yule', {}, true);
 // 		hotelDataWriter(index)
 // 	})
 // }
+var jianjieSwiper = new Swiper('.jianjie', {
+  paginationClickable: true,
+  pagination:'.pagination',
+  autoplay:4000,
+  loop:true,
+  initialSlide: 0,
+  slidesPerView: 1,
+})
 /*娱乐项目初始化*/
 if(happyList.length != 0) {
 	happyList.forEach(function(item, index) {
