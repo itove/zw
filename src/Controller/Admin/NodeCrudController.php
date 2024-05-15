@@ -149,7 +149,7 @@ class NodeCrudController extends AbstractCrudController
         $createdAtField = DateTimeField::new('createdAt')->onlyOnIndex();
         $updatedAtField = DateTimeField::new('updatedAt')->onlyOnIndex();
         $languageField = AssociationField::new('language');
-        $regionsField = AssociationField::new('regions');
+        $regionsField = AssociationField::new('regions')->onlyOnForms();
         $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
         
@@ -171,6 +171,7 @@ class NodeCrudController extends AbstractCrudController
             $ff = $f . "Field";
             yield $$ff;
         }
+        // yield ArrayField::new('regions')->onlyOnIndex();
         if (in_array('image', $fields)) {
             yield $vichImageField;
         }
