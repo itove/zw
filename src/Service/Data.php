@@ -37,7 +37,10 @@ class Data
         // $props   = $reflect->getProperties(\ReflectionProperty::IS_PRIVATE);
         $props   = $reflect->getProperties();
         $arr = [];
-        $no_need = ['title', 'regions', 'imageFile', 'language'];
+        $no_need = ['title', 'imageFile'];
+        if (!$_ENV['IS_MULTILINGUAL']) {
+            array_push($no_need, 'language');
+        }
         foreach ($props as $prop) {
             $prop_name = $prop->getName();
             if (!in_array($prop_name, $no_need)) {
