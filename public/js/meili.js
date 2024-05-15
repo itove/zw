@@ -1,19 +1,19 @@
-﻿var zuopinList = get_json("/api/get_sheyinzuopin", {}, true);
-console.log(zuopinList);
-// var poemList = get_json("/meili/get_poem", {}, true);
-/*作品轮播初始化*/
-if(zuopinList.length != 0) {
-	if(zuopinList.length < 3) {
-		$('.imgbox_wrapper').append('<div style="font-size:20px" class="swiper-slide img_slide">为保证最佳效果,请至少上传3张作品</div>')
-	} else {
-		for(let i = 0; i < zuopinList.length; i++) {
-			$('.imgbox_wrapper').append('<div class="swiper-slide img_slide" index=' + i + '><img src=' + zuopinList[i].path + ' /></div>')
-		}
-		infoWriter(1)
-	}
-} else {
-	// $('.imgbox_wrapper').append('<div style="font-size:20px" class="swiper-slide img_slide">请上传作品吧</div>')
-}
+﻿// var zuopinList = get_json("/api/get_sheyinzuopin", {}, true);
+// console.log(zuopinList);
+// // var poemList = get_json("/meili/get_poem", {}, true);
+// /*作品轮播初始化*/
+// if(zuopinList.length != 0) {
+// 	if(zuopinList.length < 3) {
+// 		$('.imgbox_wrapper').append('<div style="font-size:20px" class="swiper-slide img_slide">为保证最佳效果,请至少上传3张作品</div>')
+// 	} else {
+// 		for(let i = 0; i < zuopinList.length; i++) {
+// 			$('.imgbox_wrapper').append('<div class="swiper-slide img_slide" index=' + i + '><img src=' + zuopinList[i].path + ' /></div>')
+// 		}
+// 		infoWriter(1)
+// 	}
+// } else {
+// 	// $('.imgbox_wrapper').append('<div style="font-size:20px" class="swiper-slide img_slide">请上传作品吧</div>')
+// }
 // for(let i = 0; i < poemList.length; i++) {
 // 	$('.poemlist_wrapper').append('<div class="swiper-slide poemlist_slide" id=' + poemList[i].id + '><div class="name"><div>' + poemList[i].name + '</div></div><div class="content">' + poemList[i].content + '</div></div>')
 // }
@@ -214,12 +214,12 @@ $('.activity_slide').click(function() {
 })
 
 /*获取跳转锚点*/
-$(function() {
-	target = getParam('target')
-	$('html,body').animate({
-		scrollTop: $('#' + target).offset().top
-	}, 100);
-})
+// $(function() {
+// 	target = getParam('target')
+// 	$('html,body').animate({
+// 		scrollTop: $('#' + target).offset().top
+// 	}, 100);
+// })
 
 function getParam(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
@@ -231,13 +231,13 @@ function getParam(name) {
 	}
 }
 /*所需函数*/
-function infoWriter(index) {
-	$('.zuopin_info').empty()
-	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">作品：</span>' + zuopinList[index].info.name + '</div>')
-	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">作者：</span>' + zuopinList[index].info.author + '</div>')
-	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">地点：</span>' + zuopinList[index].info.address + '</div>')
-	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">时间：</span>' + zuopinList[index].info.time + '</div>')
-}
+// function infoWriter(index) {
+// 	$('.zuopin_info').empty()
+// 	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">作品：</span>' + zuopinList[index].info.name + '</div>')
+// 	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">作者：</span>' + zuopinList[index].info.author + '</div>')
+// 	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">地点：</span>' + zuopinList[index].info.address + '</div>')
+// 	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">时间：</span>' + zuopinList[index].info.time + '</div>')
+// }
 /*回到顶部*/
 $(window).scroll(function() {
 	if($(document).scrollTop() > $('#meili_3').offset().top) {

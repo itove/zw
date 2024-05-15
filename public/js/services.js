@@ -144,7 +144,7 @@ $('.rightbtn').click(function() {
 
 /*回到顶部*/
 $(window).scroll(function() {
-	if($(document).scrollTop() > $('#service_4').offset().top) {
+	if($(document).scrollTop() > $('.path').offset().top) {
 		$('.gotop').css({
 			'opacity': '1'
 		})

@@ -3,10 +3,10 @@ $(function(){
 	var cid=getParam('cid')
 
 	/**初始化獲取當前要展示的文章*/
-	getDetail(id)
+	// getDetail(id)
 	
 	/**獲取當前分類下所有的文章列表*/
-	getList(id,cid)
+	// getList(id,cid)
 	
 	
 	/**所需函数 获取URL携带的参数*/

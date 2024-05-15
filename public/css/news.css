@@ -116,7 +116,6 @@
 	transition: all 1s ease;
 }
 .newsflex .contents .content_item:hover{
-	background: url(../images/news/articlebg.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 .newsflex .contents .content_item .content_left{
