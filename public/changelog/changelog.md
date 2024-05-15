@@ -1,3 +1,17 @@
+### 2024-05-15
+* goto top & leyou slider no js add
+* breadcrumb
+* 投诉 text full width
+* .ways mobile font-size 12
+* nth
+* addFlash
+* getPrev() & getNext()
+* node detail title center
+* xingcheng mobile style
+* timeline arrow honorSwiper
+* nth
+* can edit honortext
+
 ### 2024-05-13
 * `走进东沟`页面`红色文化`现在点击加号出现内容弹窗
 * `走进东沟`页面`东沟历史`现在点击加号出现内容弹窗

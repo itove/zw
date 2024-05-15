@@ -238,18 +238,6 @@ function getParam(name) {
 // 	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">地点：</span>' + zuopinList[index].info.address + '</div>')
 // 	$('.zuopin_info').append('<div class="info_item"><span style="color:#999">时间：</span>' + zuopinList[index].info.time + '</div>')
 // }
-/*回到顶部*/
-$(window).scroll(function() {
-	if($(document).scrollTop() > $('#meili_3').offset().top) {
-		$('.gotop').css({
-			'opacity': '1'
-		})
-	} else {
-		$('.gotop').css({
-			'opacity': '0'
-		})
-	}
-})
 
 // $('.popupClose').click(function() {
 // 	$('.popupCxt').empty()

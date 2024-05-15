@@ -81,6 +81,19 @@
 		<script src="{{ asset('js/slider.js') }}"></script>
 		<script src="{{ asset('js/header.js?version=3.9') }}"></script>
 		<script src="{{ asset('js/idangerous.swiper.js') }}"></script>
+		<script>
+      $(window).scroll(function() {
+          if($(document).scrollTop() > $('.path').offset().top) {
+          $('.gotop').css({
+              'opacity': '1'
+              })
+          } else {
+          $('.gotop').css({
+              'opacity': '0'
+              })
+          }
+          })
+    </script>
     {% block javascript %} {% endblock %}
 
   </body>

@@ -142,18 +142,6 @@ $('.rightbtn').click(function() {
 	happyItemReWrite(index)
 })
 
-/*回到顶部*/
-$(window).scroll(function() {
-	if($(document).scrollTop() > $('.path').offset().top) {
-		$('.gotop').css({
-			'opacity': '1'
-		})
-	} else {
-		$('.gotop').css({
-			'opacity': '0'
-		})
-	}
-})
 /*峡江美食点击*/
 $('.food_item').click(function(){
 	$('.popupCxt').empty()
