@@ -519,4 +519,7 @@ footer .info .wrapper .contact p{
     padding-bottom: 14px;
     border-bottom: 1px solid rgb(212, 202, 178);
   }
+  .ways {
+    font-size: 12px;
+  }
 }
