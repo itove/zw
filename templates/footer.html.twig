@@ -15,14 +15,12 @@
   <div class="info">
     <div class="wrapper">
       <div class="sn">
+        {% for i in footer %}
         <div>
-          <img src="/images/gongzhonghao.jpg" />
-          <p>乐游东沟公众号</p>
+          <img src="/images/{{ i.image }}" />
+          <p>{{ i.title }}</p>
         </div>
-        <div>
-          <img src="/images/miniprog.jpg" />
-          <p>乐游东沟小程序</p>
-        </div>
+        {% endfor %}
       </div>
       <div class="contact">
         <p>地址：{{ conf.address }}</p>

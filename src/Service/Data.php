@@ -88,10 +88,19 @@ class Data
         }
         
         $data['path'] = $page->getName();
+        
+        return array_merge($data, self::getMisc($locale));
+        
+    }
+
+    public function getMisc(string $locale)
+    {
         $data['footer'] = self::findNodesByRegion(self::getFooterRegion(), $locale);
         $data['conf'] = self::findConfByLocale($locale);
-        
-        return $data;
+        $data['friendLinks'] = self::getMenu('friend');
+        $data['footerMenu'] = self::getMenu('footer');
+
+		return $data;
     }
     
     public function getMenu(string $label)

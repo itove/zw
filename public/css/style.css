@@ -420,6 +420,10 @@ footer .info .wrapper .contact p{
   top: 50px;
   font-size: 18px;
 }
+footer .flinks a{
+  color: #000000;
+  padding-right: 10px;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -520,5 +524,8 @@ footer .info .wrapper .contact p{
   }
   .ways {
     font-size: 12px;
+  }
+  footer .flinks{
+    display: none;
   }
 }

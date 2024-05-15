@@ -24,23 +24,22 @@ class NodeController extends AbstractController
     #[Route('product/{nid}', requirements: ['nid' => '\d+'], name: 'app_product_show')]
     public function show(int $nid, Request $request): Response
     {
-        $route = $request->attributes->get('_route');
+        // $route = $request->attributes->get('_route');
         $pageTitle = 'News';
-        if ($route == 'app_product_show') $pageTitle = 'Product';
         $locale = $request->getLocale();
         $node = $this->data->get($nid);
-        $conf = $this->data->findConfByLocale($locale);
         $prev = $this->data->getPrev($node);
         $next = $this->data->getNext($node);
-        $data = [
+        $data = $this->data->getMisc($request->getLocale());
+        $data1 = [
           'page_title' => $this->translator->trans($pageTitle),
           'path' => $node->getTitle(),
           'node' => $node,
-          'conf' => $conf,
           'prev' => $prev,
           'next' => $next,
         ];
-        return $this->render('node/detail.html.twig', $data);
+
+        return $this->render('node/detail.html.twig', array_merge($data, $data1));
     }
     
     #[Route('/news', name: 'app_news_list')]
@@ -71,18 +70,17 @@ class NodeController extends AbstractController
         // $arr['nodes'] = $nodes;
         // $arr['page'] = $page;
         // $arr['page_count'] = ceil(count($nodes_all) / $limit);
-        $conf = $this->data->findConfByLocale($locale);
 
-        $data = [
+        $data = $this->data->getMisc($request->getLocale());
+        $data1 = [
           'nodes' => $nodes,
           'path' => $region->getName(),
           'page_title' => $this->translator->trans('News'),
           'page' => $page,
           'page_count' => ceil(count($nodes_all) / $limit),
-          'conf' => $conf,
           'regionLabel' => $regionLabel,
         ];
-        dump($data);
-        return $this->render('node/index.html.twig', $data);
+
+        return $this->render('node/index.html.twig', array_merge($data, $data1));
     }
 }
