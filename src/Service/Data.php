@@ -64,6 +64,11 @@ class Data
     {
         return $this->doctrine->getRepository(Region::class)->findOneBy(['label' => $label]);
     }
+
+    public function getRegion(int $id)
+    {
+        return $this->doctrine->getRepository(Region::class)->find($id);
+    }
     
     public function getNode(int $id)
     {

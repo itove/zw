@@ -40,14 +40,16 @@ class NodeCrudController extends AbstractCrudController
     private $query;
     private $adminUrlGenerator;
 
-    public function __construct(ManagerRegistry $doctrine, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
+    public function __construct(Data $data, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
-        $this->query = $requestStack->getCurrentRequest()->query;
-        $regionId = $this->query->get('region');
+        $request = $requestStack->getCurrentRequest();
+        $regionId = $request->query->get('region');
         if (!is_null($regionId)) {
-            $this->region = $doctrine->getRepository(Region::class)->find($regionId);
+            $this->region = $data->getRegion($regionId);
         }
         $this->adminUrlGenerator = $adminUrlGenerator;
+        $this->data = $data;
+        $this->request = $request;
     }
     
     public static function getEntityFqcn(): string
@@ -72,7 +74,12 @@ class NodeCrudController extends AbstractCrudController
     {
         $node = new Node();
         if (!is_null($this->region)) {
-            $node->addRegion($this->region);
+            $lastNode = $this->data->findNodesByRegion($this->region, $this->request->getLocale(), 1);
+            if (!empty($lastNode)) {
+                foreach ($lastNode[0]->getRegions() as $r) {
+                    $node->addRegion($r);
+                }
+            }
         }
         return $node;
     }
