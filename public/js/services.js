@@ -32,12 +32,12 @@ if(happyList.length != 0) {
 	$('.happy_wrapper').append('<div class="swiper-slide happy_slide">请上传娱乐项目</div>')
 }
 /*获取锚点链接*/
-// $(function() {
-// 	target = getParam('target')
-// 	$('html,body').animate({
-// 		scrollTop: $('#' + target).offset().top
-// 	}, 100);
-// })
+$(function() {
+	target = getParam('target')
+	$('html,body').animate({
+		scrollTop: $('#' + target).offset().top
+	}, 100);
+})
 
 function getParam(name) {
 	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)")
