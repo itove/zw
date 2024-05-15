@@ -412,6 +412,9 @@ footer .info .wrapper .contact p{
 .planflex .planetogo .planeway{
   margin-left: 0 !important;
 }
+.detailbox h3{
+  text-align: center;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
