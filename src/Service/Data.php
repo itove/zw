@@ -15,6 +15,7 @@ use App\Entity\Tag;
 use App\Entity\Region;
 use App\Entity\Page;
 use App\Entity\Language;
+use App\Entity\Menu;
 
 class Data
 {
@@ -49,32 +50,27 @@ class Data
     
     public function getPage(string $label)
     {
-        $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
-        return $page;
+        return $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
     }
     
     public function getRegionByLabel(string $label)
     {
-        $region = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => $label]);
-        return $region;
+        return $this->doctrine->getRepository(Region::class)->findOneBy(['label' => $label]);
     }
     
     public function getNode(int $id)
     {
-        $node = $this->doctrine->getRepository(Node::class)->find($id);
-        return $node;
+        return = $this->doctrine->getRepository(Node::class)->find($id);
     }
     
     public function getPrev(Node $node)
     {
-        $node = $this->doctrine->getRepository(Node::class)->findPrev($node);
-        return $node;
+        return = $this->doctrine->getRepository(Node::class)->findPrev($node);
     }
 
     public function getNext(Node $node)
     {
-        $node = $this->doctrine->getRepository(Node::class)->findNext($node);
-        return $node;
+        return = $this->doctrine->getRepository(Node::class)->findNext($node);
     }
     
     public function getPageContent(string $label, $locale)
@@ -94,10 +90,14 @@ class Data
         return $data;
     }
     
+    public function getMenu(string $label)
+    {
+        return $this->doctrine->getRepository(Menu::class)->findOneBy(['label' => $label]);
+    }
+    
     public function getFooterRegion()
     {
-        $region = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
-        return $region;
+        return = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
     }
     
     public function getSome($nid = null)
