@@ -31,8 +31,8 @@ class MenuCrudController extends AbstractCrudController
         yield TextField::new('name');
         yield TextField::new('label')->setDisabled($disabled);
         yield CollectionField::new('links')
+            ->setRequired(true)
             ->useEntryCrudForm()
         ;
-        // yield AssociationField::new('links');
     }
 }

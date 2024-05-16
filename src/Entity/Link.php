@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\LinkRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: LinkRepository::class)]
 class Link
@@ -15,12 +16,20 @@ class Link
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $title = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Assert\NotNull]
+    #[Assert\Length(max: 50)]
     private ?string $link = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Assert\NotNull]
+    #[Assert\NotBlank]
     private ?int $weight = 0;
 
     #[ORM\ManyToOne(inversedBy: 'links')]
