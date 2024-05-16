@@ -91,7 +91,7 @@ class Data
         $regions = $page->getRegions();
         $data = [];
         foreach ($regions as $r) {
-            $dataOfRegion = self::findNodesByRegion($r, $locale);
+            $dataOfRegion = self::findNodesByRegion($r, $locale, $r->getCount());
             $data[$r->getLabel()] = $dataOfRegion;
         }
         
@@ -100,10 +100,11 @@ class Data
         return array_merge($data, self::getMisc($locale));
         
     }
-
+    
     public function getMisc(string $locale)
     {
-        $data['footer'] = self::findNodesByRegion(self::getFooterRegion(), $locale);
+        $footer = self::getRegionByLabel('footer');
+        $data['footer'] = self::findNodesByRegion($footer, $locale, $footer->getCount());
         $data['conf'] = self::findConfByLocale($locale);
         $data['friendLinks'] = self::getMenu('friend');
         $data['footerMenu'] = self::getMenu('footer');
@@ -114,11 +115,6 @@ class Data
     public function getMenu(string $label)
     {
         return $this->doctrine->getRepository(Menu::class)->findOneBy(['label' => $label]);
-    }
-    
-    public function getFooterRegion()
-    {
-        return $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
     }
     
     public function getSome($nid = null)
