@@ -536,7 +536,6 @@ footer .flinks a{
   }
   .actbox{
     flex-direction: column !important;
-    height: 710px !important;
   }
   .actbox .box-bg{
     display: block !important;
@@ -557,5 +556,8 @@ footer .flinks a{
   }
   .box-bg.hist-pc{
     display: none !important;
+  }
+  .act_container .actbox .right{
+    height: 90% !important;
   }
 }
