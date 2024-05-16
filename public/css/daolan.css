@@ -647,7 +647,6 @@ html {
 	flex-direction: row;
 	justify-content: center;
 	overflow: hidden;
-	background: url(../image/daolan/glbg.jpg) no-repeat;
 	background-size: cover;
 }
 
@@ -779,7 +778,6 @@ span {
 .gonglueflex .g_bottom .left {
 	width: 25%;
 	height: 100%;
-	background: url(../image/daolan/msbg.jpg) no-repeat;
 	background-size: cover;
 }
 
@@ -882,7 +880,6 @@ span {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	background: url(../image/daolan/ykxz.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 
@@ -1254,7 +1251,6 @@ span {
 		width: 100%;
 		height: auto!important;
 		margin-top: 30px;
-		background: url(/static/index/images/daolan/wapdaolanbg.jpg) no-repeat!important;
 		background-size: 100% 100%!important;
 		display: flex;
 		flex-direction: column;
@@ -1420,7 +1416,6 @@ span {
 		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		background: url(/static/index/images/daolan/ykxz.jpg) no-repeat!important;
 		background-size: cover!important;
 	}
 	.needknowflex .rowflex {
