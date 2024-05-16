@@ -536,6 +536,7 @@ footer .flinks a{
   }
   .actbox{
     flex-direction: column !important;
+    height: 660px !important;
   }
   .actbox .box-bg{
     display: block !important;
