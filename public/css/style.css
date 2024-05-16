@@ -430,6 +430,9 @@ footer .flinks a{
 .box-bg.hist-mobile{
   display: none !important;
 }
+.upanddown{
+  margin-bottom: 30px;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -559,5 +562,11 @@ footer .flinks a{
   }
   .act_container .actbox .right{
     height: 90% !important;
+  }
+  .upanddown .updownbox{
+    text-align: center;
+  }
+  .footer{
+    position: relative !important;
   }
 }
