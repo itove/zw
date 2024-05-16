@@ -164,7 +164,7 @@
 	})
 	/*点击更多跳转*/
 	$('.sec5item_title>.more').click(function() {
-		window.location.href = "/news/index?cid=" + $(this).attr('cid')
+		window.location.href = "/news/" + $(this).attr('cid')
 	})
 
 	$('.hoverbox').click(function() {
