@@ -433,6 +433,12 @@ footer .flinks a{
 .upanddown{
   margin-bottom: 30px;
 }
+.path_container a{
+  width: 81%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
