@@ -427,6 +427,9 @@ footer .flinks a{
 .d-block {
   display: block !important;
 }
+.box-bg.hist-mobile{
+  display: none !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -550,5 +553,8 @@ footer .flinks a{
   }
   .box-bg .shuoming{
     display: none;
+  }
+  .box-bg.hist-pc{
+    display: none !important;
   }
 }
