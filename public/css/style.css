@@ -531,4 +531,24 @@ footer .flinks a{
   footer .flinks{
     display: none;
   }
+  .actbox{
+    flex-direction: column !important;
+  }
+  .actbox .box-bg{
+    display: block !important;
+    width: 100% !important;
+    padding: 16px !important;
+    text-align: center;
+    height: unset !important;
+  }
+  .box-border{
+    display: none;
+  }
+  .box-bg .name{
+    margin-top: 0 !important;
+    font-size: 18px !important;
+  }
+  .box-bg .shuoming{
+    display: none;
+  }
 }
