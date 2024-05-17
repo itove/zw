@@ -65,6 +65,23 @@ class NodeRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    
+    public function findByRegionLabel($label, $locale, $limit = null, $offset = null): array
+    {
+        return $this->createQueryBuilder('n')
+            ->join('n.regions', 'r')
+            ->leftJoin('n.language', 'l')
+            ->andWhere('r.label = :label')
+            ->andWhere('l.locale = :locale OR l is null')
+            ->setParameter('label', $label)
+            ->setParameter('locale', $locale)
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     public function findPrev(Node $node): ?Node
     {

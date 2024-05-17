@@ -16,6 +16,7 @@ $('#musicicon').click(function() {
 		'overflow': 'hidden'
 	})
 	$('.videoWindow').toggle()
+  document.querySelector('video').play();
 })
 $('.video_item').click(function() {
 	let vpath = $(this).attr('vpath')
@@ -31,6 +32,7 @@ $('.videoClose').click(function() {
 	$('html,body').css({
 		'overflow': 'visible'
 	})
+  document.querySelector('video').pause();
 	$('.videoWindow').toggle()
 })
 

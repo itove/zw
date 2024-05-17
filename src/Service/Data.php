@@ -105,6 +105,7 @@ class Data
     {
         $footer = self::getRegionByLabel('footer');
         $data['footer'] = self::findNodesByRegion($footer, $locale, $footer->getCount());
+        $data['wenlv1'] = self::findNodesByRegionLabel('wenlv1', $locale, 1);
         $data['conf'] = self::findConfByLocale($locale);
         $data['friendLinks'] = self::getMenu('friend');
         $data['footerMenu'] = self::getMenu('footer');
@@ -223,8 +224,7 @@ class Data
     
     public function findNodesByRegionLabel(string $label, $locale, $limit = null, $offset = null)
     {
-      $region = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => $label]);
-      return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale, $limit, $offset);
+      return $this->doctrine->getRepository(Node::class)->findByRegionLabel($label, $locale, $limit, $offset);
     }
     
     public function findConfByLocale($locale)
