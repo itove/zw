@@ -442,6 +442,9 @@ footer .flinks a{
 .planflex{
   height: 1100px !important;
 }
+.index_main .section2 .sec2flex{
+  position: relative;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
@@ -507,7 +510,10 @@ footer .flinks a{
     background-size: auto !important;
   }
   .index_main .section2 .sec2flex .sec2flex_right{
-    display: none !important;
+    left: 38%;
+    bottom: 0;
+    height: auto !important;
+    font-size: 16px;
   }
   .sec4flex .services{
     flex-wrap: nowrap !important;
