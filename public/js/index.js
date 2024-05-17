@@ -176,11 +176,6 @@
 		$.fn.fullpage.setAllowScrolling(true, 'up, down');
 		$('.popupWindow').toggle()
 	})
-	$('.videoClose').click(function() {
-		$('.videoCxt').empty()
-		$.fn.fullpage.setAllowScrolling(true, 'up, down');
-		$('.videoWindow').toggle()
-	})
 
 	/*PC版鼠标放置事件*/
 	if(navigator.userAgent.match(/.*Mobile.*/) ? 1 : 2 != 1){

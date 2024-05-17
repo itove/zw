@@ -103,15 +103,6 @@ $('.activity_greenright').click(function() {
 	activitySwiper.swipeNext()
 })
 
-/*点击视频播放弹窗*/
-$('.video_item').click(function() {
-	let vpath = $(this).attr('vpath')
-	$('.videoCxt').html("<video style='width:100%;height:100%'  poster='' src='" + vpath + "' preload=\"auto\" controls=\"controls\" autoplay=\"autoplay\"></video>")
-	$('html,body').css({
-		'overflow': 'hidden'
-	})
-	$('.videoWindow').toggle()
-})
 /*民俗表演点击弹窗*/
 $('.info_more').click(function() {
 	$('.popupCxt').empty()
@@ -246,13 +237,6 @@ function getParam(name) {
 // 	})
 // 	$('.popupWindow').toggle()
 // })
-$('.videoClose').click(function() {
-	$('.videoCxt').empty()
-	$('html,body').css({
-		'overflow': 'visible'
-	})
-	$('.videoWindow').toggle()
-})
 $('.pictureWindow').click(function(){
 	$('.picturebox').empty()
 	$('html,body').css({

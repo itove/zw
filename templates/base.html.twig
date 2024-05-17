@@ -47,7 +47,9 @@
 		<div class="videoWindow" style="display: none;">
 			<div class="videoContainer">
 				<img class="videoClose" src="/images/window_close.png" />
-				<div class="videoCxt" id="mapuse"></div>
+				<div class="videoCxt" id="mapuse">
+					<video style="width:100%;height:100%" poster="" src="/uploads/files/20191022/1571732282rHNMGPr7978845.mp4" preload="auto" controls="controls" autoplay="autoplay"></video>
+        </div>
 			</div>
 		</div>
 		
@@ -81,36 +83,8 @@
 		<script src="{{ asset('js/slider.js') }}"></script>
 		<script src="{{ asset('js/header.js?version=3.9') }}"></script>
 		<script src="{{ asset('js/idangerous.swiper.js') }}"></script>
+		<script src="{{ asset('js/main.js') }}"></script>
 		<script>
-      $(window).scroll(function() {
-          if($(document).scrollTop() > $('.path').offset().top) {
-          $('.gotop').css({
-              'opacity': '1'
-              })
-          } else {
-          $('.gotop').css({
-              'opacity': '0'
-              })
-          }
-          })
-      wx = document.querySelector('#wxicon');
-      wx.addEventListener('mouseover', function(){
-        img = document.querySelector('#wxqr');
-        img.classList.add('d-block');
-      });
-      wx.addEventListener('mouseleave', function(){
-        img = document.querySelector('#wxqr');
-        img.classList.remove('d-block');
-      });
-      minp = document.querySelector('#minpicon');
-      minp.addEventListener('mouseover', function(){
-        img = document.querySelector('#mpqr');
-        img.classList.add('d-block');
-      });
-      minp.addEventListener('mouseleave', function(){
-        img = document.querySelector('#mpqr');
-        img.classList.remove('d-block');
-      });
     </script>
     {% block javascript %} {% endblock %}
 

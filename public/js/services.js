@@ -292,15 +292,3 @@ $('.popupClose').click(function() {
 	})
 	$('.popupWindow').toggle()
 })
-$('.videoClose').click(function() {
-	$('.videoCxt').empty()
-	$('html,body').css({
-		'overflow': 'visible'
-	})
-	$('.videoWindow').toggle()
-})
-
-
-
-
-
