@@ -123,8 +123,11 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Video', "fas fa-{$video->getIcon()}", Node::class)
             ->setQueryParameter('region', $video->getId())
         ;
-        yield MenuItem::linkToCrud('Menu', 'fas fa-link', Menu::class);
-        yield MenuItem::linkToCrud('Tag', 'fas fa-tags', Tag::class);
+
+        yield MenuItem::section('');
+        yield MenuItem::linkToCrud('Menu Management', 'fas fa-link', Menu::class);
+        yield MenuItem::linkToCrud('Tag Management', 'fas fa-tags', Tag::class);
+        yield MenuItem::linkToCrud('Category Management', 'fas fa-table-cells-large', Category::class);
         
         // admin menu of regions
         // foreach ($this->regions as $region) {
@@ -160,10 +163,10 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Page', 'fas fa-cog', Page::class);
             yield MenuItem::linkToCrud('Region', 'fas fa-cog', Region::class);
             yield MenuItem::linkToCrud('Node', 'fas fa-cog', Node::class);
-            yield MenuItem::linkToCrud('Category', 'fas fa-cog', Category::class);
             if ($_ENV['IS_MULTILINGUAL']) {
                 yield MenuItem::linkToCrud('Language', 'fas fa-cog', Language::class);
             }
+            // yield MenuItem::linkToExitImpersonation('Stop impersonation', 'fa fa-exit');
             // yield MenuItem::linkToCrud('Conf', 'fas fa-cog', Conf::class);
         }
     }
