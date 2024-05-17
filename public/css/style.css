@@ -439,6 +439,9 @@ footer .flinks a{
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.planflex{
+  height: 1100px !important;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
