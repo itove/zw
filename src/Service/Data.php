@@ -105,7 +105,7 @@ class Data
     {
         $footer = self::getRegionByLabel('footer');
         $data['footer'] = self::findNodesByRegion($footer, $locale, $footer->getCount());
-        $data['wenlv1'] = self::findNodesByRegionLabel('wenlv1', $locale, 1);
+        $data['video'] = self::findNodesByRegionLabel('video', $locale, 1);
         $data['conf'] = self::findConfByLocale($locale);
         $data['friendLinks'] = self::getMenu('friend');
         $data['footerMenu'] = self::getMenu('footer');
