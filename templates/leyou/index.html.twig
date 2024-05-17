@@ -65,8 +65,18 @@
                 <img class="img" src='/images/{{ i.image }}' />
                 </a>
                 <div class="info">
-                  <p class="title">{{ i.title }}<span class="badge1 ms-3">民宿</span></p>
-                  <p class="phone">{{ i.specs[0].value }}</p>
+                  <p class="title">{{ i.title }}
+                    {% for t in i.tags %}
+                    <span class="badge1 ms-3">
+                    {{ t.name }}
+                    </span>
+                    {% endfor %}
+                  </p>
+                  <p class="phone">
+                    {% if i.specs is not empty  %}
+                    {{ i.specs[0].value }}
+                    {% endif %}
+                  </p>
                   <p class="summary">{{ i.summary }}</p>
                 </div>
               </div>
