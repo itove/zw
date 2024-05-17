@@ -433,7 +433,7 @@ footer .flinks a{
 .upanddown{
   margin-bottom: 30px;
 }
-.path_container a{
+.path_container a:last-child{
   width: 81%;
   white-space: nowrap;
   text-overflow: ellipsis;
