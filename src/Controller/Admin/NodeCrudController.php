@@ -141,8 +141,9 @@ class NodeCrudController extends AbstractCrudController
             ->setBasePath('images/')
             ->setUploadDir('public/images/')
         ;
-        $videoField = ImageField::new('image')
+        $videoField = ImageField::new('video')
             ->onlyOnIndex()
+            ->hideOnIndex()
             ->setBasePath('images/')
             ->setUploadDir('public/images/')
         ;

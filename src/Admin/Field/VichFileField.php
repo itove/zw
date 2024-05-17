@@ -23,7 +23,8 @@ final class VichFileField implements FieldInterface
             ->setLabel($label)
             ->setFormType(VichFileType::class)
             ->setFormTypeOptions(['allow_delete' => false])
-            ->addJsFiles(Asset::fromEasyAdminAssetPackage('field-image.js'))
+            // ->addJsFiles(Asset::fromEasyAdminAssetPackage('field-image.js'))
+            // ->addJsFiles(Asset::fromEasyAdminAssetPackage('field-file-upload.js'))
         ;
     }
 }

@@ -64,7 +64,7 @@ class Node
     private ?string $video = null;
 
     #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'video')]
-    #[Assert\File(maxSize: '10010230k', extensions: ['mp4'], extensionsMessage: 'Only mp4')]
+    #[Assert\File(maxSize: '524000k', extensions: ['mp4'], extensionsMessage: 'Only mp4')]
     private ?File $videoFile = null;
 
     public function __construct()
