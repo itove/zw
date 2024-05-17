@@ -124,6 +124,7 @@ class DashboardController extends AbstractDashboardController
             ->setQueryParameter('region', $video->getId())
         ;
         yield MenuItem::linkToCrud('Menu', 'fas fa-link', Menu::class);
+        yield MenuItem::linkToCrud('Tag', 'fas fa-tags', Tag::class);
         
         // admin menu of regions
         // foreach ($this->regions as $region) {
@@ -160,7 +161,6 @@ class DashboardController extends AbstractDashboardController
             yield MenuItem::linkToCrud('Region', 'fas fa-cog', Region::class);
             yield MenuItem::linkToCrud('Node', 'fas fa-cog', Node::class);
             yield MenuItem::linkToCrud('Category', 'fas fa-cog', Category::class);
-            yield MenuItem::linkToCrud('Tag', 'fas fa-cog', Tag::class);
             if ($_ENV['IS_MULTILINGUAL']) {
                 yield MenuItem::linkToCrud('Language', 'fas fa-cog', Language::class);
             }
