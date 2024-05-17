@@ -33,7 +33,7 @@ class Node
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'image')]
-    #[Assert\Image(maxSize: '1024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
+    #[Assert\Image(maxSize: '5024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
