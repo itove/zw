@@ -80,6 +80,8 @@ class NodeCrudController extends AbstractCrudController
                 foreach ($lastNode[0]->getRegions() as $r) {
                     $node->addRegion($r);
                 }
+            } else {
+                $node->addRegion($this->region);
             }
         }
         return $node;
