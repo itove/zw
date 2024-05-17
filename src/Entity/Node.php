@@ -60,6 +60,13 @@ class Node
     #[ORM\ManyToOne(inversedBy: 'nodes')]
     private ?Category $category = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $video = null;
+
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'video')]
+    #[Assert\File(maxSize: '10010230k', extensions: ['mp4'], extensionsMessage: 'Only mp4')]
+    private ?File $videoFile = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -223,6 +230,22 @@ class Node
         return $this->imageFile;
     }
 
+    public function setVideoFile(?File $videoFile = null): void
+    {
+        $this->videoFile = $videoFile;
+
+        if (null !== $videoFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getVideoFile(): ?File
+    {
+        return $this->videoFile;
+    }
+
     /**
      * @return Collection<int, Spec>
      */
@@ -291,6 +314,18 @@ class Node
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): static
+    {
+        $this->video = $video;
 
         return $this;
     }

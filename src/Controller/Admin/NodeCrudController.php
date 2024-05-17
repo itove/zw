@@ -15,6 +15,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use App\Admin\Field\VichImageField;
+use App\Admin\Field\VichFileField;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\EntityDto;
 use EasyCorp\Bundle\EasyAdminBundle\Orm\EntityRepository;
@@ -140,8 +141,14 @@ class NodeCrudController extends AbstractCrudController
             ->setBasePath('images/')
             ->setUploadDir('public/images/')
         ;
+        $videoField = ImageField::new('image')
+            ->onlyOnIndex()
+            ->setBasePath('images/')
+            ->setUploadDir('public/images/')
+        ;
 
         $vichImageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
+        $vichVideoField = VichFileField::new('videoFile', 'Video')->hideOnIndex();
         $tagsFieldOnIndex = ArrayField::new('tags')->onlyOnIndex();
         $tagsField = AssociationField::new('tags')
             ->onlyOnForms()
@@ -177,6 +184,9 @@ class NodeCrudController extends AbstractCrudController
         // yield ArrayField::new('regions')->onlyOnIndex();
         if (in_array('image', $fields)) {
             yield $vichImageField;
+        }
+        if (in_array('video', $fields)) {
+            yield $vichVideoField;
         }
         if (in_array('tags', $fields)) {
             yield $tagsFieldOnIndex;
