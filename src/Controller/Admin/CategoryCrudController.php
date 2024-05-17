@@ -17,6 +17,7 @@ class CategoryCrudController extends AbstractCrudController
         return Category::class;
     }
     
+    /**
     public function configureActions(Actions $actions): Actions
     {
         // IDs less than 100 are reserved for system use
@@ -26,6 +27,7 @@ class CategoryCrudController extends AbstractCrudController
                 ->displayIf(fn ($entity) => $entity->getId() >= 100))
             ;
     }
+     */
 
     public function configureFields(string $pageName): iterable
     {
