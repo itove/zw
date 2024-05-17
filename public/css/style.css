@@ -17,8 +17,8 @@
 }
 .sec2flex_left{
   position: absolute !important;
-  right: 27em;
-  top: 7em;
+  right: 1em;
+  top: -8em;
   width: 24em !important;
 }
 .sec2flex_left .sec2_title{
@@ -365,8 +365,8 @@ footer .info .wrapper .contact p{
 }
 .index_main .section2 .sec2flex .sec2flex_right{
   position: absolute;
-  bottom: 185px;
-  left: 440px;
+  bottom: -28px;
+  left: 190px;
   font-size: 20px;
   display: block !important;
 }
