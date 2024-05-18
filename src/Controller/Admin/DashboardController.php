@@ -59,8 +59,9 @@ class DashboardController extends AbstractDashboardController
             $title = 'Sitename';
         }
         return Dashboard::new()
+            ->renderContentMaximized()
+            // ->renderSidebarMinimized()
             ->setLocales(['en', 'zh_CN'])
-            // ->renderContentMaximized()
             ->setTitle($title);
     }
     
