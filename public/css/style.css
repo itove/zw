@@ -587,6 +587,9 @@ footer .flinks a{
   .index_main .section2 .sec2flex .sec2flex_left .ways .way{
     font-size: 14px !important;
   }
+  .planbox{
+    background: none !important;
+  }
 }
 
 @media screen and (max-width: 364px) {
