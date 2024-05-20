@@ -445,6 +445,9 @@ footer .flinks a{
 .index_main .section2 .sec2flex{
   position: relative;
 }
+.newsflex .contents .content_item:hover{
+  background-color: #eeeeee;
+}
 
 @media screen and (max-width: 768px) {
   header.header {
