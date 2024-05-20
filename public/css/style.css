@@ -328,9 +328,6 @@ footer .info .wrapper .contact p{
   z-index: 55;
   position: relative;
 }
-.hotelbox .hotelcontainer .hotelright{
-  left: -90px;
-}
 .path{
   width: 100%;
   height: 60px;
@@ -447,6 +444,13 @@ footer .flinks a{
 }
 .newsflex .contents .content_item:hover{
   background-color: #eeeeee;
+}
+
+@media screen and (max-width: 1280px) {
+  .hotelbox .hotelcontainer .hotelleft{
+  }
+  .hotelbox .hotelcontainer .hotelright{
+  }
 }
 
 @media screen and (max-width: 768px) {
