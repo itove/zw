@@ -26,7 +26,7 @@ var jianjieSwiper = new Swiper('.jianjie', {
   pagination:'.pagination',
   autoplay:4000,
   loop:true,
-  initialSlide: 0,
+  // initialSlide: 0,
   slidesPerView: 1,
 })
 /*娱乐项目初始化*/

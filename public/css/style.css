@@ -514,7 +514,7 @@ footer .flinks a{
   }
   .index_main .section2{
     background-position: 38%;
-    background-size: auto !important;
+    background-size: cover !important;
   }
   .index_main .section2 .sec2flex .sec2flex_right{
     left: 38%;
