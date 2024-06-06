@@ -28,7 +28,7 @@ class ApiController extends AbstractController
         return $this->json(['url' => '/images/' . $newName]);
     }
     
-    #[Route('/nodes/{id}', methods: ['GET'])]
+    #[Route('/nodes/{id}', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function getNode(int $id): Response
     {
         $n = $this->data->getNode($id);
@@ -44,6 +44,23 @@ class ApiController extends AbstractController
             'body' => $n->getBody(),
             'image' => $n->getImage(),
         ];
+        return $this->json($data);
+    }
+
+    #[Route('/nodes/{regionLabel}', methods: ['GET'])]
+    public function getNodesByRegion(string $regionLabel): Response
+    {
+        $nodes = $this->data->findNodesByRegionLabel($regionLabel, null, 10);
+        $i = 0;
+        $data = [];
+        foreach ($nodes as $n) {
+            $data[$i]['title'] = $n->getTitle();
+            $data[$i]['summary'] = $n->getSummary();
+            $data[$i]['image'] = $n->getImage();
+            $data[$i]['id'] = $n->getId();
+            $i++;
+        }
+
         return $this->json($data);
     }
 
