@@ -32,10 +32,16 @@ class ApiController extends AbstractController
     public function getNode(int $id): Response
     {
         $n = $this->data->getNode($id);
+        $tags = [];
+        foreach ($n->getTags() as $t) {
+            array_push($tags, $t->getName());
+        }
         $data = [
-          'title' => $n->getTitle(),
-          'summary' => $n->getSummary(),
-          'content' => $n->getBody(),
+            'id' => $n->getId(),
+            'title' => $n->getTitle(),
+            'summary' => $n->getSummary(),
+            'tags' => $tags,
+            'body' => $n->getBody(),
         ];
         return $this->json($data);
     }
@@ -43,7 +49,7 @@ class ApiController extends AbstractController
     #[Route('/wx/home', methods: ['GET'])]
     public function wxHome(): Response
     {
-        $list = ['slider', 'youzai', 'zhuzai', 'chizai', 'gouzai', 'notice'];
+        $list = ['slider', 'youzai', 'zhuzai', 'chizai', 'gouzai', 'notice', 'location', 'zoujin', 'wenhua', 'lishi'];
 
         foreach ($list as $l) {
             $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
@@ -59,7 +65,27 @@ class ApiController extends AbstractController
             $data[$l] = $a;
         }
 
-        // dump($data);
+        return $this->json($data);
+    }
+
+    #[Route('/wx/leyou', methods: ['GET'])]
+    public function wxLeyou(): Response
+    {
+        $list = ['youzai', 'zhuzai', 'chizai', 'gouzai'];
+
+        foreach ($list as $l) {
+            $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
+            $i = 0;
+            $a = [];
+            foreach ($nodes as $n) {
+                $a[$i]['title'] = $n->getTitle();
+                $a[$i]['summary'] = $n->getSummary();
+                $a[$i]['image'] = $n->getImage();
+                $a[$i]['id'] = $n->getId();
+                $i++;
+            }
+            $data[$l] = $a;
+        }
 
         return $this->json($data);
     }
