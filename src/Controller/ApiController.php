@@ -42,6 +42,7 @@ class ApiController extends AbstractController
             'summary' => $n->getSummary(),
             'tags' => $tags,
             'body' => $n->getBody(),
+            'image' => $n->getImage(),
         ];
         return $this->json($data);
     }
