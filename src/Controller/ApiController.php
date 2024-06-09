@@ -239,4 +239,34 @@ class ApiController extends AbstractController
         
         return $this->json(['isFav' => $isFav]);
     }
+
+    #[Route('/fav/add', methods: ['POST'])]
+    public function getIsFav(Request $request): Response
+    {
+        $nid = $request->request->get('nid');
+        $uid = $request->request->get('uid');
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+        
+        $user->addFav($node);
+
+        return $this->json(['isFav' => true]);
+    }
+
+    #[Route('/fav/remove', methods: ['POST'])]
+    public function getIsFav(Request $request): Response
+    {
+        $nid = $request->request->get('nid');
+        $uid = $request->request->get('uid');
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+        
+        $user->removeFav($node);
+
+        return $this->json(['isFav' => true]);
+    }
 }
