@@ -89,6 +89,24 @@ class NodeCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
+        $viewRooms = Action::new('viewRooms', 'Rooms')
+            ->linkToUrl(function (Node $entity){
+                return $this->adminUrlGenerator
+                    ->setController(NodeCrudController::class)
+                    ->setDashboard(DashboardController::class)
+                    ->setAction('index')
+                    // ->set('menuIndex', 1)
+                    ->set('parent', $entity->getId())
+                    ->set('region', $this->data->getRegionByLabel('rooms'))
+                    ->generateUrl();
+            })
+            // ->displayAsLink()
+            ->displayAsButton()
+            // ->setHtmlAttributes(['data-foo' => 'bar', 'target' => '_blank'])
+            ->setCssClass('btn btn-info')
+            // ->addCssClass('some-custom-css-class text-danger')
+        ;
+
         $newFn = fn (Action $action) => $action->linkToUrl(
             fn () => $this->adminUrlGenerator
                           ->setAction('new')
@@ -101,6 +119,10 @@ class NodeCrudController extends AbstractCrudController
                           ->generateUrl()
         );
         
+        $r = $this->region;
+        if ($r->getLabel() === 'zhuzai') {
+            $actions->add('index', $viewRooms);
+        }
         return $actions
             ->update('index', 'new', $newFn)
             ->update('index', 'edit', $editFn)
