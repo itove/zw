@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\Data;
 use App\Entity\Feedback;
+use App\Entity\User;
 
 #[Route('/api')]
 class ApiController extends AbstractController
@@ -44,6 +45,19 @@ class ApiController extends AbstractController
             'tags' => $tags,
             'body' => $n->getBody(),
             'image' => $n->getImage(),
+        ];
+        return $this->json($data);
+    }
+
+    #[Route('/users/{id}', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function _getUser(int $id): Response
+    {
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($id);
+        $data = [
+            'id' => $user->getId(),
+            'name' => $user->getName(),
+            'phone' => $user->getPhone(),
         ];
         return $this->json($data);
     }
