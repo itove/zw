@@ -70,6 +70,28 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/users/{id}', requirements: ['id' => '\d+'], methods: ['PATCH'])]
+    public function _updateUser(int $id, Request $request): Response
+    {
+        $arr = $request->toArray();
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($id);
+        
+        foreach($arr as $k => $v) {
+            $setter = 'set' . ucwords($k);
+            $user->$setter($v);
+        }
+        $em->flush();
+        
+        $data = [
+            'id' => $user->getId(),
+            'name' => $user->getName(),
+            'phone' => $user->getPhone(),
+            'avatar' => $user->getAvatar(),
+        ];
+        return $this->json($data);
+    }
+
     #[Route('/nodes/{regionLabel}', methods: ['GET'])]
     public function getNodesByRegion(string $regionLabel): Response
     {
