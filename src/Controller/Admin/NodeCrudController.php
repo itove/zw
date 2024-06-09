@@ -97,11 +97,11 @@ class NodeCrudController extends AbstractCrudController
                     ->setAction('index')
                     // ->set('menuIndex', 1)
                     ->set('parent', $entity->getId())
-                    ->set('region', $this->data->getRegionByLabel('rooms'))
+                    ->set('region', $this->data->getRegionByLabel('rooms')->getId())
                     ->generateUrl();
             })
             // ->displayAsLink()
-            ->displayAsButton()
+            // ->displayAsButton()
             // ->setHtmlAttributes(['data-foo' => 'bar', 'target' => '_blank'])
             ->setCssClass('btn btn-info')
             // ->addCssClass('some-custom-css-class text-danger')
