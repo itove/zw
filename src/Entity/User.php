@@ -32,6 +32,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $plainPassword = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $openid = null;
     
     public function __toString(): string
     {
@@ -116,6 +119,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(?string $plainPassword): static
     {
         $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+    public function getOpenid(): ?string
+    {
+        return $this->openid;
+    }
+
+    public function setOpenid(?string $openid): static
+    {
+        $this->openid = $openid;
 
         return $this;
     }

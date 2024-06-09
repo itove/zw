@@ -9,6 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Conf;
+use App\Entity\User;
 use App\Service\Wx;
 
 class SecurityController extends AbstractController
