@@ -31,6 +31,7 @@ class UserListener extends AbstractController
     {
         if (! is_null($user->getOpenid())) {
             $user->setUsername($user->getOpenid());
+            $user->setName('用户' . substr($user->getOpenid(), 0, 5));
         }
         if (is_null($user->getPlainPassword())) {
             $user->setPlainPassword('111');
