@@ -41,6 +41,7 @@ class ApiController extends AbstractController
     public function getNode(int $id): Response
     {
         $n = $this->data->getNode($id);
+        $conf = $this->data->findConfByLocale(null);
         $tags = [];
         foreach ($n->getTags() as $t) {
             array_push($tags, $t->getName());
@@ -52,6 +53,8 @@ class ApiController extends AbstractController
             'tags' => $tags,
             'body' => $n->getBody(),
             'image' => $n->getImage(),
+            'address' => $conf['address'],
+            'phone' => $conf['phone'],
         ];
         return $this->json($data);
     }
