@@ -38,15 +38,21 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 class NodeCrudController extends AbstractCrudController
 {
     private $region;
+    private $parent;
     private $query;
     private $adminUrlGenerator;
 
     public function __construct(Data $data, RequestStack $requestStack, AdminUrlGenerator $adminUrlGenerator)
     {
+        $this->requestStack = $requestStack;
         $request = $requestStack->getCurrentRequest();
         $regionId = $request->query->get('region');
+        $pid = $request->query->get('parent');
         if (!is_null($regionId)) {
             $this->region = $data->getRegion($regionId);
+        }
+        if (!is_null($pid)) {
+            $this->parent = $data->getNode($pid);
         }
         $this->adminUrlGenerator = $adminUrlGenerator;
         $this->data = $data;
@@ -61,11 +67,18 @@ class NodeCrudController extends AbstractCrudController
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
     {
         $qb = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
+
         if (!is_null($this->region)) {
             $regionId = $this->region->getId();
             $qb
                 ->andWhere("r.id = $regionId")
                 ->leftJoin('entity.regions', 'r')
+            ;
+        }
+        if (!is_null($this->parent)) {
+            $pid = $this->parent->getId();
+            $qb
+                ->andWhere("entity.parent = $pid")
             ;
         }
         return $qb;
@@ -84,6 +97,11 @@ class NodeCrudController extends AbstractCrudController
                 $node->addRegion($this->region);
             }
         }
+        
+        if (!is_null($this->parent)) {
+            $node->setParent($this->parent);
+        }
+
         return $node;
     }
 
@@ -119,9 +137,11 @@ class NodeCrudController extends AbstractCrudController
                           ->generateUrl()
         );
         
-        $r = $this->region;
-        if ($r->getLabel() === 'zhuzai') {
-            $actions->add('index', $viewRooms);
+        if (!is_null($this->region)) {
+            $r = $this->region;
+            if ($r->getLabel() === 'zhuzai') {
+                $actions->add('index', $viewRooms);
+            }
         }
         return $actions
             ->update('index', 'new', $newFn)
@@ -148,12 +168,18 @@ class NodeCrudController extends AbstractCrudController
     public function configureCrud(Crud $crud): Crud
     {
         if (!is_null($this->region)) {
-            return $crud
+            $crud
                 ->setPageTitle('index', $this->region)
             ;
-        } else {
-            return $crud;
         }
+        if (!is_null($this->parent)) {
+            $crud
+                ->setPageTitle('index', $this->parent . ' 房间')
+                ->setPageTitle('new', $this->parent . ' 新增房间')
+                ->setPageTitle('edit', $this->parent . ' 编辑房间')
+            ;
+        }
+        return $crud;
     }
 
     public function configureFields(string $pageName): iterable
@@ -181,7 +207,8 @@ class NodeCrudController extends AbstractCrudController
         ;
         $categoryFieldOnIndex = ArrayField::new('category')->onlyOnIndex();
         $categoryField = AssociationField::new('category')->onlyOnForms();
-        $parentField = AssociationField::new('parent')->onlyOnForms();
+        $parentField = AssociationField::new('parent')->onlyOnForms()->setDisabled();
+        $childrenField = AssociationField::new('children')->setDisabled();
         $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
             ;
