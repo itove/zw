@@ -159,6 +159,7 @@ class NodeCrudController extends AbstractCrudController
         ;
         $categoryFieldOnIndex = ArrayField::new('category')->onlyOnIndex();
         $categoryField = AssociationField::new('category')->onlyOnForms();
+        $parentField = AssociationField::new('parent')->onlyOnForms();
         $summaryField = TextareaField::new('summary')
             // ->setMaxLength(15)
             ;
