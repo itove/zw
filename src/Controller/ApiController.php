@@ -111,7 +111,7 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/userfav', methods: ['GET'])]
+    #[Route('/fav', methods: ['GET'])]
     public function getUserFav(Request $request): Response
     {
         $regionLabel = $request->query->get('region');
@@ -220,5 +220,23 @@ class ApiController extends AbstractController
         $code = $data->code;
         $resp = $this->wx->getPhoneNumber($code);
         return $this->json($resp);
+    }
+
+    #[Route('/isfav', methods: ['GET'])]
+    public function getIsFav(Request $request): Response
+    {
+        $nid = $request->query->get('nid');
+        $uid = $request->query->get('uid');
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+
+        $isFav = false;
+        if ($user->getFav()->contains($node)) {
+            $isFav = true;
+        }
+        
+        return $this->json(['isFav' => $isFav]);
     }
 }
