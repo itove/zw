@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Service\Data;
+use App\Entity\Feedback;
 
 #[Route('/api')]
 class ApiController extends AbstractController
@@ -51,13 +52,15 @@ class ApiController extends AbstractController
     public function getNodesByRegion(string $regionLabel): Response
     {
         $nodes = $this->data->findNodesByRegionLabel($regionLabel, null, 10);
+        $region = $this->data->getRegionByLabel($regionLabel);
         $i = 0;
-        $data = [];
+        $data['region'] = $region->getName();
+        $data['nodes'] = [];
         foreach ($nodes as $n) {
-            $data[$i]['title'] = $n->getTitle();
-            $data[$i]['summary'] = $n->getSummary();
-            $data[$i]['image'] = $n->getImage();
-            $data[$i]['id'] = $n->getId();
+            $data['nodes'][$i]['title'] = $n->getTitle();
+            $data['nodes'][$i]['summary'] = $n->getSummary();
+            $data['nodes'][$i]['image'] = $n->getImage();
+            $data['nodes'][$i]['id'] = $n->getId();
             $i++;
         }
 
@@ -67,7 +70,7 @@ class ApiController extends AbstractController
     #[Route('/wx/home', methods: ['GET'])]
     public function wxHome(): Response
     {
-        $list = ['slider', 'youzai', 'zhuzai', 'chizai', 'gouzai', 'notice', 'location', 'jianjie'];
+        $list = ['slider', 'youzai', 'zhuzai', 'chizai', 'gouzai', 'notice', 'location', 'jianjie', 'hongsetext', 'historytext'];
 
         foreach ($list as $l) {
             $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
@@ -105,6 +108,37 @@ class ApiController extends AbstractController
             $data[$l] = $a;
         }
 
+        return $this->json($data);
+    }
+
+    #[Route('/feedback', methods: ['POST'])]
+    public function feedback(Request $request): Response
+    {
+        $params = $request->toArray();
+        $firstname = $params['firstname'];
+        // $lastname = $params['lastname'];
+        $phone = $params['phone'];
+        $email = $params['email'];
+        $title = $params['title'];
+        $body = $params['body'];
+        // $country = $params['country'];
+        
+        $em = $this->data->getEntityManager();
+        $f = new Feedback();
+        $f->setFirstname($firstname);
+        // $f->setLastname($lastname);
+        $f->setPhone($phone);
+        $f->setEmail($email);
+        $f->setTitle($title);
+        $f->setBody($body);
+        // $f->setCountry($country);
+        $em->persist($f);
+        $em->flush();
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+        ];
         return $this->json($data);
     }
 }
