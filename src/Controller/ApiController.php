@@ -241,7 +241,7 @@ class ApiController extends AbstractController
     }
 
     #[Route('/fav/add', methods: ['POST'])]
-    public function getIsFav(Request $request): Response
+    public function addFav(Request $request): Response
     {
         $nid = $request->request->get('nid');
         $uid = $request->request->get('uid');
@@ -256,7 +256,7 @@ class ApiController extends AbstractController
     }
 
     #[Route('/fav/remove', methods: ['POST'])]
-    public function getIsFav(Request $request): Response
+    public function removeFav(Request $request): Response
     {
         $nid = $request->request->get('nid');
         $uid = $request->request->get('uid');
