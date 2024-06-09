@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -44,6 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
+
+    #[ORM\ManyToMany(targetEntity: Node::class)]
+    private Collection $fav;
+
+    public function __construct()
+    {
+        $this->fav = new ArrayCollection();
+    }
     
     public function __toString(): string
     {
@@ -176,6 +186,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): static
     {
         $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Node>
+     */
+    public function getFav(): Collection
+    {
+        return $this->fav;
+    }
+
+    public function addFav(Node $fav): static
+    {
+        if (!$this->fav->contains($fav)) {
+            $this->fav->add($fav);
+        }
+
+        return $this;
+    }
+
+    public function removeFav(Node $fav): static
+    {
+        $this->fav->removeElement($fav);
 
         return $this;
     }
