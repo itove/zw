@@ -62,12 +62,6 @@ class SecurityController extends AbstractController
             // create
             $user = new User();
             $user->setOpenid($openid);
-            if (isset($data->referrerId)) {
-                $referrer = $this->doctrine->getRepository(User::class)->find($data->referrerId);
-                if ($referrer) {
-                    $user->setReferrer($referrer);
-                }
-            }
             $em->persist($user);
             $em->flush();
         }
