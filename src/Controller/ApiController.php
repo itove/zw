@@ -23,10 +23,17 @@ class ApiController extends AbstractController
     #[Route('/media_objects', methods: ['POST'])]
     public function upload(Request $request): Response
     {
+        $uid = $request->request->get('uid');
         $file = $request->files->get('upload');
         $newName = uniqid() . '-' .  $file->getClientOriginalName();
         // copy($file->getPathname(), 'images/' . $newName);
         $file->move('images/', $newName);
+        if ($uid !== null) {
+            $em = $this->data->getEntityManager();
+            $user = $em->getRepository(User::class)->find($uid);
+            $user->setAvatar('images/' . $newName);
+            $em->flush();
+        }
         return $this->json(['url' => '/images/' . $newName]);
     }
     
@@ -58,6 +65,7 @@ class ApiController extends AbstractController
             'id' => $user->getId(),
             'name' => $user->getName(),
             'phone' => $user->getPhone(),
+            'avatar' => $user->getAvatar(),
         ];
         return $this->json($data);
     }
