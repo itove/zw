@@ -53,8 +53,8 @@ class ApiController extends AbstractController
             'tags' => $tags,
             'body' => $n->getBody(),
             'image' => $n->getImage(),
-            'address' => $conf['address'],
-            'phone' => $conf['phone'],
+            'address' => $conf->getAddress(),
+            'phone' => $conf->getPhone(),
         ];
         return $this->json($data);
     }
