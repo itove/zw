@@ -111,6 +111,33 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/userfav', methods: ['GET'])]
+    public function getUserFav(Request $request): Response
+    {
+        $regionLabel = $request->query->get('region');
+        $uid = $request->query->get('uid');
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $fav = $user->getFav();
+        $region = $this->data->getRegionByLabel($regionLabel);
+        
+        $i = 0;
+        $data['region'] = $region->getName();
+        $data['nodes'] = [];
+        foreach ($fav as $n) {
+            if ($n->getRegions()->contains($region)) {
+                $data['nodes'][$i]['title'] = $n->getTitle();
+                $data['nodes'][$i]['summary'] = $n->getSummary();
+                $data['nodes'][$i]['image'] = $n->getImage();
+                $data['nodes'][$i]['id'] = $n->getId();
+                $i++;
+            }
+        }
+
+        return $this->json($data);
+    }
+
     #[Route('/wx/home', methods: ['GET'])]
     public function wxHome(): Response
     {
