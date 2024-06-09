@@ -14,9 +14,10 @@ class SecurityController extends AbstractController
 {
     private $doctrine;
     
-    public function __construct(ManagerRegistry $doctrine)
+    public function __construct(ManagerRegistry $doctrine, Wx $wx)
     {
         $this->doctrine = $doctrine;
+        $this->wx = $wx;
     }
     
     #[Route(path: '/login', name: 'app_login')]
