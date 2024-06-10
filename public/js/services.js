@@ -160,7 +160,7 @@ $('.food_item').click(function(){
 		url: "/api/nodes/" + id,
 		success: function(result) {
 			console.log(result);
-			$('.popupCxt').html(result.content)
+			$('.popupCxt').html(result.body)
 			$('html,body').css({
 				'overflow': 'hidden'
 			})
@@ -182,7 +182,7 @@ $('.spfood_slide').click(function(){
 		url: "/api/nodes/" + id,
 		success: function(result) {
 			console.log(result);
-			$('.popupCxt').html(result.content)
+			$('.popupCxt').html(result.body)
 			$('html,body').css({
 				'overflow': 'hidden'
 			})
