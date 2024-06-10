@@ -53,6 +53,7 @@ class ApiController extends AbstractController
             'tags' => $tags,
             'body' => $n->getBody(),
             'image' => $n->getImage(),
+            'audio' => $n->getAudio(),
             'address' => $conf->getAddress(),
             'phone' => $conf->getPhone(),
         ];
