@@ -60,6 +60,10 @@ class SecurityController extends AbstractController
         $code = $data->code;
         $openid = $this->wx->getOpenid($code);
 
+        if ($openid === null) {
+            return new Response('', 500);
+        }
+
         $user = $this->doctrine->getRepository(User::class)->findOneBy(['openid' => $openid]);
         $em = $this->doctrine->getManager();
         if (is_null($user)) {

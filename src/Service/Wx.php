@@ -62,7 +62,7 @@ class Wx
         $headers[] = 'Content-Type: application/json';
         $headers[] = 'Accept:application/json';
         $content = $this->httpClient->request('GET', $url, ['headers' => $headers])->toArray();
-        $sessionKey = $content['session_key'];
+        // $sessionKey = $content['session_key'];
         $openid = $content['openid'];
 
         return $openid;
