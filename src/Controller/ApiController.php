@@ -56,6 +56,26 @@ class ApiController extends AbstractController
             'address' => $conf->getAddress(),
             'phone' => $conf->getPhone(),
         ];
+        
+        $children = [];
+        foreach ($n->getChildren() as $k => $v) {
+            $children[$k]['title'] = $v->getTitle();
+            $children[$k]['summary'] = $v->getSummary();
+            $children[$k]['images'] = $v->getImages();
+            $tags = [];
+            foreach ($v->getTags() as $t) {
+                array_push($tags, $t->getName());
+            }
+            $children[$k]['tags'] = $tags;
+
+            $images = [];
+            foreach ($v->getImages() as $i) {
+                array_push($images, $i->getImage());
+            }
+            $children[$k]['images'] = $images;
+        }
+        $data['children'] = $children;
+
         return $this->json($data);
     }
 
