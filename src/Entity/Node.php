@@ -73,6 +73,13 @@ class Node
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
     private Collection $children;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $audio = null;
+
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'audio')]
+    #[Assert\File(maxSize: '524000k', extensions: ['mp3'], extensionsMessage: 'Only mp3')]
+    private ?File $audioFile = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -258,6 +265,22 @@ class Node
         return $this->videoFile;
     }
 
+    public function setAudioFile(?File $audioFile = null): void
+    {
+        $this->audioFile = $audioFile;
+
+        if (null !== $audioFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getAudioFile(): ?File
+    {
+        return $this->audioFile;
+    }
+
     /**
      * @return Collection<int, Spec>
      */
@@ -380,6 +403,18 @@ class Node
                 $child->setParent(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAudio(): ?string
+    {
+        return $this->audio;
+    }
+
+    public function setAudio(?string $audio): static
+    {
+        $this->audio = $audio;
 
         return $this;
     }
