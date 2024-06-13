@@ -54,6 +54,7 @@ class ApiController extends AbstractController
             'body' => $n->getBody(),
             'image' => $n->getImage(),
             'audio' => $n->getAudio(),
+            'qr' => $n->getQr(),
             'address' => $conf->getAddress(),
             'phone' => $conf->getPhone(),
         ];

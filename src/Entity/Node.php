@@ -83,6 +83,10 @@ class Node
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $qr = null;
 
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'qr')]
+    #[Assert\Image(maxSize: '5024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
+    private ?File $qrFile = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -432,5 +436,21 @@ class Node
         $this->qr = $qr;
 
         return $this;
+    }
+    
+    public function setQrFile(?File $qrFile = null): void
+    {
+        $this->qrFile = $qrFile;
+
+        if (null !== $qrFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getQrFile(): ?File
+    {
+        return $this->qrFile;
     }
 }

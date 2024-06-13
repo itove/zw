@@ -37,11 +37,12 @@ class Data
         // $props   = $reflect->getProperties(\ReflectionProperty::IS_PRIVATE);
         $props   = $reflect->getProperties();
         $arr = [];
-        $no_need = ['title', 'imageFile', 'videoFile', 'audioFile'];
+        $no_need = ['title', 'imageFile', 'videoFile', 'audioFile', 'qrFile'];
         if (!$_ENV['IS_MULTILINGUAL']) {
             array_push($no_need, 'language');
         }
         foreach ($props as $prop) {
+            dump($prop);
             $prop_name = $prop->getName();
             if (!in_array($prop_name, $no_need)) {
                 // array_push($arr, $prop->getName());

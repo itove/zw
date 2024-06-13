@@ -186,11 +186,11 @@ class NodeCrudController extends AbstractCrudController
     {
         $idField = IdField::new('id')->onlyOnIndex();
         $titleField = TextField::new('title');
-        $imageField = ImageField::new('image')
-            ->onlyOnIndex()
-            ->setBasePath('images/')
-            ->setUploadDir('public/images/')
-        ;
+        // $imageField = ImageField::new('image')
+        //     ->onlyOnIndex()
+        //     ->setBasePath('images/')
+        //     ->setUploadDir('public/images/')
+        // ;
         // $videoField = ImageField::new('video')
         //     ->onlyOnIndex()
         //     ->hideOnIndex()
@@ -198,9 +198,10 @@ class NodeCrudController extends AbstractCrudController
         //     ->setUploadDir('public/images/')
         // ;
 
-        $vichImageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
+        $imageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
         $videoField = VichFileField::new('videoFile', 'Video')->hideOnIndex();
         $audioField = VichFileField::new('audioFile', 'Audio')->hideOnIndex();
+        $qrField = VichImageField::new('qrFile', 'Image')->hideOnIndex();
         $tagsFieldOnIndex = ArrayField::new('tags')->onlyOnIndex();
         $tagsField = AssociationField::new('tags')
             ->onlyOnForms()
@@ -236,9 +237,10 @@ class NodeCrudController extends AbstractCrudController
             yield $$ff;
         }
         // yield ArrayField::new('regions')->onlyOnIndex();
-        if (in_array('image', $fields)) {
-            yield $vichImageField;
-        }
+
+        // if (in_array('image', $fields)) {
+        //     yield $vichImageField;
+        // }
         if (in_array('tags', $fields)) {
             yield $tagsFieldOnIndex;
         }
