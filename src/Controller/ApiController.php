@@ -200,6 +200,17 @@ class ApiController extends AbstractController
                 foreach ($n->getTags() as $t) {
                     array_push($tags, $t->getName());
                 }
+                
+                // mv important_tags to first
+                $important_tags = ['民宿', '农家乐'];
+                foreach ($important_tags as $it) {
+                    $index = array_search($it, $tags);
+                    if ($index !== false) {
+                        unset($tags[$index]);
+                        array_unshift($tags, $it);
+                    }
+                }
+                
                 $a[$i]['title'] = $n->getTitle();
                 $a[$i]['summary'] = $n->getSummary();
                 $a[$i]['image'] = $n->getImage();
