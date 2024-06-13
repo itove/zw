@@ -186,6 +186,7 @@ class NodeCrudController extends AbstractCrudController
     {
         $idField = IdField::new('id')->onlyOnIndex();
         $titleField = TextField::new('title');
+        $phoneField = TextField::new('phone');
         // $imageField = ImageField::new('image')
         //     ->onlyOnIndex()
         //     ->setBasePath('images/')

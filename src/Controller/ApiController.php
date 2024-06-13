@@ -55,9 +55,8 @@ class ApiController extends AbstractController
             'image' => $n->getImage(),
             'audio' => $n->getAudio(),
             'qr' => $n->getQr(),
-            'specs' => $n->getSpecs(),
             'address' => $conf->getAddress(),
-            'phone' => $conf->getPhone(),
+            'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
         ];
         
         $children = [];
