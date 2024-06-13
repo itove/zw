@@ -201,7 +201,7 @@ class NodeCrudController extends AbstractCrudController
         $imageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
         $videoField = VichFileField::new('videoFile', 'Video')->hideOnIndex();
         $audioField = VichFileField::new('audioFile', 'Audio')->hideOnIndex();
-        $qrField = VichImageField::new('qrFile', 'Image')->hideOnIndex();
+        $qrField = VichImageField::new('qrFile', 'Qr')->hideOnIndex();
         $tagsFieldOnIndex = ArrayField::new('tags')->onlyOnIndex();
         $tagsField = AssociationField::new('tags')
             ->onlyOnForms()
