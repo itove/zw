@@ -80,6 +80,9 @@ class Node
     #[Assert\File(maxSize: '524000k', extensions: ['mp3'], extensionsMessage: 'Only mp3')]
     private ?File $audioFile = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $qr = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -415,6 +418,18 @@ class Node
     public function setAudio(?string $audio): static
     {
         $this->audio = $audio;
+
+        return $this;
+    }
+
+    public function getQr(): ?string
+    {
+        return $this->qr;
+    }
+
+    public function setQr(?string $qr): static
+    {
+        $this->qr = $qr;
 
         return $this;
     }
