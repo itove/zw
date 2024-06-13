@@ -188,6 +188,7 @@ class ApiController extends AbstractController
     #[Route('/wx/leyou', methods: ['GET'])]
     public function wxLeyou(): Response
     {
+        $conf = $this->data->findConfByLocale(null);
         $list = ['youzai', 'zhuzai', 'chizai', 'gouzai'];
 
         foreach ($list as $l) {
@@ -195,10 +196,16 @@ class ApiController extends AbstractController
             $i = 0;
             $a = [];
             foreach ($nodes as $n) {
+                $tags = [];
+                foreach ($n->getTags() as $t) {
+                    array_push($tags, $t->getName());
+                }
                 $a[$i]['title'] = $n->getTitle();
                 $a[$i]['summary'] = $n->getSummary();
                 $a[$i]['image'] = $n->getImage();
                 $a[$i]['id'] = $n->getId();
+                $a[$i]['phone'] = $n->getPhone() ? $n->getPhone() : $conf->getPhone();
+                $a[$i]['tags'] = $tags;
                 $i++;
             }
             $data[$l] = $a;
