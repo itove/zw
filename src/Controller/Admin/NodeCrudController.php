@@ -6,6 +6,7 @@ use App\Entity\Node;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
@@ -222,6 +223,8 @@ class NodeCrudController extends AbstractCrudController
         $regionsField = AssociationField::new('regions')->onlyOnForms();
         $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
+        $latitudeField = NumberField::new('latitude')->hideOnIndex();
+        $longitudeField = NumberField::new('longitude')->hideOnIndex();
         
         $fields = [];
         if (!is_null($this->region)) {
