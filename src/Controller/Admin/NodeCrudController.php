@@ -223,8 +223,8 @@ class NodeCrudController extends AbstractCrudController
         $regionsField = AssociationField::new('regions')->onlyOnForms();
         $specsField = CollectionField::new('specs')->useEntryCrudForm()->hideOnIndex();
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
-        $latitudeField = NumberField::new('latitude')->hideOnIndex();
-        $longitudeField = NumberField::new('longitude')->hideOnIndex();
+        $latitudeField = NumberField::new('latitude')->setNumDecimals(12)->hideOnIndex();
+        $longitudeField = NumberField::new('longitude')->setNumDecimals(12)->hideOnIndex();
         
         $fields = [];
         if (!is_null($this->region)) {
