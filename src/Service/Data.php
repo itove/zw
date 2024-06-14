@@ -74,6 +74,50 @@ class Data
     {
         return $this->doctrine->getRepository(Node::class)->find($id);
     }
+
+    public function formatNode(Node $n)
+    {
+        $conf = $this->findConfByLocale(null);
+        $tags = [];
+        foreach ($n->getTags() as $t) {
+            array_push($tags, $t->getName());
+        }
+        $data = [
+            'id' => $n->getId(),
+            'title' => $n->getTitle(),
+            'summary' => $n->getSummary(),
+            'tags' => $tags,
+            'body' => $n->getBody(),
+            'image' => $n->getImage(),
+            'audio' => $n->getAudio(),
+            'qr' => $n->getQr(),
+            'latitude' => $n->getLatitude(),
+            'longitude' => $n->getLongitude(),
+            'address' => $conf->getAddress(),
+            'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
+        ];
+        
+        $children = [];
+        foreach ($n->getChildren() as $k => $v) {
+            $children[$k]['title'] = $v->getTitle();
+            $children[$k]['summary'] = $v->getSummary();
+            $children[$k]['images'] = $v->getImages();
+            $tags = [];
+            foreach ($v->getTags() as $t) {
+                array_push($tags, $t->getName());
+            }
+            $children[$k]['tags'] = $tags;
+
+            $images = [];
+            foreach ($v->getImages() as $i) {
+                array_push($images, $i->getImage());
+            }
+            $children[$k]['images'] = $images;
+        }
+        $data['children'] = $children;
+        
+        return $data;
+    }
     
     public function getPrev(Node $node)
     {

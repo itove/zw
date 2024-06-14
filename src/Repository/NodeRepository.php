@@ -107,6 +107,19 @@ class NodeRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findHaveLatLong($limit = null, $offset = null): array
+    {
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.latitude is not null')
+            ->andWhere('n.longitude is not null')
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Node[] Returns an array of Node objects
 //     */

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Service\Data;
 use App\Entity\Feedback;
 use App\Entity\User;
+use App\Entity\Node;
 
 #[Route('/api')]
 class ApiController extends AbstractController
@@ -40,43 +41,8 @@ class ApiController extends AbstractController
     #[Route('/nodes/{id}', requirements: ['id' => '\d+'], methods: ['GET'])]
     public function getNode(int $id): Response
     {
-        $n = $this->data->getNode($id);
-        $conf = $this->data->findConfByLocale(null);
-        $tags = [];
-        foreach ($n->getTags() as $t) {
-            array_push($tags, $t->getName());
-        }
-        $data = [
-            'id' => $n->getId(),
-            'title' => $n->getTitle(),
-            'summary' => $n->getSummary(),
-            'tags' => $tags,
-            'body' => $n->getBody(),
-            'image' => $n->getImage(),
-            'audio' => $n->getAudio(),
-            'qr' => $n->getQr(),
-            'address' => $conf->getAddress(),
-            'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
-        ];
-        
-        $children = [];
-        foreach ($n->getChildren() as $k => $v) {
-            $children[$k]['title'] = $v->getTitle();
-            $children[$k]['summary'] = $v->getSummary();
-            $children[$k]['images'] = $v->getImages();
-            $tags = [];
-            foreach ($v->getTags() as $t) {
-                array_push($tags, $t->getName());
-            }
-            $children[$k]['tags'] = $tags;
-
-            $images = [];
-            foreach ($v->getImages() as $i) {
-                array_push($images, $i->getImage());
-            }
-            $children[$k]['images'] = $images;
-        }
-        $data['children'] = $children;
+        $node = $this->data->getNode($id);
+        $data = $this->data->formatNode($node);
 
         return $this->json($data);
     }
@@ -317,5 +283,18 @@ class ApiController extends AbstractController
         $em->flush();
 
         return $this->json(['isFav' => true]);
+    }
+
+    #[Route('/map/markers', methods: ['GET'])]
+    public function getMapMarkers(): Response
+    {
+        $em = $this->data->getEntityManager();
+        $nodes = $em->getRepository(Node::class)->findHaveLatLong();
+        $data = [];
+        foreach($nodes as $n) {
+            array_push($data, $this->data->formatNode($n));
+        }
+        
+        return $this->json($data);
     }
 }
