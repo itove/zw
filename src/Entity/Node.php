@@ -91,9 +91,11 @@ class Node
     private ?string $phone = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Range(min: -90, max: 90)]
     private ?float $latitude = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\Range(min: -180, max: 180)]
     private ?float $longitude = null;
 
     public function __construct()
