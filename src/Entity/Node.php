@@ -98,6 +98,9 @@ class Node
     #[Assert\Range(min: -180, max: 180)]
     private ?float $longitude = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -497,6 +500,18 @@ class Node
     public function setLongitude(?float $longitude): static
     {
         $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): static
+    {
+        $this->address = $address;
 
         return $this;
     }
