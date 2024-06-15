@@ -102,6 +102,10 @@ class Data
             'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
         ];
+
+        if (!empty($n->getRegions())) {
+            $data['region'] = $n->getRegions()[0]->getId();
+        }
         
         $children = [];
         foreach ($n->getChildren() as $k => $v) {
