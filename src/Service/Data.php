@@ -99,7 +99,7 @@ class Data
             'qr' => $n->getQr(),
             'latitude' => $n->getLatitude(),
             'longitude' => $n->getLongitude(),
-            'address' => $conf->getAddress(),
+            'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
         ];
         
