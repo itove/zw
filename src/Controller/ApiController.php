@@ -297,4 +297,13 @@ class ApiController extends AbstractController
         
         return $this->json($data);
     }
+
+    #[Route('/wx/feedback', methods: ['GET'])]
+    public function getWxFeedback(): Response
+    {
+        $nodes = $this->data->findNodesByRegionLabel('feedback', null);
+        $node = $this->data->formatNode($nodes[0]);
+        
+        return $this->json($node);
+    }
 }
