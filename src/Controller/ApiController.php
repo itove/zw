@@ -86,7 +86,7 @@ class ApiController extends AbstractController
     #[Route('/nodes/{regionLabel}', methods: ['GET'])]
     public function getNodesByRegion(string $regionLabel): Response
     {
-        $nodes = $this->data->findNodesByRegionLabel($regionLabel, null, 10);
+        $nodes = $this->data->findNodesByRegionLabel($regionLabel, null);
         $region = $this->data->getRegionByLabel($regionLabel);
         $i = 0;
         $data['region'] = $region->getName();
