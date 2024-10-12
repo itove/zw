@@ -118,12 +118,6 @@ class DashboardController extends AbstractDashboardController
         
         $footer = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
         $video = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'video']);
-        yield MenuItem::linkToCrud('Footer', "fas fa-{$footer->getIcon()}", Node::class)
-            ->setQueryParameter('region', $footer->getId())
-        ;
-        yield MenuItem::linkToCrud('Video', "fas fa-{$video->getIcon()}", Node::class)
-            ->setQueryParameter('region', $video->getId())
-        ;
 
         yield MenuItem::section('');
         yield MenuItem::linkToCrud('Menu Management', 'fas fa-link', Menu::class);
