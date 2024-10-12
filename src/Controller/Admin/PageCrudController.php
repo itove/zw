@@ -21,7 +21,9 @@ class PageCrudController extends AbstractCrudController
     {
         $disabled = false;
         if ($pageName == 'edit') {
-            $disabled = true;
+            if ($_ENV['APP_ENV'] === 'prod') {
+                $disabled = true;
+            }
         }
 
         yield TextField::new('name');
@@ -31,8 +33,10 @@ class PageCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        return $actions
-            ->disable('delete')
-        ;
+        if ($_ENV['APP_ENV'] === 'prod') {
+            $actions->disable('delete');
+        }
+
+        return $actions;
     }
 }
