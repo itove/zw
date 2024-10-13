@@ -144,6 +144,11 @@ class NodeCrudController extends AbstractCrudController
                 $actions->add('index', $viewRooms);
             }
         }
+
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            $actions->addBatchAction(Action::BATCH_DELETE);
+        }
+
         return $actions
             ->update('index', 'new', $newFn)
             ->update('index', 'edit', $editFn)
