@@ -151,11 +151,11 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/wx/leyou', methods: ['GET'])]
+    #[Route('/wx/explore', methods: ['GET'])]
     public function wxLeyou(): Response
     {
         $conf = $this->data->findConfByLocale(null);
-        $list = ['youzai', 'zhuzai', 'chizai', 'gouzai'];
+        $list = ['jing', 'zhu', 'shi', 'gou'];
 
         foreach ($list as $l) {
             $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
