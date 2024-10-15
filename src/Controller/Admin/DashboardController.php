@@ -112,8 +112,10 @@ class DashboardController extends AbstractDashboardController
                     ->setQueryParameter('region', $region->getId())
                 ;
                 array_push($items, $item);
+                // yield MenuItem::section($p->getName());
+                yield $item;
             }
-            yield MenuItem::subMenu($p->getName(), 'fa fa-file-image-o')->setSubItems($items);
+            // yield MenuItem::subMenu($p->getName(), 'fa fa-file-image-o')->setSubItems($items);
         }
         
         $footer = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
