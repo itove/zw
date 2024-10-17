@@ -125,7 +125,7 @@ class DashboardController extends AbstractDashboardController
             }
 
             if ($_ENV['USE_SUBMENU']) {
-                yield MenuItem::subMenu($p->getName(), 'fa fa-file-image-o')->setSubItems($items);
+                yield MenuItem::subMenu($p->getName(), 'fa fa-folder')->setSubItems($items);
             }
         }
 
