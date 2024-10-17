@@ -20,7 +20,7 @@ class ProductsController extends AbstractController
         $this->translator = $translator;
     }
     
-    #[Route('/products', name: 'app_products')]
+    // #[Route('/products', name: 'app_products')]
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();

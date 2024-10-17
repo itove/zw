@@ -18,6 +18,7 @@ class ImageCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
+        yield TextField::new('title');
         yield VichImageField::new('imageFile', 'Images')->hideOnIndex();
     }
 }

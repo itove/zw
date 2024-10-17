@@ -50,14 +50,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Node::class)]
     private Collection $fav;
 
+    #[ORM\OneToMany(mappedBy: 'consumer', targetEntity: Order::class)]
+    private Collection $orders;
+
     public function __construct()
     {
         $this->fav = new ArrayCollection();
+        $this->orders = new ArrayCollection();
     }
     
     public function __toString(): string
     {
-        return $this->username;
+        $s = $this->name;
+        if (is_null($s)) {
+            $s = $this->username;
+        }
+
+        return $s;
     }
 
     public function getId(): ?int
@@ -210,6 +219,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeFav(Node $fav): static
     {
         $this->fav->removeElement($fav);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+            $order->setConsumer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        if ($this->orders->removeElement($order)) {
+            // set the owning side to null (unless already changed)
+            if ($order->getConsumer() === $this) {
+                $order->setConsumer(null);
+            }
+        }
 
         return $this;
     }

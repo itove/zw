@@ -20,7 +20,7 @@ class AboutController extends AbstractController
         $this->translator = $translator;
     }
     
-    #[Route('/about', name: 'app_about')]
+    // #[Route('/about', name: 'app_about')]
     public function index(Request $request): Response
     {
         $locale = $request->getLocale();

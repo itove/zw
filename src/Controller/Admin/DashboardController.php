@@ -9,6 +9,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use App\Entity\Order;
+use App\Entity\Refund;
 use App\Entity\Node;
 use App\Entity\Region;
 use App\Entity\Page;
@@ -26,16 +28,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 class DashboardController extends AbstractDashboardController
 {
     private $doctrine;
-    private $nodes;
+    // private $nodes;
     private $conf;
-    private $regions;
+    // private $regions;
 
     public function __construct(ManagerRegistry $doctrine)
     {
       $this->doctrine = $doctrine;
-      $this->nodes = $doctrine->getRepository(Node::class);
-      $this->conf = $doctrine->getRepository(Conf::class)->find(1);
-      $this->regions = $doctrine->getRepository(Region::class)->findAll();
+      // $this->nodes = $doctrine->getRepository(Node::class);
+      $this->conf = $doctrine->getRepository(Conf::class)->findOneBy([], ['id' => 'ASC']);
+      // $this->regions = $doctrine->getRepository(Region::class)->findAll();
     }
     
     #[Route('/admin', name: 'admin')]
@@ -43,10 +45,10 @@ class DashboardController extends AbstractDashboardController
     {
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator
-                    ->setController(ConfCrudController::class)
-                    // ->set('region', '3')
-                    ->setAction('detail')
-                    ->setEntityId(1)
+                    ->setController(NodeCrudController::class)
+                    ->set('region', '3')
+                    // ->setAction('detail')
+                    // ->setEntityId(1)
                     ->generateUrl()
         );
     }
@@ -91,37 +93,55 @@ class DashboardController extends AbstractDashboardController
 
     public function configureMenuItems(): iterable
     {
-        $pages = $this->doctrine->getRepository(Page::class)->findBy([], ['id' => 'ASC']);
+        $pages = $this->doctrine->getRepository(Page::class)->findBy([], ['weight' => 'ASC', 'id' => 'ASC']);
         
         yield MenuItem::linkToUrl('Back to Site', 'fas fa-arrow-circle-left', '/');
         
-        // yield MenuItem::section('Content Management');
-        // yield MenuItem::linkToCrud('Product Management', 'fas fa-truck', Node::class)
-        //     ->setQueryParameter('region', 'product')
-        // ;
-        // yield MenuItem::linkToCrud('News', 'fas fa-newspaper', Node::class)
-        //     ->setQueryParameter('region', 'news')
-        // ;
-        
-        yield MenuItem::section('Content Management');
+        yield MenuItem::section('Content Management')
+            // ->setCssClass('test');
+            // ->setBadge('test')
+            // ->setPermission('ROLE_SUPER_ADMIN')
+        ;
         
         foreach ($pages as $p) {
-            $items = [];
+            if ($_ENV['USE_SUBMENU']) {
+                $items = [];
+            } else {
+                if (count($p->getRegions()) > 0) {
+                    yield MenuItem::section($p->getName());
+                }
+            }
+
             foreach ($p->getRegions() as $region) {
                 $item = MenuItem::linkToCrud($region->getName(), "fas fa-{$region->getIcon()}", Node::class)
                     ->setQueryParameter('region', $region->getId())
+                    ->setController(_N::class . $region->getId())
                 ;
-                array_push($items, $item);
-                // yield MenuItem::section($p->getName());
-                yield $item;
+                if ($_ENV['USE_SUBMENU']) {
+                    array_push($items, $item);
+                } else {
+                    yield $item;
+                }
             }
-            // yield MenuItem::subMenu($p->getName(), 'fa fa-file-image-o')->setSubItems($items);
-        }
-        
-        $footer = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'footer']);
-        $video = $this->doctrine->getRepository(Region::class)->findOneBy(['label' => 'video']);
 
-        yield MenuItem::section('');
+            if ($_ENV['USE_SUBMENU']) {
+                yield MenuItem::subMenu($p->getName(), 'fa fa-file-image-o')->setSubItems($items);
+            }
+        }
+
+        yield MenuItem::section('Feedback');
+        yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class)
+            ->setQueryParameter('type', 0)
+        ;
+        yield MenuItem::linkToCrud('Consultation', 'fas fa-message', Feedback::class)
+            ->setQueryParameter('type', 1)
+        ;
+        
+        yield MenuItem::section('Taxon Management');
+        if ($_ENV['HAVE_ORDERS']) {
+            yield MenuItem::linkToCrud('Order Management', 'fas fa-book-open', Order::class);
+            yield MenuItem::linkToCrud('Refund Records', 'fas fa-book-open', Refund::class);
+        }
         yield MenuItem::linkToCrud('Menu Management', 'fas fa-link', Menu::class);
         yield MenuItem::linkToCrud('Tag Management', 'fas fa-tags', Tag::class);
         yield MenuItem::linkToCrud('Category Management', 'fas fa-table-cells-large', Category::class);
@@ -140,16 +160,13 @@ class DashboardController extends AbstractDashboardController
             ->setEntityId($this->getUser()->getId())
             ;
         if ($this->isGranted('ROLE_ADMIN')) {
-            // yield MenuItem::linkToCrud('Category Management', 'fas fa-list', Category::class);
-            // yield MenuItem::linkToCrud('Tag Management', 'fas fa-list', Tag::class);
-            yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
             yield MenuItem::linkToCrud('User Management', 'fas fa-users', User::class);
-            if ($_ENV['IS_MULTILINGUAL']) {
+            if ($_ENV['IS_MULTILINGUAL'] || ! $this->conf) {
                 yield MenuItem::linkToCrud('Settings', 'fas fa-cog', Conf::class);
             } else {
                 yield MenuItem::linkToCrud('Settings', 'fas fa-cog', Conf::class)
                     ->setAction('detail')
-                    ->setEntityId(1)
+                    ->setEntityId($this->conf->getId())
                 ;
             }
             yield MenuItem::linkToUrl('Changelog', 'fas fa-note-sticky', '/changelog/');

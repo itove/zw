@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PageRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -19,7 +20,7 @@ class Page
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'page', targetEntity: Region::class)]
-    #[ORM\OrderBy(["id" => "ASC"])]
+    #[ORM\OrderBy(["weight" => "ASC", "id" => "ASC"])]
     private Collection $regions;
 
     #[ORM\Column(length: 255)]
@@ -27,6 +28,9 @@ class Page
 
     #[ORM\Column(length: 255)]
     private ?string $label = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $weight = 0;
 
     public function __construct()
     {
@@ -90,9 +94,22 @@ class Page
         return $this->label;
     }
 
-    public function setLabel(string $label): static
+    // ?string so we can setLabel(null) first in event preUpdate
+    public function setLabel(?string $label): static
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(?int $weight): static
+    {
+        $this->weight = $weight;
 
         return $this;
     }

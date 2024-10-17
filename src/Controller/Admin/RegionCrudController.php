@@ -19,6 +19,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use App\Service\Data;
 
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+
 class RegionCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
@@ -29,16 +31,26 @@ class RegionCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         $disabled = false;
+
         if ($pageName == 'edit') {
-            if ($_ENV['APP_ENV'] === 'prod') {
+            // if ($_ENV['APP_ENV'] === 'prod') {
+            if (!$this->isGranted('ROLE_SUPER_ADMIN')) {
                 $disabled = true;
             }
         }
 
         yield IdField::new('id')->onlyOnIndex();
-        yield AssociationField::new('page')->setDisabled($disabled);
+        yield AssociationField::new('page')
+            ->setDisabled($disabled)
+        ;
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            yield IntegerField::new('weight');
+        }
         yield TextField::new('name');
-        yield TextField::new('label')->setDisabled($disabled);
+        yield TextField::new('label')
+            ->setDisabled($disabled)
+            ->setRequired(false)
+        ;
         yield TextField::new('icon');
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
@@ -52,5 +64,12 @@ class RegionCrudController extends AbstractCrudController
         }
 
         return $actions;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setDefaultSort(['page' => 'ASC', 'weight' => 'ASC', 'id' => 'DESC'])
+        ;
     }
 }

@@ -65,7 +65,8 @@ class Menu
         return $this->label;
     }
 
-    public function setLabel(string $label): static
+    // ?string so we can setLabel(null) first in event preUpdate
+    public function setLabel(?string $label): static
     {
         $this->label = $label;
 

@@ -82,6 +82,35 @@ class NodeRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    
+    public function findByRegionLabelAndCriteria($label, $criteria, $locale, $limit = null, $offset = null): array
+    {
+        $qb = $this->createQueryBuilder('n');
+
+        // https://github.com/doctrine/orm/issues/7833
+				foreach ($criteria as $k => $v) {
+          $expr = $qb->expr()->eq("n.{$k}", ":{$k}");
+          $qb
+            ->andWhere($expr)
+            ->setParameter($k, $v)
+          ;
+        }
+
+        return $qb
+            // ->addCriteria($criteria)
+            ->join('n.regions', 'r')
+            ->leftJoin('n.language', 'l')
+            ->andWhere('r.label = :label')
+            ->andWhere('l.locale = :locale OR l is null')
+            ->setParameter('label', $label)
+            ->setParameter('locale', $locale)
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     public function findPrev(Node $node): ?Node
     {

@@ -20,10 +20,12 @@ class IndexController extends AbstractController
         $this->translator = $translator;
     }
     
-    // #[Route('/', name: 'app_index')]
+    #[Route('/', name: 'app_index')]
     public function index(Request $request): Response
     {
         $data = $this->data->getPageContent('home', $request->getLocale());
+
+        $data['news'] = $this->data->findNodesByRegionLabel('news');
         
         return $this->render('index/index.html.twig', $data);
     }

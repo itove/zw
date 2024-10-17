@@ -28,19 +28,22 @@ class Region
     private Collection $nodes;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    private ?int $count = 1;
+    private ?int $count = 5;
 
     #[ORM\Column(length: 20, nullable: true)]
-    private ?string $icon = null;
+    private ?string $icon = 'list';
 
     #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
-    private ?array $fields = null;
+    private ?array $fields = ['image', 'summary', 'body'];
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
     #[ORM\ManyToOne(inversedBy: 'regions')]
     private ?Page $page = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $weight = 0;
 
     public function __toString(): string
     {
@@ -79,7 +82,8 @@ class Region
         return $this->label;
     }
 
-    public function setLabel(string $label): static
+    // ?string so we can setLabel(null) first in event preUpdate
+    public function setLabel(?string $label): static
     {
         $this->label = $label;
 
@@ -172,6 +176,18 @@ class Region
     public function setPage(?Page $page): static
     {
         $this->page = $page;
+
+        return $this;
+    }
+
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(?int $weight): static
+    {
+        $this->weight = $weight;
 
         return $this;
     }

@@ -16,7 +16,7 @@ class Spec
     #[ORM\Column(length: 25)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $value = null;
 
     #[ORM\ManyToOne(inversedBy: 'specs')]
@@ -50,7 +50,7 @@ class Spec
         return $this->value;
     }
 
-    public function setValue(string $value): static
+    public function setValue(?string $value): static
     {
         $this->value = $value;
 

@@ -16,6 +16,7 @@ use App\Entity\Region;
 use App\Entity\Page;
 use App\Entity\Language;
 use App\Entity\Menu;
+use App\Entity\Order;
 
 class Data
 {
@@ -81,6 +82,28 @@ class Data
         return $this->doctrine->getRepository(Node::class)->find($id);
     }
 
+    public function formatOrder(Order $order)
+    {
+        $data = [
+            'id' => $order->getId(),
+            'sn' => $order->getSn(),
+            'node' => $order->getNode()->getId(),
+            'consumer' => $order->getConsumer()->getId(),
+            'quantity' => $order->getQuantity(),
+            'price' => $order->getPrice(),
+            'amount' => $order->getAmount(),
+            'createdAt' => $order->getCreatedAt(),
+            'paidAt' => $order->getPaidAt(),
+            'usedAt' => $order->getUsedAt(),
+            'cancelledAt' => $order->getCancelledAt(),
+            'refundedAt' => $order->getRefundedAt(),
+            'status' => $order->getStatus(),
+            'node' => self::formatNode($order->getNode()),
+        ];
+
+        return $data;
+    }
+
     public function formatNode(Node $n)
     {
         $conf = $this->findConfByLocale(null);
@@ -101,6 +124,7 @@ class Data
             'longitude' => $n->getLongitude(),
             'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
+            'price' => $n->getPrice(),
         ];
 
         if (!empty($n->getRegions())) {
@@ -143,23 +167,36 @@ class Data
     {
         $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
         $regions = $page->getRegions();
+
         $data = [];
         foreach ($regions as $r) {
             $dataOfRegion = self::findNodesByRegion($r, $locale, $r->getCount());
-            $data[$r->getLabel()] = $dataOfRegion;
+            // $data[$r->getLabel()] = $dataOfRegion;
+            $data['nodes'] = $dataOfRegion;
         }
         
-        $data['path'] = $page->getName();
-        
+        $data['page'] = self::getPageInfo($label);
+
         return array_merge($data, self::getMisc($locale));
-        
+    }
+    
+    public function getPageInfo(string $label)
+    {
+        $page = $this->doctrine->getRepository(Page::class)->findOneBy(['label' => $label]);
+
+        $data = [
+          'name' => $page->getName(),
+          'label' => $label,
+          'intro' => '',
+        ];
+
+        return $data;
     }
     
     public function getMisc(string $locale)
     {
         $footer = self::getRegionByLabel('footer');
         $data['footer'] = self::findNodesByRegion($footer, $locale, $footer->getCount());
-        $data['video'] = self::findNodesByRegionLabel('video', $locale, 1);
         $data['conf'] = self::findConfByLocale($locale);
         $data['friendLinks'] = self::getMenu('friend');
         $data['footerMenu'] = self::getMenu('footer');
@@ -253,11 +290,11 @@ class Data
         return $nodes;
     }
     
-    public function findNodeByRegionAndLocale($region_label, $locale)
+    public function findNodeByRegionAndLocale($region_label, $locale = null)
     {
       $language = $this->findOneBy(['locale' => $locale], Language::class);
       $region = $this->findOneBy(['label' => $region_label], Region::class);
-      $node = $this->findOneBy(['language' => $language, 'region' => $region]);
+      $node = $this->findOneBy(['language' => $language, 'regions' => $region]);
         
       return $node;
     }
@@ -271,12 +308,12 @@ class Data
       return $nodes;
     }
     
-    public function findNodesByRegion(Region $region, $locale, $limit = null, $offset = null)
+    public function findNodesByRegion(Region $region, $locale = null, $limit = null, $offset = null)
     {
       return $this->doctrine->getRepository(Node::class)->findByRegion($region, $locale, $limit, $offset);
     }
     
-    public function findNodesByRegionLabel(string $label, $locale, $limit = null, $offset = null)
+    public function findNodesByRegionLabel(string $label, $locale = null, $limit = null, $offset = null)
     {
       return $this->doctrine->getRepository(Node::class)->findByRegionLabel($label, $locale, $limit, $offset);
     }
@@ -287,6 +324,14 @@ class Data
       $conf = $this->findOneBy(['language' => $language], Conf::class);
         
       return $conf;
+    }
+
+    /**
+     * 
+     */
+    public function findByRegionLabelAndCriteria($region_label, $criteria, $locale = null, $limit = null, $offset = null)
+    {
+      return $this->doctrine->getRepository(Node::class)->findByRegionLabelAndCriteria($region_label, $criteria, $locale, $limit, $offset);
     }
     
     public function findBy($criteria, $entity = Node::class)
@@ -332,5 +377,15 @@ class Data
       return $this->doctrine->getRepository(Node::class)
                             ->findByCategoryAndTag(['category' => $cate_label, 'tag' => $tag_label], [], $limit)
                         ;
+    }
+
+    public function getOrder(int $oid)
+    {
+        return $this->doctrine->getRepository(Order::class)->find($oid);
+    }
+
+    public function getOrderBySn(string $sn)
+    {
+        return $this->doctrine->getRepository(Order::class)->findOneBy(['sn' => $sn]);
     }
 }

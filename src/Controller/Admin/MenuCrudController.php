@@ -25,11 +25,17 @@ class MenuCrudController extends AbstractCrudController
     {
         $disabled = false;
         if ($pageName == 'edit') {
-            $disabled = true;
+            // if ($_ENV['APP_ENV'] === 'prod') {
+            if (!$this->isGranted('ROLE_SUPER_ADMIN')) {
+                $disabled = true;
+            }
         }
 
         yield TextField::new('name');
-        yield TextField::new('label')->setDisabled($disabled);
+        yield TextField::new('label')
+            ->setDisabled($disabled)
+            ->setRequired(false)
+        ;
         yield CollectionField::new('links')
             ->setRequired(true)
             ->useEntryCrudForm()

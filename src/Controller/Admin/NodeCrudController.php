@@ -12,6 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
@@ -35,6 +36,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
 // use Doctrine\Common\Collections\ArrayCollection;
 // use Doctrine\Common\Collections\Criteria;
+use App\Entity\Taxon;
 
 class NodeCrudController extends AbstractCrudController
 {
@@ -207,19 +209,24 @@ class NodeCrudController extends AbstractCrudController
         // ;
 
         $imageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
+        $priceField = MoneyField::new('price')->setCurrency('CNY')->hideOnIndex();
         $videoField = VichFileField::new('videoFile', 'Video')->hideOnIndex();
         $audioField = VichFileField::new('audioFile', 'Audio')->hideOnIndex();
         $qrField = VichImageField::new('qrFile', 'Qr')->hideOnIndex();
-        $tagsFieldOnIndex = ArrayField::new('tags')->onlyOnIndex();
-        $tagsField = AssociationField::new('tags')
-            ->onlyOnForms()
+        if ($pageName == 'index') {
+            $tagsField = ArrayField::new('tags')->onlyOnIndex();
+            $categoryField = ArrayField::new('category')->onlyOnIndex();
+        } else {
+            $tagsField = AssociationField::new('tags')
+                ->onlyOnForms()
             // ->setRequired(true)
-        ;
-        $categoryFieldOnIndex = ArrayField::new('category')->onlyOnIndex();
-        $categoryField = AssociationField::new('category')->onlyOnForms();
+            ;
+            $categoryField = AssociationField::new('category')->onlyOnForms();
+        }
         $parentField = AssociationField::new('parent')->onlyOnForms()->setDisabled();
         $childrenField = AssociationField::new('children')->setDisabled();
         $summaryField = TextareaField::new('summary')
+            ->setNumOfRows(2)
             // ->setMaxLength(15)
             ;
         $bodyField = TextareaField::new('body')->setNumOfRows(10)->onlyOnForms();
@@ -251,11 +258,5 @@ class NodeCrudController extends AbstractCrudController
         // if (in_array('image', $fields)) {
         //     yield $vichImageField;
         // }
-        if (in_array('tags', $fields)) {
-            yield $tagsFieldOnIndex;
-        }
-        if (in_array('category', $fields)) {
-            yield $categoryFieldOnIndex;
-        }
     }
 }

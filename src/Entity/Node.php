@@ -23,9 +23,6 @@ class Node
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $body = null;
 
@@ -33,7 +30,7 @@ class Node
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'image')]
-    #[Assert\Image(maxSize: '8024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
+    #[Assert\Image(maxSize: '5024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
@@ -44,9 +41,6 @@ class Node
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'nodes')]
     private Collection $tags;
-
-    #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'nodes')]
     private ?Language $language = null;
@@ -100,6 +94,15 @@ class Node
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $price = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     public function __construct()
     {
@@ -512,6 +515,18 @@ class Node
     public function setAddress(?string $address): static
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?int $price): static
+    {
+        $this->price = $price;
 
         return $this;
     }

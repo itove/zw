@@ -29,3 +29,4 @@
 /node_modules/
 *.swp
 /public/.user.ini
+/src/Controller/Admin/_N*.php
