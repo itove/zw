@@ -195,13 +195,14 @@ class Data
     
     public function getMisc(string $locale)
     {
-        $footer = self::getRegionByLabel('footer');
-        $data['footer'] = self::findNodesByRegion($footer, $locale, $footer->getCount());
-        $data['conf'] = self::findConfByLocale($locale);
-        $data['friendLinks'] = self::getMenu('friend');
-        $data['footerMenu'] = self::getMenu('footer');
+        $data['conf'] = self::getConf($locale);
 
 		return $data;
+    }
+
+    public function getConf(string $locale)
+    {
+		return self::findConfByLocale($locale);
     }
     
     public function getMenu(string $label)
