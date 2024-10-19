@@ -37,7 +37,7 @@ class Data
         $reflect = new \ReflectionClass($entity);
         $props   = $reflect->getProperties();
         $arr = [];
-        $no_need = ['title', 'comments', 'author', 'deleted', 'up', 'down'];
+        $no_need = ['title', 'latitude', 'longitude', 'comments', 'deleted', 'up', 'down'];
         if (!$_ENV['IS_MULTILINGUAL']) {
             array_push($no_need, 'language');
         }
@@ -58,6 +58,8 @@ class Data
                 }
             }
         }
+        
+        $arr['Coord'] = 'coord';
         
         return $arr;
     }

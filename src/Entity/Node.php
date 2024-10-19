@@ -526,6 +526,11 @@ class Node
         return $this;
     }
 
+    public function getCoord(): ?array
+    {
+        return [$this->latitude, $this->longitude];
+    }
+
     public function getAddress(): ?string
     {
         return $this->address;

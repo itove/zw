@@ -16,6 +16,8 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use App\Admin\Field\VichImageField;
 use App\Admin\Field\VichFileField;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
@@ -238,11 +240,12 @@ class NodeCrudController extends AbstractCrudController
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
         $latitudeField = NumberField::new('latitude')->setNumDecimals(12)->setColumns(3)->hideOnIndex();
         $longitudeField = NumberField::new('longitude')->setNumDecimals(12)->setColumns(3)->hideOnIndex();
-        $coordField = ArrayField::new('coord')->hideOnIndex();
+        $coordField = ArrayField::new('coord')->hideOnIndex()->hideOnForm();
+        $authorField = AssociationField::new('author')->setDisabled();
+        $deletedField = BooleanField::new('deleted')->setDisabled();
+        $upField = IntegerField::new('up')->setDisabled();
+        $downField = IntegerField::new('down')->setDisabled();
 
-        $latField = NumberField::new('lat')->setNumDecimals(12)->hideOnIndex();
-        $longField = NumberField::new('long')->setNumDecimals(12)->hideOnIndex();
-        
         $fields = [];
         if (!is_null($this->region)) {
             $fields = $this->region->getFields();
@@ -255,11 +258,13 @@ class NodeCrudController extends AbstractCrudController
         yield $titleField;
         foreach ($fields as $f) {
             $ff = $f . "Field";
+            dump($f);
             yield $$ff;
-            if ($f == "coord") {
-                yield $latField;
-                yield $longField;
-            }
+        }
+
+        if (in_array('coord', $fields)) {
+            yield $latitudeField;
+            yield $longitudeField;
         }
 
 
