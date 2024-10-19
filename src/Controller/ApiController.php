@@ -138,4 +138,178 @@ class ApiController extends AbstractController
         ];
         return $this->json($data);
     }
+
+    #[Route('/fav', methods: ['GET'])]
+    public function getUserFav(Request $request): Response
+    {
+        $regionLabel = $request->query->get('region');
+        $uid = $request->query->get('uid');
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $fav = $user->getFav();
+        $region = $this->data->getRegionByLabel($regionLabel);
+
+        $i = 0;
+        $data['region'] = $region->getName();
+        $data['nodes'] = [];
+        foreach ($fav as $n) {
+            if ($n->getRegions()->contains($region)) {
+                $data['nodes'][$i]['title'] = $n->getTitle();
+                $data['nodes'][$i]['summary'] = $n->getSummary();
+                $data['nodes'][$i]['image'] = $n->getImage();
+                $data['nodes'][$i]['id'] = $n->getId();
+                $i++;
+            }
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route('/wx/home', methods: ['GET'])]
+    public function wxHome(): Response
+    {
+        $list = ['slider', 'jing', 'zhu', 'shi', 'dong', 'gou', 'yi', 'wen', 'wan'];
+
+        foreach ($list as $l) {
+            $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
+            $i = 0;
+            $a = [];
+            foreach ($nodes as $n) {
+                $a[$i]['title'] = $n->getTitle();
+                $a[$i]['summary'] = $n->getSummary();
+                $a[$i]['image'] = $n->getImage();
+                $a[$i]['id'] = $n->getId();
+                $i++;
+            }
+            $data[$l] = $a;
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route('/wx/explore', methods: ['GET'])]
+    public function wxPageExplore(): Response
+    {
+        $conf = $this->data->findConfByLocale(null);
+        $list = ['jing', 'zhu', 'shi', 'gou'];
+
+        foreach ($list as $l) {
+            $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
+            $i = 0;
+            $a = [];
+            foreach ($nodes as $n) {
+                $tags = [];
+                foreach ($n->getTags() as $t) {
+                    array_push($tags, $t->getName());
+                }
+
+                // mv important_tags to first
+                $important_tags = ['民宿', '农家乐'];
+                foreach ($important_tags as $it) {
+                    $index = array_search($it, $tags);
+                    if ($index !== false) {
+                        unset($tags[$index]);
+                        array_unshift($tags, $it);
+                    }
+                }
+
+                $a[$i]['title'] = $n->getTitle();
+                $a[$i]['summary'] = $n->getSummary();
+                $a[$i]['image'] = $n->getImage();
+                $a[$i]['id'] = $n->getId();
+                $a[$i]['phone'] = $n->getPhone() ? $n->getPhone() : $conf->getPhone();
+                $a[$i]['tags'] = $tags;
+                $i++;
+            }
+            $data[$l] = $a;
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route(path: '/wx/getphone', name: 'api_wx_getphone', methods: ['POST'])]
+    public function wxLogin(Request $request)
+    {
+        $data = json_decode($request->getContent());
+        $code = $data->code;
+        $resp = $this->wx->getPhoneNumber($code);
+        return $this->json($resp);
+    }
+
+    #[Route('/isfav', methods: ['GET'])]
+    public function getIsFav(Request $request): Response
+    {
+        $nid = $request->query->get('nid');
+        $uid = $request->query->get('uid');
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+
+        $isFav = false;
+        if ($user->getFav()->contains($node)) {
+            $isFav = true;
+        }
+
+        return $this->json(['isFav' => $isFav]);
+    }
+
+    #[Route('/fav/add', methods: ['POST'])]
+    public function addFav(Request $request): Response
+    {
+        $data = $request->toArray();
+        $nid = $data['nid'];
+        $uid = $data['uid'];
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+
+        $user->addFav($node);
+
+        $em->flush();
+
+        return $this->json(['isFav' => true]);
+    }
+
+    #[Route('/fav/remove', methods: ['POST'])]
+    public function removeFav(Request $request): Response
+    {
+        $data = $request->toArray();
+        $nid = $data['nid'];
+        $uid = $data['uid'];
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+
+        $user->removeFav($node);
+
+        $em->flush();
+
+        return $this->json(['isFav' => true]);
+    }
+
+    #[Route('/map/markers', methods: ['GET'])]
+    public function getMapMarkers(): Response
+    {
+        $em = $this->data->getEntityManager();
+        $nodes = $em->getRepository(Node::class)->findHaveLatLong();
+        $data = [];
+        foreach($nodes as $n) {
+            array_push($data, $this->data->formatNode($n));
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route('/wx/feedback', methods: ['GET'])]
+    public function getWxFeedback(): Response
+    {
+        $nodes = $this->data->findNodesByRegionLabel('feedback', null);
+        $node = $this->data->formatNode($nodes[0]);
+
+        return $this->json($node);
+    }
 }
