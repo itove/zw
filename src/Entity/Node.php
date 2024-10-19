@@ -110,6 +110,9 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Comment::class)]
     private Collection $comments;
 
+    #[ORM\ManyToOne(inversedBy: 'nodes')]
+    private ?User $author = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -564,6 +567,18 @@ class Node
                 $comment->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): static
+    {
+        $this->author = $author;
 
         return $this;
     }
