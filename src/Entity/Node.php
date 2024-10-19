@@ -122,6 +122,9 @@ class Node
     #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
     private ?int $down = null;
 
+    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
+    private ?array $coord = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -624,6 +627,18 @@ class Node
     public function setDown(?int $down): static
     {
         $this->down = $down;
+
+        return $this;
+    }
+
+    public function getCoord(): ?array
+    {
+        return $this->coord;
+    }
+
+    public function setCoord(?array $coord): static
+    {
+        $this->coord = $coord;
 
         return $this;
     }

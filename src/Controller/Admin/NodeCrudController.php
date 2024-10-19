@@ -238,6 +238,7 @@ class NodeCrudController extends AbstractCrudController
         $imagesField = CollectionField::new('images')->useEntryCrudForm()->hideOnIndex();
         $latitudeField = NumberField::new('latitude')->setNumDecimals(12)->hideOnIndex();
         $longitudeField = NumberField::new('longitude')->setNumDecimals(12)->hideOnIndex();
+        $coordField = ArrayField::new('coord')->hideOnIndex();
         
         $fields = [];
         if (!is_null($this->region)) {
