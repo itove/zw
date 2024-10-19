@@ -239,6 +239,9 @@ class NodeCrudController extends AbstractCrudController
         $latitudeField = NumberField::new('latitude')->setNumDecimals(12)->hideOnIndex();
         $longitudeField = NumberField::new('longitude')->setNumDecimals(12)->hideOnIndex();
         $coordField = ArrayField::new('coord')->hideOnIndex();
+
+        $latField = NumberField::new('lat')->setNumDecimals(12)->hideOnIndex();
+        $longField = NumberField::new('long')->setNumDecimals(12)->hideOnIndex();
         
         $fields = [];
         if (!is_null($this->region)) {
@@ -253,7 +256,13 @@ class NodeCrudController extends AbstractCrudController
         foreach ($fields as $f) {
             $ff = $f . "Field";
             yield $$ff;
+            if ($f == "coord") {
+                yield $latField;
+                yield $longField;
+            }
         }
+
+
         // yield ArrayField::new('regions')->onlyOnIndex();
 
         // if (in_array('image', $fields)) {

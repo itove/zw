@@ -642,4 +642,36 @@ class Node
 
         return $this;
     }
+
+    public function getLat(): ?float
+    {
+        if (array_key_exists(0, $this->coord)) {
+            return $this->coord[0];
+        } else {
+            return null;
+        }
+    }
+
+    public function setLat(?float $lat): static
+    {
+        $this->coord[0] = $lat;
+
+        return $this;
+    }
+
+    public function getLong(): ?float
+    {
+        if (array_key_exists(1, $this->coord)) {
+            return $this->coord[1];
+        } else {
+            return null;
+        }
+    }
+
+    public function setLong(?float $long): static
+    {
+        $this->coord[1] = $long;
+
+        return $this;
+    }
 }
