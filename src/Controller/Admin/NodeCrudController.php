@@ -258,7 +258,6 @@ class NodeCrudController extends AbstractCrudController
         yield $titleField;
         foreach ($fields as $f) {
             $ff = $f . "Field";
-            dump($f);
             yield $$ff;
         }
 
