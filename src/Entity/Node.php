@@ -113,6 +113,9 @@ class Node
     #[ORM\ManyToOne(inversedBy: 'nodes')]
     private ?User $author = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $deleted = false;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -579,6 +582,18 @@ class Node
     public function setAuthor(?User $author): static
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function isDeleted(): ?bool
+    {
+        return $this->deleted;
+    }
+
+    public function setDeleted(?bool $deleted): static
+    {
+        $this->deleted = $deleted;
 
         return $this;
     }
