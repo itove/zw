@@ -58,7 +58,7 @@ class Data
                 }
             }
         }
-
+        
         return $arr;
     }
     

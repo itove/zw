@@ -122,9 +122,6 @@ class Node
     #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
     private ?int $down = null;
 
-    #[ORM\Column(type: Types::SIMPLE_ARRAY, nullable: true)]
-    private ?array $coord = null;
-
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -627,50 +624,6 @@ class Node
     public function setDown(?int $down): static
     {
         $this->down = $down;
-
-        return $this;
-    }
-
-    public function getCoord(): ?array
-    {
-        return $this->coord;
-    }
-
-    public function setCoord(?array $coord): static
-    {
-        $this->coord = $coord;
-
-        return $this;
-    }
-
-    public function getLat(): ?float
-    {
-        if (array_key_exists(0, $this->coord)) {
-            return $this->coord[0];
-        } else {
-            return null;
-        }
-    }
-
-    public function setLat(?float $lat): static
-    {
-        $this->coord[0] = $lat;
-
-        return $this;
-    }
-
-    public function getLong(): ?float
-    {
-        if (array_key_exists(1, $this->coord)) {
-            return $this->coord[1];
-        } else {
-            return null;
-        }
-    }
-
-    public function setLong(?float $long): static
-    {
-        $this->coord[1] = $long;
 
         return $this;
     }
