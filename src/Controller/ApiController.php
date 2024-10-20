@@ -13,6 +13,7 @@ use App\Entity\Node;
 use App\Entity\Order;
 use App\Entity\Check;
 use App\Entity\Refund;
+use App\Entity\Fav;
 use App\Service\WxPay;
 use App\Service\Wx;
 
@@ -149,7 +150,7 @@ class ApiController extends AbstractController
 
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
-        $fav = $user->getFav();
+        $fav = $user->getFavs();
         $region = $this->data->getRegionByLabel($regionLabel);
 
         $i = 0;
@@ -250,7 +251,7 @@ class ApiController extends AbstractController
         $node = $this->data->getNode($nid);
 
         $isFav = false;
-        if ($user->getFav()->contains($node)) {
+        if ($user->getFavs()->contains($node)) {
             $isFav = true;
         }
 
@@ -267,10 +268,16 @@ class ApiController extends AbstractController
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
         $node = $this->data->getNode($nid);
+        $fav = $em->getRepository(Fav::class)->findOneBy(['u' => $user, 'node' => $node]);
+        if (null === $fav) {
+            $fav = new Fav();
+            $fav->setU($user);
+            $fav->setNode($node);
 
-        $user->addFav($node);
+            $em->persist($fav);
 
-        $em->flush();
+            $em->flush();
+        }
 
         return $this->json(['isFav' => true]);
     }
@@ -285,8 +292,10 @@ class ApiController extends AbstractController
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
         $node = $this->data->getNode($nid);
-
-        $user->removeFav($node);
+        $fav = $em->getRepository(Fav::class)->findOneBy(['u' => $user, 'node' => $node]);
+        if (null !== $fav) {
+            $em->remove($fav);
+        }
 
         $em->flush();
 

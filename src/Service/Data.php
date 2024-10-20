@@ -127,6 +127,7 @@ class Data
             'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
             'price' => $n->getPrice(),
+            'favs' => count($n->getFavs()),
         ];
 
         if (!empty($n->getRegions())) {
