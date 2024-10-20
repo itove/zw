@@ -64,6 +64,7 @@ class ApiController extends AbstractController
             'phone' => $user->getPhone(),
             'avatar' => $user->getAvatar(),
             'roles' => $user->getRoles(),
+            'favCount' => count($user->getFavs()),
         ];
         return $this->json($data);
     }
@@ -150,14 +151,14 @@ class ApiController extends AbstractController
 
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
-        $fav = $user->getFavs();
+        $favs = $user->getFavs();
         $region = $this->data->getRegionByLabel($regionLabel);
 
         $i = 0;
         $data['region'] = $region->getName();
         $data['nodes'] = [];
-        foreach ($fav as $n) {
-            if ($n->getRegions()->contains($region)) {
+        foreach ($favs as $f) {
+            if ($f->getNode()->getRegions()->contains($region)) {
                 $data['nodes'][$i]['title'] = $n->getTitle();
                 $data['nodes'][$i]['summary'] = $n->getSummary();
                 $data['nodes'][$i]['image'] = $n->getImage();
@@ -185,8 +186,8 @@ class ApiController extends AbstractController
                 $a[$i]['id'] = $n->getId();
 
                 $a[$i]['favs'] = [];
-                foreach($n->getFavs() as $u) {
-                    array_push($a[$i]['favs'], $u->getId());
+                foreach($n->getFavs() as $f) {
+                    array_push($a[$i]['favs'], $f->getU()->getId());
                 }
 
                 $i++;
@@ -307,6 +308,35 @@ class ApiController extends AbstractController
         $em->flush();
 
         return $this->json(['isFav' => false]);
+    }
+
+    #[Route('/fav/toggle', methods: ['POST'])]
+    public function toggleFav(Request $request): Response
+    {
+        $data = $request->toArray();
+        $nid = $data['nid'];
+        $uid = $data['uid'];
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+        $fav = $em->getRepository(Fav::class)->findOneBy(['u' => $user, 'node' => $node]);
+
+        if (null === $fav) {
+            $fav = new Fav();
+            $fav->setU($user);
+            $fav->setNode($node);
+
+            $em->persist($fav);
+            $isFav = true;
+        } else {
+            $em->remove($fav);
+            $isFav = false;
+        }
+
+        $em->flush();
+
+        return $this->json(['isFav' => $isFav]);
     }
 
     #[Route('/map/markers', methods: ['GET'])]
