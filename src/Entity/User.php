@@ -313,4 +313,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         return $this->favs;
     }
+
+    public function addFav(Fav $fav): static
+    {
+        if (!$this->favs->contains($fav)) {
+            $this->favs->add($fav);
+            $fav->setU($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFav(Fav $fav): static
+    {
+        if ($this->favs->removeElement($fav)) {
+            // set the owning side to null (unless already changed)
+            if ($fav->getU() === $this) {
+                $fav->setU(null);
+            }
+        }
+
+        return $this;
+    }
 }
