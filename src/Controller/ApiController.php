@@ -256,11 +256,10 @@ class ApiController extends AbstractController
         $user = $em->getRepository(User::class)->find($uid);
         $node = $this->data->getNode($nid);
 
+        $fav = $em->getRepository(Fav::class)->findOneBy(['u' => $user, 'node' => $node]);
         $isFav = false;
-        foreach($node->getFavs() as $f) {
-            if ($f->getU() == $user) {
-                $isFav = true;
-            }
+        if (null !== $fav) {
+            $isFav = true;
         }
 
         return $this->json(['isFav' => $isFav]);
