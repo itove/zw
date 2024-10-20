@@ -257,8 +257,10 @@ class ApiController extends AbstractController
         $node = $this->data->getNode($nid);
 
         $isFav = false;
-        if ($user->getFavs()->contains($node)) {
-            $isFav = true;
+        foreach($node->getFavs() as $f) {
+            if ($f->getU() == $user) {
+                $isFav = true;
+            }
         }
 
         return $this->json(['isFav' => $isFav]);

@@ -131,8 +131,8 @@ class Data
         ];
         
         $data['favs'] = [];
-        foreach($n->getFavs() as $u) {
-            array_push($data['favs'], $u->getId());
+        foreach($n->getFavs() as $f) {
+            array_push($data['favs'], $f->getU()->getId());
         }
 
         if (!empty($n->getRegions())) {
