@@ -290,7 +290,7 @@ class ApiController extends AbstractController
 
         $em->flush();
 
-        return $this->json(['isFav' => true]);
+        return $this->json(['isFav' => false]);
     }
 
     #[Route('/map/markers', methods: ['GET'])]
