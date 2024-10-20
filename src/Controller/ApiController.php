@@ -330,4 +330,29 @@ class ApiController extends AbstractController
 
         return $this->json($node);
     }
+
+    #[Route('/search', methods: ['GET'])]
+    public function search(Request $request): Response
+    {
+        $q = $request->query->get('q');
+
+        $regionLabel = 'jing';
+
+        $nodes = $this->data->findNodesByRegionLabel($regionLabel, null);
+        $region = $this->data->getRegionByLabel($regionLabel);
+        $i = 0;
+        $data['region'] = $region->getName();
+        $data['nodes'] = [];
+        foreach ($nodes as $n) {
+            $data['nodes'][$i]['title'] = $n->getTitle();
+            $data['nodes'][$i]['summary'] = $n->getSummary();
+            $data['nodes'][$i]['image'] = $n->getImage();
+            $data['nodes'][$i]['id'] = $n->getId();
+            $data['nodes'][$i]['latitude'] = $n->getLatitude();
+            $data['nodes'][$i]['longitude'] = $n->getLongitude();
+            $i++;
+        }
+        
+        return $this->json($data);
+    }
 }
