@@ -122,6 +122,12 @@ class Node
     #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
     private ?int $down = null;
 
+    /**
+     * @var Collection<int, Fav>
+     */
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Fav::class, orphanRemoval: true)]
+    private Collection $favs;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -132,6 +138,7 @@ class Node
         $this->images = new ArrayCollection();
         $this->children = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->favs = new ArrayCollection();
     }
 
     public function __toString()
@@ -629,6 +636,36 @@ class Node
     public function setDown(?int $down): static
     {
         $this->down = $down;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Fav>
+     */
+    public function getFavs(): Collection
+    {
+        return $this->favs;
+    }
+
+    public function addFav(Fav $fav): static
+    {
+        if (!$this->favs->contains($fav)) {
+            $this->favs->add($fav);
+            $fav->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFav(Fav $fav): static
+    {
+        if ($this->favs->removeElement($fav)) {
+            // set the owning side to null (unless already changed)
+            if ($fav->getNode() === $this) {
+                $fav->setNode(null);
+            }
+        }
 
         return $this;
     }

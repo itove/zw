@@ -27,6 +27,11 @@ class Comment
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
+
     #[ORM\Column]
     private ?int $up = null;
 

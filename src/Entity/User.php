@@ -65,12 +65,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'author', targetEntity: Node::class)]
     private Collection $nodes;
 
+    /**
+     * @var Collection<int, Fav>
+     */
+    #[ORM\OneToMany(mappedBy: 'u', targetEntity: Fav::class, orphanRemoval: true)]
+    private Collection $favs;
+
     public function __construct()
     {
         $this->fav = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->nodes = new ArrayCollection();
+        $this->favs = new ArrayCollection();
     }
     
     public function __toString(): string
@@ -325,5 +332,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Fav>
+     */
+    public function getFavs(): Collection
+    {
+        return $this->favs;
     }
 }
