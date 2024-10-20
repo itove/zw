@@ -127,8 +127,13 @@ class Data
             'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
             'price' => $n->getPrice(),
-            'favs' => count($n->getFavs()),
+            // 'favs' => count($n->getFavs()),
         ];
+        
+        $data['favs'] = [];
+        foreach($n->getFavs() as $u) {
+            array_push($data['favs'], $u->getId());
+        }
 
         if (!empty($n->getRegions())) {
             $data['region'] = $n->getRegions()[0]->getId();
