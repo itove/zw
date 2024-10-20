@@ -47,9 +47,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $avatar = null;
 
-    #[ORM\ManyToMany(targetEntity: Node::class)]
-    private Collection $fav;
-
     #[ORM\OneToMany(mappedBy: 'consumer', targetEntity: Order::class)]
     private Collection $orders;
 
@@ -73,7 +70,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __construct()
     {
-        $this->fav = new ArrayCollection();
         $this->orders = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->nodes = new ArrayCollection();
@@ -216,30 +212,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAvatar(?string $avatar): static
     {
         $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Node>
-     */
-    public function getFav(): Collection
-    {
-        return $this->fav;
-    }
-
-    public function addFav(Node $fav): static
-    {
-        if (!$this->fav->contains($fav)) {
-            $this->fav->add($fav);
-        }
-
-        return $this;
-    }
-
-    public function removeFav(Node $fav): static
-    {
-        $this->fav->removeElement($fav);
 
         return $this;
     }
