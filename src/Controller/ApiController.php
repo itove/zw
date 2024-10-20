@@ -183,6 +183,12 @@ class ApiController extends AbstractController
                 $a[$i]['summary'] = $n->getSummary();
                 $a[$i]['image'] = $n->getImage();
                 $a[$i]['id'] = $n->getId();
+
+                $a[$i]['favs'] = [];
+                foreach($n->getFavs() as $u) {
+                    array_push($a[$i]['favs'], $u->getId());
+                }
+
                 $i++;
             }
             $data[$l] = $a;
