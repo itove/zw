@@ -46,7 +46,7 @@ class DashboardController extends AbstractDashboardController
         $adminUrlGenerator = $this->container->get(AdminUrlGenerator::class);
         return $this->redirect($adminUrlGenerator
                     ->setController(NodeCrudController::class)
-                    ->set('region', '3')
+                    ->set('region', '27')
                     // ->setAction('detail')
                     // ->setEntityId(1)
                     ->generateUrl()
