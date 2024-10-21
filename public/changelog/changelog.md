@@ -17,18 +17,20 @@
 * 修复`购物` `文创`商家列表点击不能进入详情页的bug
 
 ##### 后端
-* `搜索`接口**WIP**
 * `收藏`接口: `addFav`, `removeFav`, `toggleFav`, `isFav`
 * `反馈`接口: `getWxFeedback`, `newFeedback`
 * `地图标记`接口: `getMapMarkers`
 * 微信登录接口: `wxLogin`
 * 小程序相关接口: `getAccessToken`, `getStableAccessToken`, `getOpenid`, `getPhoneNumber`
 * 增加字段`coord[latitude, longitude]` (坐标) 
-* 新增`Entity` `comment` (评论)
-* 新增`Entity` `fav` (收藏)
-* 现在`菜单`, `标签`, `类别`, `页面` (超级管理员), `区块` (超级管理员)等实体的`label` (标记)字段可根据`name` (名称)的拼音自动生成
-* 新增`author` (作者)字段
+* 新增`Entity` `Comment` (评论)
+* 新增`Entity` `Fav` (收藏)
+* 现在`菜单`, `标签`, `类别`, `页面` (超级管理员), `区块` (超级管理员)等实体的`label` (标记) 字段可根据`name` (名称) 的拼音自动生成
+* 新增字段`Node::author` (作者) 
 * 修复菜单高亮不正确的bug
+* `搜索`接口**WIP**
+* `热聊`接口**WIP**
+* `评论`接口**WIP**
 
 ---
 
