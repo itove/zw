@@ -37,7 +37,7 @@ class Data
         $reflect = new \ReflectionClass($entity);
         $props   = $reflect->getProperties();
         $arr = [];
-        $no_need = ['title', 'latitude', 'longitude', 'comments', 'deleted', 'up', 'down', 'favs'];
+        $no_need = ['title', 'latitude', 'longitude', 'comments', 'deleted', 'up', 'down', 'favs', 'likes'];
         if (!$_ENV['IS_MULTILINGUAL']) {
             array_push($no_need, 'language');
         }

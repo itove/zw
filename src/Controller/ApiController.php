@@ -107,6 +107,7 @@ class ApiController extends AbstractController
             $data['nodes'][$i]['latitude'] = $n->getLatitude();
             $data['nodes'][$i]['longitude'] = $n->getLongitude();
             $data['nodes'][$i]['author'] = [ 'name' => $n->getAuthor()->getName(), 'avatar' => $n->getAuthor()->getAvatar()];
+            $data['nodes'][$i]['likes'] = $n->getLikes();
             $i++;
         }
 
