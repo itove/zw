@@ -14,7 +14,6 @@ class Down
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'downs')]
-    #[ORM\JoinColumn]
     private ?Node $node = null;
 
     #[ORM\ManyToOne(inversedBy: 'downs')]
