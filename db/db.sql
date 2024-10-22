@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 15.4
--- Dumped by pg_dump version 15.4
+-- Dumped from database version 16.4 (Debian 16.4-3)
+-- Dumped by pg_dump version 16.4 (Debian 16.4-3)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -17,7 +17,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: notify_messenger_messages(); Type: FUNCTION; Schema: public; Owner: postgres
+-- Name: notify_messenger_messages(); Type: FUNCTION; Schema: public; Owner: zwdev
 --
 
 CREATE FUNCTION public.notify_messenger_messages() RETURNS trigger
@@ -30,14 +30,14 @@ CREATE FUNCTION public.notify_messenger_messages() RETURNS trigger
         $$;
 
 
-ALTER FUNCTION public.notify_messenger_messages() OWNER TO postgres;
+ALTER FUNCTION public.notify_messenger_messages() OWNER TO zwdev;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: category; Type: TABLE; Schema: public; Owner: postgres
+-- Name: category; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.category (
@@ -47,10 +47,10 @@ CREATE TABLE public.category (
 );
 
 
-ALTER TABLE public.category OWNER TO postgres;
+ALTER TABLE public.category OWNER TO zwdev;
 
 --
--- Name: category_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: category_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.category_id_seq
@@ -61,10 +61,49 @@ CREATE SEQUENCE public.category_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.category_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.category_id_seq OWNER TO zwdev;
 
 --
--- Name: conf; Type: TABLE; Schema: public; Owner: postgres
+-- Name: comment; Type: TABLE; Schema: public; Owner: zwdev
+--
+
+CREATE TABLE public.comment (
+    id integer NOT NULL,
+    node_id integer,
+    commenter_id integer NOT NULL,
+    body text NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    up integer NOT NULL,
+    down integer NOT NULL,
+    deleted boolean NOT NULL
+);
+
+
+ALTER TABLE public.comment OWNER TO zwdev;
+
+--
+-- Name: COLUMN comment.created_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public.comment.created_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: comment_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
+--
+
+CREATE SEQUENCE public.comment_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.comment_id_seq OWNER TO zwdev;
+
+--
+-- Name: conf; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.conf (
@@ -82,24 +121,24 @@ CREATE TABLE public.conf (
 );
 
 
-ALTER TABLE public.conf OWNER TO postgres;
+ALTER TABLE public.conf OWNER TO zwdev;
 
 --
--- Name: COLUMN conf.keywords; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN conf.keywords; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.conf.keywords IS '(DC2Type:simple_array)';
 
 
 --
--- Name: COLUMN conf.updated_at; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN conf.updated_at; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.conf.updated_at IS '(DC2Type:datetime_immutable)';
 
 
 --
--- Name: conf_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: conf_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.conf_id_seq
@@ -110,10 +149,10 @@ CREATE SEQUENCE public.conf_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.conf_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.conf_id_seq OWNER TO zwdev;
 
 --
--- Name: doctrine_migration_versions; Type: TABLE; Schema: public; Owner: postgres
+-- Name: doctrine_migration_versions; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.doctrine_migration_versions (
@@ -123,10 +162,45 @@ CREATE TABLE public.doctrine_migration_versions (
 );
 
 
-ALTER TABLE public.doctrine_migration_versions OWNER TO postgres;
+ALTER TABLE public.doctrine_migration_versions OWNER TO zwdev;
 
 --
--- Name: feedback; Type: TABLE; Schema: public; Owner: postgres
+-- Name: fav; Type: TABLE; Schema: public; Owner: zwdev
+--
+
+CREATE TABLE public.fav (
+    id integer NOT NULL,
+    node_id integer NOT NULL,
+    u_id integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL
+);
+
+
+ALTER TABLE public.fav OWNER TO zwdev;
+
+--
+-- Name: COLUMN fav.created_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public.fav.created_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: fav_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
+--
+
+CREATE SEQUENCE public.fav_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.fav_id_seq OWNER TO zwdev;
+
+--
+-- Name: feedback; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.feedback (
@@ -138,14 +212,20 @@ CREATE TABLE public.feedback (
     phone character varying(20) DEFAULT NULL::character varying,
     title character varying(255) DEFAULT NULL::character varying,
     body text NOT NULL,
-    country character varying(30) DEFAULT NULL::character varying
+    country character varying(30) DEFAULT NULL::character varying,
+    sex smallint,
+    province character varying(255) DEFAULT NULL::character varying,
+    city character varying(255) DEFAULT NULL::character varying,
+    note character varying(255) DEFAULT NULL::character varying,
+    name character varying(255) DEFAULT NULL::character varying,
+    type smallint
 );
 
 
-ALTER TABLE public.feedback OWNER TO postgres;
+ALTER TABLE public.feedback OWNER TO zwdev;
 
 --
--- Name: feedback_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: feedback_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.feedback_id_seq
@@ -156,23 +236,24 @@ CREATE SEQUENCE public.feedback_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.feedback_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.feedback_id_seq OWNER TO zwdev;
 
 --
--- Name: image; Type: TABLE; Schema: public; Owner: postgres
+-- Name: image; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.image (
     id integer NOT NULL,
     node_id integer NOT NULL,
-    image character varying(255) NOT NULL
+    image character varying(255) NOT NULL,
+    title character varying(255) DEFAULT NULL::character varying
 );
 
 
-ALTER TABLE public.image OWNER TO postgres;
+ALTER TABLE public.image OWNER TO zwdev;
 
 --
--- Name: image_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: image_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.image_id_seq
@@ -183,10 +264,10 @@ CREATE SEQUENCE public.image_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.image_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.image_id_seq OWNER TO zwdev;
 
 --
--- Name: language; Type: TABLE; Schema: public; Owner: postgres
+-- Name: language; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.language (
@@ -197,10 +278,10 @@ CREATE TABLE public.language (
 );
 
 
-ALTER TABLE public.language OWNER TO postgres;
+ALTER TABLE public.language OWNER TO zwdev;
 
 --
--- Name: language_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: language_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.language_id_seq
@@ -211,10 +292,10 @@ CREATE SEQUENCE public.language_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.language_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.language_id_seq OWNER TO zwdev;
 
 --
--- Name: link; Type: TABLE; Schema: public; Owner: postgres
+-- Name: link; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.link (
@@ -226,10 +307,10 @@ CREATE TABLE public.link (
 );
 
 
-ALTER TABLE public.link OWNER TO postgres;
+ALTER TABLE public.link OWNER TO zwdev;
 
 --
--- Name: link_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: link_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.link_id_seq
@@ -240,10 +321,10 @@ CREATE SEQUENCE public.link_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.link_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.link_id_seq OWNER TO zwdev;
 
 --
--- Name: menu; Type: TABLE; Schema: public; Owner: postgres
+-- Name: menu; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.menu (
@@ -253,10 +334,10 @@ CREATE TABLE public.menu (
 );
 
 
-ALTER TABLE public.menu OWNER TO postgres;
+ALTER TABLE public.menu OWNER TO zwdev;
 
 --
--- Name: menu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: menu_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.menu_id_seq
@@ -267,10 +348,10 @@ CREATE SEQUENCE public.menu_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.menu_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.menu_id_seq OWNER TO zwdev;
 
 --
--- Name: messenger_messages; Type: TABLE; Schema: public; Owner: postgres
+-- Name: messenger_messages; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.messenger_messages (
@@ -284,31 +365,31 @@ CREATE TABLE public.messenger_messages (
 );
 
 
-ALTER TABLE public.messenger_messages OWNER TO postgres;
+ALTER TABLE public.messenger_messages OWNER TO zwdev;
 
 --
--- Name: COLUMN messenger_messages.created_at; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN messenger_messages.created_at; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.messenger_messages.created_at IS '(DC2Type:datetime_immutable)';
 
 
 --
--- Name: COLUMN messenger_messages.available_at; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN messenger_messages.available_at; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.messenger_messages.available_at IS '(DC2Type:datetime_immutable)';
 
 
 --
--- Name: COLUMN messenger_messages.delivered_at; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN messenger_messages.delivered_at; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.messenger_messages.delivered_at IS '(DC2Type:datetime_immutable)';
 
 
 --
--- Name: messenger_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: messenger_messages_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.messenger_messages_id_seq
@@ -319,17 +400,17 @@ CREATE SEQUENCE public.messenger_messages_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.messenger_messages_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.messenger_messages_id_seq OWNER TO zwdev;
 
 --
--- Name: messenger_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: messenger_messages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: zwdev
 --
 
 ALTER SEQUENCE public.messenger_messages_id_seq OWNED BY public.messenger_messages.id;
 
 
 --
--- Name: node; Type: TABLE; Schema: public; Owner: postgres
+-- Name: node; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.node (
@@ -349,28 +430,33 @@ CREATE TABLE public.node (
     phone character varying(255) DEFAULT NULL::character varying,
     latitude double precision,
     longitude double precision,
-    address character varying(255) DEFAULT NULL::character varying
+    address character varying(255) DEFAULT NULL::character varying,
+    price integer,
+    author_id integer,
+    deleted boolean,
+    up integer DEFAULT 0,
+    down integer DEFAULT 0
 );
 
 
-ALTER TABLE public.node OWNER TO postgres;
+ALTER TABLE public.node OWNER TO zwdev;
 
 --
--- Name: COLUMN node.created_at; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN node.created_at; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.node.created_at IS '(DC2Type:datetime_immutable)';
 
 
 --
--- Name: COLUMN node.updated_at; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN node.updated_at; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.node.updated_at IS '(DC2Type:datetime_immutable)';
 
 
 --
--- Name: node_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: node_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.node_id_seq
@@ -381,10 +467,10 @@ CREATE SEQUENCE public.node_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.node_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.node_id_seq OWNER TO zwdev;
 
 --
--- Name: node_region; Type: TABLE; Schema: public; Owner: postgres
+-- Name: node_region; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.node_region (
@@ -393,10 +479,10 @@ CREATE TABLE public.node_region (
 );
 
 
-ALTER TABLE public.node_region OWNER TO postgres;
+ALTER TABLE public.node_region OWNER TO zwdev;
 
 --
--- Name: node_tag; Type: TABLE; Schema: public; Owner: postgres
+-- Name: node_tag; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.node_tag (
@@ -405,23 +491,108 @@ CREATE TABLE public.node_tag (
 );
 
 
-ALTER TABLE public.node_tag OWNER TO postgres;
+ALTER TABLE public.node_tag OWNER TO zwdev;
 
 --
--- Name: page; Type: TABLE; Schema: public; Owner: postgres
+-- Name: order; Type: TABLE; Schema: public; Owner: zwdev
+--
+
+CREATE TABLE public."order" (
+    id integer NOT NULL,
+    node_id integer NOT NULL,
+    consumer_id integer NOT NULL,
+    quantity smallint NOT NULL,
+    amount integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    paid_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    used_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    status smallint NOT NULL,
+    price integer NOT NULL,
+    cancelled_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    refunded_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    deleted_at timestamp(0) without time zone DEFAULT NULL::timestamp without time zone,
+    sn character varying(255) NOT NULL,
+    wx_trans_id character varying(255) DEFAULT NULL::character varying,
+    bank_type character varying(255) DEFAULT NULL::character varying,
+    wx_prepay_id character varying(255) DEFAULT NULL::character varying,
+    deleted boolean NOT NULL
+);
+
+
+ALTER TABLE public."order" OWNER TO zwdev;
+
+--
+-- Name: COLUMN "order".created_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public."order".created_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: COLUMN "order".paid_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public."order".paid_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: COLUMN "order".used_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public."order".used_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: COLUMN "order".cancelled_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public."order".cancelled_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: COLUMN "order".refunded_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public."order".refunded_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: COLUMN "order".deleted_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public."order".deleted_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: order_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
+--
+
+CREATE SEQUENCE public.order_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.order_id_seq OWNER TO zwdev;
+
+--
+-- Name: page; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.page (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
-    label character varying(255) NOT NULL
+    label character varying(255) NOT NULL,
+    weight smallint
 );
 
 
-ALTER TABLE public.page OWNER TO postgres;
+ALTER TABLE public.page OWNER TO zwdev;
 
 --
--- Name: page_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: page_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.page_id_seq
@@ -432,10 +603,48 @@ CREATE SEQUENCE public.page_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.page_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.page_id_seq OWNER TO zwdev;
 
 --
--- Name: region; Type: TABLE; Schema: public; Owner: postgres
+-- Name: refund; Type: TABLE; Schema: public; Owner: zwdev
+--
+
+CREATE TABLE public.refund (
+    id integer NOT NULL,
+    ord_id integer NOT NULL,
+    created_at timestamp(0) without time zone NOT NULL,
+    reason smallint NOT NULL,
+    note character varying(255) DEFAULT NULL::character varying,
+    sn character varying(255) NOT NULL,
+    wx_refund_id character varying(255) DEFAULT NULL::character varying
+);
+
+
+ALTER TABLE public.refund OWNER TO zwdev;
+
+--
+-- Name: COLUMN refund.created_at; Type: COMMENT; Schema: public; Owner: zwdev
+--
+
+COMMENT ON COLUMN public.refund.created_at IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: refund_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
+--
+
+CREATE SEQUENCE public.refund_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER SEQUENCE public.refund_id_seq OWNER TO zwdev;
+
+--
+-- Name: region; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.region (
@@ -446,21 +655,22 @@ CREATE TABLE public.region (
     icon character varying(20) DEFAULT NULL::character varying,
     fields text,
     description character varying(255) DEFAULT NULL::character varying,
-    page_id integer
+    page_id integer,
+    weight smallint
 );
 
 
-ALTER TABLE public.region OWNER TO postgres;
+ALTER TABLE public.region OWNER TO zwdev;
 
 --
--- Name: COLUMN region.fields; Type: COMMENT; Schema: public; Owner: postgres
+-- Name: COLUMN region.fields; Type: COMMENT; Schema: public; Owner: zwdev
 --
 
 COMMENT ON COLUMN public.region.fields IS '(DC2Type:simple_array)';
 
 
 --
--- Name: region_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: region_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.region_id_seq
@@ -471,24 +681,24 @@ CREATE SEQUENCE public.region_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.region_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.region_id_seq OWNER TO zwdev;
 
 --
--- Name: spec; Type: TABLE; Schema: public; Owner: postgres
+-- Name: spec; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.spec (
     id integer NOT NULL,
     node_id integer NOT NULL,
     name character varying(25) NOT NULL,
-    value character varying(255) NOT NULL
+    value character varying(255)
 );
 
 
-ALTER TABLE public.spec OWNER TO postgres;
+ALTER TABLE public.spec OWNER TO zwdev;
 
 --
--- Name: spec_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: spec_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.spec_id_seq
@@ -499,10 +709,10 @@ CREATE SEQUENCE public.spec_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.spec_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.spec_id_seq OWNER TO zwdev;
 
 --
--- Name: tag; Type: TABLE; Schema: public; Owner: postgres
+-- Name: tag; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.tag (
@@ -512,10 +722,10 @@ CREATE TABLE public.tag (
 );
 
 
-ALTER TABLE public.tag OWNER TO postgres;
+ALTER TABLE public.tag OWNER TO zwdev;
 
 --
--- Name: tag_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: tag_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.tag_id_seq
@@ -526,10 +736,10 @@ CREATE SEQUENCE public.tag_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.tag_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.tag_id_seq OWNER TO zwdev;
 
 --
--- Name: user; Type: TABLE; Schema: public; Owner: postgres
+-- Name: user; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public."user" (
@@ -545,10 +755,10 @@ CREATE TABLE public."user" (
 );
 
 
-ALTER TABLE public."user" OWNER TO postgres;
+ALTER TABLE public."user" OWNER TO zwdev;
 
 --
--- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: zwdev
 --
 
 CREATE SEQUENCE public.user_id_seq
@@ -559,10 +769,10 @@ CREATE SEQUENCE public.user_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.user_id_seq OWNER TO postgres;
+ALTER SEQUENCE public.user_id_seq OWNER TO zwdev;
 
 --
--- Name: user_node; Type: TABLE; Schema: public; Owner: postgres
+-- Name: user_node; Type: TABLE; Schema: public; Owner: zwdev
 --
 
 CREATE TABLE public.user_node (
@@ -571,35 +781,43 @@ CREATE TABLE public.user_node (
 );
 
 
-ALTER TABLE public.user_node OWNER TO postgres;
+ALTER TABLE public.user_node OWNER TO zwdev;
 
 --
--- Name: messenger_messages id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: messenger_messages id; Type: DEFAULT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.messenger_messages ALTER COLUMN id SET DEFAULT nextval('public.messenger_messages_id_seq'::regclass);
 
 
 --
--- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.category (id, name, label) FROM stdin;
-1	景区介绍	intro
+1	介绍	intro
 \.
 
 
 --
--- Data for Name: conf; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: comment; Type: TABLE DATA; Schema: public; Owner: zwdev
+--
+
+COPY public.comment (id, node_id, commenter_id, body, created_at, up, down, deleted) FROM stdin;
+\.
+
+
+--
+-- Data for Name: conf; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.conf (id, language_id, sitename, keywords, description, address, phone, email, logo, updated_at, note) FROM stdin;
-1	\N	遇见张湾	\N	\N	\N	\N	\N	logo-6641912db5458003532123.png	2024-05-13 04:03:57	鄂ICP备2023029037号-1
+1	\N	遇见张湾	\N	\N	\N	\N	\N	meishi-bg-670dd8cbb4f25238085587.png	2024-10-15 02:51:55	\N
 \.
 
 
 --
--- Data for Name: doctrine_migration_versions; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: doctrine_migration_versions; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.doctrine_migration_versions (version, executed_at, execution_time) FROM stdin;
@@ -623,28 +841,48 @@ DoctrineMigrations\\Version20240613000954	2024-09-13 19:07:10	2
 DoctrineMigrations\\Version20240613004808	2024-09-13 19:07:10	2
 DoctrineMigrations\\Version20240614093505	2024-09-13 19:07:10	2
 DoctrineMigrations\\Version20240615140501	2024-09-13 19:07:10	2
+DoctrineMigrations\\Version20241017095256	2024-10-17 12:54:31	39
+DoctrineMigrations\\Version20241019163246	2024-10-20 04:21:38	85
+DoctrineMigrations\\Version20241019164609	2024-10-20 04:21:38	4
+DoctrineMigrations\\Version20241019165043	2024-10-20 04:21:38	0
+DoctrineMigrations\\Version20241019165213	2024-10-20 04:21:38	9
+DoctrineMigrations\\Version20241019174204	2024-10-20 04:21:38	0
+DoctrineMigrations\\Version20241019183422	2024-10-20 04:21:38	5
+DoctrineMigrations\\Version20241020083039	2024-10-20 20:15:56	25
 \.
 
 
 --
--- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: fav; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
-COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, body, country) FROM stdin;
-7	\N	木子	\N	13636226368@163.com	18986882698	东沟WIFI全覆盖	建议东沟WIFI全覆盖，方便游客打卡。	\N
+COPY public.fav (id, node_id, u_id, created_at) FROM stdin;
+2	99	5	2024-10-20 21:57:52
+3	94	5	2024-10-20 21:58:03
+8	98	5	2024-10-21 00:23:08
+12	149	6	2024-10-21 03:05:07
+14	96	5	2024-10-21 07:25:45
 \.
 
 
 --
--- Data for Name: image; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
-COPY public.image (id, node_id, image) FROM stdin;
+COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, body, country, sex, province, city, note, name, type) FROM stdin;
 \.
 
 
 --
--- Data for Name: language; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: image; Type: TABLE DATA; Schema: public; Owner: zwdev
+--
+
+COPY public.image (id, node_id, image, title) FROM stdin;
+\.
+
+
+--
+-- Data for Name: language; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.language (id, language, prefix, locale) FROM stdin;
@@ -652,32 +890,23 @@ COPY public.language (id, language, prefix, locale) FROM stdin;
 
 
 --
--- Data for Name: link; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: link; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.link (id, title, link, weight, menu_id) FROM stdin;
-1	首页	/	0	1
-2	走进东沟	/zoujin	1	1
-3	乐游东沟	/leyou	2	1
-5	联系我们	/contact	4	1
-4	新闻资讯	/news/wenlv	3	1
-6	十堰市人民政府	https://www.shiyan.gov.cn/	0	3
-7	茅箭区人民政府	http://maojian.shiyan.gov.cn/	1	3
 \.
 
 
 --
--- Data for Name: menu; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: menu; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.menu (id, name, label) FROM stdin;
-1	页脚导航	footer
-3	友情链接	friend
 \.
 
 
 --
--- Data for Name: messenger_messages; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: messenger_messages; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.messenger_messages (id, body, headers, queue_name, created_at, available_at, delivered_at) FROM stdin;
@@ -685,49 +914,50 @@ COPY public.messenger_messages (id, body, headers, queue_name, created_at, avail
 
 
 --
--- Data for Name: node; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: node; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
-COPY public.node (id, language_id, category_id, title, created_at, body, image, summary, updated_at, video, parent_id, audio, qr, phone, latitude, longitude, address) FROM stdin;
-93	\N	\N	黄龙壹号生态园	2024-05-15 05:43:29	<p>黄龙壹号生态园</p>	huang-long-yi-hao-sheng-tai-yuan-66e494b71e294498991394.jpg	黄龙壹号生态园	2024-09-13 19:38:31	\N	\N	\N	\N	\N	\N	\N	\N
-85	\N	\N	龙泉寺	2024-05-15 04:21:43	<p>龙泉寺</p>	long-quan-si1-66e494cf71440501191736.jpeg	龙泉寺	2024-09-13 19:38:55	\N	\N	\N	\N	\N	\N	\N	\N
-89	\N	\N	十堰希尔顿逸林酒店	2024-05-15 05:26:58	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰希尔顿逸林酒店</strong></span></p>	20080c00000067b1i1473-w-1080-808-r5-d-66ea34f88b7e8776391708.jpg	十堰希尔顿逸林酒店	2024-09-18 02:03:36	\N	\N	\N	\N	\N	\N	\N	\N
-138	\N	\N	花迹雨舍	2024-09-18 08:06:03	<p>花迹雨舍</p>	5-66ebbe9762dc3269802938.jpg	花迹雨舍	2024-09-19 06:03:03	\N	\N	\N	\N	\N	\N	\N	\N
-95	\N	\N	回龙村荷花盛开	2024-05-15 05:44:06	<p>回龙村荷花盛开</p>	hui-long-cun-he-hua-sheng-kai-66e4947140dcd574942165.jpg	回龙村荷花盛开	2024-09-13 19:37:21	\N	\N	\N	\N	\N	\N	\N	\N
-84	\N	\N	白马山	2024-05-15 04:11:47	<p>白马山</p>	bai-ma-shan-rui-zhi-min-1-66e494f327114653823154.jpg	白马山	2024-09-13 19:39:31	\N	\N	\N	\N	\N	\N	\N	\N
-126	\N	\N	维也纳国际酒店	2024-05-17 01:43:21	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>维也纳国际酒店</strong></span></p>	020581200093rrmx1a5e2-w-1080-808-r5-d-66ea341be7b8d373180662.jpg	维也纳国际酒店	2024-09-18 01:59:55	\N	\N	\N	\N	\N	\N	\N	\N
-99	\N	\N	牛头山顶落日	2024-05-15 05:45:37	<p>牛头山顶落日</p>	1-66ebbce03c9ed662835048.jpg	牛头山顶落日	2024-09-19 05:55:44	\N	\N	\N	\N	\N	\N	\N	\N
-131	\N	\N	健康步道	2024-09-18 02:51:55	<p>健康步道</p>	3-66ea404bc7ffb033854785.jpg	健康步道	2024-09-18 02:51:55	\N	\N	\N	\N	\N	\N	\N	\N
-143	\N	\N	环球港	2024-09-19 04:41:03	<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);"><strong>环球港</strong></span></p>	104f6e33-bd9f-4195-b4d8-aef107f47972-66ebab5f72ccc336852035.jpeg	环球港	2024-09-19 04:41:03	\N	\N	\N	\N	\N	\N	\N	\N
-97	\N	\N	人民公园	2024-05-15 05:45:02	<p>人民公园</p>	3-66ebbd618fc73980175579.jpg	人民公园	2024-09-19 05:57:53	\N	\N	\N	\N	\N	\N	\N	\N
-132	\N	\N	甜蜜来袭！张湾夏日水果采摘攻略来了	2024-09-18 03:02:00	<h2>甜蜜来袭！张湾夏日水果采摘攻略来了</h2>	640-66ea42a879918439629554.jpg	甜蜜来袭！张湾夏日水果采摘攻略来了	2024-09-18 03:02:00	\N	\N	\N	\N	\N	\N	\N	\N
-144	\N	\N	华悦城	2024-09-19 04:42:41	<p>华悦城</p>	oip-c-66ebabc1a4e2a158836502.jpeg	华悦城	2024-09-19 04:42:41	\N	\N	\N	\N	\N	\N	\N	\N
-133	\N	\N	25分钟！央视专题报道张湾汉江樱桃	2024-09-18 03:03:16	<h2>25分钟！央视专题报道张湾汉江樱桃</h2><p><br>&nbsp;</p>	2-66ea42f4c8ec8678216616.jpg	25分钟！央视专题报道张湾汉江樱桃	2024-09-18 03:03:16	\N	\N	\N	\N	\N	\N	\N	\N
-100	\N	\N	云水方滩休闲度假区	2024-05-15 05:46:01	<h4><strong>关于</strong></h4><p>云水方滩休闲度假区青山环绕，峡谷幽美，堵河如画，碧水静流，仿佛置身于世外桃源；锦绣园、房车营地、堵河廊道、行人绿道、采摘园、天然草地广场等成为知名网红打卡点；富有水乡渔村文化特色的特色鱼宴产业园更是集商品销售、民俗体验、乡土美食于一体的新体验地。</p>	yun-shui-fang-tan-du-he-hua-lang-kang-yang-lu-you-du-jia-qu-jian-shan-cha-she-wai-guan-66e49391eb54c947037806.jpg	云水方滩休闲度假区	2024-09-13 19:33:37	\N	\N	\N	\N	\N	\N	\N	\N
-139	\N	\N	知雨轩·庄园	2024-09-18 08:08:10	<p>知雨轩·庄园</p>	rn-image-picker-lib-temp-21887288-c450-4f08-8007-d8f7b7c3c85b-66ea8a6a093b6725920222.jpg	知雨轩·庄园	2024-09-18 08:08:10	\N	\N	\N	\N	\N	\N	\N	\N
-94	\N	\N	长河湾景区	2024-05-15 05:43:47	<p>长河湾景区</p>	zhang-he-wan-jing-qu-66e494957fe32510410356.jpg	长河湾景区	2024-09-13 19:37:57	\N	\N	\N	\N	\N	\N	\N	\N
-96	\N	\N	四方山旅游区	2024-05-15 05:44:41	<p>四方山旅游区</p>	si-fang-shan1-66e49d887221d333921511.jpg	四方山旅游区	2024-09-13 20:16:08	\N	\N	\N	\N	\N	\N	\N	\N
-145	\N	\N	君王醉黄酒	2024-09-19 04:43:55	<p>君王醉黄酒</p>	jun-wang-zui-huang-jiu-66ebac0b8c220667500193.png	君王醉黄酒	2024-09-19 04:43:55	\N	\N	\N	\N	\N	\N	\N	\N
-91	\N	\N	十堰大嘉国际酒店	2024-05-15 05:28:48	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰大嘉国际酒店</strong></span></p>	200g0t000000iibm29a98-w-1080-808-r5-d-66ea346289fc4367561533.jpg	十堰大嘉国际酒店	2024-09-18 02:01:06	\N	\N	\N	\N	\N	\N	\N	\N
-140	\N	\N	十堰市图书馆	2024-09-18 08:08:42	<p>十堰市图书馆</p>	rn-image-picker-lib-temp-e40613be-b931-4a42-b7dd-0bc6480d28c9-66ea8a8b02fe6108496344.jpg	十堰市图书馆	2024-09-18 08:08:43	\N	\N	\N	\N	\N	\N	\N	\N
-146	\N	\N	沙洲猕猴桃	2024-09-19 04:47:52	<p>沙洲猕猴桃</p>	3-66ebacf821973490085798.jpg	沙洲猕猴桃	2024-09-19 04:47:52	\N	\N	\N	\N	\N	\N	\N	\N
-134	\N	\N	采茶正当时，赴张湾饮一段春光！	2024-09-18 03:04:38	<h2>采茶正当时，赴张湾饮一段春光！</h2>	22-66ebca4e51ef1017687844.jpg	采茶正当时，赴张湾饮一段春光！	2024-09-19 06:53:02	\N	\N	\N	\N	\N	\N	\N	\N
-147	\N	\N	遇尝鸣子菜籽油	2024-09-19 04:48:41	<p>遇尝鸣子菜籽油</p>	yu-chang-ming-zi-cai-zi-you-66ebad29eebd8393198762.jpg	遇尝鸣子菜籽油	2024-09-19 04:48:41	\N	\N	\N	\N	\N	\N	\N	\N
-135	\N	\N	甜蜜暴击.ᐟ‪.ᐟ十堰张湾「夏日水果采摘图鉴」来啦~	2024-09-18 03:05:46	<h2>甜蜜暴击.ᐟ‪.ᐟ十堰张湾「夏日水果采摘图鉴」来啦~</h2>	11-66ebca42ba159115919800.jpg	甜蜜暴击.ᐟ‪.ᐟ十堰张湾「夏日水果采摘图鉴」来啦~	2024-09-19 06:52:50	\N	\N	\N	\N	\N	\N	\N	\N
-90	\N	\N	十堰邦辉国际大酒店	2024-05-15 05:28:10	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰邦辉国际大酒店</strong></span></p>	200g190000017c1el2fce-w-1080-808-r5-d-66ea349ca770f898829100.jpg	十堰邦辉国际大酒店	2024-09-18 02:02:04	\N	\N	\N	\N	\N	\N	\N	\N
-141	\N	\N	十堰万达广场	2024-09-19 04:38:41	<p>十堰万达广场</p>	t01efd85ab60f62c9ed-66ebaad1d38a8610403805.jpg	十堰万达广场	2024-09-19 04:38:41	\N	\N	\N	\N	\N	\N	\N	\N
-130	\N	\N	十堰市奥林匹克体育中心	2024-09-18 02:45:02	<p>十堰市奥林匹克体育中心</p>	ed11c3ca30f14f7289d48cb6f05aaae6-66ea3eae4f5b8417068920.jpeg	十堰市奥林匹克体育中心	2024-09-18 02:45:02	\N	\N	\N	\N	\N	\N	\N	\N
-142	\N	\N	招商·兰溪谷	2024-09-19 04:39:34	<h2><strong>招商·兰溪谷</strong></h2>	r-c-66ebab063a3d7659405916.jpeg	招商·兰溪谷	2024-09-19 04:39:34	\N	\N	\N	\N	\N	\N	\N	\N
-98	\N	\N	牛斗山顶	2024-05-15 05:45:19	<p>牛斗山顶</p>	2-66ebbcef47099673861484.jpg	牛斗山顶	2024-09-19 05:55:59	\N	\N	\N	\N	\N	\N	\N	\N
-148	\N	\N	李声平即食风干鱼	2024-09-19 04:51:30	<p>李声平即食风干鱼</p>	2-66ebadd23d5fd771847389.jpg	李声平即食风干鱼	2024-09-19 04:51:30	\N	\N	\N	\N	\N	\N	\N	\N
-136	\N	\N	云庐	2024-09-18 08:03:53	<p>云庐</p>	66-66ebbed1cd524323788471.jpg	云庐	2024-09-19 06:04:01	\N	\N	\N	\N	\N	\N	\N	\N
-137	\N	\N	月亮边山庄	2024-09-18 08:04:44	<p>月亮边山庄</p>	rn-image-picker-lib-temp-f48d2475-22c4-49d1-93fb-feb56f877248-66ea899c8126f145628411.jpg	月亮边山庄	2024-09-18 08:04:44	\N	\N	\N	\N	\N	\N	\N	\N
-149	\N	\N	四方山徒步	2024-10-13 20:54:04	<p>活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们。</p>	bai-ma-shan-rui-zhi-min-1-66e494f327114653823154-670c336dd418d625178905.jpg	活动简介本次活动旨在加强人们的锻炼，由主办单位主\r\n办活动简介本次活动旨在加强人们的锻炼，由主办单位\r\n主办活动简介本次活动旨在加强人们的锻炼，由主办单\r\n位主办活动简介本次活动旨在加强人们的锻炼，由主办\r\n单位主办活动简介本次活动旨在加强人们。	2024-10-13 20:54:05	\N	\N	\N	\N	\N	\N	\N	\N
+COPY public.node (id, language_id, category_id, title, created_at, body, image, summary, updated_at, video, parent_id, audio, qr, phone, latitude, longitude, address, price, author_id, deleted, up, down) FROM stdin;
+93	\N	\N	黄龙壹号生态园	2024-05-15 05:43:29	<p>黄龙壹号生态园</p>	huang-long-yi-hao-sheng-tai-yuan-66e494b71e294498991394.jpg	黄龙壹号生态园	2024-09-13 19:38:31	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+85	\N	\N	龙泉寺	2024-05-15 04:21:43	<p>龙泉寺</p>	long-quan-si1-66e494cf71440501191736.jpeg	龙泉寺	2024-09-13 19:38:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+89	\N	\N	十堰希尔顿逸林酒店	2024-05-15 05:26:58	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰希尔顿逸林酒店</strong></span></p>	20080c00000067b1i1473-w-1080-808-r5-d-66ea34f88b7e8776391708.jpg	十堰希尔顿逸林酒店	2024-09-18 02:03:36	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+138	\N	\N	花迹雨舍	2024-09-18 08:06:03	<p>花迹雨舍</p>	5-66ebbe9762dc3269802938.jpg	花迹雨舍	2024-09-19 06:03:03	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+95	\N	\N	回龙村荷花盛开	2024-05-15 05:44:06	<p>回龙村荷花盛开</p>	hui-long-cun-he-hua-sheng-kai-66e4947140dcd574942165.jpg	回龙村荷花盛开	2024-09-13 19:37:21	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+126	\N	\N	维也纳国际酒店	2024-05-17 01:43:21	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>维也纳国际酒店</strong></span></p>	020581200093rrmx1a5e2-w-1080-808-r5-d-66ea341be7b8d373180662.jpg	维也纳国际酒店	2024-09-18 01:59:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+99	\N	\N	牛头山顶落日	2024-05-15 05:45:37	<p>牛头山顶落日</p>	1-66ebbce03c9ed662835048.jpg	牛头山顶落日	2024-09-19 05:55:44	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+131	\N	\N	健康步道	2024-09-18 02:51:55	<p>健康步道</p>	3-66ea404bc7ffb033854785.jpg	健康步道	2024-09-18 02:51:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+143	\N	\N	环球港	2024-09-19 04:41:03	<p><span style="background-color:rgb(255,255,255);color:rgb(51,51,51);"><strong>环球港</strong></span></p>	104f6e33-bd9f-4195-b4d8-aef107f47972-66ebab5f72ccc336852035.jpeg	环球港	2024-09-19 04:41:03	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+97	\N	\N	人民公园	2024-05-15 05:45:02	<p>人民公园</p>	3-66ebbd618fc73980175579.jpg	人民公园	2024-09-19 05:57:53	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+132	\N	\N	甜蜜来袭！张湾夏日水果采摘攻略来了	2024-09-18 03:02:00	<h2>甜蜜来袭！张湾夏日水果采摘攻略来了</h2>	640-66ea42a879918439629554.jpg	甜蜜来袭！张湾夏日水果采摘攻略来了	2024-09-18 03:02:00	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+133	\N	\N	25分钟！央视专题报道张湾汉江樱桃	2024-09-18 03:03:16	<h2>25分钟！央视专题报道张湾汉江樱桃</h2><p><br>&nbsp;</p>	2-66ea42f4c8ec8678216616.jpg	25分钟！央视专题报道张湾汉江樱桃	2024-09-18 03:03:16	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+96	\N	\N	四方山旅游区	2024-05-15 05:44:41	<p>四方山旅游区</p>	si-fang-shan1-66e49d887221d333921511.jpg	四方山旅游区	2024-09-13 20:16:08	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+145	\N	\N	君王醉黄酒	2024-09-19 04:43:55	<p>君王醉黄酒</p>	jun-wang-zui-huang-jiu-66ebac0b8c220667500193.png	君王醉黄酒	2024-09-19 04:43:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+91	\N	\N	十堰大嘉国际酒店	2024-05-15 05:28:48	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰大嘉国际酒店</strong></span></p>	200g0t000000iibm29a98-w-1080-808-r5-d-66ea346289fc4367561533.jpg	十堰大嘉国际酒店	2024-09-18 02:01:06	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+146	\N	\N	沙洲猕猴桃	2024-09-19 04:47:52	<p>沙洲猕猴桃</p>	3-66ebacf821973490085798.jpg	沙洲猕猴桃	2024-09-19 04:47:52	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+134	\N	\N	采茶正当时，赴张湾饮一段春光！	2024-09-18 03:04:38	<h2>采茶正当时，赴张湾饮一段春光！</h2>	22-66ebca4e51ef1017687844.jpg	采茶正当时，赴张湾饮一段春光！	2024-09-19 06:53:02	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+147	\N	\N	遇尝鸣子菜籽油	2024-09-19 04:48:41	<p>遇尝鸣子菜籽油</p>	yu-chang-ming-zi-cai-zi-you-66ebad29eebd8393198762.jpg	遇尝鸣子菜籽油	2024-09-19 04:48:41	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+135	\N	\N	甜蜜暴击.ᐟ‪.ᐟ十堰张湾「夏日水果采摘图鉴」来啦~	2024-09-18 03:05:46	<h2>甜蜜暴击.ᐟ‪.ᐟ十堰张湾「夏日水果采摘图鉴」来啦~</h2>	11-66ebca42ba159115919800.jpg	甜蜜暴击.ᐟ‪.ᐟ十堰张湾「夏日水果采摘图鉴」来啦~	2024-09-19 06:52:50	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+90	\N	\N	十堰邦辉国际大酒店	2024-05-15 05:28:10	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰邦辉国际大酒店</strong></span></p>	200g190000017c1el2fce-w-1080-808-r5-d-66ea349ca770f898829100.jpg	十堰邦辉国际大酒店	2024-09-18 02:02:04	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+141	\N	\N	十堰万达广场	2024-09-19 04:38:41	<p>十堰万达广场</p>	t01efd85ab60f62c9ed-66ebaad1d38a8610403805.jpg	十堰万达广场	2024-09-19 04:38:41	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+142	\N	\N	招商·兰溪谷	2024-09-19 04:39:34	<h2><strong>招商·兰溪谷</strong></h2>	r-c-66ebab063a3d7659405916.jpeg	招商·兰溪谷	2024-09-19 04:39:34	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+148	\N	\N	李声平即食风干鱼	2024-09-19 04:51:30	<p>李声平即食风干鱼</p>	2-66ebadd23d5fd771847389.jpg	李声平即食风干鱼	2024-09-19 04:51:30	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+136	\N	\N	云庐	2024-09-18 08:03:53	<p>云庐</p>	66-66ebbed1cd524323788471.jpg	云庐	2024-09-19 06:04:01	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+137	\N	\N	月亮边山庄	2024-09-18 08:04:44	<p>月亮边山庄</p>	rn-image-picker-lib-temp-f48d2475-22c4-49d1-93fb-feb56f877248-66ea899c8126f145628411.jpg	月亮边山庄	2024-09-18 08:04:44	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+94	\N	\N	长河湾景区	2024-05-15 05:43:47	<p>长河湾景区</p>	zhang-he-wan-jing-qu-66e494957fe32510410356.jpg	长河湾景区	2024-09-13 19:37:57	\N	\N	\N	\N	\N	32.631125	110.635083	\N	\N	\N	\N	0	0
+100	\N	\N	云水方滩休闲度假区	2024-05-15 05:46:01	<h4><strong>关于</strong></h4><p>云水方滩休闲度假区青山环绕，峡谷幽美，堵河如画，碧水静流，仿佛置身于世外桃源；锦绣园、房车营地、堵河廊道、行人绿道、采摘园、天然草地广场等成为知名网红打卡点；富有水乡渔村文化特色的特色鱼宴产业园更是集商品销售、民俗体验、乡土美食于一体的新体验地。</p>	yun-shui-fang-tan-du-he-hua-lang-kang-yang-lu-you-du-jia-qu-jian-shan-cha-she-wai-guan-66e49391eb54c947037806.jpg	云水方滩休闲度假区	2024-09-13 19:33:37	\N	\N	\N	\N	\N	32.737731	110.606084	\N	\N	\N	\N	0	0
+139	\N	\N	知雨轩·庄园	2024-09-18 08:08:10	<p>知雨轩·庄园</p>	rn-image-picker-lib-temp-21887288-c450-4f08-8007-d8f7b7c3c85b-66ea8a6a093b6725920222.jpg	知雨轩·庄园	2024-09-18 08:08:10	\N	\N	\N	\N	\N	32.655645	110.623046	\N	\N	\N	\N	0	0
+84	\N	\N	白马山	2024-05-15 04:11:47	<p>白马山</p>	bai-ma-shan-rui-zhi-min-1-66e494f327114653823154.jpg	白马山	2024-09-13 19:39:31	\N	\N	\N	\N	\N	32.649293	110.574254	\N	\N	\N	\N	0	0
+98	\N	\N	牛斗山国家森林公园	2024-05-15 05:45:19	<p>牛斗山顶</p>	2-66ebbcef47099673861484.jpg	牛斗山顶	2024-09-19 05:55:59	\N	\N	\N	\N	\N	32.597892	110.737022	\N	\N	\N	\N	0	0
+130	\N	\N	十堰市奥林匹克体育中心	2024-09-18 02:45:02	<p>十堰市奥林匹克体育中心</p>	ed11c3ca30f14f7289d48cb6f05aaae6-66ea3eae4f5b8417068920.jpeg	十堰市奥林匹克体育中心	2024-09-18 02:45:02	\N	\N	\N	\N	\N	32.647686	110.806787	\N	\N	\N	\N	0	0
+144	\N	\N	华悦城	2024-09-19 04:42:41	<p>华悦城</p>	oip-c-66ebabc1a4e2a158836502.jpeg	华悦城	2024-09-19 04:42:41	\N	\N	\N	\N	\N	30.34122	110.84034821231	\N	\N	\N	\N	0	0
+140	\N	\N	十堰市图书馆	2024-09-18 08:08:42	<p>十堰市图书馆</p>	rn-image-picker-lib-temp-e40613be-b931-4a42-b7dd-0bc6480d28c9-66ea8a8b02fe6108496344.jpg	十堰市图书馆	2024-09-18 08:08:43	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+149	\N	\N	四方山徒步	2024-10-13 20:54:04	<p>活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们。</p>	1-670c847cba7d5094122683.jpg	活动简介本次活动旨在加强人们的锻炼，由主办单位主\r\n办活动简介本次活动旨在加强人们的锻炼，由主办单位\r\n主办活动简介本次活动旨在加强人们的锻炼，由主办单\r\n位主办活动简介本次活动旨在加强人们的锻炼，由主办\r\n单位主办活动简介本次活动旨在加强人们。	2024-10-14 02:39:56	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	0	0
+150	\N	\N	谭二拉面馆	2024-10-21 03:02:10	\N	\N	车城小店经典美食	2024-10-21 03:02:10	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	f	\N	\N
 \.
 
 
 --
--- Data for Name: node_region; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: node_region; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.node_region (node_id, region_id) FROM stdin;
@@ -783,54 +1013,68 @@ COPY public.node_region (node_id, region_id) FROM stdin;
 137	31
 136	31
 138	31
+150	31
 \.
 
 
 --
--- Data for Name: node_tag; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: node_tag; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.node_tag (node_id, tag_id) FROM stdin;
-91	1
-90	1
-89	1
 \.
 
 
 --
--- Data for Name: page; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: order; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
-COPY public.page (id, name, label) FROM stdin;
-1	首页	home
-4	联系我们	contact
-2	走进	zoujin
-3	遇见	leyou
+COPY public."order" (id, node_id, consumer_id, quantity, amount, created_at, paid_at, used_at, status, price, cancelled_at, refunded_at, deleted_at, sn, wx_trans_id, bank_type, wx_prepay_id, deleted) FROM stdin;
 \.
 
 
 --
--- Data for Name: region; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: page; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
-COPY public.region (id, name, label, count, icon, fields, description, page_id) FROM stdin;
-13	投诉建议	feedback	1	list	summary	\N	4
-25	幻灯片1	slider1	5	list	image,body	\N	3
-35	房间	rooms	1	\N	\N	\N	\N
-41	玩法	wan	1	\N	body,image,summary,tags,createdAt	\N	3
-40	活动	dong	1	\N	body,image,summary,tags,createdAt	\N	3
-39	购物	gou	1	\N	id,body,image,summary	\N	3
-36	文创	wen	1	\N	body,image,summary	\N	3
-31	美食	shi	8	list	summary,image,body	\N	3
-29	住宿	zhu	6	list	summary,image,specs,body,tags	\N	3
-27	景点	jing	10	list	summary,image,body	\N	3
-42	艺动	yi	1	\N	body,image,summary,tags,createdAt	\N	3
-43	列表	shop	1	\N	body,image,summary,createdAt	\N	\N
+COPY public.page (id, name, label, weight) FROM stdin;
+1	首页	home	\N
+4	联系我们	contact	\N
+3	版块	leyou	\N
 \.
 
 
 --
--- Data for Name: spec; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: refund; Type: TABLE DATA; Schema: public; Owner: zwdev
+--
+
+COPY public.refund (id, ord_id, created_at, reason, note, sn, wx_refund_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: region; Type: TABLE DATA; Schema: public; Owner: zwdev
+--
+
+COPY public.region (id, name, label, count, icon, fields, description, page_id, weight) FROM stdin;
+43	列表	shop	1	\N	body,image,summary,createdAt	\N	\N	\N
+35	房间	rooms	1	list	\N	\N	\N	\N
+25	幻灯片1	slider1	5	list	image,body	\N	\N	\N
+44	热聊	talk	1	list	createdAt,body,image,summary,tags	\N	3	\N
+13	投诉建议	feedback	1	list	summary	\N	\N	\N
+27	景点	jing	10	list	summary,image,body,coord,tags	\N	3	\N
+29	住宿	zhu	6	list	summary,image,specs,body,tags,coord	\N	3	\N
+31	美食	shi	8	list	summary,image,body,coord,specs	\N	3	\N
+36	文创	wen	1	list	body,image,summary,tags,coord	\N	3	\N
+39	购物	gou	1	list	body,image,summary,tags,coord	\N	3	\N
+40	活动	dong	1	list	body,image,summary,tags,createdAt,coord	\N	3	\N
+41	玩法	wan	1	list	body,image,summary,tags,createdAt,coord	\N	3	\N
+42	艺动	yi	1	list	body,image,summary,tags,createdAt,coord	\N	3	\N
+\.
+
+
+--
+-- Data for Name: spec; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.spec (id, node_id, name, value) FROM stdin;
@@ -841,28 +1085,28 @@ COPY public.spec (id, node_id, name, value) FROM stdin;
 
 
 --
--- Data for Name: tag; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: tag; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.tag (id, name, label) FROM stdin;
-1	民宿	minsu
-2	农家乐	农家乐
 \.
 
 
 --
--- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: user; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public."user" (id, username, roles, password, plain_password, openid, name, phone, avatar) FROM stdin;
 2	al	["ROLE_SUPER_ADMIN"]	$2y$13$KpK7xAC8vlandkObN9kC4OAZVFw7SLtJvpf3PHICo4shV4haht9iK	\N	\N	\N	\N	\N
 3	root	["ROLE_SUPER_ADMIN"]	$2y$13$vjcnglByWqC.GHCDZ3xIpuzHgPXtZ0mGvR5GPgXx7SBrGZRTTrmxi	\N	\N	\N	\N	\N
-1	admin	["ROLE_ADMIN"]	$2y$13$Aru9xF850N6.KZ9cfzU67OlgYVVklRynqLXqkxeAiUcKWsbCMqqcS	\N	\N	\N	\N	\N
+1	admin	["ROLE_ADMIN"]	$2y$13$vfGjflZWMSRJ2lay3y.2kOitiuI/C.ps9CVHc3WfF63fl/CvY3Cmi	\N	\N	\N	\N	\N
+5	oZkmM7Rbd8fp9fQN3_WLJxpju6K8	[]	$2y$13$XMS5jp0Eg1oy1sZiF.bn0e5BmlwYzmOJ6YtWwj6R0B36xGsGb541e	\N	oZkmM7Rbd8fp9fQN3_WLJxpju6K8	用户ju6K8	\N	\N
+6	oZkmM7ZXwrSLOHxN0UuUsyOajzco	[]	$2y$13$N36HzEkD9vCMNBi56A1YDuNbd8dK1ZuMz3wUbKRNwyz/Zcy/e4aQq	\N	oZkmM7ZXwrSLOHxN0UuUsyOajzco	用户ajzco	\N	\N
 \.
 
 
 --
--- Data for Name: user_node; Type: TABLE DATA; Schema: public; Owner: postgres
+-- Data for Name: user_node; Type: TABLE DATA; Schema: public; Owner: zwdev
 --
 
 COPY public.user_node (user_id, node_id) FROM stdin;
@@ -870,105 +1114,133 @@ COPY public.user_node (user_id, node_id) FROM stdin;
 
 
 --
--- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.category_id_seq', 5, true);
 
 
 --
--- Name: conf_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
+--
+
+SELECT pg_catalog.setval('public.comment_id_seq', 1, false);
+
+
+--
+-- Name: conf_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.conf_id_seq', 1, true);
 
 
 --
--- Name: feedback_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: fav_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
+--
+
+SELECT pg_catalog.setval('public.fav_id_seq', 14, true);
+
+
+--
+-- Name: feedback_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.feedback_id_seq', 7, true);
 
 
 --
--- Name: image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: image_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.image_id_seq', 5, true);
 
 
 --
--- Name: language_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: language_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.language_id_seq', 1, false);
 
 
 --
--- Name: link_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: link_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.link_id_seq', 7, true);
 
 
 --
--- Name: menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: menu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.menu_id_seq', 3, true);
 
 
 --
--- Name: messenger_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: messenger_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.messenger_messages_id_seq', 1, false);
 
 
 --
--- Name: node_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: node_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
-SELECT pg_catalog.setval('public.node_id_seq', 149, true);
+SELECT pg_catalog.setval('public.node_id_seq', 150, true);
 
 
 --
--- Name: page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
+--
+
+SELECT pg_catalog.setval('public.order_id_seq', 1, false);
+
+
+--
+-- Name: page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.page_id_seq', 4, true);
 
 
 --
--- Name: region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: refund_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
-SELECT pg_catalog.setval('public.region_id_seq', 43, true);
+SELECT pg_catalog.setval('public.refund_id_seq', 1, false);
 
 
 --
--- Name: spec_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: region_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
+--
+
+SELECT pg_catalog.setval('public.region_id_seq', 44, true);
+
+
+--
+-- Name: spec_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.spec_id_seq', 18, true);
 
 
 --
--- Name: tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: tag_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
 SELECT pg_catalog.setval('public.tag_id_seq', 2, true);
 
 
 --
--- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+-- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zwdev
 --
 
-SELECT pg_catalog.setval('public.user_id_seq', 3, true);
+SELECT pg_catalog.setval('public.user_id_seq', 6, true);
 
 
 --
--- Name: category category_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: category category_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.category
@@ -976,7 +1248,15 @@ ALTER TABLE ONLY public.category
 
 
 --
--- Name: conf conf_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: comment comment_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.comment
+    ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: conf conf_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.conf
@@ -984,7 +1264,7 @@ ALTER TABLE ONLY public.conf
 
 
 --
--- Name: doctrine_migration_versions doctrine_migration_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: doctrine_migration_versions doctrine_migration_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.doctrine_migration_versions
@@ -992,7 +1272,15 @@ ALTER TABLE ONLY public.doctrine_migration_versions
 
 
 --
--- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fav fav_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.fav
+    ADD CONSTRAINT fav_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.feedback
@@ -1000,7 +1288,7 @@ ALTER TABLE ONLY public.feedback
 
 
 --
--- Name: image image_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: image image_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.image
@@ -1008,7 +1296,7 @@ ALTER TABLE ONLY public.image
 
 
 --
--- Name: language language_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: language language_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.language
@@ -1016,7 +1304,7 @@ ALTER TABLE ONLY public.language
 
 
 --
--- Name: link link_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: link link_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.link
@@ -1024,7 +1312,7 @@ ALTER TABLE ONLY public.link
 
 
 --
--- Name: menu menu_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: menu menu_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.menu
@@ -1032,7 +1320,7 @@ ALTER TABLE ONLY public.menu
 
 
 --
--- Name: messenger_messages messenger_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: messenger_messages messenger_messages_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.messenger_messages
@@ -1040,7 +1328,7 @@ ALTER TABLE ONLY public.messenger_messages
 
 
 --
--- Name: node node_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node node_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node
@@ -1048,7 +1336,7 @@ ALTER TABLE ONLY public.node
 
 
 --
--- Name: node_region node_region_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node_region node_region_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node_region
@@ -1056,7 +1344,7 @@ ALTER TABLE ONLY public.node_region
 
 
 --
--- Name: node_tag node_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node_tag node_tag_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node_tag
@@ -1064,7 +1352,15 @@ ALTER TABLE ONLY public.node_tag
 
 
 --
--- Name: page page_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: order order_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public."order"
+    ADD CONSTRAINT order_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: page page_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.page
@@ -1072,7 +1368,15 @@ ALTER TABLE ONLY public.page
 
 
 --
--- Name: region region_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: refund refund_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.refund
+    ADD CONSTRAINT refund_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: region region_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.region
@@ -1080,7 +1384,7 @@ ALTER TABLE ONLY public.region
 
 
 --
--- Name: spec spec_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: spec spec_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.spec
@@ -1088,7 +1392,7 @@ ALTER TABLE ONLY public.spec
 
 
 --
--- Name: tag tag_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: tag tag_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.tag
@@ -1096,7 +1400,7 @@ ALTER TABLE ONLY public.tag
 
 
 --
--- Name: user_node user_node_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_node user_node_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.user_node
@@ -1104,7 +1408,7 @@ ALTER TABLE ONLY public.user_node
 
 
 --
--- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public."user"
@@ -1112,147 +1416,203 @@ ALTER TABLE ONLY public."user"
 
 
 --
--- Name: idx_14f389a882f1baf4; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_14f389a882f1baf4; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_14f389a882f1baf4 ON public.conf USING btree (language_id);
 
 
 --
--- Name: idx_36ac99f1ccd7e912; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_36ac99f1ccd7e912; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_36ac99f1ccd7e912 ON public.link USING btree (menu_id);
 
 
 --
--- Name: idx_70ac95f8460d9fd7; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_70ac95f8460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_70ac95f8460d9fd7 ON public.node_tag USING btree (node_id);
 
 
 --
--- Name: idx_70ac95f8bad26311; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_70ac95f8bad26311; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_70ac95f8bad26311 ON public.node_tag USING btree (tag_id);
 
 
 --
--- Name: idx_75ea56e016ba31db; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_75ea56e016ba31db; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_75ea56e016ba31db ON public.messenger_messages USING btree (delivered_at);
 
 
 --
--- Name: idx_75ea56e0e3bd61ce; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_75ea56e0e3bd61ce; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_75ea56e0e3bd61ce ON public.messenger_messages USING btree (available_at);
 
 
 --
--- Name: idx_75ea56e0fb7336f0; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_75ea56e0fb7336f0; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_75ea56e0fb7336f0 ON public.messenger_messages USING btree (queue_name);
 
 
 --
--- Name: idx_857fe84512469de2; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_769be06f460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_769be06f460d9fd7 ON public.fav USING btree (node_id);
+
+
+--
+-- Name: idx_769be06fe4a59390; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_769be06fe4a59390 ON public.fav USING btree (u_id);
+
+
+--
+-- Name: idx_857fe84512469de2; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_857fe84512469de2 ON public.node USING btree (category_id);
 
 
 --
--- Name: idx_857fe845727aca70; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_857fe845727aca70; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_857fe845727aca70 ON public.node USING btree (parent_id);
 
 
 --
--- Name: idx_857fe84582f1baf4; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_857fe84582f1baf4; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_857fe84582f1baf4 ON public.node USING btree (language_id);
 
 
 --
--- Name: idx_bb70e4d3460d9fd7; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_857fe845f675f31b; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_857fe845f675f31b ON public.node USING btree (author_id);
+
+
+--
+-- Name: idx_9474526c460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_9474526c460d9fd7 ON public.comment USING btree (node_id);
+
+
+--
+-- Name: idx_9474526cb4d5a9e2; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_9474526cb4d5a9e2 ON public.comment USING btree (commenter_id);
+
+
+--
+-- Name: idx_bb70e4d3460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_bb70e4d3460d9fd7 ON public.node_region USING btree (node_id);
 
 
 --
--- Name: idx_bb70e4d398260155; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_bb70e4d398260155; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_bb70e4d398260155 ON public.node_region USING btree (region_id);
 
 
 --
--- Name: idx_c00e173e460d9fd7; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_c00e173e460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_c00e173e460d9fd7 ON public.spec USING btree (node_id);
 
 
 --
--- Name: idx_c53d045f460d9fd7; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_c53d045f460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_c53d045f460d9fd7 ON public.image USING btree (node_id);
 
 
 --
--- Name: idx_d2294458460d9fd7; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_d2294458460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_d2294458460d9fd7 ON public.feedback USING btree (node_id);
 
 
 --
--- Name: idx_f62f176c4663e4; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_f529939837fdbd6d; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_f529939837fdbd6d ON public."order" USING btree (consumer_id);
+
+
+--
+-- Name: idx_f5299398460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE INDEX idx_f5299398460d9fd7 ON public."order" USING btree (node_id);
+
+
+--
+-- Name: idx_f62f176c4663e4; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_f62f176c4663e4 ON public.region USING btree (page_id);
 
 
 --
--- Name: idx_fffea48c460d9fd7; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_fffea48c460d9fd7; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_fffea48c460d9fd7 ON public.user_node USING btree (node_id);
 
 
 --
--- Name: idx_fffea48ca76ed395; Type: INDEX; Schema: public; Owner: postgres
+-- Name: idx_fffea48ca76ed395; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE INDEX idx_fffea48ca76ed395 ON public.user_node USING btree (user_id);
 
 
 --
--- Name: uniq_8d93d649f85e0677; Type: INDEX; Schema: public; Owner: postgres
+-- Name: uniq_5b2c1458e636d3f5; Type: INDEX; Schema: public; Owner: zwdev
+--
+
+CREATE UNIQUE INDEX uniq_5b2c1458e636d3f5 ON public.refund USING btree (ord_id);
+
+
+--
+-- Name: uniq_8d93d649f85e0677; Type: INDEX; Schema: public; Owner: zwdev
 --
 
 CREATE UNIQUE INDEX uniq_8d93d649f85e0677 ON public."user" USING btree (username);
 
 
 --
--- Name: messenger_messages notify_trigger; Type: TRIGGER; Schema: public; Owner: postgres
+-- Name: messenger_messages notify_trigger; Type: TRIGGER; Schema: public; Owner: zwdev
 --
 
 CREATE TRIGGER notify_trigger AFTER INSERT OR UPDATE ON public.messenger_messages FOR EACH ROW EXECUTE FUNCTION public.notify_messenger_messages();
 
 
 --
--- Name: conf fk_14f389a882f1baf4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: conf fk_14f389a882f1baf4; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.conf
@@ -1260,7 +1620,7 @@ ALTER TABLE ONLY public.conf
 
 
 --
--- Name: link fk_36ac99f1ccd7e912; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: link fk_36ac99f1ccd7e912; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.link
@@ -1268,7 +1628,15 @@ ALTER TABLE ONLY public.link
 
 
 --
--- Name: node_tag fk_70ac95f8460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: refund fk_5b2c1458e636d3f5; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.refund
+    ADD CONSTRAINT fk_5b2c1458e636d3f5 FOREIGN KEY (ord_id) REFERENCES public."order"(id);
+
+
+--
+-- Name: node_tag fk_70ac95f8460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node_tag
@@ -1276,7 +1644,7 @@ ALTER TABLE ONLY public.node_tag
 
 
 --
--- Name: node_tag fk_70ac95f8bad26311; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node_tag fk_70ac95f8bad26311; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node_tag
@@ -1284,7 +1652,23 @@ ALTER TABLE ONLY public.node_tag
 
 
 --
--- Name: node fk_857fe84512469de2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fav fk_769be06f460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.fav
+    ADD CONSTRAINT fk_769be06f460d9fd7 FOREIGN KEY (node_id) REFERENCES public.node(id);
+
+
+--
+-- Name: fav fk_769be06fe4a59390; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.fav
+    ADD CONSTRAINT fk_769be06fe4a59390 FOREIGN KEY (u_id) REFERENCES public."user"(id);
+
+
+--
+-- Name: node fk_857fe84512469de2; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node
@@ -1292,7 +1676,7 @@ ALTER TABLE ONLY public.node
 
 
 --
--- Name: node fk_857fe845727aca70; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node fk_857fe845727aca70; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node
@@ -1300,7 +1684,7 @@ ALTER TABLE ONLY public.node
 
 
 --
--- Name: node fk_857fe84582f1baf4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node fk_857fe84582f1baf4; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node
@@ -1308,7 +1692,31 @@ ALTER TABLE ONLY public.node
 
 
 --
--- Name: node_region fk_bb70e4d3460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node fk_857fe845f675f31b; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.node
+    ADD CONSTRAINT fk_857fe845f675f31b FOREIGN KEY (author_id) REFERENCES public."user"(id);
+
+
+--
+-- Name: comment fk_9474526c460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.comment
+    ADD CONSTRAINT fk_9474526c460d9fd7 FOREIGN KEY (node_id) REFERENCES public.node(id);
+
+
+--
+-- Name: comment fk_9474526cb4d5a9e2; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public.comment
+    ADD CONSTRAINT fk_9474526cb4d5a9e2 FOREIGN KEY (commenter_id) REFERENCES public."user"(id);
+
+
+--
+-- Name: node_region fk_bb70e4d3460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node_region
@@ -1316,7 +1724,7 @@ ALTER TABLE ONLY public.node_region
 
 
 --
--- Name: node_region fk_bb70e4d398260155; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: node_region fk_bb70e4d398260155; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.node_region
@@ -1324,7 +1732,7 @@ ALTER TABLE ONLY public.node_region
 
 
 --
--- Name: spec fk_c00e173e460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: spec fk_c00e173e460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.spec
@@ -1332,7 +1740,7 @@ ALTER TABLE ONLY public.spec
 
 
 --
--- Name: image fk_c53d045f460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: image fk_c53d045f460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.image
@@ -1340,7 +1748,7 @@ ALTER TABLE ONLY public.image
 
 
 --
--- Name: feedback fk_d2294458460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: feedback fk_d2294458460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.feedback
@@ -1348,7 +1756,23 @@ ALTER TABLE ONLY public.feedback
 
 
 --
--- Name: region fk_f62f176c4663e4; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: order fk_f529939837fdbd6d; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public."order"
+    ADD CONSTRAINT fk_f529939837fdbd6d FOREIGN KEY (consumer_id) REFERENCES public."user"(id);
+
+
+--
+-- Name: order fk_f5299398460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
+--
+
+ALTER TABLE ONLY public."order"
+    ADD CONSTRAINT fk_f5299398460d9fd7 FOREIGN KEY (node_id) REFERENCES public.node(id);
+
+
+--
+-- Name: region fk_f62f176c4663e4; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.region
@@ -1356,7 +1780,7 @@ ALTER TABLE ONLY public.region
 
 
 --
--- Name: user_node fk_fffea48c460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_node fk_fffea48c460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.user_node
@@ -1364,235 +1788,11 @@ ALTER TABLE ONLY public.user_node
 
 
 --
--- Name: user_node fk_fffea48ca76ed395; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: user_node fk_fffea48ca76ed395; Type: FK CONSTRAINT; Schema: public; Owner: zwdev
 --
 
 ALTER TABLE ONLY public.user_node
     ADD CONSTRAINT fk_fffea48ca76ed395 FOREIGN KEY (user_id) REFERENCES public."user"(id) ON DELETE CASCADE;
-
-
---
--- Name: TABLE category; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.category TO zw;
-
-
---
--- Name: SEQUENCE category_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.category_id_seq TO zw;
-
-
---
--- Name: TABLE conf; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.conf TO zw;
-
-
---
--- Name: SEQUENCE conf_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.conf_id_seq TO zw;
-
-
---
--- Name: TABLE doctrine_migration_versions; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.doctrine_migration_versions TO zw;
-
-
---
--- Name: TABLE feedback; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.feedback TO zw;
-
-
---
--- Name: SEQUENCE feedback_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.feedback_id_seq TO zw;
-
-
---
--- Name: TABLE image; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.image TO zw;
-
-
---
--- Name: SEQUENCE image_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.image_id_seq TO zw;
-
-
---
--- Name: TABLE language; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.language TO zw;
-
-
---
--- Name: SEQUENCE language_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.language_id_seq TO zw;
-
-
---
--- Name: TABLE link; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.link TO zw;
-
-
---
--- Name: SEQUENCE link_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.link_id_seq TO zw;
-
-
---
--- Name: TABLE menu; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.menu TO zw;
-
-
---
--- Name: SEQUENCE menu_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.menu_id_seq TO zw;
-
-
---
--- Name: TABLE messenger_messages; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.messenger_messages TO zw;
-
-
---
--- Name: SEQUENCE messenger_messages_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.messenger_messages_id_seq TO zw;
-
-
---
--- Name: TABLE node; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.node TO zw;
-
-
---
--- Name: SEQUENCE node_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.node_id_seq TO zw;
-
-
---
--- Name: TABLE node_region; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.node_region TO zw;
-
-
---
--- Name: TABLE node_tag; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.node_tag TO zw;
-
-
---
--- Name: TABLE page; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.page TO zw;
-
-
---
--- Name: SEQUENCE page_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.page_id_seq TO zw;
-
-
---
--- Name: TABLE region; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.region TO zw;
-
-
---
--- Name: SEQUENCE region_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.region_id_seq TO zw;
-
-
---
--- Name: TABLE spec; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.spec TO zw;
-
-
---
--- Name: SEQUENCE spec_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.spec_id_seq TO zw;
-
-
---
--- Name: TABLE tag; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.tag TO zw;
-
-
---
--- Name: SEQUENCE tag_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.tag_id_seq TO zw;
-
-
---
--- Name: TABLE "user"; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public."user" TO zw;
-
-
---
--- Name: SEQUENCE user_id_seq; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON SEQUENCE public.user_id_seq TO zw;
-
-
---
--- Name: TABLE user_node; Type: ACL; Schema: public; Owner: postgres
---
-
-GRANT ALL ON TABLE public.user_node TO zw;
 
 
 --
