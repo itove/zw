@@ -172,6 +172,7 @@ class Data
             'price' => $n->getPrice(),
             'createdAt' => $n->getCreatedAt(),
             'author' => [ 'name' => $n->getAuthor()->getName(), 'avatar' => $n->getAuthor()->getAvatar()],
+            'marker' => $n->getMarker(),
             // 'favs' => count($n->getFavs()),
         ];
 
@@ -201,7 +202,12 @@ class Data
         }
 
         if (!empty($n->getRegions())) {
-            $data['region'] = $n->getRegions()[0]->getId();
+            $data['region'] = [
+                'id' => $n->getRegions()[0]->getId(),
+                'name' => $n->getRegions()[0]->getName(),
+                'label' => $n->getRegions()[0]->getLabel(),
+                'marker' => $n->getRegions()[0]->getMarker(),
+            ];
         }
         
         $children = [];
