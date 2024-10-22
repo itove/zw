@@ -27,11 +27,6 @@ class Comment
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    public function __construct()
-    {
-        $this->createdAt = new \DateTimeImmutable();
-    }
-
     #[ORM\Column]
     private ?int $up = null;
 
@@ -40,6 +35,11 @@ class Comment
 
     #[ORM\Column]
     private ?bool $deleted = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {
