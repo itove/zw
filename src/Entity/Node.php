@@ -129,6 +129,12 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Fav::class, orphanRemoval: true)]
     private Collection $favs;
 
+    /**
+     * @var Collection<int, Like>
+     */
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Like::class, orphanRemoval: true)]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -140,6 +146,7 @@ class Node
         $this->children = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->favs = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function __toString()
@@ -665,6 +672,36 @@ class Node
             // set the owning side to null (unless already changed)
             if ($fav->getNode() === $this) {
                 $fav->setNode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): static
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getNode() === $this) {
+                $like->setNode(null);
             }
         }
 

@@ -68,12 +68,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'u', targetEntity: Fav::class, orphanRemoval: true)]
     private Collection $favs;
 
+    /**
+     * @var Collection<int, Like>
+     */
+    #[ORM\OneToMany(mappedBy: 'u', targetEntity: Like::class, orphanRemoval: true)]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->nodes = new ArrayCollection();
         $this->favs = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
     
     public function __toString(): string
@@ -330,6 +337,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($fav->getU() === $this) {
                 $fav->setU(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Like>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Like $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setU($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Like $like): static
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getU() === $this) {
+                $like->setU(null);
             }
         }
 
