@@ -1101,7 +1101,6 @@ COPY public.node (id, language_id, category_id, title, created_at, body, image, 
 85	\N	\N	龙泉寺	2024-05-15 04:21:43	<p>龙泉寺</p>	long-quan-si1-66e494cf71440501191736.jpeg	龙泉寺	2024-09-13 19:38:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 89	\N	\N	十堰希尔顿逸林酒店	2024-05-15 05:26:58	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>十堰希尔顿逸林酒店</strong></span></p>	20080c00000067b1i1473-w-1080-808-r5-d-66ea34f88b7e8776391708.jpg	十堰希尔顿逸林酒店	2024-09-18 02:03:36	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 138	\N	\N	花迹雨舍	2024-09-18 08:06:03	<p>花迹雨舍</p>	5-66ebbe9762dc3269802938.jpg	花迹雨舍	2024-09-19 06:03:03	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
-95	\N	\N	回龙村荷花盛开	2024-05-15 05:44:06	<p>回龙村荷花盛开</p>	hui-long-cun-he-hua-sheng-kai-66e4947140dcd574942165.jpg	回龙村荷花盛开	2024-09-13 19:37:21	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 126	\N	\N	维也纳国际酒店	2024-05-17 01:43:21	<p><span style="background-color:rgb(255,255,255);color:rgb(15,41,77);"><strong>维也纳国际酒店</strong></span></p>	020581200093rrmx1a5e2-w-1080-808-r5-d-66ea341be7b8d373180662.jpg	维也纳国际酒店	2024-09-18 01:59:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 99	\N	\N	牛头山顶落日	2024-05-15 05:45:37	<p>牛头山顶落日</p>	1-66ebbce03c9ed662835048.jpg	牛头山顶落日	2024-09-19 05:55:44	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 131	\N	\N	健康步道	2024-09-18 02:51:55	<p>健康步道</p>	3-66ea404bc7ffb033854785.jpg	健康步道	2024-09-18 02:51:55	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
@@ -1131,6 +1130,7 @@ COPY public.node (id, language_id, category_id, title, created_at, body, image, 
 140	\N	\N	十堰市图书馆	2024-09-18 08:08:42	<p>十堰市图书馆</p>	rn-image-picker-lib-temp-e40613be-b931-4a42-b7dd-0bc6480d28c9-66ea8a8b02fe6108496344.jpg	十堰市图书馆	2024-09-18 08:08:43	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 150	\N	\N	谭二拉面馆	2024-10-21 03:02:10	\N	\N	车城小店经典美食	2024-10-21 03:02:10	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	f	\N
 100	\N	\N	云水方滩休闲度假区	2024-05-15 05:46:01	<h4><strong>关于</strong></h4><p>云水方滩休闲度假区青山环绕，峡谷幽美，堵河如画，碧水静流，仿佛置身于世外桃源；锦绣园、房车营地、堵河廊道、行人绿道、采摘园、天然草地广场等成为知名网红打卡点；富有水乡渔村文化特色的特色鱼宴产业园更是集商品销售、民俗体验、乡土美食于一体的新体验地。</p>	yun-shui-fang-tan-du-he-hua-lang-kang-yang-lu-you-du-jia-qu-jian-shan-cha-she-wai-guan-66e49391eb54c947037806.jpg	云水方滩休闲度假区	2024-10-22 15:05:52	\N	\N	\N	\N	\N	32.737731	110.606084	\N	\N	2	\N	zhu-su-3x-6717bf50483f2972649824.png
+95	\N	\N	回龙村荷花盛开	2024-05-15 05:44:06	<p>回龙村荷花盛开</p>	hui-long-cun-he-hua-sheng-kai-66e4947140dcd574942165.jpg	回龙村荷花盛开，赏花。	2024-09-13 19:37:21	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 149	\N	\N	四方山徒步	2024-10-13 20:54:04	<p>活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们的锻炼，由主办单位主办活动简介本次活动旨在加强人们。</p>	1-670c847cba7d5094122683.jpg	活动简介本次活动旨在加强人们的锻炼，由主办单位主\r\n办活动简介本次活动旨在加强人们的锻炼，由主办单位\r\n主办活动简介本次活动旨在加强人们的锻炼，由主办单\r\n位主办活动简介本次活动旨在加强人们的锻炼，由主办\r\n单位主办活动简介本次活动旨在加强人们。	2024-10-14 02:39:56	\N	\N	\N	\N	\N	\N	\N	\N	\N	2	\N	\N
 \.
 
@@ -1248,7 +1248,6 @@ COPY public.refund (id, ord_id, created_at, reason, note, sn, wx_refund_id) FROM
 --
 
 COPY public.region (id, name, label, count, icon, fields, description, page_id, weight, marker, created_at, updated_at) FROM stdin;
-43	列表	shop	1	\N	body,image,summary,createdAt	\N	\N	\N	\N	\N	\N
 35	房间	rooms	1	list	\N	\N	\N	\N	\N	\N	\N
 25	幻灯片1	slider1	5	list	image,body	\N	\N	\N	\N	\N	\N
 13	投诉建议	feedback	1	list	summary	\N	\N	\N	\N	\N	\N
@@ -1261,6 +1260,7 @@ COPY public.region (id, name, label, count, icon, fields, description, page_id, 
 42	艺动	yi	1	list	body,image,summary,tags,createdAt,coord	\N	3	\N	\N	\N	\N
 44	热聊	talk	1	list	createdAt,body,image,summary,tags	\N	3	\N	mei-shi-3x-6717bbca4cf03510615090.png	\N	2024-10-22 14:50:50
 27	景点	jing	10	list	summary,image,body,coord,tags,marker	\N	3	\N	jiu-dian-3x-6717bf72e7d3f860786186.png	\N	2024-10-22 15:06:26
+43	门店	shop	1	\N	body,image,summary,createdAt	\N	\N	\N	\N	\N	\N
 \.
 
 
