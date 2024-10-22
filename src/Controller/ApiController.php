@@ -379,6 +379,14 @@ class ApiController extends AbstractController
             $data['nodes'][$i]['id'] = $n->getId();
             $data['nodes'][$i]['latitude'] = $n->getLatitude();
             $data['nodes'][$i]['longitude'] = $n->getLongitude();
+
+            if (!empty($n->getRegions())) {
+                $data['nodes'][$i]['region'] = [
+                    'id' => $n->getRegions()[0]->getId(),
+                    'name' => $n->getRegions()[0]->getName(),
+                    'label' => $n->getRegions()[0]->getLabel(),
+                ];
+            }
             $i++;
         }
         
