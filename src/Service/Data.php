@@ -171,6 +171,7 @@ class Data
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
             'price' => $n->getPrice(),
             'createdAt' => $n->getCreatedAt(),
+            'author' => [ 'name' => $n->getAuthor()->getName(), 'avatar' => $n->getAuthor()->getAvatar()],
             // 'favs' => count($n->getFavs()),
         ];
 

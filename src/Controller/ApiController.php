@@ -14,6 +14,9 @@ use App\Entity\Order;
 use App\Entity\Check;
 use App\Entity\Refund;
 use App\Entity\Fav;
+use App\Entity\Like;
+use App\Entity\Up;
+use App\Entity\Down;
 use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
@@ -101,14 +104,7 @@ class ApiController extends AbstractController
         $data['region'] = $region->getName();
         $data['nodes'] = [];
         foreach ($nodes as $n) {
-            $data['nodes'][$i]['title'] = $n->getTitle();
-            $data['nodes'][$i]['summary'] = $n->getSummary();
-            $data['nodes'][$i]['image'] = $n->getImage();
-            $data['nodes'][$i]['id'] = $n->getId();
-            $data['nodes'][$i]['latitude'] = $n->getLatitude();
-            $data['nodes'][$i]['longitude'] = $n->getLongitude();
-            $data['nodes'][$i]['author'] = [ 'name' => $n->getAuthor()->getName(), 'avatar' => $n->getAuthor()->getAvatar()];
-            $data['nodes'][$i]['likes'] = $n->getLikes();
+            $data['nodes'][$i] = $this->data->formatNode($n);
             $i++;
         }
 
@@ -417,6 +413,66 @@ class ApiController extends AbstractController
         foreach($node->getComments() as $c){
             array_push($data['comments'], $this->data->formatComment($c));
         }
+
+        return $this->json($data);
+    }
+
+    #[Route('/like', methods: ['POST'])]
+    public function like(Request $request): Response
+    {
+        $params = $request->toArray();
+        $uid = $params['uid'];
+        $nid = $params['nid'];
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $em->getRepository(Node::class)->find($nid);
+        $like = $em->getRepository(Like::class)->findOneBy(['u' => $user, 'node' => $node]);
+
+        if (null === like) {
+            $l = new Like();
+            $l->setU($user);
+            $l->setNode($node);
+            $em->persist($l);
+            $em->flush();
+        }
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+            'liked' => true,
+            'count' => count($node->getLikes()),
+        ];
+
+        return $this->json($data);
+    }
+
+    #[Route('/up', methods: ['POST'])]
+    public function up(Request $request): Response
+    {
+        $params = $request->toArray();
+        $uid = $params['uid'];
+        $nid = $params['nid'];
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $em->getRepository(Node::class)->find($nid);
+        $up = $em->getRepository(Up::class)->findOneBy(['u' => $user, 'node' => $node]);
+
+        if (null === up) {
+            $u = new Up();
+            $u->setU($user);
+            $u->setNode($node);
+            $em->persist($u);
+            $em->flush();
+        }
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+            'upped' => true,
+            'count' => count($node->getUps()),
+        ];
 
         return $this->json($data);
     }
