@@ -38,7 +38,7 @@ class ApiController extends AbstractController
         if ($uid !== null) {
             $em = $this->data->getEntityManager();
             $user = $em->getRepository(User::class)->find($uid);
-            $user->setAvatar('images/' . $newName);
+            $user->setAvatar($newName);
             $em->flush();
         }
         return $this->json(['url' => '/images/' . $newName]);
