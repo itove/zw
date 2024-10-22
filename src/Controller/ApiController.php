@@ -14,6 +14,7 @@ use App\Entity\Order;
 use App\Entity\Check;
 use App\Entity\Refund;
 use App\Entity\Fav;
+use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
 
@@ -385,6 +386,38 @@ class ApiController extends AbstractController
             $i++;
         }
         
+        return $this->json($data);
+    }
+
+    #[Route('/comments', methods: ['POST'])]
+    public function newComments(Request $request): Response
+    {
+        $params = $request->toArray();
+        $uid = $params['uid'];
+        $nid = $params['nid'];
+        $body = $params['body'];
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $em->getRepository(Node::class)->find($nid);
+
+        $c = new Comment();
+        $c->setBody($body);
+        $c->setAuthor($user);
+        $c->setNode($node);
+        $em->persist($c);
+        $em->flush();
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+        ];
+
+        $data['comments'] = [];
+        foreach($node->getComments() as $c){
+            array_push($data['comments'], $this->data->formatComment($c));
+        }
+
         return $this->json($data);
     }
 }

@@ -108,6 +108,7 @@ class Node
      * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Comment::class)]
+    #[ORM\OrderBy(["id" => "DESC"])]
     private Collection $comments;
 
     #[ORM\ManyToOne(inversedBy: 'nodes')]

@@ -111,12 +111,12 @@ class Data
     public function formatUser(User $u)
     {
         $data = [
-            'id' => $c->getId(),
-            'username' => $c->getUsername(),
-            'roles' => $c->getRoles(),
-            'name' => $c->getName(),
-            'phone' => $c->getPhone(),
-            'avatar' => $c->getAvatar(),
+            'id' => $u->getId(),
+            'username' => $u->getUsername(),
+            'roles' => $u->getRoles(),
+            'name' => $u->getName(),
+            'phone' => $u->getPhone(),
+            'avatar' => $u->getAvatar(),
         ];
 
         return $data;
