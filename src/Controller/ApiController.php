@@ -364,7 +364,6 @@ class ApiController extends AbstractController
     public function search(Request $request): Response
     {
         $q = $request->query->get('q');
-        dump($q);
 
         $em = $this->data->getEntityManager();
         $nodes = $em->getRepository(Node::class)->findByKeyword($q);
