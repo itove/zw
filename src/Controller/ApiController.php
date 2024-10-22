@@ -429,7 +429,7 @@ class ApiController extends AbstractController
         $node = $em->getRepository(Node::class)->find($nid);
         $like = $em->getRepository(Like::class)->findOneBy(['u' => $user, 'node' => $node]);
 
-        if (null === like) {
+        if (null === $like) {
             $l = new Like();
             $l->setU($user);
             $l->setNode($node);
@@ -459,7 +459,7 @@ class ApiController extends AbstractController
         $node = $em->getRepository(Node::class)->find($nid);
         $up = $em->getRepository(Up::class)->findOneBy(['u' => $user, 'node' => $node]);
 
-        if (null === up) {
+        if (null === $up) {
             $u = new Up();
             $u->setU($user);
             $u->setNode($node);
