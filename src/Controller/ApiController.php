@@ -374,6 +374,7 @@ class ApiController extends AbstractController
         foreach ($nodes as $n) {
             $data['nodes'][$i]['title'] = $n->getTitle();
             $data['nodes'][$i]['summary'] = $n->getSummary();
+            $data['nodes'][$i]['address'] = $n->getAddress();
             $data['nodes'][$i]['image'] = $n->getImage();
             $data['nodes'][$i]['id'] = $n->getId();
             $data['nodes'][$i]['latitude'] = $n->getLatitude();

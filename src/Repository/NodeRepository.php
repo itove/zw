@@ -24,7 +24,7 @@ class NodeRepository extends ServiceEntityRepository
     public function findByKeyword($kw, $limit = null, $offset = null): array
     {
         return $this->createQueryBuilder('n')
-            ->andWhere('n.title LIKE :kw OR n.summary like :kw')
+            ->andWhere('n.title LIKE :kw OR n.summary LIKE :kw OR n.address LIKE :kw')
             ->setParameter('kw', '%' . $kw . '%')
             ->orderBy('n.id', 'DESC')
             ->setMaxResults($limit)
