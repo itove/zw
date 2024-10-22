@@ -44,10 +44,17 @@ class Comment
     #[ORM\OneToMany(mappedBy: 'comment', targetEntity: Up::class)]
     private Collection $ups;
 
+    /**
+     * @var Collection<int, Down>
+     */
+    #[ORM\OneToMany(mappedBy: 'comment', targetEntity: Down::class)]
+    private Collection $downs;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->ups = new ArrayCollection();
+        $this->downs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +170,36 @@ class Comment
             // set the owning side to null (unless already changed)
             if ($up->getComment() === $this) {
                 $up->setComment(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Down>
+     */
+    public function getDowns(): Collection
+    {
+        return $this->downs;
+    }
+
+    public function addDown(Down $down): static
+    {
+        if (!$this->downs->contains($down)) {
+            $this->downs->add($down);
+            $down->setComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDown(Down $down): static
+    {
+        if ($this->downs->removeElement($down)) {
+            // set the owning side to null (unless already changed)
+            if ($down->getComment() === $this) {
+                $down->setComment(null);
             }
         }
 
