@@ -19,7 +19,7 @@ class Comment
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $commenter = null;
+    private ?User $author = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $body = null;
@@ -58,14 +58,14 @@ class Comment
         return $this;
     }
 
-    public function getCommenter(): ?User
+    public function getAuthor(): ?User
     {
-        return $this->commenter;
+        return $this->author;
     }
 
-    public function setCommenter(?User $commenter): static
+    public function setAuthor(?User $author): static
     {
-        $this->commenter = $commenter;
+        $this->author = $author;
 
         return $this;
     }
