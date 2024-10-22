@@ -42,7 +42,9 @@ class PageCrudController extends AbstractCrudController
             yield IntegerField::new('weight');
         }
 
-        yield TextField::new('name');
+        yield TextField::new('name')
+            ->setDisabled($disabled)
+        ;
         yield TextField::new('label')
             ->setDisabled($disabled)
             ->setRequired(false)
@@ -52,7 +54,7 @@ class PageCrudController extends AbstractCrudController
 
     public function configureActions(Actions $actions): Actions
     {
-        if ($_ENV['APP_ENV'] === 'prod') {
+        if ($_ENV['APP_ENV'] === 'prod' || !$this->isGranted('ROLE_SUPER_ADMIN')) {
             $actions->disable('delete');
         }
 

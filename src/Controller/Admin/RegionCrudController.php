@@ -44,24 +44,26 @@ class RegionCrudController extends AbstractCrudController
         yield AssociationField::new('page')
             ->setDisabled($disabled)
         ;
-        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
-            yield IntegerField::new('weight');
-        }
-        yield TextField::new('name');
+        yield TextField::new('name')
+            ->setDisabled($disabled)
+        ;
         yield TextField::new('label')
             ->setDisabled($disabled)
             ->setRequired(false)
         ;
-        yield TextField::new('icon');
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
         yield VichImageField::new('markerFile', 'Marker')->hideOnIndex();
-        yield IntegerField::new('count');
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+            yield IntegerField::new('weight');
+            yield TextField::new('icon');
+            yield IntegerField::new('count');
+        }
     }
 
     public function configureActions(Actions $actions): Actions
     {
-        if ($_ENV['APP_ENV'] === 'prod') {
+        if ($_ENV['APP_ENV'] === 'prod' || !$this->isGranted('ROLE_SUPER_ADMIN')) {
             $actions->disable('delete');
         }
 
