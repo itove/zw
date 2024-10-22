@@ -117,16 +117,19 @@ class Node
     private ?bool $deleted = false;
 
     #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
-    private ?int $up = null;
+    private ?int $up = 0;
 
     #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
-    private ?int $down = null;
+    private ?int $down = 0;
 
     /**
      * @var Collection<int, Fav>
      */
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Fav::class, orphanRemoval: true)]
     private Collection $favs;
+
+    #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
+    private ?int $likes = 0;
 
     public function __construct()
     {
@@ -666,6 +669,18 @@ class Node
                 $fav->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(?int $likes): static
+    {
+        $this->likes = $likes;
 
         return $this;
     }
