@@ -159,7 +159,7 @@ class Data
             'price' => $n->getPrice(),
             'likes' => $n->getLikes(),
             'createdAt' => $n->getCreatedAt(),
-            'comments' => self::formatComment($n->getComments());
+            'comments' => self::formatComment($n->getComments()),
             // 'favs' => count($n->getFavs()),
         ];
         
