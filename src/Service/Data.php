@@ -11,6 +11,8 @@ namespace App\Service;
 use Doctrine\Persistence\ManagerRegistry;
 use App\Entity\Conf;
 use App\Entity\Node;
+use App\Entity\Comment;
+use App\Entity\User;
 use App\Entity\Tag;
 use App\Entity\Region;
 use App\Entity\Page;
@@ -106,6 +108,34 @@ class Data
         return $data;
     }
 
+    public function formatUser(User $u)
+    {
+        $data = [
+            'id' => $c->getId(),
+            'username' => $c->getUsername(),
+            'roles' => $c->getRoles(),
+            'name' => $c->getName(),
+            'phone' => $c->getPhone(),
+            'avatar' => $c->getAvatar(),
+        ];
+
+        return $data;
+    }
+
+    public function formatComment(Comment $c)
+    {
+        $data = [
+            'id' => $c->getId(),
+            'author' => self::formatUser($c->getAuthor()),
+            'body' => $c->getBody(),
+            'createdAt' => $c->getCreatedAt(),
+            'up' => $c->getUp(),
+            'down' => $c->getDown(),
+        ];
+
+        return $data;
+    }
+
     public function formatNode(Node $n)
     {
         $conf = $this->findConfByLocale(null);
@@ -127,6 +157,9 @@ class Data
             'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
             'price' => $n->getPrice(),
+            'likes' => $n->getLikes(),
+            'createdAt' => $n->getCreatedAt(),
+            'comments' => self::formatComment($n->getComments());
             // 'favs' => count($n->getFavs()),
         ];
         
