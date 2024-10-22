@@ -24,6 +24,9 @@ class Up
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\ManyToOne(inversedBy: 'ups')]
+    private ?Comment $comment = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -66,6 +69,18 @@ class Up
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getComment(): ?Comment
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?Comment $comment): static
+    {
+        $this->comment = $comment;
 
         return $this;
     }

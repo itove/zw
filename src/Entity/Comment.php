@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,9 +38,16 @@ class Comment
     #[ORM\Column]
     private ?bool $deleted = false;
 
+    /**
+     * @var Collection<int, Up>
+     */
+    #[ORM\OneToMany(mappedBy: 'comment', targetEntity: Up::class)]
+    private Collection $ups;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
+        $this->ups = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -126,6 +135,36 @@ class Comment
     public function setDeleted(bool $deleted): static
     {
         $this->deleted = $deleted;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Up>
+     */
+    public function getUps(): Collection
+    {
+        return $this->ups;
+    }
+
+    public function addUp(Up $up): static
+    {
+        if (!$this->ups->contains($up)) {
+            $this->ups->add($up);
+            $up->setComment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUp(Up $up): static
+    {
+        if ($this->ups->removeElement($up)) {
+            // set the owning side to null (unless already changed)
+            if ($up->getComment() === $this) {
+                $up->setComment(null);
+            }
+        }
 
         return $this;
     }
