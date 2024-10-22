@@ -21,6 +21,19 @@ class NodeRepository extends ServiceEntityRepository
         parent::__construct($registry, Node::class);
     }
     
+    public function findByKeyword($kw, $limit = null, $offset = null): array
+    {
+        return $this->createQueryBuilder('n')
+            ->andWhere('n.title LIKE :kw OR n.summary like :kw')
+            ->setParameter('kw', '%' . $kw . '%')
+            ->orderBy('n.id', 'DESC')
+            ->setMaxResults($limit)
+            ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
     public function findByTag($tag, $limit = null, $offset = null): array
     {
         return $this->createQueryBuilder('n')

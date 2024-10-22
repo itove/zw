@@ -364,14 +364,13 @@ class ApiController extends AbstractController
     public function search(Request $request): Response
     {
         $q = $request->query->get('q');
+        dump($q);
 
-        $regionLabel = 'jing';
+        $em = $this->data->getEntityManager();
+        $nodes = $em->getRepository(Node::class)->findByKeyword($q);
 
-        $nodes = $this->data->findNodesByRegionLabel($regionLabel, null);
-        $region = $this->data->getRegionByLabel($regionLabel);
-        $i = 0;
-        $data['region'] = $region->getName();
         $data['nodes'] = [];
+        $i = 0;
         foreach ($nodes as $n) {
             $data['nodes'][$i]['title'] = $n->getTitle();
             $data['nodes'][$i]['summary'] = $n->getSummary();
