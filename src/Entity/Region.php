@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RegionRepository::class)]
 #[UniqueEntity('label')]
@@ -44,6 +46,13 @@ class Region
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $weight = 0;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $marker = null;
+
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'marker')]
+    #[Assert\Image(maxSize: '5024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
+    private ?File $markerFile = null;
 
     public function __toString(): string
     {
@@ -190,5 +199,33 @@ class Region
         $this->weight = $weight;
 
         return $this;
+    }
+
+    public function getMarker(): ?string
+    {
+        return $this->marker;
+    }
+
+    public function setMarker(?string $marker): static
+    {
+        $this->marker = $marker;
+
+        return $this;
+    }
+    
+    public function setMarkerFile(?File $markerFile = null): void
+    {
+        $this->markerFile = $markerFile;
+
+        if (null !== $markerFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getMarkerFile(): ?File
+    {
+        return $this->markerFile;
     }
 }
