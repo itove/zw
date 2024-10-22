@@ -117,12 +117,6 @@ class Node
     #[ORM\Column(nullable: true)]
     private ?bool $deleted = false;
 
-    #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
-    private ?int $up = 0;
-
-    #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
-    private ?int $down = 0;
-
     /**
      * @var Collection<int, Fav>
      */
@@ -634,30 +628,6 @@ class Node
     public function setDeleted(?bool $deleted): static
     {
         $this->deleted = $deleted;
-
-        return $this;
-    }
-
-    public function getUp(): ?int
-    {
-        return $this->up;
-    }
-
-    public function setUp(?int $up): static
-    {
-        $this->up = $up;
-
-        return $this;
-    }
-
-    public function getDown(): ?int
-    {
-        return $this->down;
-    }
-
-    public function setDown(?int $down): static
-    {
-        $this->down = $down;
 
         return $this;
     }
