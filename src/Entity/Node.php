@@ -129,9 +129,6 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Fav::class, orphanRemoval: true)]
     private Collection $favs;
 
-    #[ORM\Column(nullable: true, options: ["unsigned" => true, "default" => 0])]
-    private ?int $likes = 0;
-
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -670,18 +667,6 @@ class Node
                 $fav->setNode(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getLikes(): ?int
-    {
-        return $this->likes;
-    }
-
-    public function setLikes(?int $likes): static
-    {
-        $this->likes = $likes;
 
         return $this;
     }
