@@ -157,10 +157,24 @@ class Data
             'address' => $n->getAddress() ? $n->getAddress() : $conf->getAddress(),
             'phone' => $n->getPhone() ? $n->getPhone() : $conf->getPhone(),
             'price' => $n->getPrice(),
-            'likes' => $n->getLikes(),
             'createdAt' => $n->getCreatedAt(),
             // 'favs' => count($n->getFavs()),
         ];
+
+        $data['likes'] = [];
+        foreach($n->getLikes() as $i){
+            array_push($data['likes'], $i->getU()->getId());
+        }
+
+        $data['ups'] = [];
+        foreach($n->getLikes() as $i){
+            array_push($data['ups'], $i->getU()->getId());
+        }
+
+        $data['downs'] = [];
+        foreach($n->getLikes() as $i){
+            array_push($data['downs'], $i->getU()->getId());
+        }
         
         $data['comments'] = [];
         foreach($n->getComments() as $c){
