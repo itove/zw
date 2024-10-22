@@ -18,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use App\Service\Data;
+use App\Admin\Field\VichImageField;
 
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 
@@ -54,6 +55,7 @@ class RegionCrudController extends AbstractCrudController
         yield TextField::new('icon');
         yield TextField::new('description');
         yield ChoiceField::new('fields')->setChoices(Data::GetProperties(new Node()))->allowMultipleChoices();
+        yield VichImageField::new('markerFile', 'Marker')->hideOnIndex();
         yield IntegerField::new('count');
     }
 

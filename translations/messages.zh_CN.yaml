@@ -52,12 +52,12 @@ CONTACT: 联系我们
 Sitename: 网站名称
 Language: 语言
 Prefix: URL前缀
-Region: 区块
-Regions: 区块
+Region: 版块
+Regions: 版块
 Summary: 概要
 Back to Site: 返回网站
 Content Management: 内容管理
-Region Management: 区块管理
+Region Management: 版块管理
 Settings: 网站设置
 Change Password: 修改密码
 User: 用户
@@ -138,3 +138,6 @@ Consultation: 客户咨询
 Taxon Management: 分类管理
 Coord: 坐标
 Author: 作者
+Marker: 地图标记
+Page Management: 页面管理
+All Nodes: 所有内容

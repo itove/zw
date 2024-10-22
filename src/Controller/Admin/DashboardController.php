@@ -174,9 +174,9 @@ class DashboardController extends AbstractDashboardController
         
         if ($this->isGranted('ROLE_SUPER_ADMIN')) {
             yield MenuItem::section('Super Admin');
-            yield MenuItem::linkToCrud('Page', 'fas fa-cog', Page::class);
-            yield MenuItem::linkToCrud('Region', 'fas fa-cog', Region::class);
-            yield MenuItem::linkToCrud('Node', 'fas fa-cog', Node::class);
+            yield MenuItem::linkToCrud('Page Management', 'fas fa-cog', Page::class);
+            yield MenuItem::linkToCrud('Region Management', 'fas fa-cog', Region::class);
+            yield MenuItem::linkToCrud('All Nodes', 'fas fa-cog', Node::class);
             if ($_ENV['IS_MULTILINGUAL']) {
                 yield MenuItem::linkToCrud('Language', 'fas fa-cog', Language::class);
             }
