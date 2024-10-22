@@ -141,6 +141,12 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Up::class, orphanRemoval: true)]
     private Collection $ups;
 
+    /**
+     * @var Collection<int, Down>
+     */
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Down::class, orphanRemoval: true)]
+    private Collection $downs;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -154,6 +160,7 @@ class Node
         $this->favs = new ArrayCollection();
         $this->likes = new ArrayCollection();
         $this->ups = new ArrayCollection();
+        $this->downs = new ArrayCollection();
     }
 
     public function __toString()
@@ -739,6 +746,36 @@ class Node
             // set the owning side to null (unless already changed)
             if ($up->getNode() === $this) {
                 $up->setNode(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Down>
+     */
+    public function getDowns(): Collection
+    {
+        return $this->downs;
+    }
+
+    public function addDown(Down $down): static
+    {
+        if (!$this->downs->contains($down)) {
+            $this->downs->add($down);
+            $down->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDown(Down $down): static
+    {
+        if ($this->downs->removeElement($down)) {
+            // set the owning side to null (unless already changed)
+            if ($down->getNode() === $this) {
+                $down->setNode(null);
             }
         }
 
