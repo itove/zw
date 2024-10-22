@@ -19,6 +19,8 @@ use App\Entity\Page;
 use App\Entity\Language;
 use App\Entity\Menu;
 use App\Entity\Order;
+use App\Entity\Up;
+use App\Entity\Down;
 
 class Data
 {
@@ -129,9 +131,20 @@ class Data
             'author' => self::formatUser($c->getAuthor()),
             'body' => $c->getBody(),
             'createdAt' => $c->getCreatedAt(),
-            'up' => $c->getUp(),
-            'down' => $c->getDown(),
+            // 'up' => $c->getUp(),
+            'ups' => $c->getUps(),
+            // 'down' => $c->getDown(),
+            'downs' => $c->getDowns(),
         ];
+
+        $data['ups'] = [];
+        foreach($c->getUps() as $up){
+            array_push($data['ups'], $up->getU()->getId());
+        }
+        $data['downs'] = [];
+        foreach($c->getDowns() as $down){
+            array_push($data['downs'], $down->getU()->getId());
+        }
 
         return $data;
     }
@@ -167,12 +180,12 @@ class Data
         }
 
         $data['ups'] = [];
-        foreach($n->getLikes() as $i){
+        foreach($n->getUps() as $i){
             array_push($data['ups'], $i->getU()->getId());
         }
 
         $data['downs'] = [];
-        foreach($n->getLikes() as $i){
+        foreach($n->getDowns() as $i){
             array_push($data['downs'], $i->getU()->getId());
         }
         
