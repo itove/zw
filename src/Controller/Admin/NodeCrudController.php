@@ -106,6 +106,8 @@ class NodeCrudController extends AbstractCrudController
         if (!is_null($this->parent)) {
             $node->setParent($this->parent);
         }
+        
+        $node->setAuthor($this->getUser());
 
         return $node;
     }
