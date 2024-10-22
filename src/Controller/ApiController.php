@@ -385,6 +385,17 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
+    // #[Route('/comments', methods: ['GET'])]
+    public function getComments(Node $node)
+    {
+        $data = [];
+        foreach($node->getComments() as $c){
+            array_push($data, $this->data->formatComment($c));
+        }
+
+        return $data;
+    }
+
     #[Route('/comments', methods: ['POST'])]
     public function newComments(Request $request): Response
     {
@@ -407,12 +418,9 @@ class ApiController extends AbstractController
         $data = [
             'code' => 0,
             'msg' => 'ok',
+            'comments' => self::getComments($node),
         ];
 
-        $data['comments'] = [];
-        foreach($node->getComments() as $c){
-            array_push($data['comments'], $this->data->formatComment($c));
-        }
 
         return $this->json($data);
     }
@@ -452,17 +460,19 @@ class ApiController extends AbstractController
     {
         $params = $request->toArray();
         $uid = $params['uid'];
-        $nid = $params['nid'];
+        // $nid = $params['nid'];
+        $cid = $params['cid'];
         
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
-        $node = $em->getRepository(Node::class)->find($nid);
-        $up = $em->getRepository(Up::class)->findOneBy(['u' => $user, 'node' => $node]);
+        // $node = $em->getRepository(Node::class)->find($nid);
+        $comment = $em->getRepository(Comment::class)->find($cid);
+        $up = $em->getRepository(Up::class)->findOneBy(['u' => $user, 'comment' => $comment]);
 
         if (null === $up) {
             $u = new Up();
             $u->setU($user);
-            $u->setNode($node);
+            $u->setComment($comment);
             $em->persist($u);
             $em->flush();
         }
@@ -471,7 +481,8 @@ class ApiController extends AbstractController
             'code' => 0,
             'msg' => 'ok',
             'upped' => true,
-            'count' => count($node->getUps()),
+            'count' => count($comment->getUps()),
+            'comments' => self::getComments($comment->getNode()),
         ];
 
         return $this->json($data);
