@@ -69,17 +69,20 @@ class UserCrudController extends AbstractCrudController
                     'Super Admin' => 'ROLE_SUPER_ADMIN',
                 ])
                 ;
-            yield ChoiceField::new('roles')
-                ->onlyOnForms()
-                ->allowMultipleChoices()
-                ->setChoices([
-                    'admin' => 'ROLE_ADMIN',
-                ])
-                ->setRequired(false)
-            ;
-            yield TextField::new('plainPassword')
-                ->onlyOnForms()
-            ;
+            if ($this->isGranted('ROLE_SUPER_ADMIN')) {
+                yield ChoiceField::new('roles')
+                    ->onlyOnForms()
+                    ->allowMultipleChoices()
+                    ->setChoices([
+                        'admin' => 'ROLE_ADMIN',
+                        'Super Admin' => 'ROLE_SUPER_ADMIN',
+                    ])
+                    ->setRequired(false)
+                ;
+                yield TextField::new('plainPassword')
+                    ->onlyOnForms()
+                ;
+            }
         }
     }
 }
