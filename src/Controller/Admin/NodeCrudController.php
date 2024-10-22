@@ -213,6 +213,7 @@ class NodeCrudController extends AbstractCrudController
         // ;
 
         $imageField = VichImageField::new('imageFile', 'Image')->hideOnIndex();
+        $markerField = VichImageField::new('markerFile', 'Marker')->hideOnIndex();
         $priceField = MoneyField::new('price')->setCurrency('CNY')->hideOnIndex();
         $videoField = VichFileField::new('videoFile', 'Video')->hideOnIndex();
         $audioField = VichFileField::new('audioFile', 'Audio')->hideOnIndex();

@@ -141,6 +141,13 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Down::class, orphanRemoval: true)]
     private Collection $downs;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $marker = null;
+
+    #[Vich\UploadableField(mapping: 'nodes', fileNameProperty: 'marker')]
+    #[Assert\Image(maxSize: '5024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
+    private ?File $markerFile = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -750,5 +757,33 @@ class Node
         }
 
         return $this;
+    }
+
+    public function getMarker(): ?string
+    {
+        return $this->marker;
+    }
+
+    public function setMarker(?string $marker): static
+    {
+        $this->marker = $marker;
+
+        return $this;
+    }
+    
+    public function setMarkerFile(?File $markerFile = null): void
+    {
+        $this->markerFile = $markerFile;
+
+        if (null !== $markerFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getMarkerFile(): ?File
+    {
+        return $this->markerFile;
     }
 }
