@@ -159,9 +159,13 @@ class Data
             'price' => $n->getPrice(),
             'likes' => $n->getLikes(),
             'createdAt' => $n->getCreatedAt(),
-            'comments' => self::formatComment($n->getComments()),
             // 'favs' => count($n->getFavs()),
         ];
+        
+        $data['comments'] = [];
+        foreach($n->getComments() as $c){
+            array_push($data['comments'], self::formatComment($c));
+        }
         
         $data['favs'] = [];
         foreach($n->getFavs() as $f) {
