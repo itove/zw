@@ -29,6 +29,8 @@ class UserListener extends AbstractController
 
     public function prePersist(User $user, LifecycleEventArgs $event): void
     {
+        $user->setAvatar('avatar.jpg');
+
         if (is_null($user->getOpenid())) {
             $user->setName($user->getUsername());
         } else {
