@@ -215,6 +215,20 @@ class Data
             array_push($data['favs'], $f->getU()->getId());
         }
 
+        $data['rates'] = [
+            'rate' => 0,
+            'users' => [],
+        ];
+
+        if(count($n->getRates()) > 0) {
+            $v = 0;
+            foreach($n->getRates() as $r) {
+                $v = $v + $r->getRate();
+                array_push($data['rates']['users'], $r->getU()->getId());
+            }
+            $data['rates']['rate'] = $v / count($n->getRates());
+        }
+
         if (!empty($n->getRegions())) {
             $data['region'] = [
                 'id' => $n->getRegions()[0]->getId(),
