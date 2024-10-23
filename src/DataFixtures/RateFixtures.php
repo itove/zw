@@ -7,8 +7,9 @@ use Doctrine\Persistence\ObjectManager;
 use App\Entity\Rate;
 use App\Entity\Node;
 use App\Entity\User;
+use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 
-class RateFixtures extends Fixture
+class RateFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -24,5 +25,10 @@ class RateFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public static function getGroups(): array
+    {
+        return ['rate'];
     }
 }
