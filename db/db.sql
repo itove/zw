@@ -1284,7 +1284,6 @@ COPY public.node_region (node_id, region_id) FROM stdin;
 159	27
 159	41
 159	44
-160	27
 160	41
 160	44
 161	29
@@ -1414,18 +1413,16 @@ COPY public.refund (id, ord_id, created_at, reason, note, sn, wx_refund_id) FROM
 
 COPY public.region (id, name, label, count, icon, fields, description, page_id, weight, marker, created_at, updated_at) FROM stdin;
 35	房间	rooms	1	list	\N	\N	\N	\N	\N	\N	\N
-25	幻灯片1	slider1	5	list	image,body	\N	\N	\N	\N	\N	\N
-13	投诉建议	feedback	1	list	summary	\N	\N	\N	\N	\N	\N
 43	门店	shop	1	\N	body,image,summary,createdAt	\N	\N	\N	\N	\N	\N
-27	景点	jing	10	list	summary,image,body,coord,tags,marker,address,phone,price	\N	3	\N	jiu-dian-3x-6717bf72e7d3f860786186.png	\N	2024-10-22 15:06:26
-36	文创	wen	1	list	body,image,summary,tags,coord,phone,address,price,marker	\N	3	\N	\N	\N	\N
-40	活动	dong	1	list	body,image,summary,tags,createdAt,coord,phone,address,price,marker	\N	3	\N	\N	\N	\N
-41	玩法	wan	1	list	body,image,summary,tags,createdAt,coord,address,phone,price,marker	\N	3	\N	\N	\N	\N
-42	艺动	yi	1	list	body,image,summary,tags,createdAt,coord,phone,address,price,marker	\N	3	\N	\N	\N	\N
-44	热聊	talk	1	list	createdAt,body,image,summary,tags,phone,address,price,marker,coord	\N	3	\N	mei-shi-3x-6717bbca4cf03510615090.png	\N	2024-10-22 14:50:50
-29	住宿	zhu	6	list	summary,image,specs,body,tags,coord,phone,address,price,marker	\N	3	\N	zhu-su-3x-6718b5fd9aab7479996533.png	\N	2024-10-23 08:38:21
-31	美食	shi	8	list	summary,image,body,coord,specs,tags,phone,address,price,marker	\N	3	\N	mei-shi-3x-6718b60adad42565481062.png	\N	2024-10-23 08:38:34
-39	购物	gou	1	list	body,image,summary,tags,coord,phone,address,price,marker	\N	3	\N	gou-wu-3x-6718b6252407e928359782.png	\N	2024-10-23 08:39:01
+44	热聊	talk	1	list	createdAt,body,image,summary,tags,phone,address,price,marker,coord,regions	\N	3	\N	mei-shi-3x-6717bbca4cf03510615090.png	\N	2024-10-22 14:50:50
+42	艺动	yi	1	list	body,image,summary,tags,createdAt,coord,phone,address,price,marker,regions	\N	3	\N	\N	\N	\N
+41	玩法	wan	1	list	body,image,summary,tags,createdAt,coord,address,phone,price,marker,regions	\N	3	\N	\N	\N	\N
+40	活动	dong	1	list	body,image,summary,tags,createdAt,coord,phone,address,price,marker,regions	\N	3	\N	\N	\N	\N
+39	购物	gou	1	list	body,image,summary,tags,coord,phone,address,price,marker,regions	\N	3	\N	gou-wu-3x-6718b6252407e928359782.png	\N	2024-10-23 08:39:01
+36	文创	wen	1	list	body,image,summary,tags,coord,phone,address,price,marker,regions	\N	3	\N	\N	\N	\N
+31	美食	shi	8	list	summary,image,body,coord,specs,tags,phone,address,price,marker,regions	\N	3	\N	mei-shi-3x-6718b60adad42565481062.png	\N	2024-10-23 08:38:34
+29	住宿	zhu	6	list	summary,image,specs,body,tags,coord,phone,address,price,marker,regions	\N	3	\N	zhu-su-3x-6718b5fd9aab7479996533.png	\N	2024-10-23 08:38:21
+27	景点	jing	10	list	summary,image,body,coord,tags,marker,address,phone,price,regions	\N	3	\N	jiu-dian-3x-6717bf72e7d3f860786186.png	\N	2024-10-22 15:06:26
 \.
 
 
