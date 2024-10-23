@@ -148,6 +148,12 @@ class Node
     #[Assert\Image(maxSize: '5024k', mimeTypes: ['image/jpeg', 'image/png'], mimeTypesMessage: 'Only jpg and png')]
     private ?File $markerFile = null;
 
+    /**
+     * @var Collection<int, Rate>
+     */
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Rate::class, orphanRemoval: true)]
+    private Collection $rates;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -162,6 +168,7 @@ class Node
         $this->likes = new ArrayCollection();
         $this->ups = new ArrayCollection();
         $this->downs = new ArrayCollection();
+        $this->rates = new ArrayCollection();
     }
 
     public function __toString()
@@ -785,5 +792,35 @@ class Node
     public function getMarkerFile(): ?File
     {
         return $this->markerFile;
+    }
+
+    /**
+     * @return Collection<int, Rate>
+     */
+    public function getRates(): Collection
+    {
+        return $this->rates;
+    }
+
+    public function addRate(Rate $rate): static
+    {
+        if (!$this->rates->contains($rate)) {
+            $this->rates->add($rate);
+            $rate->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRate(Rate $rate): static
+    {
+        if ($this->rates->removeElement($rate)) {
+            // set the owning side to null (unless already changed)
+            if ($rate->getNode() === $this) {
+                $rate->setNode(null);
+            }
+        }
+
+        return $this;
     }
 }
