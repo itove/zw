@@ -17,7 +17,7 @@ use Doctrine\ORM\EntityManagerInterface;
     name: 'addTags',
     description: 'Add random tags to all node.',
 )]
-class AddTagsCommand extends Command
+class RandTagsCommand extends Command
 {
     public function __construct(EntityManagerInterface $em)
     {
