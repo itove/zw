@@ -251,6 +251,7 @@ class NodeCrudController extends AbstractCrudController
         $downField = IntegerField::new('down')->setDisabled();
         $startAtField = DateField::new('startAt')->onlyOnForms();
         $endAtField = DateField::new('endAt')->onlyOnForms();
+        $noteField = TextField::new('note', 'Host')->onlyOnForms();
 
         $fields = [];
         if (!is_null($this->region)) {
