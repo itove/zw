@@ -189,6 +189,7 @@ class Data
             'marker' => $n->getMarker(),
             'startAt' => $n->getStartAt(),
             'endAt' => $n->getEndAt(),
+            'note' => $n->getNote(),
             // 'favs' => count($n->getFavs()),
         ];
 

@@ -14,7 +14,7 @@ class PriceFixtures extends Fixture implements FixtureGroupInterface
         $nodes = $manager->getRepository(Node::class)->findAll();
 
         foreach($nodes as $n){
-            $n->setPrice(rand(49, 200));
+            $n->setPrice(rand(49, 200) * 100);
         }
 
         $manager->flush();
