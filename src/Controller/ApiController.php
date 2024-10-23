@@ -189,6 +189,25 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/wx/wan', methods: ['GET'])]
+    public function wxWan(): Response
+    {
+        $list = ['wan', 'you', 'xing'];
+
+        foreach ($list as $l) {
+            $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
+            $i = 0;
+            $a = [];
+            foreach ($nodes as $n) {
+                $a[$i] = $this->data->formatNode($n);
+                $i++;
+            }
+            $data[$l] = $a;
+        }
+
+        return $this->json($data);
+    }
+
     #[Route('/wx/explore', methods: ['GET'])]
     public function wxPageExplore(): Response
     {
