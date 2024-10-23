@@ -154,6 +154,12 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Rate::class, orphanRemoval: true)]
     private Collection $rates;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $startAt = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $endAt = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -820,6 +826,30 @@ class Node
                 $rate->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStartAt(): ?\DateTimeImmutable
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(?\DateTimeImmutable $startAt): static
+    {
+        $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    public function getEndAt(): ?\DateTimeImmutable
+    {
+        return $this->endAt;
+    }
+
+    public function setEndAt(?\DateTimeImmutable $endAt): static
+    {
+        $this->endAt = $endAt;
 
         return $this;
     }
