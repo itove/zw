@@ -18,6 +18,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use App\Admin\Field\VichImageField;
 use App\Admin\Field\VichFileField;
 use EasyCorp\Bundle\EasyAdminBundle\Dto\SearchDto;
@@ -248,6 +249,8 @@ class NodeCrudController extends AbstractCrudController
         $deletedField = BooleanField::new('deleted')->setDisabled();
         $upField = IntegerField::new('up')->setDisabled();
         $downField = IntegerField::new('down')->setDisabled();
+        $startAtField = DateField::new('startAt')->onlyOnForms();
+        $endAtField = DateField::new('endAt')->onlyOnForms();
 
         $fields = [];
         if (!is_null($this->region)) {
