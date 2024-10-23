@@ -160,6 +160,9 @@ class Node
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $endAt = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $note = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -850,6 +853,18 @@ class Node
     public function setEndAt(?\DateTimeImmutable $endAt): static
     {
         $this->endAt = $endAt;
+
+        return $this;
+    }
+
+    public function getNote(): ?string
+    {
+        return $this->note;
+    }
+
+    public function setNote(?string $note): static
+    {
+        $this->note = $note;
 
         return $this;
     }
