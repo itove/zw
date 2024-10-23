@@ -187,6 +187,8 @@ class Data
             'createdAt' => $n->getCreatedAt(),
             'author' => [ 'name' => $n->getAuthor()->getName(), 'avatar' => $n->getAuthor()->getAvatar()],
             'marker' => $n->getMarker(),
+            'startAt' => $n->getStartAt(),
+            'endAt' => $n->getEndAt(),
             // 'favs' => count($n->getFavs()),
         ];
 
