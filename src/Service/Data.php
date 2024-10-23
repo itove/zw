@@ -21,6 +21,7 @@ use App\Entity\Menu;
 use App\Entity\Order;
 use App\Entity\Up;
 use App\Entity\Down;
+use App\Entity\Rate;
 
 class Data
 {
@@ -145,6 +146,19 @@ class Data
         foreach($c->getDowns() as $down){
             array_push($data['downs'], $down->getU()->getId());
         }
+
+        return $data;
+    }
+
+    public function formatRate(Rate $r)
+    {
+        $data = [
+            'id' => $r->getId(),
+            'user' => self::formatUser($r->getU()),
+            // 'node' => [],
+            'rate' => $r->getRate(),
+            'createdAt' => $r->getCreatedAt(),
+        ];
 
         return $data;
     }

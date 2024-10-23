@@ -17,6 +17,7 @@ use App\Entity\Fav;
 use App\Entity\Like;
 use App\Entity\Up;
 use App\Entity\Down;
+use App\Entity\Rate;
 use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
@@ -491,6 +492,51 @@ class ApiController extends AbstractController
             'count' => count($comment->getUps()),
             'comments' => self::getComments($comment->getNode()),
         ];
+
+        return $this->json($data);
+    }
+
+    #[Route('/rates', methods: ['POST'])]
+    public function rate(Request $request): Response
+    {
+        $params = $request->toArray();
+        $uid = $params['uid'];
+        $v = $params['v'];
+        $nid = $params['nid'];
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $em->getRepository(Node::class)->find($nid);
+        $rate = $em->getRepository(Rate::class)->findOneBy(['u' => $user, 'node' => $node]);
+
+        if (null === $rate) {
+            $r = new Rate();
+            $r->setU($user);
+            $r->setNode($node);
+            $r->setRate($v);
+            $em->persist($r);
+            $em->flush();
+        }
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+            'rate' => [],
+        ];
+
+        return $this->json($data);
+    }
+
+    #[Route('/rates/node/{nid}', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function getNodeRates(int $nid): Response
+    {
+        $node = $this->data->getNode($nid);
+        $rates = $node->getRates();
+        
+        $data = [];
+        foreach($rates as $r) {
+            array_push($data, $this->data->formatRate($r));
+        }
 
         return $this->json($data);
     }
