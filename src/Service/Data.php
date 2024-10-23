@@ -226,7 +226,7 @@ class Data
                 $v = $v + $r->getRate();
                 array_push($data['rates']['users'], $r->getU()->getId());
             }
-            $data['rates']['rate'] = $v / count($n->getRates());
+            $data['rates']['rate'] = round($v / count($n->getRates()), 1);
         }
 
         if (!empty($n->getRegions())) {
