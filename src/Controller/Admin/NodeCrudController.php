@@ -201,11 +201,6 @@ class NodeCrudController extends AbstractCrudController
         $titleField = TextField::new('title');
         $phoneField = TextField::new('phone');
         $addressField = TextField::new('address');
-        // $imageField = ImageField::new('image')
-        //     ->onlyOnIndex()
-        //     ->setBasePath('images/')
-        //     ->setUploadDir('public/images/')
-        // ;
         // $videoField = ImageField::new('video')
         //     ->onlyOnIndex()
         //     ->hideOnIndex()
@@ -273,6 +268,11 @@ class NodeCrudController extends AbstractCrudController
             yield $longitudeField;
         }
 
+        yield ImageField::new('image')
+            ->onlyOnIndex()
+            ->setBasePath('images/')
+            ->setUploadDir('public/images/')
+        ;
 
         // yield ArrayField::new('regions')->onlyOnIndex();
 
