@@ -163,6 +163,12 @@ class Node
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $note = null;
 
+    /**
+     * @var Collection<int, Plan>
+     */
+    #[ORM\OneToMany(mappedBy: 'node', targetEntity: Plan::class)]
+    private Collection $plans;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -178,6 +184,7 @@ class Node
         $this->ups = new ArrayCollection();
         $this->downs = new ArrayCollection();
         $this->rates = new ArrayCollection();
+        $this->plans = new ArrayCollection();
     }
 
     public function __toString()
@@ -865,6 +872,36 @@ class Node
     public function setNote(?string $note): static
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Plan>
+     */
+    public function getPlans(): Collection
+    {
+        return $this->plans;
+    }
+
+    public function addPlan(Plan $plan): static
+    {
+        if (!$this->plans->contains($plan)) {
+            $this->plans->add($plan);
+            $plan->setNode($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlan(Plan $plan): static
+    {
+        if ($this->plans->removeElement($plan)) {
+            // set the owning side to null (unless already changed)
+            if ($plan->getNode() === $this) {
+                $plan->setNode(null);
+            }
+        }
 
         return $this;
     }

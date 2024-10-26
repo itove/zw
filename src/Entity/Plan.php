@@ -53,6 +53,9 @@ class Plan
     #[ORM\JoinColumn(nullable: false)]
     private ?User $u = null;
 
+    #[ORM\ManyToOne(inversedBy: 'plans')]
+    private ?Node $node = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -216,6 +219,18 @@ class Plan
     public function setU(?User $u): static
     {
         $this->u = $u;
+
+        return $this;
+    }
+
+    public function getNode(): ?Node
+    {
+        return $this->node;
+    }
+
+    public function setNode(?Node $node): static
+    {
+        $this->node = $node;
 
         return $this;
     }
