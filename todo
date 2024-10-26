@@ -1,3 +1,4 @@
+- plan prePersist: add a region 'you' node
 - avatar path
 - admin should can NOT edit super
 

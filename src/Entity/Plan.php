@@ -49,6 +49,10 @@ class Plan
     #[ORM\OneToMany(mappedBy: 'plan', targetEntity: Step::class, orphanRemoval: true)]
     private Collection $steps;
 
+    #[ORM\ManyToOne(inversedBy: 'plans')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $u = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -200,6 +204,18 @@ class Plan
                 $step->setPlan(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getU(): ?User
+    {
+        return $this->u;
+    }
+
+    public function setU(?User $u): static
+    {
+        $this->u = $u;
 
         return $this;
     }

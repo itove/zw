@@ -92,6 +92,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'u', targetEntity: Rate::class, orphanRemoval: true)]
     private Collection $rates;
 
+    /**
+     * @var Collection<int, Plan>
+     */
+    #[ORM\OneToMany(mappedBy: 'u', targetEntity: Plan::class, orphanRemoval: true)]
+    private Collection $plans;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -102,6 +108,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->ups = new ArrayCollection();
         $this->downs = new ArrayCollection();
         $this->rates = new ArrayCollection();
+        $this->plans = new ArrayCollection();
     }
     
     public function __toString(): string
@@ -478,6 +485,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($rate->getU() === $this) {
                 $rate->setU(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Plan>
+     */
+    public function getPlans(): Collection
+    {
+        return $this->plans;
+    }
+
+    public function addPlan(Plan $plan): static
+    {
+        if (!$this->plans->contains($plan)) {
+            $this->plans->add($plan);
+            $plan->setU($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlan(Plan $plan): static
+    {
+        if ($this->plans->removeElement($plan)) {
+            // set the owning side to null (unless already changed)
+            if ($plan->getU() === $this) {
+                $plan->setU(null);
             }
         }
 
