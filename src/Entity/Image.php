@@ -25,7 +25,6 @@ class Image
     private ?File $imageFile = null;
 
     #[ORM\ManyToOne(inversedBy: 'images')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Node $node = null;
 
     #[ORM\Column(length: 255, nullable: true)]
