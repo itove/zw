@@ -18,6 +18,8 @@ use App\Entity\Like;
 use App\Entity\Up;
 use App\Entity\Down;
 use App\Entity\Rate;
+use App\Entity\Plan;
+use App\Entity\Step;
 use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
@@ -547,6 +549,59 @@ class ApiController extends AbstractController
         foreach($rates as $r) {
             array_push($data, $this->data->formatRate($r));
         }
+
+        return $this->json($data);
+    }
+
+    #[Route('/plans', methods: ['POST'])]
+    public function plan(Request $request): Response
+    {
+        $params = $request->toArray();
+        $title = '行程：' . $params['title'];
+        $summary = isset($params['summary']) ? $params['summary'] : null;
+        $body = isset($params['body']) ? $params['body'] : null;
+        $uid = $params['uid'];
+        $month = isset($params['month']) ? $params['month'] : null;
+        $days = isset($params['days']) ? $params['days'] : null;
+        $cost = isset($params['cost']) ? $params['cost'] : null;
+        $who = isset($params['who']) ? $params['who'] : null;
+        $images = isset($params['images']) ? $params['images'] : null;
+        $steps = isset($params['steps']) ? $params['steps'] : null;
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+
+        $plan = new Plan();
+        $plan->setTitle($title);
+        $plan->setSummary($summary);
+        $plan->setBody($body);
+        $plan->setU($user);
+        $plan->setMonth($month);
+        $plan->setDays($days);
+        $plan->setCost($cost);
+        $plan->setWho($who);
+        // $plan->setImages($images);
+        // $plan->setSteps($steps);
+
+        $em->persist($plan);
+        
+        // $node = new Node();
+        // $node->setTitle($title);
+        // $node->setSummary($summary);
+        // $node->setBody($body);
+        // $node->setAuthor($user);
+        // $node->setMonth($month);
+        // $node->setMonth($days);
+        // $node->setPrice($cost);
+        // $node->setNote($who);
+        // $em->persist($node);
+
+		$em->flush();
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+        ];
 
         return $this->json($data);
     }
