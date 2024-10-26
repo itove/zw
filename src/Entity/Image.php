@@ -29,6 +29,9 @@ class Image
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $title = null;
+
+    #[ORM\ManyToOne(inversedBy: 'images')]
+    private ?Plan $plan = null;
     
     public function __toString(): string
     {
@@ -88,6 +91,18 @@ class Image
     public function setTitle(?string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getPlan(): ?Plan
+    {
+        return $this->plan;
+    }
+
+    public function setPlan(?Plan $plan): static
+    {
+        $this->plan = $plan;
 
         return $this;
     }
