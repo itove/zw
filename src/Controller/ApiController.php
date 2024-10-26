@@ -346,7 +346,7 @@ class ApiController extends AbstractController
 
         $em->flush();
 
-        return $this->json(['isFav' => $isFav]);
+        return $this->json(['isFav' => $isFav, 'node' => $this->data->formatNode($node)]);
     }
 
     #[Route('/map/markers', methods: ['GET'])]
