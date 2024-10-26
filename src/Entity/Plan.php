@@ -43,9 +43,16 @@ class Plan
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $summary = null;
 
+    /**
+     * @var Collection<int, Step>
+     */
+    #[ORM\OneToMany(mappedBy: 'plan', targetEntity: Step::class, orphanRemoval: true)]
+    private Collection $steps;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->steps = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +170,36 @@ class Plan
     public function setSummary(?string $summary): static
     {
         $this->summary = $summary;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Step>
+     */
+    public function getSteps(): Collection
+    {
+        return $this->steps;
+    }
+
+    public function addStep(Step $step): static
+    {
+        if (!$this->steps->contains($step)) {
+            $this->steps->add($step);
+            $step->setPlan($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStep(Step $step): static
+    {
+        if ($this->steps->removeElement($step)) {
+            // set the owning side to null (unless already changed)
+            if ($step->getPlan() === $this) {
+                $step->setPlan(null);
+            }
+        }
 
         return $this;
     }
