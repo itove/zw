@@ -56,6 +56,9 @@ class Feedback
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $type = 0;
 
+    #[ORM\Column(type: Types::SMALLINT)]
+    private ?int $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -225,6 +228,18 @@ class Feedback
     public function setType(?int $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
