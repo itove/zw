@@ -254,7 +254,8 @@ CREATE TABLE public.feedback (
     city character varying(255) DEFAULT NULL::character varying,
     note character varying(255) DEFAULT NULL::character varying,
     name character varying(255) DEFAULT NULL::character varying,
-    type smallint
+    type smallint,
+    status smallint NOT NULL
 );
 
 
@@ -280,9 +281,10 @@ ALTER TABLE public.feedback_id_seq OWNER TO zw;
 
 CREATE TABLE public.image (
     id integer NOT NULL,
-    node_id integer NOT NULL,
+    node_id integer,
     image character varying(255) NOT NULL,
-    title character varying(255) DEFAULT NULL::character varying
+    title character varying(255) DEFAULT NULL::character varying,
+    plan_id integer
 );
 
 
@@ -693,6 +695,40 @@ CREATE SEQUENCE public.page_id_seq
 ALTER TABLE public.page_id_seq OWNER TO zw;
 
 --
+-- Name: plan; Type: TABLE; Schema: public; Owner: zw
+--
+
+CREATE TABLE public.plan (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    month smallint,
+    days smallint,
+    cost integer,
+    who character varying(255) DEFAULT NULL::character varying,
+    body text,
+    summary text,
+    u_id integer NOT NULL,
+    node_id integer
+);
+
+
+ALTER TABLE public.plan OWNER TO zw;
+
+--
+-- Name: plan_id_seq; Type: SEQUENCE; Schema: public; Owner: zw
+--
+
+CREATE SEQUENCE public.plan_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.plan_id_seq OWNER TO zw;
+
+--
 -- Name: rate; Type: TABLE; Schema: public; Owner: zw
 --
 
@@ -852,6 +888,41 @@ CREATE SEQUENCE public.spec_id_seq
 ALTER TABLE public.spec_id_seq OWNER TO zw;
 
 --
+-- Name: step; Type: TABLE; Schema: public; Owner: zw
+--
+
+CREATE TABLE public.step (
+    id integer NOT NULL,
+    plan_id integer NOT NULL,
+    datetime timestamp(0) without time zone NOT NULL,
+    body text
+);
+
+
+ALTER TABLE public.step OWNER TO zw;
+
+--
+-- Name: COLUMN step.datetime; Type: COMMENT; Schema: public; Owner: zw
+--
+
+COMMENT ON COLUMN public.step.datetime IS '(DC2Type:datetime_immutable)';
+
+
+--
+-- Name: step_id_seq; Type: SEQUENCE; Schema: public; Owner: zw
+--
+
+CREATE SEQUENCE public.step_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.step_id_seq OWNER TO zw;
+
+--
 -- Name: tag; Type: TABLE; Schema: public; Owner: zw
 --
 
@@ -1004,6 +1075,10 @@ COPY public.comment (id, node_id, author_id, body, created_at, up, down, deleted
 36	149	5	test2	2024-10-23 13:36:43	0	0	f
 37	191	5	test5	2024-10-23 14:13:15	0	0	f
 38	159	5	test1	2024-10-23 22:32:48	0	0	f
+39	181	5	111	2024-10-26 08:10:41	0	0	f
+40	159	5	t2	2024-10-26 08:16:15	0	0	f
+41	181	5	t3	2024-10-26 08:57:58	0	0	f
+42	181	5	t4	2024-10-26 08:58:07	0	0	f
 \.
 
 
@@ -1067,6 +1142,12 @@ DoctrineMigrations\\Version20241022150417	2024-10-22 15:04:31	5
 DoctrineMigrations\\Version20241023100637	2024-10-23 10:06:53	59
 DoctrineMigrations\\Version20241023113227	2024-10-23 11:32:31	13
 DoctrineMigrations\\Version20241023125604	2024-10-23 12:56:16	8
+DoctrineMigrations\\Version20241026091811	2024-10-26 09:18:44	31
+DoctrineMigrations\\Version20241026092532	2024-10-26 09:25:43	57
+DoctrineMigrations\\Version20241026093431	2024-10-26 09:34:36	32
+DoctrineMigrations\\Version20241026095048	2024-10-26 09:50:55	13
+DoctrineMigrations\\Version20241026102520	2024-10-26 10:25:23	18
+DoctrineMigrations\\Version20241026105319	2024-10-26 10:53:39	9
 \.
 
 
@@ -1088,6 +1169,9 @@ COPY public.fav (id, node_id, u_id, created_at) FROM stdin;
 8	98	5	2024-10-21 00:23:08
 12	149	6	2024-10-21 03:05:07
 14	96	5	2024-10-21 07:25:45
+72	180	5	2024-10-26 08:10:32
+73	149	5	2024-10-26 08:16:31
+74	159	5	2024-10-26 10:12:18
 \.
 
 
@@ -1095,7 +1179,7 @@ COPY public.fav (id, node_id, u_id, created_at) FROM stdin;
 -- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: zw
 --
 
-COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, body, country, sex, province, city, note, name, type) FROM stdin;
+COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, body, country, sex, province, city, note, name, type, status) FROM stdin;
 \.
 
 
@@ -1103,7 +1187,7 @@ COPY public.feedback (id, node_id, firstname, lastname, email, phone, title, bod
 -- Data for Name: image; Type: TABLE DATA; Schema: public; Owner: zw
 --
 
-COPY public.image (id, node_id, image, title) FROM stdin;
+COPY public.image (id, node_id, image, title, plan_id) FROM stdin;
 \.
 
 
@@ -1124,6 +1208,7 @@ COPY public."like" (id, node_id, u_id, created_at) FROM stdin;
 8	100	5	2024-10-22 11:35:22
 9	98	5	2024-10-22 14:04:48
 10	97	5	2024-10-22 14:05:12
+11	160	5	2024-10-26 05:27:50
 \.
 
 
@@ -1956,6 +2041,22 @@ COPY public.page (id, name, label, weight) FROM stdin;
 
 
 --
+-- Data for Name: plan; Type: TABLE DATA; Schema: public; Owner: zw
+--
+
+COPY public.plan (id, title, month, days, cost, who, body, summary, u_id, node_id) FROM stdin;
+2	东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	\N
+3	行程：东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	\N
+4	东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	159
+5	东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	\N
+6	东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	\N
+7	东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	\N
+8	东风故里历史文化街区	\N	\N	\N	\N	\N	\N	5	\N
+9	青龙山文化旅游度假区	\N	\N	\N	\N	\N	\N	5	158
+\.
+
+
+--
 -- Data for Name: rate; Type: TABLE DATA; Schema: public; Owner: zw
 --
 
@@ -2171,8 +2272,8 @@ COPY public.region (id, name, label, count, icon, fields, description, page_id, 
 29	住宿	zhu	6	list	summary,image,specs,body,tags,coord,phone,address,price,marker,regions	\N	3	\N	zhu-su-3x-6718b5fd9aab7479996533.png	\N	2024-10-23 08:38:21
 27	景点	jing	10	list	summary,image,body,coord,tags,marker,address,phone,price,regions	\N	3	\N	jiu-dian-3x-6717bf72e7d3f860786186.png	\N	2024-10-22 15:06:26
 40	活动	dong	1	list	body,image,summary,tags,createdAt,coord,phone,address,price,marker,regions,startAt,endAt,note	\N	3	\N	\N	\N	\N
-45	游记	you	5	list	image,summary,body,regions,tags,images	\N	5	0	\N	2024-10-23 14:35:22	\N
-46	行程	xing	5	list	image,summary,body,tags,images,specs	\N	5	0	\N	2024-10-23 14:38:21	\N
+46	路线	lu	5	list	image,summary,body,tags,images,specs	\N	3	\N	\N	2024-10-23 14:38:21	\N
+45	游记	you	5	list	image,summary,body,regions,tags,images	\N	5	\N	\N	2024-10-23 14:35:22	\N
 \.
 
 
@@ -2184,6 +2285,14 @@ COPY public.spec (id, node_id, name, value) FROM stdin;
 15	90	TEL	民宿电话：0719-8310588
 14	89	TEL	民宿电话：0719-8310588
 16	91	TEL	民宿电话：0719-8457770
+\.
+
+
+--
+-- Data for Name: step; Type: TABLE DATA; Schema: public; Owner: zw
+--
+
+COPY public.step (id, plan_id, datetime, body) FROM stdin;
 \.
 
 
@@ -2270,7 +2379,7 @@ SELECT pg_catalog.setval('public.category_id_seq', 5, true);
 -- Name: comment_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zw
 --
 
-SELECT pg_catalog.setval('public.comment_id_seq', 38, true);
+SELECT pg_catalog.setval('public.comment_id_seq', 42, true);
 
 
 --
@@ -2291,7 +2400,7 @@ SELECT pg_catalog.setval('public.down_id_seq', 1, false);
 -- Name: fav_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zw
 --
 
-SELECT pg_catalog.setval('public.fav_id_seq', 16, true);
+SELECT pg_catalog.setval('public.fav_id_seq', 75, true);
 
 
 --
@@ -2319,7 +2428,7 @@ SELECT pg_catalog.setval('public.language_id_seq', 1, false);
 -- Name: like_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zw
 --
 
-SELECT pg_catalog.setval('public.like_id_seq', 10, true);
+SELECT pg_catalog.setval('public.like_id_seq', 11, true);
 
 
 --
@@ -2365,6 +2474,13 @@ SELECT pg_catalog.setval('public.page_id_seq', 5, true);
 
 
 --
+-- Name: plan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zw
+--
+
+SELECT pg_catalog.setval('public.plan_id_seq', 9, true);
+
+
+--
 -- Name: rate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zw
 --
 
@@ -2390,6 +2506,13 @@ SELECT pg_catalog.setval('public.region_id_seq', 46, true);
 --
 
 SELECT pg_catalog.setval('public.spec_id_seq', 18, true);
+
+
+--
+-- Name: step_id_seq; Type: SEQUENCE SET; Schema: public; Owner: zw
+--
+
+SELECT pg_catalog.setval('public.step_id_seq', 1, false);
 
 
 --
@@ -2558,6 +2681,14 @@ ALTER TABLE ONLY public.page
 
 
 --
+-- Name: plan plan_pkey; Type: CONSTRAINT; Schema: public; Owner: zw
+--
+
+ALTER TABLE ONLY public.plan
+    ADD CONSTRAINT plan_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: rate rate_pkey; Type: CONSTRAINT; Schema: public; Owner: zw
 --
 
@@ -2587,6 +2718,14 @@ ALTER TABLE ONLY public.region
 
 ALTER TABLE ONLY public.spec
     ADD CONSTRAINT spec_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: step step_pkey; Type: CONSTRAINT; Schema: public; Owner: zw
+--
+
+ALTER TABLE ONLY public.step
+    ADD CONSTRAINT step_pkey PRIMARY KEY (id);
 
 
 --
@@ -2667,6 +2806,13 @@ CREATE INDEX idx_4394ee70e4a59390 ON public.up USING btree (u_id);
 --
 
 CREATE INDEX idx_4394ee70f8697d13 ON public.up USING btree (comment_id);
+
+
+--
+-- Name: idx_43b9fe3ce899029b; Type: INDEX; Schema: public; Owner: zw
+--
+
+CREATE INDEX idx_43b9fe3ce899029b ON public.step USING btree (plan_id);
 
 
 --
@@ -2803,10 +2949,31 @@ CREATE INDEX idx_c53d045f460d9fd7 ON public.image USING btree (node_id);
 
 
 --
+-- Name: idx_c53d045fe899029b; Type: INDEX; Schema: public; Owner: zw
+--
+
+CREATE INDEX idx_c53d045fe899029b ON public.image USING btree (plan_id);
+
+
+--
 -- Name: idx_d2294458460d9fd7; Type: INDEX; Schema: public; Owner: zw
 --
 
 CREATE INDEX idx_d2294458460d9fd7 ON public.feedback USING btree (node_id);
+
+
+--
+-- Name: idx_dd5a5b7d460d9fd7; Type: INDEX; Schema: public; Owner: zw
+--
+
+CREATE INDEX idx_dd5a5b7d460d9fd7 ON public.plan USING btree (node_id);
+
+
+--
+-- Name: idx_dd5a5b7de4a59390; Type: INDEX; Schema: public; Owner: zw
+--
+
+CREATE INDEX idx_dd5a5b7de4a59390 ON public.plan USING btree (u_id);
 
 
 --
@@ -2927,6 +3094,14 @@ ALTER TABLE ONLY public.up
 
 ALTER TABLE ONLY public.up
     ADD CONSTRAINT fk_4394ee70f8697d13 FOREIGN KEY (comment_id) REFERENCES public.comment(id);
+
+
+--
+-- Name: step fk_43b9fe3ce899029b; Type: FK CONSTRAINT; Schema: public; Owner: zw
+--
+
+ALTER TABLE ONLY public.step
+    ADD CONSTRAINT fk_43b9fe3ce899029b FOREIGN KEY (plan_id) REFERENCES public.plan(id);
 
 
 --
@@ -3066,11 +3241,35 @@ ALTER TABLE ONLY public.image
 
 
 --
+-- Name: image fk_c53d045fe899029b; Type: FK CONSTRAINT; Schema: public; Owner: zw
+--
+
+ALTER TABLE ONLY public.image
+    ADD CONSTRAINT fk_c53d045fe899029b FOREIGN KEY (plan_id) REFERENCES public.plan(id);
+
+
+--
 -- Name: feedback fk_d2294458460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zw
 --
 
 ALTER TABLE ONLY public.feedback
     ADD CONSTRAINT fk_d2294458460d9fd7 FOREIGN KEY (node_id) REFERENCES public.node(id);
+
+
+--
+-- Name: plan fk_dd5a5b7d460d9fd7; Type: FK CONSTRAINT; Schema: public; Owner: zw
+--
+
+ALTER TABLE ONLY public.plan
+    ADD CONSTRAINT fk_dd5a5b7d460d9fd7 FOREIGN KEY (node_id) REFERENCES public.node(id);
+
+
+--
+-- Name: plan fk_dd5a5b7de4a59390; Type: FK CONSTRAINT; Schema: public; Owner: zw
+--
+
+ALTER TABLE ONLY public.plan
+    ADD CONSTRAINT fk_dd5a5b7de4a59390 FOREIGN KEY (u_id) REFERENCES public."user"(id);
 
 
 --
