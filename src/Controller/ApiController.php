@@ -115,9 +115,7 @@ class ApiController extends AbstractController
         if (null !== $area) {
             $criteria['area'] = $area;
         }
-        dump($cate);
-        dump($area);
-        dump($criteria);
+
         $nodes = $this->data->findByRegionLabelAndCriteria($regionLabel, $criteria, null, null, null, $order);
         $region = $this->data->getRegionByLabel($regionLabel);
 
@@ -132,7 +130,12 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/feedback', methods: ['POST'])]
+    #[Route('/feedbacks', methods: ['GET'])]
+    public function getUserFeedbacks(Request $request): Response
+    {
+    }
+
+    #[Route('/feedbacks', methods: ['POST'])]
     public function feedback(Request $request): Response
     {
         $params = $request->toArray();
@@ -142,9 +145,11 @@ class ApiController extends AbstractController
         $email = $params['email'];
         $title = $params['title'];
         $body = $params['body'];
+        $uid = $params['uid'];
         // $country = $params['country'];
         
         $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
         $f = new Feedback();
         $f->setFirstname($firstname);
         // $f->setLastname($lastname);
@@ -152,6 +157,7 @@ class ApiController extends AbstractController
         $f->setEmail($email);
         $f->setTitle($title);
         $f->setBody($body);
+        $f->setU($user);
         // $f->setCountry($country);
         $em->persist($f);
         $em->flush();
