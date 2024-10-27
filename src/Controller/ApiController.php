@@ -130,12 +130,23 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/feedbacks', methods: ['GET'])]
-    public function getUserFeedbacks(Request $request): Response
+    #[Route('/feedback', methods: ['GET'])]
+    public function getUserFeedback(Request $request): Response
     {
+        $uid = $request->query->get('uid');
+        $em = $this->data->getEntityManager();
+        // $user = $em->getRepository(User::class)->find($uid);
+
+        $criteria = [];
+        if (null !== $uid) {
+            $criteria = ['u' => $uid];
+        }
+        $data = $em->getRepository(Feedback::class)->findBy($criteria);
+
+        return $this->json($data);
     }
 
-    #[Route('/feedbacks', methods: ['POST'])]
+    #[Route('/feedback', methods: ['POST'])]
     public function feedback(Request $request): Response
     {
         $params = $request->toArray();
