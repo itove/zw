@@ -21,6 +21,7 @@ use App\Entity\Rate;
 use App\Entity\Plan;
 use App\Entity\Step;
 use App\Entity\Category;
+use App\Entity\Area;
 use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
@@ -639,16 +640,24 @@ class ApiController extends AbstractController
         $em = $this->data->getEntityManager();
 
         $cates = $em->getRepository(Category::class)->findAll();
+        $areas = $em->getRepository(Area::class)->findAll();
         
         $data['categories'] = [];
-        foreach($cates as $c){
+        foreach($cates as $i){
             array_push($data['categories'], [
-                'id' => $c->getId(),
-                'label' => $c->getLabel(),
-                'name' => $c->getName(),
+                'id' => $i->getId(),
+                'label' => $i->getLabel(),
+                'name' => $i->getName(),
             ]);
         }
         $data['areas'] = [];
+        foreach($areas as $i){
+            array_push($data['areas'], [
+                'id' => $i->getId(),
+                'label' => $i->getLabel(),
+                'name' => $i->getName(),
+            ]);
+        }
 
         return $this->json($data);
     }
