@@ -156,7 +156,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Menu Management', 'fas fa-link', Menu::class);
         yield MenuItem::linkToCrud('Tag Management', 'fas fa-tags', Tag::class);
         yield MenuItem::linkToCrud('Category Management', 'fas fa-table-cells-large', Category::class);
-        yield MenuItem::linkToCrud('Area Management', 'fas fa-table-cells-large', Area::class);
+        yield MenuItem::linkToCrud('Area Management', 'fas fa-location-dot', Area::class);
 
         yield MenuItem::section('Region Management');
         yield MenuItem::linkToCrud('Page Management', 'fas fa-cog', Page::class);
