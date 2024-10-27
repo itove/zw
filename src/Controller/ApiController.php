@@ -20,6 +20,7 @@ use App\Entity\Down;
 use App\Entity\Rate;
 use App\Entity\Plan;
 use App\Entity\Step;
+use App\Entity\Category;
 use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
@@ -628,6 +629,26 @@ class ApiController extends AbstractController
             'code' => 0,
             'msg' => 'ok',
         ];
+
+        return $this->json($data);
+    }
+
+    #[Route('/taxons', methods: ['GET'])]
+    public function getTaxons(): Response
+    {
+        $em = $this->data->getEntityManager();
+
+        $cates = $em->getRepository(Category::class)->findAll();
+        
+        $data['categories'] = [];
+        foreach($cates as $c){
+            array_push($data['categories'], [
+                'id' => $c->getId(),
+                'label' => $c->getLabel(),
+                'name' => $c->getName(),
+            ]);
+        }
+        $data['areas'] = [];
 
         return $this->json($data);
     }
