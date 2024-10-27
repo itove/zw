@@ -64,10 +64,10 @@ class FeedbackCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         if (null === $this->type) {
-            yield IdField::new('id');
+            yield IdField::new('id')->onlyOnIndex();
             yield AssociationField::new('u');
-            yield TextEditorField::new('title');
-            yield TextEditorField::new('body');
+            yield TextField::new('title');
+            yield TextareaField::new('body')->hideOnIndex();
         }
 
         if ($this->type == 1) {
