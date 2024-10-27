@@ -85,6 +85,8 @@ class FeedbackCrudController extends AbstractCrudController
             yield TextField::new('body', 'Ton');
             yield TextField::new('note', 'Budget');
         }
+
+        yield DateTimeField::new('createdAt')->onlyOnIndex();
     }
     
     public function createIndexQueryBuilder(SearchDto $searchDto, EntityDto $entityDto, FieldCollection $fields, FilterCollection $filters): QueryBuilder
