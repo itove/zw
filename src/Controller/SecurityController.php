@@ -80,6 +80,7 @@ class SecurityController extends AbstractController
             "name" => $user->getName(),
             "phone" => $user->getPhone(),
             "roles" => $user->getRoles(),
+            "avatar" => $user->getAvatar(),
         ];
         return $this->json($resp);
     }
