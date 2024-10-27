@@ -96,7 +96,7 @@ class NodeRepository extends ServiceEntityRepository
         ;
     }
     
-    public function findByRegionLabelAndCriteria($label, $criteria, $locale, $limit = null, $offset = null): array
+    public function findByRegionLabelAndCriteria($label, $criteria, $locale, $limit = null, $offset = null, $order = 'DESC'): array
     {
         $qb = $this->createQueryBuilder('n');
 
@@ -117,7 +117,7 @@ class NodeRepository extends ServiceEntityRepository
             ->andWhere('l.locale = :locale OR l is null')
             ->setParameter('label', $label)
             ->setParameter('locale', $locale)
-            ->orderBy('n.id', 'DESC')
+            ->orderBy('n.id', $order)
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->getQuery()
