@@ -63,13 +63,20 @@ class FeedbackCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-        if ($this->type == 0) {
+        if (null === $this->type) {
+            yield IdField::new('id');
+            yield AssociationField::new('u');
+            yield TextEditorField::new('title');
+            yield TextEditorField::new('body');
+        }
+
+        if ($this->type == 1) {
             yield TextField::new('name');
             yield TextField::new('phone');
             yield TextEditorField::new('body');
         }
 
-        if ($this->type == 1) {
+        if ($this->type == 2) {
             yield TextField::new('name');
             yield ChoiceField::new('sex')->setChoices(['女' => 0, '男' => 1]);
             yield TextField::new('phone');
@@ -84,9 +91,10 @@ class FeedbackCrudController extends AbstractCrudController
     {
         $qb = $this->container->get(EntityRepository::class)->createQueryBuilder($searchDto, $entityDto, $fields, $filters);
 
-        $qb
-            ->andWhere("entity.type = $this->type")
-        ;
+        if ($this->type) {
+            $qb->andWhere("entity.type = $this->type");
+        }
+
         return $qb;
     }
 }

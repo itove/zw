@@ -54,7 +54,7 @@ class Feedback
     private ?string $name = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
-    private ?int $type = 0;
+    private ?int $type = 1;
 
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $status = 0;

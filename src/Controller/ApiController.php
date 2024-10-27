@@ -74,6 +74,8 @@ class ApiController extends AbstractController
             'avatar' => $user->getAvatar(),
             'roles' => $user->getRoles(),
             'favCount' => count($user->getFavs()),
+            'youCount' => count($user->getPlans()),
+            'planCount' => count($user->getPlans()),
         ];
         return $this->json($data);
     }
@@ -150,26 +152,24 @@ class ApiController extends AbstractController
     public function feedback(Request $request): Response
     {
         $params = $request->toArray();
-        $firstname = $params['firstname'];
-        // $lastname = $params['lastname'];
-        $phone = $params['phone'];
-        $email = $params['email'];
-        $title = $params['title'];
+
+        $uid = isset($params['uid']) ? $params['uid'] : null;
+        $title = isset($params['title']) ? $params['title'] : null;
         $body = $params['body'];
-        $uid = $params['uid'];
-        // $country = $params['country'];
-        
+
         $em = $this->data->getEntityManager();
-        $user = $em->getRepository(User::class)->find($uid);
+
         $f = new Feedback();
-        $f->setFirstname($firstname);
-        // $f->setLastname($lastname);
-        $f->setPhone($phone);
-        $f->setEmail($email);
-        $f->setTitle($title);
+        if (null !== $title) {
+            $f->setTitle($title);
+        }
+        if (null !== $uid) {
+            $user = $em->getRepository(User::class)->find($uid);
+            if (null !== $user){
+                $f->setU($user);
+            }
+        }
         $f->setBody($body);
-        $f->setU($user);
-        // $f->setCountry($country);
         $em->persist($f);
         $em->flush();
 
@@ -177,6 +177,7 @@ class ApiController extends AbstractController
             'code' => 0,
             'msg' => 'ok',
         ];
+
         return $this->json($data);
     }
 
