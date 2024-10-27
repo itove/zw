@@ -169,6 +169,9 @@ class Node
     #[ORM\OneToMany(mappedBy: 'node', targetEntity: Plan::class)]
     private Collection $plans;
 
+    #[ORM\ManyToOne(inversedBy: 'nodes')]
+    private ?Area $area = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -902,6 +905,18 @@ class Node
                 $plan->setNode(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArea(): ?Area
+    {
+        return $this->area;
+    }
+
+    public function setArea(?Area $area): static
+    {
+        $this->area = $area;
 
         return $this;
     }
