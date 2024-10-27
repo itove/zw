@@ -22,6 +22,7 @@ use App\Entity\Order;
 use App\Entity\Up;
 use App\Entity\Down;
 use App\Entity\Rate;
+use App\Entity\Feedback;
 
 class Data
 {
@@ -158,6 +159,20 @@ class Data
             // 'node' => [],
             'rate' => $r->getRate(),
             'createdAt' => $r->getCreatedAt(),
+        ];
+
+        return $data;
+    }
+
+    public function formatFeedback(Feedback $f)
+    {
+        $data = [
+            'id' => $f->getId(),
+            'user' => self::formatUser($f->getU()),
+            'createdAt' => $f->getCreatedAt(),
+            'status' => $f->getStatus(),
+            'title' => $f->getTitle(),
+            'body' => $f->getBody(),
         ];
 
         return $data;

@@ -143,7 +143,12 @@ class ApiController extends AbstractController
         if (null !== $uid) {
             $criteria = ['u' => $uid];
         }
-        $data = $em->getRepository(Feedback::class)->findBy($criteria);
+        
+        $data = [];
+        $feedback = $em->getRepository(Feedback::class)->findBy($criteria);
+        foreach($feedback as $i){
+            array_push($data, $this->data->formatFeedback($i));
+        }
 
         return $this->json($data);
     }
