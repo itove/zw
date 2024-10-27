@@ -33,8 +33,7 @@ class CategoryCrudController extends AbstractCrudController
     {
         $disabled = false;
         if ($pageName == 'edit') {
-            // if ($_ENV['APP_ENV'] === 'prod') {
-            if (!$this->isGranted('ROLE_SUPER_ADMIN')) {
+            if (!$this->isGranted('ROLE_SUPER_ADMIN') || $_ENV['APP_ENV'] === 'prod') {
                 $disabled = true;
             }
         }
