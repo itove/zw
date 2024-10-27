@@ -145,7 +145,7 @@ class ApiController extends AbstractController
         }
         
         $data = [];
-        $feedback = $em->getRepository(Feedback::class)->findBy($criteria);
+        $feedback = $em->getRepository(Feedback::class)->findBy($criteria, ['id' => 'DESC']);
         foreach($feedback as $i){
             array_push($data, $this->data->formatFeedback($i));
         }
