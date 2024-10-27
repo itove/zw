@@ -102,12 +102,22 @@ class ApiController extends AbstractController
     public function getNodesByRegion(string $regionLabel, Request $request): Response
     {
         // $nodes = $this->data->findNodesByRegionLabel($regionLabel, null);
-        $nodes = $this->data->findByRegionLabelAndCriteria($regionLabel, null);
-        $region = $this->data->getRegionByLabel($regionLabel);
-        $sort = $request->query->get('sort');
+        $order = $request->query->get('order');
         $cate = $request->query->get('cate');
-        dump($sort);
+        $area = $request->query->get('area');
+        $criteria = [];
+
+        if (null !== $cate) {
+            $criteria['category'] = $cate;
+        }
+        if (null !== $area) {
+            $criteria['area'] = $area;
+        }
         dump($cate);
+        dump($area);
+        dump($criteria);
+        $nodes = $this->data->findByRegionLabelAndCriteria($regionLabel, $criteria, null, null, null, $order);
+        $region = $this->data->getRegionByLabel($regionLabel);
 
         $i = 0;
         $data['region'] = $region->getName();

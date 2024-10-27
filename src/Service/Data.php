@@ -442,7 +442,7 @@ class Data
      */
     public function findByRegionLabelAndCriteria($region_label, $criteria, $locale = null, $limit = null, $offset = null, $order = 'DESC')
     {
-      return $this->doctrine->getRepository(Node::class)->findByRegionLabelAndCriteria($region_label, $criteria, $locale, $limit, $offset);
+      return $this->doctrine->getRepository(Node::class)->findByRegionLabelAndCriteria($region_label, $criteria, $locale, $limit, $offset, $order);
     }
     
     public function findBy($criteria, $entity = Node::class)
