@@ -98,6 +98,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'u', targetEntity: Plan::class, orphanRemoval: true)]
     private Collection $plans;
 
+    /**
+     * @var Collection<int, Feedback>
+     */
+    #[ORM\OneToMany(mappedBy: 'u', targetEntity: Feedback::class)]
+    private Collection $feedback;
+
     public function __construct()
     {
         $this->orders = new ArrayCollection();
@@ -109,6 +115,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->downs = new ArrayCollection();
         $this->rates = new ArrayCollection();
         $this->plans = new ArrayCollection();
+        $this->feedback = new ArrayCollection();
     }
     
     public function __toString(): string
@@ -515,6 +522,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($plan->getU() === $this) {
                 $plan->setU(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Feedback>
+     */
+    public function getFeedback(): Collection
+    {
+        return $this->feedback;
+    }
+
+    public function addFeedback(Feedback $feedback): static
+    {
+        if (!$this->feedback->contains($feedback)) {
+            $this->feedback->add($feedback);
+            $feedback->setU($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFeedback(Feedback $feedback): static
+    {
+        if ($this->feedback->removeElement($feedback)) {
+            // set the owning side to null (unless already changed)
+            if ($feedback->getU() === $this) {
+                $feedback->setU(null);
             }
         }
 

@@ -59,6 +59,9 @@ class Feedback
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $status = 0;
 
+    #[ORM\ManyToOne(inversedBy: 'feedback')]
+    private ?User $u = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -240,6 +243,18 @@ class Feedback
     public function setStatus(int $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getU(): ?User
+    {
+        return $this->u;
+    }
+
+    public function setU(?User $u): static
+    {
+        $this->u = $u;
 
         return $this;
     }
