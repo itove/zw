@@ -269,11 +269,11 @@ class NodeCrudController extends AbstractCrudController
             yield $longitudeField;
         }
 
-        yield ImageField::new('image')
-            ->onlyOnIndex()
-            ->setBasePath('images/')
-            ->setUploadDir('public/images/')
-        ;
+        // yield ImageField::new('image')
+        //     ->onlyOnIndex()
+        //     ->setBasePath('images/')
+        //     ->setUploadDir('public/images/')
+        // ;
 
         // yield ArrayField::new('regions')->onlyOnIndex();
 
