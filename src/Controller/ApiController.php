@@ -554,7 +554,7 @@ class ApiController extends AbstractController
     {
         $params = $request->toArray();
         $uid = $params['uid'];
-        $v = $params['v'];
+        $v = $params['rate'];
         $nid = $params['nid'];
         
         $em = $this->data->getEntityManager();
