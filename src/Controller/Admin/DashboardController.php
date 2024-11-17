@@ -142,7 +142,7 @@ class DashboardController extends AbstractDashboardController
         }
 
         yield MenuItem::section('Content Approve');
-        yield MenuItem::linkToCrud('Comment', 'fas fa-message', Comment::class);
+        yield MenuItem::linkToCrud('Comment Management', 'fas fa-message', Comment::class);
 
         yield MenuItem::section('Feedback');
         yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
