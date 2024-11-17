@@ -17,6 +17,7 @@ use App\Entity\Page;
 use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Feedback;
+use App\Entity\Comment;
 use App\Entity\Language;
 use App\Entity\Conf;
 use App\Entity\Category;
@@ -139,6 +140,9 @@ class DashboardController extends AbstractDashboardController
                 yield MenuItem::subMenu($p->getName(), 'fa fa-folder')->setSubItems($items);
             }
         }
+
+        yield MenuItem::section('Content Approve');
+        yield MenuItem::linkToCrud('Comment', 'fas fa-message', Comment::class);
 
         yield MenuItem::section('Feedback');
         yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
