@@ -74,7 +74,7 @@ class ApiController extends AbstractController
             'avatar' => $user->getAvatar(),
             'roles' => $user->getRoles(),
             'favCount' => count($user->getFavs()),
-            'youCount' => count($user->getPlans()),
+            'youCount' => count($user->getNodes()),
             'planCount' => count($user->getPlans()),
         ];
         return $this->json($data);
