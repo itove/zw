@@ -50,6 +50,9 @@ class Comment
     #[ORM\OneToMany(mappedBy: 'comment', targetEntity: Down::class)]
     private Collection $downs;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $approved = false;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -202,6 +205,18 @@ class Comment
                 $down->setComment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isApproved(): ?bool
+    {
+        return $this->approved;
+    }
+
+    public function setApproved(?bool $approved): static
+    {
+        $this->approved = $approved;
 
         return $this;
     }
