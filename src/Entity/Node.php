@@ -616,7 +616,11 @@ class Node
      */
     public function getComments(): Collection
     {
-        return $this->comments;
+        return $this->comments
+            ->filter(function($c) {
+                return $c->isApproved();
+            })
+        ;
     }
 
     public function addComment(Comment $comment): static
