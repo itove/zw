@@ -514,4 +514,14 @@ class Data
     {
         return $this->doctrine->getRepository(Order::class)->findOneBy(['sn' => $sn]);
     }
+
+    public function getNodeComments(Node $node)
+    {
+        $data = [];
+        foreach($node->getComments() as $c){
+            array_push($data, self::formatComment($c));
+        }
+
+        return $data;
+    }
 }

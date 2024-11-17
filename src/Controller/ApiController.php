@@ -446,15 +446,14 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    // #[Route('/comments', methods: ['GET'])]
-    public function getComments(Node $node)
+    #[Route('/comments/{nid}', requirements: ['id' => '\d+'], methods: ['GET'])]
+    public function getNodeComments(int $nid): Response
     {
-        $data = [];
-        foreach($node->getComments() as $c){
-            array_push($data, $this->data->formatComment($c));
-        }
+        $em = $this->data->getEntityManager();
+        $node = $em->getRepository(Node::class)->find($nid);
+        $comments = $this->data->getNodeComments($node);
 
-        return $data;
+        return $this->json($comments);
     }
 
     #[Route('/comments', methods: ['POST'])]
@@ -479,7 +478,7 @@ class ApiController extends AbstractController
         $data = [
             'code' => 0,
             'msg' => 'ok',
-            'comments' => self::getComments($node),
+            'comments' => $this->data->getNodeComments($node),
         ];
 
 
@@ -543,7 +542,7 @@ class ApiController extends AbstractController
             'msg' => 'ok',
             'upped' => true,
             'count' => count($comment->getUps()),
-            'comments' => self::getComments($comment->getNode()),
+            'comments' => $this->data->getNodeComments($comment->getNode()),
         ];
 
         return $this->json($data);
