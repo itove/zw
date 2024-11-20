@@ -665,8 +665,7 @@ class ApiController extends AbstractController
         $uid = $request->query->get('uid');
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
-        $nodes = $em->getRepository(Node::class)->findBy(['author' => $user]);
-        dump($nodes);
+        $nodes = $em->getRepository(Node::class)->findBy(['author' => $user], ['id' => 'DESC']);
         $data = [];
         foreach ($nodes as $n) {
             array_push($data,  $this->data->formatNode($n));
