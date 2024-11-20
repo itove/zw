@@ -731,6 +731,7 @@ class ApiController extends AbstractController
             $node->setPlan($plan);
             $region = $em->getRepository(Region::class)->findOneBy(['label' => 'youji']);
             $node->addRegion($region);
+            $node->setImage($images[0]);
             foreach($images as $i){
                 $image = new Image();
                 $image->setImage($i);
