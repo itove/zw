@@ -18,11 +18,11 @@ class Step
     #[ORM\JoinColumn(nullable: false)]
     private ?Plan $plan = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $datetime = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $body = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $startAt = null;
 
     public function getId(): ?int
     {
@@ -41,18 +41,6 @@ class Step
         return $this;
     }
 
-    public function getDatetime(): ?\DateTimeImmutable
-    {
-        return $this->datetime;
-    }
-
-    public function setDatetime(\DateTimeImmutable $datetime): static
-    {
-        $this->datetime = $datetime;
-
-        return $this;
-    }
-
     public function getBody(): ?string
     {
         return $this->body;
@@ -61,6 +49,18 @@ class Step
     public function setBody(?string $body): static
     {
         $this->body = $body;
+
+        return $this;
+    }
+
+    public function getStartAt(): ?\DateTimeImmutable
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(?\DateTimeImmutable $startAt): static
+    {
+        $this->startAt = $startAt;
 
         return $this;
     }
