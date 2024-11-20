@@ -22,6 +22,7 @@ use App\Entity\Plan;
 use App\Entity\Step;
 use App\Entity\Category;
 use App\Entity\Area;
+use App\Entity\Image;
 use App\Entity\Comment;
 use App\Service\WxPay;
 use App\Service\Wx;
@@ -50,6 +51,7 @@ class ApiController extends AbstractController
             $user->setAvatar($newName);
             $em->flush();
         }
+
         return $this->json(['url' => '/images/' . $newName]);
     }
     
@@ -711,6 +713,12 @@ class ApiController extends AbstractController
             $node->setBody($body);
             $node->setAuthor($user);
             $node->setPlan($plan);
+            foreach($images as $i){
+                $image = new Image();
+                $image->setImage($i);
+                $em->persist($image);
+                $node->addImage($image);
+            }
             $em->persist($node);
 
             $em->flush();
