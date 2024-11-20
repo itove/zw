@@ -665,7 +665,7 @@ class ApiController extends AbstractController
         $body = isset($params['body']) ? $params['body'] : null;
         $uid = $params['uid'];
         $nid = isset($params['nid']) ? $params['nid'] : null;
-        $month = isset($params['month']) ? $params['month'] : null;
+        $planDate = isset($params['planDate']) ? $params['planDate'] : null;
         $days = isset($params['days']) ? $params['days'] : null;
         $cost = isset($params['cost']) ? $params['cost'] : null;
         $who = isset($params['who']) ? $params['who'] : null;
@@ -687,8 +687,8 @@ class ApiController extends AbstractController
             $plan->setSummary($summary);
             $plan->setBody($body);
             $plan->setU($user);
-            $plan->setNode($node);
-            $plan->setMonth($month);
+            // $plan->setNode($node);
+            $plan->setStartAt(new \DateTimeImmutable($planDate));
             $plan->setDays($days);
             $plan->setCost($cost);
             $plan->setWho($who);
@@ -697,16 +697,21 @@ class ApiController extends AbstractController
 
             $em->persist($plan);
 
-            // $node = new Node();
-            // $node->setTitle($title);
-            // $node->setSummary($summary);
-            // $node->setBody($body);
-            // $node->setAuthor($user);
-            // $node->setMonth($month);
-            // $node->setMonth($days);
-            // $node->setPrice($cost);
-            // $node->setNote($who);
-            // $em->persist($node);
+            foreach($steps as $s){
+                $step = new Step();
+                $step->setStartAt(new \DateTimeImmutable($s['date']));
+                $step->setBody($s['body']);
+                $step->setPlan($plan);
+                $em->persist($step);
+            }
+
+            $node = new Node();
+            $node->setTitle($title);
+            $node->setSummary($summary);
+            $node->setBody($body);
+            $node->setAuthor($user);
+            $node->setPlan($plan);
+            $em->persist($node);
 
             $em->flush();
         }
