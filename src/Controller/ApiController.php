@@ -21,6 +21,7 @@ use App\Entity\Rate;
 use App\Entity\Plan;
 use App\Entity\Step;
 use App\Entity\Category;
+use App\Entity\Region;
 use App\Entity\Area;
 use App\Entity\Image;
 use App\Entity\Comment;
@@ -658,6 +659,22 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/youji', methods: ['GET'])]
+    public function getYouji(Request $request): Response
+    {
+        $uid = $request->query->get('uid');
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $nodes = $em->getRepository(Node::class)->findBy(['author' => $user]);
+        dump($nodes);
+        $data = [];
+        foreach ($nodes as $n) {
+            array_push($data,  $this->data->formatNode($n));
+        }
+
+        return $this->json($data);
+    }
+
     #[Route('/youji', methods: ['POST'])]
     public function createYouji(Request $request): Response
     {
@@ -713,6 +730,8 @@ class ApiController extends AbstractController
             $node->setBody($body);
             $node->setAuthor($user);
             $node->setPlan($plan);
+            $region = $em->getRepository(Region::class)->findOneBy(['label' => 'youji']);
+            $node->addRegion($region);
             foreach($images as $i){
                 $image = new Image();
                 $image->setImage($i);
