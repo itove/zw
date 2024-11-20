@@ -53,6 +53,9 @@ class Plan
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $startAt = null;
 
+    #[ORM\OneToOne(inversedBy: 'plan', cascade: ['persist', 'remove'])]
+    private ?Node $node = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -216,6 +219,18 @@ class Plan
     public function setStartAt(?\DateTimeImmutable $startAt): static
     {
         $this->startAt = $startAt;
+
+        return $this;
+    }
+
+    public function getNode(): ?Node
+    {
+        return $this->node;
+    }
+
+    public function setNode(?Node $node): static
+    {
+        $this->node = $node;
 
         return $this;
     }

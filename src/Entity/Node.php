@@ -166,6 +166,9 @@ class Node
     #[ORM\ManyToOne(inversedBy: 'nodes')]
     private ?Area $area = null;
 
+    #[ORM\OneToOne(mappedBy: 'node', cascade: ['persist', 'remove'])]
+    private ?Plan $plan = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -884,6 +887,28 @@ class Node
     public function setArea(?Area $area): static
     {
         $this->area = $area;
+
+        return $this;
+    }
+
+    public function getPlan(): ?Plan
+    {
+        return $this->plan;
+    }
+
+    public function setPlan(?Plan $plan): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($plan === null && $this->plan !== null) {
+            $this->plan->setNode(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($plan !== null && $plan->getNode() !== $this) {
+            $plan->setNode($this);
+        }
+
+        $this->plan = $plan;
 
         return $this;
     }
