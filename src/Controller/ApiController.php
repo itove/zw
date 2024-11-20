@@ -656,6 +656,69 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
+    #[Route('/youji', methods: ['POST'])]
+    public function createYouji(Request $request): Response
+    {
+        $params = $request->toArray();
+        $title = $params['title'];
+        $summary = isset($params['summary']) ? $params['summary'] : null;
+        $body = isset($params['body']) ? $params['body'] : null;
+        $uid = $params['uid'];
+        $nid = isset($params['nid']) ? $params['nid'] : null;
+        $month = isset($params['month']) ? $params['month'] : null;
+        $days = isset($params['days']) ? $params['days'] : null;
+        $cost = isset($params['cost']) ? $params['cost'] : null;
+        $who = isset($params['who']) ? $params['who'] : null;
+        $images = isset($params['images']) ? $params['images'] : null;
+        $steps = isset($params['steps']) ? $params['steps'] : null;
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        if (null !== $nid) {
+            $node = $this->data->getNode($nid);
+        } else {
+            $node = null;
+        }
+
+        $plan = $em->getRepository(Plan::class)->findOneBy(['u' => $user, 'node' => $node]);
+        if ((null === $plan && null !== $node) || null === $node) {
+            $plan = new Plan();
+            $plan->setTitle($title);
+            $plan->setSummary($summary);
+            $plan->setBody($body);
+            $plan->setU($user);
+            $plan->setNode($node);
+            $plan->setMonth($month);
+            $plan->setDays($days);
+            $plan->setCost($cost);
+            $plan->setWho($who);
+            // $plan->setImages($images);
+            // $plan->setSteps($steps);
+
+            $em->persist($plan);
+
+            // $node = new Node();
+            // $node->setTitle($title);
+            // $node->setSummary($summary);
+            // $node->setBody($body);
+            // $node->setAuthor($user);
+            // $node->setMonth($month);
+            // $node->setMonth($days);
+            // $node->setPrice($cost);
+            // $node->setNote($who);
+            // $em->persist($node);
+
+            $em->flush();
+        }
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+        ];
+
+        return $this->json($data);
+    }
+
     #[Route('/taxons', methods: ['GET'])]
     public function getTaxons(): Response
     {

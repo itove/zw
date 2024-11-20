@@ -50,9 +50,6 @@ class Plan
     #[ORM\JoinColumn(nullable: false)]
     private ?User $u = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plans')]
-    private ?Node $node = null;
-
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $startAt = null;
 
@@ -207,18 +204,6 @@ class Plan
     public function setU(?User $u): static
     {
         $this->u = $u;
-
-        return $this;
-    }
-
-    public function getNode(): ?Node
-    {
-        return $this->node;
-    }
-
-    public function setNode(?Node $node): static
-    {
-        $this->node = $node;
 
         return $this;
     }
