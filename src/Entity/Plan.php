@@ -26,9 +26,6 @@ class Plan
     private ?string $title = null;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
-    private ?int $month = null;
-
-    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $days = null;
 
     #[ORM\Column(nullable: true)]
@@ -108,18 +105,6 @@ class Plan
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getMonth(): ?int
-    {
-        return $this->month;
-    }
-
-    public function setMonth(?int $month): static
-    {
-        $this->month = $month;
 
         return $this;
     }
