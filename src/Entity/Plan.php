@@ -56,6 +56,9 @@ class Plan
     #[ORM\ManyToOne(inversedBy: 'plans')]
     private ?Node $node = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $startAt = null;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -231,6 +234,18 @@ class Plan
     public function setNode(?Node $node): static
     {
         $this->node = $node;
+
+        return $this;
+    }
+
+    public function getStartAt(): ?\DateTimeImmutable
+    {
+        return $this->startAt;
+    }
+
+    public function setStartAt(?\DateTimeImmutable $startAt): static
+    {
+        $this->startAt = $startAt;
 
         return $this;
     }
