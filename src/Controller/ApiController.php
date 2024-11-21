@@ -660,7 +660,7 @@ class ApiController extends AbstractController
     }
 
     #[Route('/youji', methods: ['GET'])]
-    public function getYouji(Request $request): Response
+    public function listYouji(Request $request): Response
     {
         $uid = $request->query->get('uid');
         $em = $this->data->getEntityManager();
@@ -674,6 +674,34 @@ class ApiController extends AbstractController
                 array_push($data[1],  $this->data->formatNode($n));
             }
         }
+
+        return $this->json($data);
+    }
+
+    #[Route('/youji/{nid}', requirements: ['id' => '\d+'],  methods: ['GET'])]
+    public function getYouji(int $nid, Request $request): Response
+    {
+        $em = $this->data->getEntityManager();
+        $node = $em->getRepository(Node::class)->find($nid);
+        $data = $this->data->formatNode($node);
+        $plan = $node->getPlan();
+        $steps = [];
+        foreach($plan->getSteps() as $s){
+            array_push($steps, ['body' => $s->getBody(), 'startAt' => $s->getStartAt()]);
+        }
+        $images = [];
+        foreach($node->getImages() as $i){
+            array_push($images, ['image' => $i->getImage(), 'title' => $i->getTitle()]);
+        }
+        $data['plan'] = [
+            'title' => $plan->getTitle(),
+            'days' => $plan->getDays(),
+            'cost' => $plan->getCost(),
+            'who' => $plan->getWho(),
+            'startAt' => $plan->getStartAt(),
+            'steps' => $steps,
+            'images' => $images,
+        ];
 
         return $this->json($data);
     }
