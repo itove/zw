@@ -169,6 +169,9 @@ class Node
     #[ORM\OneToOne(mappedBy: 'node', cascade: ['persist', 'remove'])]
     private ?Plan $plan = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $published = null;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -909,6 +912,18 @@ class Node
         }
 
         $this->plan = $plan;
+
+        return $this;
+    }
+
+    public function isPublished(): ?bool
+    {
+        return $this->published;
+    }
+
+    public function setPublished(?bool $published): static
+    {
+        $this->published = $published;
 
         return $this;
     }
