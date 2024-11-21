@@ -238,7 +238,7 @@ class ApiController extends AbstractController
     #[Route('/wx/wan', methods: ['GET'])]
     public function wxWan(): Response
     {
-        $list = ['wan', 'you', 'lu'];
+        $list = ['wan', 'youji', 'lu'];
 
         foreach ($list as $l) {
             $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
