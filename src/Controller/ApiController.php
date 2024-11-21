@@ -665,7 +665,31 @@ class ApiController extends AbstractController
         $uid = $request->query->get('uid');
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
-        $nodes = $em->getRepository(Node::class)->findBy(['author' => $user], ['id' => 'DESC']);
+        $nodes = $em->getRepository(Node::class)->findBy(['author' => $user, 'deleted' => false], ['id' => 'DESC']);
+        $data = [];
+        foreach ($nodes as $n) {
+            array_push($data,  $this->data->formatNode($n));
+        }
+
+        return $this->json($data);
+    }
+
+    #[Route('/youji/{nid}', methods: ['DELETE'])]
+    public function delYouji(int $nid, Request $request): Response
+    {
+        $params = $request->toArray();
+        $uid = $params['uid'];
+
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $em->getRepository(Node::class)->find($nid);
+
+        if ($node->getAuthor() === $user) {
+            $node->setDeleted(true);
+            $em->flush();
+        }
+
+        $nodes = $em->getRepository(Node::class)->findBy(['author' => $user, 'deleted' => false], ['id' => 'DESC']);
         $data = [];
         foreach ($nodes as $n) {
             array_push($data,  $this->data->formatNode($n));
