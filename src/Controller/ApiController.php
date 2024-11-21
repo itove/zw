@@ -666,9 +666,13 @@ class ApiController extends AbstractController
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
         $nodes = $em->getRepository(Node::class)->findBy(['author' => $user, 'deleted' => false], ['id' => 'DESC']);
-        $data = [];
+        $data = [[], []];
         foreach ($nodes as $n) {
-            array_push($data,  $this->data->formatNode($n));
+            if ($n->isPublished()) {
+                array_push($data[0],  $this->data->formatNode($n));
+            } else {
+                array_push($data[1],  $this->data->formatNode($n));
+            }
         }
 
         return $this->json($data);
@@ -690,9 +694,13 @@ class ApiController extends AbstractController
         }
 
         $nodes = $em->getRepository(Node::class)->findBy(['author' => $user, 'deleted' => false], ['id' => 'DESC']);
-        $data = [];
+        $data = [[], []];
         foreach ($nodes as $n) {
-            array_push($data,  $this->data->formatNode($n));
+            if ($n->isPublished()) {
+                array_push($data[0],  $this->data->formatNode($n));
+            } else {
+                array_push($data[1],  $this->data->formatNode($n));
+            }
         }
 
         return $this->json($data);
@@ -713,6 +721,7 @@ class ApiController extends AbstractController
         $who = isset($params['who']) ? $params['who'] : null;
         $images = isset($params['images']) ? $params['images'] : null;
         $steps = isset($params['steps']) ? $params['steps'] : null;
+        $published = isset($params['published']) ? $params['published'] : null;
         
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
@@ -751,6 +760,7 @@ class ApiController extends AbstractController
             $node->setTitle($title);
             $node->setSummary($summary);
             $node->setBody($body);
+            $node->setPublished($published);
             $node->setAuthor($user);
             $node->setPlan($plan);
             $region = $em->getRepository(Region::class)->findOneBy(['label' => 'youji']);

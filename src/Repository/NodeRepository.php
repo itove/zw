@@ -20,6 +20,22 @@ class NodeRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Node::class);
     }
+
+    public function groupByPublished($uid): array
+    {
+        return $this->createQueryBuilder('n')
+            ->join('n.author', 'u')
+            ->andWhere('u.id = :uid')
+            ->andWhere('n.deleted = false')
+            ->orderBy('n.id', 'DESC')
+            ->setParameter('uid', $uid)
+            ->groupBy('n.published')
+            // ->setMaxResults($limit)
+            // ->setFirstResult($offset)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     
     public function findByKeyword($kw, $limit = null, $offset = null): array
     {
