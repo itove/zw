@@ -675,7 +675,7 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/youji/{nid}', requirements: ['id' => '\d+'],  methods: ['GET'])]
+    #[Route('/youji/{nid}', requirements: ['nid' => '\d+'],  methods: ['GET'])]
     public function getYouji(int $nid, Request $request): Response
     {
         $em = $this->data->getEntityManager();
@@ -703,7 +703,7 @@ class ApiController extends AbstractController
         return $this->json($data);
     }
 
-    #[Route('/youji/{nid}', methods: ['DELETE'])]
+    #[Route('/youji/{nid}', requirements: ['nid' => '\d+'], methods: ['DELETE'])]
     public function delYouji(int $nid, Request $request): Response
     {
         $params = $request->toArray();
@@ -727,6 +727,73 @@ class ApiController extends AbstractController
                 array_push($data[1],  $this->data->formatNode($n));
             }
         }
+
+        return $this->json($data);
+    }
+
+    #[Route('/youji/{nid}', requirements: ['nid' => '\d+'], methods: ['PATCH'])]
+    public function updateYouji(int $nid, Request $request): Response
+    {
+        $params = $request->toArray();
+        $title = $params['title'];
+        $summary = isset($params['summary']) ? $params['summary'] : null;
+        $body = isset($params['body']) ? $params['body'] : null;
+        $uid = $params['uid'];
+        $planDate = isset($params['planDate']) ? $params['planDate'] : null;
+        $days = isset($params['days']) ? $params['days'] : null;
+        $cost = isset($params['cost']) ? $params['cost'] : null;
+        $who = isset($params['who']) ? $params['who'] : null;
+        $images = isset($params['images']) ? $params['images'] : null;
+        $steps = isset($params['steps']) ? $params['steps'] : null;
+        $published = isset($params['published']) ? $params['published'] : null;
+        
+        $em = $this->data->getEntityManager();
+        $user = $em->getRepository(User::class)->find($uid);
+        $node = $this->data->getNode($nid);
+        $plan = $em->getRepository(Plan::class)->findOneBy(['u' => $user, 'node' => $node]);
+        $plan->setTitle($title);
+        $plan->setSummary($summary);
+        $plan->setBody($body);
+        $plan->setU($user);
+        // $plan->setNode($node);
+        $plan->setStartAt(new \DateTimeImmutable($planDate));
+        $plan->setDays($days);
+        $plan->setCost($cost);
+        $plan->setWho($who);
+        foreach($plan->getSteps() as $s){
+            $plan->removeStep($s);
+        }
+        foreach($steps as $s){
+            $step = new Step();
+            $step->setStartAt(new \DateTimeImmutable($s['date']));
+            $step->setBody($s['body']);
+            $step->setPlan($plan);
+            $em->persist($step);
+        }
+        $node->setTitle($title);
+        $node->setSummary($summary);
+        $node->setBody($body);
+        $node->setPublished($published);
+        $node->setAuthor($user);
+        $node->setPlan($plan);
+        $region = $em->getRepository(Region::class)->findOneBy(['label' => 'youji']);
+        $node->addRegion($region);
+        $node->setImage($images[0]);
+        foreach($node->getImages() as $i){
+            $node->removeImage($i);
+        }
+        foreach($images as $i){
+            $image = new Image();
+            $image->setImage($i);
+            $em->persist($image);
+            $node->addImage($image);
+        }
+        $em->flush();
+
+        $data = [
+            'code' => 0,
+            'msg' => 'ok',
+        ];
 
         return $this->json($data);
     }
