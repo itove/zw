@@ -233,6 +233,11 @@ class Data
             array_push($data['favs'], $f->getU()->getId());
         }
 
+        $data['images'] = [];
+        foreach($n->getImages() as $i) {
+            array_push($data['images'], $i->getImage());
+        }
+
         $data['rates'] = [
             'rate' => 0,
             'users' => [],
