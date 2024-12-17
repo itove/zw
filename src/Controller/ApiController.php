@@ -192,25 +192,25 @@ class ApiController extends AbstractController
     #[Route('/fav', methods: ['GET'])]
     public function getUserFav(Request $request): Response
     {
-        $regionLabel = $request->query->get('region');
+        // $regionLabel = $request->query->get('region');
         $uid = $request->query->get('uid');
 
         $em = $this->data->getEntityManager();
         $user = $em->getRepository(User::class)->find($uid);
         $favs = $user->getFavs();
-        $region = $this->data->getRegionByLabel($regionLabel);
+        // $region = $this->data->getRegionByLabel($regionLabel);
 
         $i = 0;
-        $data['region'] = $region->getName();
+        // $data['region'] = $region->getName();
         $data['nodes'] = [];
         foreach ($favs as $f) {
-            if ($f->getNode()->getRegions()->contains($region)) {
-                $data['nodes'][$i]['title'] = $n->getTitle();
-                $data['nodes'][$i]['summary'] = $n->getSummary();
-                $data['nodes'][$i]['image'] = $n->getImage();
-                $data['nodes'][$i]['id'] = $n->getId();
+            // if ($f->getNode()->getRegions()->contains($region)) {
+                $data['nodes'][$i]['title'] = $f->getNode()->getTitle();
+                $data['nodes'][$i]['summary'] = $f->getNode()->getSummary();
+                $data['nodes'][$i]['image'] = $f->getNode()->getImage();
+                $data['nodes'][$i]['id'] = $f->getNode()->getId();
                 $i++;
-            }
+            // }
         }
 
         return $this->json($data);
@@ -361,9 +361,22 @@ class ApiController extends AbstractController
             $em->remove($fav);
         }
 
+        $favs = $user->getFavs();
+
+        $i = 0;
+        $data['isFav'] = false;
+        $data['nodes'] = [];
+        foreach ($favs as $f) {
+            $data['nodes'][$i]['title'] = $f->getNode()->getTitle();
+            $data['nodes'][$i]['summary'] = $f->getNode()->getSummary();
+            $data['nodes'][$i]['image'] = $f->getNode()->getImage();
+            $data['nodes'][$i]['id'] = $f->getNode()->getId();
+            $i++;
+        }
+
         $em->flush();
 
-        return $this->json(['isFav' => false]);
+        return $this->json($data);
     }
 
     #[Route('/fav/toggle', methods: ['POST'])]
