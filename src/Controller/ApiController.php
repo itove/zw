@@ -359,6 +359,7 @@ class ApiController extends AbstractController
         $fav = $em->getRepository(Fav::class)->findOneBy(['u' => $user, 'node' => $node]);
         if (null !== $fav) {
             $em->remove($fav);
+            $em->flush();
         }
 
         $favs = $user->getFavs();
@@ -374,7 +375,6 @@ class ApiController extends AbstractController
             $i++;
         }
 
-        $em->flush();
 
         return $this->json($data);
     }
