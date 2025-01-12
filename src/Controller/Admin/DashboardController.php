@@ -18,6 +18,7 @@ use App\Entity\Tag;
 use App\Entity\User;
 use App\Entity\Feedback;
 use App\Entity\Comment;
+use App\Entity\Fav;
 use App\Entity\Language;
 use App\Entity\Conf;
 use App\Entity\Category;
@@ -141,11 +142,10 @@ class DashboardController extends AbstractDashboardController
             }
         }
 
-        yield MenuItem::section('Content Approve');
+        yield MenuItem::section('User Content');
         yield MenuItem::linkToCrud('Comment Management', 'fas fa-message', Comment::class);
-
-        yield MenuItem::section('Feedback');
         yield MenuItem::linkToCrud('Feedback', 'fas fa-message', Feedback::class);
+        yield MenuItem::linkToCrud('User Fav', 'fas fa-message', Fav::class);
         
         yield MenuItem::section('Taxon Management');
         if ($_ENV['HAVE_ORDERS']) {

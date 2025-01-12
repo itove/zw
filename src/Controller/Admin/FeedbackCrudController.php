@@ -34,6 +34,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Router\AdminUrlGenerator;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Asset;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 
 class FeedbackCrudController extends AbstractCrudController
 {
@@ -98,5 +99,13 @@ class FeedbackCrudController extends AbstractCrudController
         }
 
         return $qb;
+    }
+
+    public function configureFilters(Filters $filters): Filters
+    {
+        return $filters
+            ->add('u')
+            ->add('createdAt')
+        ;
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Comment;
+use App\Entity\Fav;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -15,11 +15,11 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Filters;
 
-class CommentCrudController extends AbstractCrudController
+class FavCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Comment::class;
+        return Fav::class;
     }
 
     public function configureFields(string $pageName): iterable
@@ -36,11 +36,9 @@ class CommentCrudController extends AbstractCrudController
             // yield IntegerField::new('weight');
         }
 
-        yield AssociationField::new('author')->setDisabled($disabled);
+        yield AssociationField::new('u')->setDisabled($disabled);
         yield AssociationField::new('node')->setDisabled($disabled);
-        yield TextareaField::new('body')->setDisabled($disabled);
         yield DatetimeField::new('createdAt')->setDisabled($disabled);
-        yield BooleanField::new('approved');
     }
 
     public function configureActions(Actions $actions): Actions
@@ -59,9 +57,8 @@ class CommentCrudController extends AbstractCrudController
     public function configureFilters(Filters $filters): Filters
     {
         return $filters
-            ->add('author')
+            ->add('u')
             ->add('node')
-            ->add('approved')
             ->add('createdAt')
         ;
     }
