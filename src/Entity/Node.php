@@ -172,6 +172,9 @@ class Node
     #[ORM\Column(nullable: true)]
     private ?bool $published = null;
 
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $weight = 0;
+
     public function __construct()
     {
         $this->regions = new ArrayCollection();
@@ -924,6 +927,18 @@ class Node
     public function setPublished(?bool $published): static
     {
         $this->published = $published;
+
+        return $this;
+    }
+
+    public function getWeight(): ?int
+    {
+        return $this->weight;
+    }
+
+    public function setWeight(?int $weight): static
+    {
+        $this->weight = $weight;
 
         return $this;
     }
