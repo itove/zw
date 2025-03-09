@@ -121,11 +121,12 @@ class NodeRepository extends ServiceEntityRepository
         $qb = $this->createQueryBuilder('n');
 
         // https://github.com/doctrine/orm/issues/7833
-				foreach ($criteria as $k => $v) {
+        foreach ($criteria as $k => $v) {
           $expr = $qb->expr()->eq("n.{$k}", ":{$k}");
           $qb
             ->andWhere($expr)
             ->setParameter($k, $v)
+            ->orderBy('n.weight', 'ASC')
           ;
         }
 
