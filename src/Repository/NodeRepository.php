@@ -126,7 +126,6 @@ class NodeRepository extends ServiceEntityRepository
           $qb
             ->andWhere($expr)
             ->setParameter($k, $v)
-            ->orderBy('n.weight', 'ASC')
           ;
         }
 
@@ -138,7 +137,8 @@ class NodeRepository extends ServiceEntityRepository
             ->andWhere('l.locale = :locale OR l is null')
             ->setParameter('label', $label)
             ->setParameter('locale', $locale)
-            ->orderBy('n.id', $order)
+            ->orderBy('n.weight', 'ASC')
+            ->addOrderBy('n.id', $order)
             ->setMaxResults($limit)
             ->setFirstResult($offset)
             ->getQuery()
