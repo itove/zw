@@ -219,7 +219,7 @@ class ApiController extends AbstractController
     #[Route('/wx/home', methods: ['GET'])]
     public function wxHome(): Response
     {
-        $list = ['jing', 'zhu', 'shi', 'dong', 'wen', 'yi', 'gou', 'wan'];
+        $list = ['slides', 'jing', 'zhu', 'shi', 'dong', 'wen', 'yi', 'gou', 'wan'];
 
         foreach ($list as $l) {
             $nodes = $this->data->findNodesByRegionLabel($l, null, 5);
