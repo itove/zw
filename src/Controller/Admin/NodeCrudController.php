@@ -248,6 +248,7 @@ class NodeCrudController extends AbstractCrudController
         $startAtField = DateField::new('startAt')->onlyOnForms();
         $endAtField = DateField::new('endAt')->onlyOnForms();
         $noteField = TextField::new('note', 'Host')->onlyOnForms();
+        $weightField = IntegerField::new('weight');
 
         $fields = [];
         if (!is_null($this->region)) {
